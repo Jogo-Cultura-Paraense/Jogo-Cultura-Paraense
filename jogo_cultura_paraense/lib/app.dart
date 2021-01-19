@@ -7,9 +7,14 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Jogo Cultura Paraense',
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        primaryColor: Colors.red[900],
+        accentColor: Colors.redAccent[700],
+        buttonTheme: ButtonThemeData(
+          buttonColor: Colors.redAccent[700],
+          textTheme: ButtonTextTheme.primary,
+        ),
       ),
-      home: const HomePage(),
+      home: HomePage(),
     );
   }
 }
