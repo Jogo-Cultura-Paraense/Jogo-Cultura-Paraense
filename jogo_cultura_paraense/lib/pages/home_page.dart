@@ -34,7 +34,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-<<<<<<< HEAD
       decoration: BoxDecoration(
           image: DecorationImage(
               image: AssetImage(getImage()), fit: BoxFit.cover)),
@@ -61,44 +60,6 @@ class HomePage extends StatelessWidget {
         ),
       ),
     );
-=======
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage(getImage()), fit: BoxFit.cover)),
-        child: Scaffold(
-            backgroundColor: Colors.transparent,
-            extendBodyBehindAppBar: true,
-            appBar: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              actions: <Widget>[
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 2),
-                  child: FloatingActionButton(
-                    child: Icon(Icons.share),
-                    elevation: 0,
-                    onPressed: () {
-                      _share(context);
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 2),
-                  child: FloatingActionButton(
-                    child: Icon(Icons.info_outline_rounded),
-                    elevation: 0,
-                    onPressed: () {
-                      _info(context);
-                    },
-                  ),
-                )
-              ],
-            ),
-            body: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 32.0),
-              child: MainMenu(),
-            )));
->>>>>>> 326587b08c5542dfa69a694793f94914a50874da
   }
 
   void _share(BuildContext context) {
