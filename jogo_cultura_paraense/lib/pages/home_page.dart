@@ -10,8 +10,7 @@ class HomePage extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("lib/images/EveningBackground.png"),
-          fit: BoxFit.cover
+          image: AssetImage("lib/images/EveningBackground.png"), fit: BoxFit.cover
         )
       ),
       child: Scaffold(
@@ -55,7 +54,9 @@ class HomePage extends StatelessWidget {
   void _info(BuildContext context) {
     showDialog(
       context: context,
-      //child: const InfoAlert(),
+      builder: (context) {
+        return const InfoAlert();
+      }
     );
   }
 }
