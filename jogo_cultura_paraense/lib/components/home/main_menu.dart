@@ -9,7 +9,20 @@ class MainMenu extends StatelessWidget {
       children: <Widget>[
         const Text(
           'Jogo Cultura Paraense',
-          style: TextStyle(fontSize: 24.0),
+          style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: Colors.white,
+            shadows: <Shadow>[
+              Shadow(
+              offset: Offset(1.0, 1.0),
+              blurRadius: 2.0,
+              color: Color.fromARGB(255, 0, 0, 0),
+              ),
+              Shadow(
+              offset: Offset(1.0, 1.0),
+              blurRadius: 1.0,
+              color: Color.fromARGB(255, 0, 0, 0),
+              ),
+            ]
+          ),
         ),
         _MainMenuButton(
           label: 'JOGAR',
@@ -40,6 +53,7 @@ class MainMenu extends StatelessWidget {
   }
 
   void _settings(BuildContext context) {
+    //print(checkTime());
     print('settings...');
   }
 

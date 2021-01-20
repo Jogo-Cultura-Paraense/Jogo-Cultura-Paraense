@@ -14,7 +14,7 @@ class App extends StatelessWidget {
           textTheme: ButtonTextTheme.primary,
         ),
       ),
-      home: HomePage(),
+      home: LoadingPage()
     );
   }
 }

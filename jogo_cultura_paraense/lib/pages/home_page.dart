@@ -6,8 +6,24 @@ import 'package:jogo_cultura_paraense/components/home/home_components.dart';
 class HomePage extends StatelessWidget {
   HomePage({Key key}) : super(key: key);
 
+  String checkTime() {
+    var now = new DateTime.now();
+    var period = "";
+    if (now.hour >= 6 && now.hour <= 12) {
+      period = "manhã";
+    } else if (now.hour >= 12 && now.hour <=18) {
+      period = "tarde";
+    } else {
+      period = "noite";
+    }
+    return period;
+  }
+
   String getImage() {
-    return "lib/images/EveningBackground.png";
+    var period = checkTime();
+    if (period == "manhã") return "lib/images/MorningBackground.png";
+    else if (period == "tarde") return "lib/images/EveningBackground.png";
+    else return "lib/images/NightBackground.png";
   }
 
   @override
