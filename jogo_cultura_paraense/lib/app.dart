@@ -14,7 +14,15 @@ class App extends StatelessWidget {
           textTheme: ButtonTextTheme.primary,
         ),
       ),
-      home: LoadingPage()
+      routes: {
+        HomePage.routeName: (BuildContext context) {
+          return const HomePage();
+        },
+        LoadingPage.routeName: (BuildContext context) {
+          return const LoadingPage();
+        }
+      },
+      initialRoute: LoadingPage.routeName,
     );
   }
 }
