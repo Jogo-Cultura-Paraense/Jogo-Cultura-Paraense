@@ -4,20 +4,39 @@ import 'package:share/share.dart';
 import 'package:jogo_cultura_paraense/components/home/home_components.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key key}) : super(key: key);
+  static const String routeName = '/home';
+  const HomePage({Key key}) : super(key: key);
+
+  String checkTime() {
+    var now = new DateTime.now();
+    var period = "";
+    if (now.hour >= 6 && now.hour <= 12) {
+      period = "manhã";
+    } else if (now.hour >= 12 && now.hour <= 18) {
+      period = "tarde";
+    } else {
+      period = "noite";
+    }
+    print(period);
+    return period;
+  }
 
   String getImage() {
-    return "lib/images/EveningBackground.png";
+    var period = checkTime();
+    if (period == "manhã")
+      return "lib/images/MorningBackground.png";
+    else if (period == "tarde")
+      return "lib/images/EveningBackground.png";
+    else
+      return "lib/images/NightBackground.png";
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(getImage()), fit: BoxFit.cover
-        )
-      ),
+          image: DecorationImage(
+              image: AssetImage(getImage()), fit: BoxFit.cover)),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         extendBodyBehindAppBar: true,
@@ -25,33 +44,21 @@ class HomePage extends StatelessWidget {
           backgroundColor: Colors.transparent,
           elevation: 0,
           actions: <Widget>[
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 2),
-              child: FloatingActionButton(
-                child: Icon(Icons.share),
-                elevation: 0,
-                onPressed: () {
-                  _share(context);
-                },
-              ),
+            _MainMenuIconButton(
+              icon: Icons.share,
+              onClick: () => _share(context),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 2),
-              child: FloatingActionButton(
-                child: Icon(Icons.info_outline_rounded),
-                elevation: 0,
-                onPressed: () {
-                  _info(context);
-                },
-              ),
+            _MainMenuIconButton(
+              icon: Icons.info_outline_rounded,
+              onClick: () => _info(context),
             )
           ],
         ),
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 32.0),
+          padding: EdgeInsets.only(left: 32.0, right: 32.0, top: 32.0),
           child: MainMenu(),
-        )
-      )
+        ),
+      ),
     );
   }
 
@@ -68,6 +75,25 @@ class HomePage extends StatelessWidget {
       builder: (context) {
         return const InfoAlert();
       },
+    );
+  }
+}
+
+class _MainMenuIconButton extends StatelessWidget {
+  final IconData icon;
+  final Function onClick;
+
+  const _MainMenuIconButton({this.icon, this.onClick});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 2),
+      child: FloatingActionButton(
+        child: Icon(icon),
+        elevation: 0,
+        onPressed: () => onClick(),
+      ),
     );
   }
 }
