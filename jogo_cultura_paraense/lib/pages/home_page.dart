@@ -55,7 +55,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 32.0),
+          padding: EdgeInsets.only(left: 32.0, right: 32.0, top: 32.0),
           child: MainMenu(),
         ),
       ),
