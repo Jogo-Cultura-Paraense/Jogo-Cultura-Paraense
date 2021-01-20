@@ -47,7 +47,9 @@ class HomePage extends StatelessWidget {
   void _info(BuildContext context) {
     showDialog(
       context: context,
-      child: const InfoAlert(),
+      builder: (context) {
+        return const InfoAlert();
+      },
     );
   }
 }
