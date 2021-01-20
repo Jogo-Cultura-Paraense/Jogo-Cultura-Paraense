@@ -7,38 +7,46 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        actions: <Widget>[
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 2),
-            child: FloatingActionButton(
-              child: Icon(Icons.share),
-              elevation: 0,
-              onPressed: () {
-                _share(context);
-              },
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 2),
-            child: FloatingActionButton(
-              child: Icon(Icons.info_outline_rounded),
-              elevation: 0,
-              onPressed: () {
-                _info(context);
-              },
-            ),
-          )
-        ],
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("lib/images/EveningBackground.png"),
+          fit: BoxFit.cover
+        )
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 32.0),
-        child: MainMenu(),
-      ),
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          actions: <Widget>[
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 2),
+              child: FloatingActionButton(
+                child: Icon(Icons.share),
+                elevation: 0,
+                onPressed: () {
+                  _share(context);
+                },
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 2),
+              child: FloatingActionButton(
+                child: Icon(Icons.info_outline_rounded),
+                elevation: 0,
+                onPressed: () {
+                  _info(context);
+                },
+              ),
+            )
+          ],
+        ),
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 32.0),
+          child: MainMenu(),
+        )
+      )
     );
   }
 
@@ -47,7 +55,7 @@ class HomePage extends StatelessWidget {
   void _info(BuildContext context) {
     showDialog(
       context: context,
-      child: const InfoAlert(),
+      //child: const InfoAlert(),
     );
   }
 }
