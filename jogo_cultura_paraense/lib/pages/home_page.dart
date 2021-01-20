@@ -5,15 +5,20 @@ import 'package:jogo_cultura_paraense/components/home/home_components.dart';
 class HomePage extends StatelessWidget {
   HomePage({Key key}) : super(key: key);
 
+  String getImage() {
+    return "lib/images/EveningBackground.png";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("lib/images/EveningBackground.png"), fit: BoxFit.cover
+          image: AssetImage(getImage()), fit: BoxFit.cover
         )
       ),
       child: Scaffold(
+        backgroundColor: Colors.transparent,
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
