@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jogo_cultura_paraense/components/home/about_alert.dart';
 
 class MainMenu extends StatelessWidget {
   @override
@@ -43,7 +44,10 @@ class MainMenu extends StatelessWidget {
   }
 
   void _about(BuildContext context) {
-    print('about...');
+    showDialog(
+      context: context,
+      child: const AboutAlert(),
+    );
   }
 }
 

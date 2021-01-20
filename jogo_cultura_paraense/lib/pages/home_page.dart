@@ -42,9 +42,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  void _share(BuildContext context) {
-    print('share');
-  }
+  void _share(BuildContext context) {}
 
   void _info(BuildContext context) {
     showDialog(
