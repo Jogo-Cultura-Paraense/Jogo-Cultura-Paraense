@@ -46,9 +46,9 @@ class MainMenu extends StatelessWidget {
   void _about(BuildContext context) {
     showDialog(
       context: context,
-        builder: (context) {
-          return const AboutAlert();
-        }
+      builder: (context) {
+        return const AboutAlert();
+      },
     );
   }
 }
