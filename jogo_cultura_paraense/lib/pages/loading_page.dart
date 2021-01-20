@@ -4,29 +4,33 @@ import 'package:jogo_cultura_paraense/pages/home_page.dart';
 import 'dart:async';
 
 class LoadingPage extends StatefulWidget {
+  static const String routeName = '/';
+
+  const LoadingPage({Key key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return StartState();
   }
 }
 
-class StartState extends State<LoadingPage>{
-  @override
-  void initState() {
-    super.initState();
-    startTime();
-  }
-
+class StartState extends State<LoadingPage> {
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Timer(Duration(seconds: 4), () {
+        Navigator.of(context).popAndPushNamed(HomePage.routeName);
+      });
+    });
+
     return Container(
       decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("lib/images/LoadingBackground.png")
-          )
+        image: DecorationImage(
+          image: AssetImage("lib/images/LoadingBackground.png"),
+        ),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: Center (
+        body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -34,21 +38,10 @@ class StartState extends State<LoadingPage>{
                 backgroundColor: Colors.white,
                 strokeWidth: 3,
               )
-            ]
-          )
-        )
-      )
-    );
-  }
-
-  startTime() {
-    var duration = Duration(seconds: 4);
-    return Timer(duration, route);
-  }
-
-  route() {
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => HomePage())
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
