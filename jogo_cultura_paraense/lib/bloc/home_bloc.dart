@@ -19,7 +19,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     if (event is LoadHomeAssets) {
       yield HomeAssetsLoading();
       try {
-        HomeAssets homeAssets = await _homeAssetsService.getBackgroundImage();
+        HomeAssets homeAssets = await _homeAssetsService.fetchHomeAssets();
         yield HomeAssetsLoaded(homeAssets);
       } catch (error) {
         yield HomeAssetsFailed(error.toString());

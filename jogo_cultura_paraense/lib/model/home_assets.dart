@@ -7,10 +7,10 @@ class HomeAssets {
 
   const HomeAssets({this.background, this.info});
 
-  factory HomeAssets.fromJson(Map<String, dynamic> json) {
+  factory HomeAssets.fromJson(String time, Map<String, dynamic> json) {
     return HomeAssets(
-      background: json['background'],
-      info: json['info'],
+      background: json['${time}Bg']['url'],
+      info: json['${time}Info'],
     );
   }
 }

@@ -1,51 +1,37 @@
 import 'package:jogo_cultura_paraense/model/home_assets.dart';
-
-enum TimePeriod { morning, afternoon, night }
+import 'package:jogo_cultura_paraense/repositories/datocms_repository.dart';
 
 class HomeAssetsService {
-  Future<HomeAssets> getBackgroundImage() async {
+  final DatoCMSRepository _repo = DatoCMSRepository();
+
+  Future<HomeAssets> fetchHomeAssets() async {
     try {
-      await Future.delayed(Duration(seconds: 4));
-      TimePeriod period = checkTime();
-      if (period == TimePeriod.morning) {
-        return HomeAssets.fromJson(
-          {
-            'background': 'lib/images/MorningBackground.png',
-            'info':
-                'Está de manhã! Durante essa hora do dia, todos os dias ocorrem chuvas torrenciais em Belém do Pará, principalmente entre os meses de Janeiro e Maio.'
-          },
-        );
-      } else if (period == TimePeriod.afternoon) {
-        return HomeAssets.fromJson(
-          {
-            'background': 'lib/images/EveningBackground.png',
-            'info':
-                'Está de tarde! Durante essa hora do dia, todos os dias ocorrem chuvas torrenciais em Belém do Pará, principalmente entre os meses de Janeiro e Maio.'
-          },
-        );
-      } else
-        return HomeAssets.fromJson(
-          {
-            'background': 'lib/images/NightBackground.png',
-            'info':
-                'Está de noite! Durante essa hora do dia, todos os dias ocorrem chuvas torrenciais em Belém do Pará, principalmente entre os meses de Janeiro e Maio.'
-          },
-        );
+      String time = checkTime();
+      final String query = '''
+        query homeasset{
+          homeasset {
+            ${time}Bg {
+              url
+            }
+            ${time}Info
+          }
+        }
+      ''';
+      dynamic result = await _repo.query(query);
+      return HomeAssets.fromJson(time, result);
     } catch (error) {
-      throw Exception(error.toString);
+      throw Exception(error.toString());
     }
   }
 
-  TimePeriod checkTime() {
+  String checkTime() {
     DateTime now = new DateTime.now();
-    TimePeriod period;
     if (now.hour >= 6 && now.hour <= 12) {
-      period = TimePeriod.morning;
+      return 'mourning';
     } else if (now.hour >= 12 && now.hour <= 18) {
-      period = TimePeriod.afternoon;
+      return 'evening';
     } else {
-      period = TimePeriod.night;
+      return 'night';
     }
-    return period;
   }
 }

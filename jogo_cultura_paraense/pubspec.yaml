@@ -30,7 +30,7 @@ dependencies:
   cupertino_icons: ^1.0.0
   share: '>=0.6.5+4 <2.0.0'
   flutter_bloc: ^6.1.1
-  http: ^0.12.2
+  graphql: ^3.1.0
 
 dev_dependencies:
   flutter_test:
