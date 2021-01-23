@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jogo_cultura_paraense/bloc/home_bloc.dart';
 import 'package:share/share.dart';
 import 'package:jogo_cultura_paraense/components/home/home_components.dart';
 
@@ -7,58 +9,57 @@ class HomePage extends StatelessWidget {
   static const String routeName = '/home';
   const HomePage({Key key}) : super(key: key);
 
-  String checkTime() {
-    var now = new DateTime.now();
-    var period = "";
-    if (now.hour >= 6 && now.hour <= 12) {
-      period = "manhã";
-    } else if (now.hour >= 12 && now.hour <= 18) {
-      period = "tarde";
-    } else {
-      period = "noite";
-    }
-    print(period);
-    return period;
-  }
-
-  String getImage() {
-    var period = checkTime();
-    if (period == "manhã")
-      return "lib/images/MorningBackground.png";
-    else if (period == "tarde")
-      return "lib/images/EveningBackground.png";
-    else
-      return "lib/images/NightBackground.png";
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage(getImage()), fit: BoxFit.cover)),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          actions: <Widget>[
-            _MainMenuIconButton(
-              icon: Icons.share,
-              onClick: () => _share(context),
+    return BlocBuilder<HomeBloc, HomeState>(
+      buildWhen: (dynamic currentState, dynamic nextState) {
+        return currentState.homeAssets.background !=
+            nextState.homeAssets.background;
+      },
+      builder: (context, dynamic state) {
+        return Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: NetworkImage(state.homeAssets.background),
+              fit: BoxFit.cover,
             ),
-            _MainMenuIconButton(
-              icon: Icons.info_outline_rounded,
-              onClick: () => _info(context),
-            )
-          ],
-        ),
-        body: Padding(
-          padding: EdgeInsets.only(left: 32.0, right: 32.0, top: 32.0),
-          child: MainMenu(),
-        ),
-      ),
+          ),
+          child: Scaffold(
+            backgroundColor: Colors.transparent,
+            extendBodyBehindAppBar: true,
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              actions: <Widget>[
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 2),
+                  child: FloatingActionButton(
+                    child: Icon(Icons.share),
+                    elevation: 0,
+                    onPressed: () {
+                      _share(context);
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 2),
+                  child: FloatingActionButton(
+                    child: Icon(Icons.info_outline_rounded),
+                    elevation: 0,
+                    onPressed: () {
+                      _info(context);
+                    },
+                  ),
+                )
+              ],
+            ),
+            body: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 32.0),
+              child: MainMenu(),
+            ),
+          ),
+        );
+      },
     );
   }
 
