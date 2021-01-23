@@ -9,20 +9,22 @@ class MainMenu extends StatelessWidget {
       children: <Widget>[
         const Text(
           'Jogo Cultura Paraense',
-          style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: Colors.white,
-            shadows: <Shadow>[
-              Shadow(
-              offset: Offset(1.0, 1.0),
-              blurRadius: 2.0,
-              color: Color.fromARGB(255, 0, 0, 0),
-              ),
-              Shadow(
-              offset: Offset(1.0, 1.0),
-              blurRadius: 1.0,
-              color: Color.fromARGB(255, 0, 0, 0),
-              ),
-            ]
-          ),
+          style: TextStyle(
+              fontSize: 24.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+              shadows: <Shadow>[
+                Shadow(
+                  offset: Offset(1.0, 1.0),
+                  blurRadius: 2.0,
+                  color: Color.fromARGB(255, 0, 0, 0),
+                ),
+                Shadow(
+                  offset: Offset(1.0, 1.0),
+                  blurRadius: 1.0,
+                  color: Color.fromARGB(255, 0, 0, 0),
+                ),
+              ]),
         ),
         _MainMenuButton(
           label: 'JOGAR',
@@ -77,7 +79,7 @@ class _MainMenuButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 16.0),
+      padding: const EdgeInsets.only(top: 8.0),
       child: SizedBox(
         width: double.maxFinite,
         child: RaisedButton(

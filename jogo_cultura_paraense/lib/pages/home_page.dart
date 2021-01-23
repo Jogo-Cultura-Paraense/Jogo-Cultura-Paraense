@@ -79,3 +79,22 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
+class _MainMenuIconButton extends StatelessWidget {
+  final IconData icon;
+  final Function onClick;
+
+  const _MainMenuIconButton({this.icon, this.onClick});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 2),
+      child: FloatingActionButton(
+        child: Icon(icon),
+        elevation: 0,
+        onPressed: () => onClick(),
+      ),
+    );
+  }
+}

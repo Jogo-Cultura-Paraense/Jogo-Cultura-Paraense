@@ -12,6 +12,7 @@ class LoadingPage extends StatelessWidget {
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage("lib/images/LoadingBackground.png"),
+          fit: BoxFit.cover,
         ),
       ),
       child: Scaffold(
