@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jogo_cultura_paraense/bloc/home_bloc.dart';
+import 'package:jogo_cultura_paraense/bloc/home/home_bloc.dart';
 import 'package:jogo_cultura_paraense/components/loading_progress.dart';
 import 'package:jogo_cultura_paraense/pages/home_page.dart';
 
