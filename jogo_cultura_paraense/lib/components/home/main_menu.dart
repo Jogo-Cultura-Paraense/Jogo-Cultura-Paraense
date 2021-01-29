@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/components/home/about_alert.dart';
-import 'package:jogo_cultura_paraense/pages/enciclopedia.dart';
+import 'package:jogo_cultura_paraense/pages/enci_offline.dart';
+//import 'package:jogo_cultura_paraense/pages/enciclopedia.dart';
 
 class MainMenu extends StatelessWidget {
   @override
@@ -54,7 +55,7 @@ class MainMenu extends StatelessWidget {
   void _enciclopedia(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => Enciclopedia(),
+        builder: (context) => EnciOff(),
       ),
     );
   }
