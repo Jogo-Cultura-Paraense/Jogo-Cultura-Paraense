@@ -17,10 +17,8 @@ class DatoCMSRepository {
     );
   }
 
-  Future<dynamic> query(
-    String queryString, {
-    Map<String, dynamic> variables,
-  }) async {
+  Future<dynamic> query(String queryString,
+      {Map<String, dynamic> variables, String data}) async {
     final QueryOptions options = QueryOptions(
       documentNode: gql(queryString),
       variables: variables,
@@ -30,6 +28,6 @@ class DatoCMSRepository {
     if (result.hasException) {
       throw Exception(result.exception.toString());
     }
-    return result.data['homeasset'];
+    return result.data[data];
   }
 }

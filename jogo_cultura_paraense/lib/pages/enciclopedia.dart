@@ -4,31 +4,23 @@ import 'package:jogo_cultura_paraense/model/Eentry.dart';
 import 'package:jogo_cultura_paraense/pages/entry_page.dart';
 import 'package:jogo_cultura_paraense/repositories/datocms_repository.dart';
 
-/* class Enciclopedia extends StatefulWidget {
-  @override
-  _EnciclopediaState createState() => _EnciclopediaState();
-}
-
-class _EnciclopediaState extends State<Enciclopedia> { */
 class Enciclopedia extends StatelessWidget {
   final DatoCMSRepository _dao = DatoCMSRepository();
-  final String query = '''
-        query homeasset{
-          homeasset {
-            Bg {
-              url
-            }
-            Info
+  /* final String query = '''
+        query entryenc{
+          allEntryencs{
+            title
+            body
           }
         }
-      ''';
+      '''; */
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder<List<Eentry>>(
+      body: FutureBuilder<List<ETopic>>(
         initialData: List(),
-        future: _dao.query(query),
+        future: fetchEntries(),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
@@ -39,10 +31,10 @@ class Enciclopedia extends StatelessWidget {
             case ConnectionState.active:
               break;
             case ConnectionState.done:
-              final List<Eentry> entries = snapshot.data;
+              final List<ETopic> entries = snapshot.data;
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  final Eentry entry = entries[index];
+                  final ETopic entry = entries[index];
                   return _EntryItem(
                     entry,
                     onClick: () {
@@ -63,10 +55,27 @@ class Enciclopedia extends StatelessWidget {
       ),
     );
   }
+
+  Future<List<ETopic>> fetchEntries() async {
+    try {
+      final String query = '''
+        query entryenc{
+          allEntryencs{
+            title
+            body
+          }
+        }
+      ''';
+      var result = await _dao.query(query, data: 'allEntryencs');
+      //return ETopic.fromJson(result);
+    } catch (error) {
+      throw Exception(error.toString());
+    }
+  }
 }
 
 class _EntryItem extends StatelessWidget {
-  final Eentry entry;
+  final ETopic entry;
   final Function onClick;
 
   _EntryItem(

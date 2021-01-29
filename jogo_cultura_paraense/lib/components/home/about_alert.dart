@@ -11,10 +11,10 @@ class AboutAlert extends StatelessWidget {
       // Changing the string structure will change how it is displayed
       content: Text(
         '''Cultura Paraense Game é um projeto do Laboratório SPIDER que busca o ensinamento dinâmico de cultura paraense de forma lúdica.
-Professor Doutor: Sandro Bezerra
 Graduandos: Alberto Sobrinho
                         Felipe Oliveira
-                        Tuby Neto''',
+                        Tuby Neto
+Professor Doutor: Sandro Bezerra''',
         style: TextStyle(fontSize: 15),
         textAlign: TextAlign.justify,
       ),

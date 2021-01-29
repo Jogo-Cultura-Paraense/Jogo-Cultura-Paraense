@@ -1,15 +1,16 @@
-class Eentry {
+class ETopic {
   final String title;
   final String body;
+  bool isUnlocked;
 
-  Eentry(this.title, this.body);
+  ETopic({this.title, this.body, this.isUnlocked});
 
   @override
   String toString() {
     return 'Entry{title: $title, body: $body}';
   }
 
-  Eentry.fromJson(Map<String, dynamic> json)
+  ETopic.fromJson(Map<String, dynamic> json)
       : title = json['title'],
         body = json['body'];
 

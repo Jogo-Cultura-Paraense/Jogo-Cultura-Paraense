@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/model/Eentry.dart';
 
 class EntryPage extends StatelessWidget {
-  final Eentry entry;
+  final ETopic entry;
   const EntryPage({this.entry});
   @override
   Widget build(BuildContext context) {
