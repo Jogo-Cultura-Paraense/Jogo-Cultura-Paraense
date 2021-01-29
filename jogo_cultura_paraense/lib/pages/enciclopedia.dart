@@ -56,6 +56,7 @@ class Enciclopedia extends StatelessWidget {
     );
   }
 
+  // TODO: return a future<list>
   Future<List<ETopic>> fetchEntries() async {
     try {
       final String query = '''
