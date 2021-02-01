@@ -4,7 +4,7 @@ class Progress extends StatelessWidget {
   final String message;
 
   Progress({
-    this.message = 'Loading',
+    this.message = 'Carregando',
   });
 
   @override

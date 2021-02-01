@@ -18,4 +18,20 @@ class ETopic {
         'title': title,
         'body': body,
       };
+
+  static List<ETopic> fromJsonList(List<dynamic> jsonList) {
+    final list = <ETopic>[];
+    for (Map<String, dynamic> json in jsonList) {
+      list.add(ETopic.fromJson(json));
+    }
+    return list;
+  }
+
+  static List<Map<String, dynamic>> toJsonList(List<ETopic> topicsList) {
+    final list = <Map<String, dynamic>>[];
+    for (ETopic topic in topicsList) {
+      list.add(topic.toJson());
+    }
+    return list;
+  }
 }
