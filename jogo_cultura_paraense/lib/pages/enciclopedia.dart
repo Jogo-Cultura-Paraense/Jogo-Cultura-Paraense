@@ -73,6 +73,7 @@ class _EnciclopediaState extends State<Enciclopedia> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+
                   ButtonTheme(
                     minWidth: 10.0,
                     buttonColor: Colors.red[700],
@@ -177,11 +178,13 @@ class _EnciclopediaState extends State<Enciclopedia> {
                       child: Text('H'),
                     ),
                   ),
+
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+
                   ButtonTheme(
                     minWidth: 10.0,
                     buttonColor: Colors.red[700],
@@ -286,11 +289,13 @@ class _EnciclopediaState extends State<Enciclopedia> {
                       child: Text('Q'),
                     ),
                   ),
+
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+
                   ButtonTheme(
                     minWidth: 10.0,
                     buttonColor: Colors.red[700],
@@ -382,6 +387,7 @@ class _EnciclopediaState extends State<Enciclopedia> {
                       child: Text('Z'),
                     ),
                   ),
+
                 ],
               ),
               Row(
@@ -415,7 +421,7 @@ class _EnciclopediaState extends State<Enciclopedia> {
     try {
       final String query = '''
         query entryenc {
-        allEntryencs(filter: {OR: {isunlocked: {eq: "true"}}}) {
+        allEntryencs(filter: {OR: {isunlocked: {eq: "true"}}} orderBy: [title_ASC]) {
           title
           body
         }
@@ -429,36 +435,3 @@ class _EnciclopediaState extends State<Enciclopedia> {
     }
   }
 }
-/* 
-class _EntryItem extends StatelessWidget {
-  final ETopic entry;
-  final Function onClick;
-
-  _EntryItem(
-    this.entry, {
-    @required this.onClick,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        onTap: () => onClick(),
-        isThreeLine: true,
-        title: Text(
-          entry.title,
-          style: TextStyle(
-            fontSize: 24.0,
-          ),
-        ),
-        subtitle: Text(
-          entry.body,
-          style: TextStyle(
-            fontSize: 16.0,
-          ),
-        ),
-      ),
-    );
-  }
-}
- */
