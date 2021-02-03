@@ -28,7 +28,10 @@ class App extends StatelessWidget {
           },
           LoadingPage.routeName: (BuildContext context) {
             return const LoadingPage();
-          }
+          },
+          EnciclopediaPage.routeName: (BuildContext context) {
+            return const EnciclopediaPage();
+          },
         },
         initialRoute: LoadingPage.routeName,
       ),
