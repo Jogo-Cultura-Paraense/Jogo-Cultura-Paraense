@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/components/progress.dart';
 import 'package:jogo_cultura_paraense/model/Eentry.dart';
-import 'package:jogo_cultura_paraense/pages/entry_page.dart';
 import 'package:jogo_cultura_paraense/repositories/datocms_repository.dart';
 import 'package:jogo_cultura_paraense/services/list_entries.dart';
-import 'package:jogo_cultura_paraense/services/search_bar.dart';
 
 class Enciclopedia extends StatefulWidget {
+  const Enciclopedia({Key key}) : super(key: key);
+
   @override
   _EnciclopediaState createState() => _EnciclopediaState();
 }
@@ -20,62 +20,60 @@ class _EnciclopediaState extends State<Enciclopedia> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        title: const Text("Enciclopédia"),
-      ),
-      body: Column(
-        children: <Widget>[
-          Container(
-            color: Color.fromRGBO(230, 230, 230, 0.5),
-            padding: const EdgeInsets.only(bottom: 10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(
-                  width: MediaQuery.of(context).size.width - 80,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Pesquisar',
-                    ),
-                    onChanged: (text) {
-                      setState(() {
-                        filterTest = text;
-                      });
-                    },
+    return Column(
+      children: <Widget>[
+        Container(
+          color: Color.fromRGBO(230, 230, 230, 0.5),
+          padding: const EdgeInsets.only(bottom: 10.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(
+                width: MediaQuery.of(context).size.width - 80,
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Pesquisar',
                   ),
+                  onChanged: (text) {
+                    setState(() {
+                      filterTest = text;
+                    });
+                  },
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-          Expanded(
-            child: FutureBuilder<List<ETopic>>(
-              initialData: List(),
-              future: fetchEntries(),
-              builder: (context, snapshot) {
-                switch (snapshot.connectionState) {
-                  case ConnectionState.none:
-                    break;
-                  case ConnectionState.waiting:
-                    return Progress();
-                    break;
-                  case ConnectionState.active:
-                    break;
-                  case ConnectionState.done:
-                    final List<ETopic> entries = snapshot.data;
-                    return ListEntries(entries: entries, filter: filterTest);
-                    break;
-                }
-                return Text('Erro desconhecido');
-              },
-            ),
+        ),
+        Expanded(
+          child: FutureBuilder<List<ETopic>>(
+            initialData: List(),
+            future: fetchEntries(),
+            builder: (context, snapshot) {
+              switch (snapshot.connectionState) {
+                case ConnectionState.none:
+                  break;
+                case ConnectionState.waiting:
+                  return Progress();
+                  break;
+                case ConnectionState.active:
+                  break;
+                case ConnectionState.done:
+                  final List<ETopic> entries = snapshot.data;
+                  return ListEntries(entries: entries, filter: filterTest);
+                  break;
+              }
+              return Text('Erro desconhecido');
+            },
           ),
-          Container(
-            color: Colors.black12,
-            child: Column(
-              children: <Widget>[
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        ),
+        Container(
+          color: Colors.black12,
+          child: Column(
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+
                   ButtonTheme(
                     minWidth: 10.0,
                     buttonColor: Colors.red[700],
@@ -180,8 +178,13 @@ class _EnciclopediaState extends State<Enciclopedia> {
                       child: Text('H'),
                     ),
                   ),
-                ]),
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+
                   ButtonTheme(
                     minWidth: 10.0,
                     buttonColor: Colors.red[700],
@@ -286,8 +289,13 @@ class _EnciclopediaState extends State<Enciclopedia> {
                       child: Text('Q'),
                     ),
                   ),
-                ]),
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+
                   ButtonTheme(
                     minWidth: 10.0,
                     buttonColor: Colors.red[700],
@@ -379,32 +387,33 @@ class _EnciclopediaState extends State<Enciclopedia> {
                       child: Text('Z'),
                     ),
                   ),
-                ]),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ButtonTheme(
-                      minWidth: 10.0,
-                      buttonColor: Colors.red[700],
-                      child: RaisedButton(
-                        onPressed: () {
-                          setState(() {
-                            this.filterTest = '';
-                          });
-                        },
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                            side: BorderSide(color: Colors.red)),
-                        child: Text('Limpar Filtros'),
-                      ),
+
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ButtonTheme(
+                    minWidth: 10.0,
+                    buttonColor: Colors.red[700],
+                    child: RaisedButton(
+                      onPressed: () {
+                        setState(() {
+                          this.filterTest = '';
+                        });
+                      },
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                          side: BorderSide(color: Colors.red)),
+                      child: Text('Limpar Filtros'),
                     ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

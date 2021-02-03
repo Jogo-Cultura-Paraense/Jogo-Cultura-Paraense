@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/bloc/home/home_bloc.dart';
+import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
+import 'package:jogo_cultura_paraense/components/home/save_alert.dart';
 import 'package:share/share.dart';
 import 'package:jogo_cultura_paraense/components/home/home_components.dart';
 
@@ -24,41 +26,61 @@ class HomePage extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          child: Scaffold(
-            backgroundColor: Colors.transparent,
-            extendBodyBehindAppBar: true,
-            appBar: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              actions: <Widget>[
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 2),
-                  child: FloatingActionButton(
-                    heroTag: "btn1",
-                    child: Icon(Icons.share),
-                    elevation: 0,
-                    onPressed: () {
-                      _share(context);
-                    },
-                  ),
+          child: BlocBuilder<SaveBloc, SaveState>(
+            builder: (context, state) {
+              if (state is SaveInitial) {
+                WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+                  _save(context);
+                });
+              }
+              return Scaffold(
+                backgroundColor: Colors.transparent,
+                extendBodyBehindAppBar: true,
+                appBar: AppBar(
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  actions: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 2),
+                      child: FloatingActionButton(
+                        heroTag: 'shareButton',
+                        child: Icon(Icons.share),
+                        elevation: 0,
+                        onPressed: () {
+                          _share(context);
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 2),
+                      child: FloatingActionButton(
+                        heroTag: 'infoButton',
+                        child: Icon(Icons.info_outline_rounded),
+                        elevation: 0,
+                        onPressed: () {
+                          _info(context);
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 2),
+                      child: FloatingActionButton(
+                        heroTag: 'saveButton',
+                        child: Icon(Icons.save),
+                        elevation: 0,
+                        onPressed: () {
+                          _save(context);
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 2),
-                  child: FloatingActionButton(
-                    heroTag: "btn2",
-                    child: Icon(Icons.info_outline_rounded),
-                    elevation: 0,
-                    onPressed: () {
-                      _info(context);
-                    },
-                  ),
-                )
-              ],
-            ),
-            body: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 32.0),
-              child: MainMenu(),
-            ),
+                body: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 32.0),
+                  child: MainMenu(),
+                ),
+              );
+            },
           ),
         );
       },
@@ -77,6 +99,16 @@ class HomePage extends StatelessWidget {
       context: context,
       builder: (context) {
         return const InfoAlert();
+      },
+    );
+  }
+
+  void _save(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return const SaveAlert();
       },
     );
   }
