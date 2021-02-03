@@ -43,6 +43,7 @@ class HomePage extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 2),
                       child: FloatingActionButton(
+                        heroTag: 'shareButton',
                         child: Icon(Icons.share),
                         elevation: 0,
                         onPressed: () {
@@ -53,6 +54,7 @@ class HomePage extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 2),
                       child: FloatingActionButton(
+                        heroTag: 'infoButton',
                         child: Icon(Icons.info_outline_rounded),
                         elevation: 0,
                         onPressed: () {
@@ -63,6 +65,7 @@ class HomePage extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 2),
                       child: FloatingActionButton(
+                        heroTag: 'saveButton',
                         child: Icon(Icons.save),
                         elevation: 0,
                         onPressed: () {
