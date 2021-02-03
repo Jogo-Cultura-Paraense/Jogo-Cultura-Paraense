@@ -17,7 +17,7 @@ class HomeAssetsService {
           }
         }
       ''';
-      dynamic result = await _repo.query(query);
+      dynamic result = await _repo.query(query, data: 'homeasset');
       return HomeAssets.fromJson(time, result);
     } catch (error) {
       throw Exception(error.toString());
