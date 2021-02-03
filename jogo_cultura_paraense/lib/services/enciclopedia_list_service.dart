@@ -6,14 +6,16 @@ class EnciclopediaServices {
   Future<List<ETopic>> fetchEntries() async {
     try {
       final String query = '''
-        query entryenc{
-          allEntryencs{
-            title
-            body
-          }
+       query entryenc {
+        allEntryencs(filter: {OR: {isunlocked: {eq: "true"}}}) {
+         title
+        body
         }
+        }
+
       ''';
       var result = await _dao.query(query, data: 'allEntryencs');
+      //print(ETopic.fromJsonList(result));
       return ETopic.fromJsonList(result);
     } catch (error) {
       throw Exception(error.toString());

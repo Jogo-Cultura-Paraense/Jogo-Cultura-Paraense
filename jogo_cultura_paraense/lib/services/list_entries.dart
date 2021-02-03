@@ -27,11 +27,20 @@ class ListEntriesState extends State<ListEntries> {
       for (dynamic entry in widget.entries) {
         // Check if theres this filter in the current item
         String title = entry.toString().toLowerCase();
-        if (title.contains(widget.filter.toLowerCase())) {
+        String title2 = entry.title.toLowerCase();
+
+        if ('${title2[0]}' == widget.filter.toLowerCase()) {
+          print(title);
+          filteredList.add(entry);
+        }
+        else if (widget.filter.toLowerCase().length > 1 && title.contains(widget.filter.toLowerCase())) {
           filteredList.add(entry);
         }
       }
     } else {
+      //for (dynamic entry in widget.entries) {
+     //  print(entry.unlocked);
+      //}
       filteredList.addAll(widget.entries);
     }
 
@@ -40,7 +49,7 @@ class ListEntriesState extends State<ListEntries> {
       return ListView(
         shrinkWrap: true,
         children: <Widget>[
-          ListTile(title: Text('Nenhuma entrada encontrada...')),
+          ListTile(title: Text('Não foram encontrados registros iniciando por essa letra. Jogue mais para desbloquear.')),
         ],
       );
     }
@@ -86,7 +95,7 @@ class _EntryItem extends StatelessWidget {
           ),
         ),
         subtitle: Text(
-          entry.body,
+          entry.body.substring(0, 40) + '...',
           style: TextStyle(
             fontSize: 16.0,
           ),

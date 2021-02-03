@@ -124,14 +124,15 @@ class _ExamplePageState extends State<ExamplePage> {
 
   void _getNames() async {
     final String query = '''
-        query entryenc{
-          allEntryencs{
-            title
-            body
-          }
+        query entryenc {
+        allEntryencs(filter: {OR: {isunlocked: {eq: "true"}}}) {
+         title
+        body
+        }
         }
       ''';
     var result = await _dao.query(query, data: 'allEntryencs');
+    //print(ETopic.fromJsonList(result));
     List tempList = new List();
     for (int i = 0; i < result.data['results'].length; i++) {
       tempList.add(result.data['results'][i]);

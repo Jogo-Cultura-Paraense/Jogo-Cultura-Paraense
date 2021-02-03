@@ -1,22 +1,24 @@
 class ETopic {
   final String title;
   final String body;
-  bool isUnlocked;
+  final bool unlocked;
 
-  ETopic({this.title, this.body, this.isUnlocked});
+  ETopic({this.title, this.body, this.unlocked});
 
   @override
   String toString() {
-    return 'Entry{title: $title, body: $body}';
+    return 'Entry{title: $title, body: $body, unlocked: $unlocked}';
   }
 
   ETopic.fromJson(Map<String, dynamic> json)
       : title = json['title'],
-        body = json['body'];
+        body = json['body'],
+        unlocked = json['unlocked'];
 
   Map<String, dynamic> toJson() => {
         'title': title,
         'body': body,
+        'unlocked': unlocked
       };
 
   static List<ETopic> fromJsonList(List<dynamic> jsonList) {
