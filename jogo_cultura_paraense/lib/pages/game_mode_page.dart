@@ -14,9 +14,7 @@ class GameModePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        title: const Text('Jogar'),
-      ),
+
       body: BlocConsumer<SaveBloc, SaveState>(
         buildWhen: (previousState, currentState) {
           if (currentState is SaveLoaded &&

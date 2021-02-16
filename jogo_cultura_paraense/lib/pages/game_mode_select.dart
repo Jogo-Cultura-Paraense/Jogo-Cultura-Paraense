@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/components/home/buttons_top.dart';
 import 'package:jogo_cultura_paraense/components/home/main_menu.dart';
+import 'package:jogo_cultura_paraense/pages/map_mode_page.dart';
 
 class GameMode extends StatelessWidget {
   @override
@@ -49,7 +50,7 @@ class GameModeMenu extends StatelessWidget {
   }
 
   void _mapa(BuildContext context) {
-    print("MAPA");
+    Navigator.of(context).pushNamed(MapModePage.routeName);
     //Navigator.of(context).pushNamed(GameModePage.routeName);
   }
 
