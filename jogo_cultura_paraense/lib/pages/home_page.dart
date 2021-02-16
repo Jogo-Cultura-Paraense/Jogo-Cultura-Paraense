@@ -69,7 +69,8 @@ class HomePage extends StatelessWidget {
                         child: Icon(Icons.save),
                         elevation: 0,
                         onPressed: () {
-                          _save(context);
+                          // _save(context);
+                          Navigator.of(context).pushNamed('/santarem_map');
                         },
                       ),
                     ),
