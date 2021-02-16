@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/bloc/home/home_bloc.dart';
 import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
-import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
 import 'package:jogo_cultura_paraense/components/home/save_alert.dart';
 
 class MapModePage extends StatelessWidget {
   static const String routeName = '/mapmode';
   static ImageProvider<Object> backgroundImage;
+  static ImageProvider<Object> mapImage;
 
   const MapModePage({Key key}) : super(key: key);
 
