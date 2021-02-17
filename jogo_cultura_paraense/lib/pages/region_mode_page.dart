@@ -79,7 +79,7 @@ class RegionModePage extends State<RegionMode> {
                                     width: 350.0,
                                     height: 400.0,
                                     child: Card(
-                                      color: Colors.amber,
+                                      color: Colors.amber[200],
                                       child: Container(
 
                                           decoration: BoxDecoration(
@@ -219,19 +219,31 @@ class RegionModePage extends State<RegionMode> {
   }
 
   void goToLevel() {
-    print(this.mapSave);
-    if (this.counter == 1 ) {
+    if (this.counter == 1 && this.mapSave) {
       Navigator.of(context).pushNamed('/sudoeste');
-    } else if (this.counter == 2 ) {
+    } else if (this.counter == 2 && this.mapSave) {
       Navigator.of(context).pushNamed('/baixo_amazonas');
-    } else if (this.counter == 3) {
+    } else if (this.counter == 3 && this.mapSave) {
       Navigator.of(context).pushNamed('/sudeste');
-    } else if (this.counter == 4) {
+    } else if (this.counter == 4 && this.mapSave) {
       Navigator.of(context).pushNamed('/nordeste');
-    } else if (this.counter == 5) {
+    } else if (this.counter == 5 && this.mapSave) {
       Navigator.of(context).pushNamed('/marajo');
-    } else if (this.counter == 6) {
+    } else if (this.counter == 6 && this.mapSave) {
       Navigator.of(context).pushNamed('/metropolitana');
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return const AlertDialog(
+            backgroundColor: Color.fromRGBO(233, 213, 136, 1),
+            content: Text(
+              'Você ainda não habilitou esse mapa. Conclua os mapas anteriores!',
+              textAlign: TextAlign.center,
+            ),
+          );
+        },
+      );
     }
   }
 

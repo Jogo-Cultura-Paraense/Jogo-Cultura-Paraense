@@ -92,6 +92,7 @@ class MapSave {
     return MapSave(
       region: json['region'],
       city: json['city'],
+      isOpen: json['isOpen'],
       gamesSave: GameSave.fromJsonList(json['gamesSave']),
     );
   }
@@ -116,6 +117,7 @@ class MapSave {
     return {
       'region': region,
       'city': city,
+      'isOpen': isOpen,
       'gamesSave': GameSave.toJsonList(gamesSave),
     };
   }
