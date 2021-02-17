@@ -32,7 +32,7 @@ class Save {
       mapsSave: <MapSave>[
         // First map of every save is always open.
         MapSave.initial(Maps.sudoeste, isOpen: true),
-        MapSave.initial(Maps.baixoAmazonas),
+        MapSave.initial(Maps.baixoAmazonas, isOpen: true),
         MapSave.initial(Maps.sudeste),
         MapSave.initial(Maps.nordeste),
         MapSave.initial(Maps.marajo),

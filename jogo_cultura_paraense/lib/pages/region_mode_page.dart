@@ -72,28 +72,46 @@ class RegionModePage extends State<RegionMode> {
                                       ), //Center
                                     ), //Card
                                   ),
-                                  GestureDetector(
+                                  Visibility(visible: mapSave ,child:  GestureDetector(
                                     onTap: () {goToLevel();},
                                     child:
-                                  SizedBox(
-                                    width: 350.0,
-                                    height: 400.0,
-                                    child: Card(
-                                      color: Colors.amber[200],
-                                      child: Container(
+                                    SizedBox(
+                                      width: 350.0,
+                                      height: 400.0,
+                                      child: Card(
+                                        color: Colors.amber[200],
+                                        child: Container(
+                                            decoration: BoxDecoration(
+                                                image:  DecorationImage(
+                                                    image: mapImage,
+                                                    fit: BoxFit.cover
+                                                )
+                                            )
+                                        ),
+                                      ), //Card
+                                    ),),),
+                                  Visibility(visible: mapSave == false ,child:  GestureDetector(
+                                    onTap: () {goToLevel();},
+                                    child:
+                                    SizedBox(
+                                      width: 350.0,
+                                      height: 400.0,
+                                      child: Card(
+                                        color: Colors.amber[200],
+                                        child: Container(
+                                            decoration: BoxDecoration(
+                                                image:  DecorationImage(
+                                                    colorFilter:
+                                                    ColorFilter.mode(Colors.black87.withOpacity(0.1),
+                                                        BlendMode.dstATop),
+                                                    image: mapImage,
+                                                    fit: BoxFit.cover
+                                                ),
 
-                                          decoration: BoxDecoration(
-
-                                              image:  DecorationImage(
-
-                                                  image: mapImage,
-                                                  fit: BoxFit.cover
-
-                                              )
-                                          )
-                                      ),
-                                    ), //Card
-                                  ),),
+                                            )
+                                        ),
+                                      ), //Card
+                                    ),),),
 
 
                                   SizedBox(
@@ -219,7 +237,9 @@ class RegionModePage extends State<RegionMode> {
   }
 
   void goToLevel() {
-    if (this.counter == 1 && this.mapSave) {
+    if (this.counter == 0) {
+
+    } else if (this.counter == 1 && this.mapSave) {
       Navigator.of(context).pushNamed('/sudoeste');
     } else if (this.counter == 2 && this.mapSave) {
       Navigator.of(context).pushNamed('/baixo_amazonas');
@@ -236,7 +256,7 @@ class RegionModePage extends State<RegionMode> {
         context: context,
         builder: (context) {
           return const AlertDialog(
-            backgroundColor: Color.fromRGBO(233, 213, 136, 1),
+            backgroundColor: Color.fromRGBO(233, 10, 10, 1),
             content: Text(
               'Você ainda não habilitou esse mapa. Conclua os mapas anteriores!',
               textAlign: TextAlign.center,
