@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/bloc/home/home_bloc.dart';
-import 'package:jogo_cultura_paraense/bloc/map/map_bloc.dart';
 import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
 import 'package:jogo_cultura_paraense/components/home/save_alert.dart';
 import 'package:share/share.dart';
-import 'package:jogo_cultura_paraense/components/home/home_components.dart';
 
-class HomePage extends StatelessWidget {
-  static const String routeName = '/home';
-  const HomePage({Key key}) : super(key: key);
+import 'info_alert.dart';
 
+class MenuAppBar extends StatelessWidget {
+  final Widget bodyWidget;
+  static ImageProvider<Object> backgroundImage;
+
+  const MenuAppBar({
+    Key key,
+    this.bodyWidget,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
@@ -20,10 +23,11 @@ class HomePage extends StatelessWidget {
             nextState.homeAssets.background;
       },
       builder: (context, dynamic state) {
+        backgroundImage = NetworkImage(state.homeAssets.background);
         return Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: NetworkImage(state.homeAssets.background),
+              image: backgroundImage,
               fit: BoxFit.cover,
             ),
           ),
@@ -70,8 +74,7 @@ class HomePage extends StatelessWidget {
                         child: Icon(Icons.save),
                         elevation: 0,
                         onPressed: () {
-                          // _save(context);
-                          Navigator.of(context).pushNamed('/metropolitana');
+                          _save(context);
                         },
                       ),
                     ),
@@ -79,7 +82,7 @@ class HomePage extends StatelessWidget {
                 ),
                 body: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 32.0),
-                  child: MainMenu(),
+                  child: bodyWidget,
                 ),
               );
             },
@@ -88,49 +91,56 @@ class HomePage extends StatelessWidget {
       },
     );
   }
-
-  void _share(BuildContext context) {
-    Share.share(
-      'Jogo Cultura Paraense https://github.com/Jogo-Cultura-Paraense/Jogo-Cultura-Paraense',
-      subject: 'Jogo Cultura Paraense!',
-    );
-  }
-
-  void _info(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const InfoAlert();
-      },
-    );
-  }
-
-  void _save(BuildContext context) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) {
-        return const SaveAlert();
-      },
-    );
-  }
 }
 
-class _MainMenuIconButton extends StatelessWidget {
-  final IconData icon;
-  final Function onClick;
+class HomeAppBarButton extends StatelessWidget {
+  final String heroTag;
+  final IconData iconData;
+  final Function onPressed;
 
-  const _MainMenuIconButton({this.icon, this.onClick});
+  const HomeAppBarButton({
+    Key key,
+    this.heroTag,
+    this.iconData,
+    this.onPressed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 2),
       child: FloatingActionButton(
-        child: Icon(icon),
+        heroTag: heroTag,
+        child: Icon(iconData),
         elevation: 0,
-        onPressed: () => onClick(),
+        onPressed: () => onPressed,
       ),
     );
   }
+}
+
+void _share(BuildContext context) {
+  Share.share(
+    'Jogo Cultura Paraense https://github.com/Jogo-Cultura-Paraense/Jogo-Cultura-Paraense',
+    subject: 'Jogo Cultura Paraense!',
+  );
+}
+
+void _info(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return const InfoAlert();
+    },
+  );
+}
+
+void _save(BuildContext context) {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (context) {
+      return const SaveAlert();
+    },
+  );
 }

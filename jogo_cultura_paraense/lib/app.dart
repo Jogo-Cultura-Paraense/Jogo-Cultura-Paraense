@@ -4,6 +4,8 @@ import 'package:jogo_cultura_paraense/bloc/home/home_bloc.dart';
 import 'package:jogo_cultura_paraense/bloc/map/map_bloc.dart';
 import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
 import 'package:jogo_cultura_paraense/pages/maps/maps.dart';
+import 'package:jogo_cultura_paraense/pages/game_mode_page.dart';
+import 'package:jogo_cultura_paraense/pages/region_mode_page.dart';
 import 'pages/pages.dart';
 
 class App extends StatelessWidget {
@@ -34,6 +36,15 @@ class App extends StatelessWidget {
           },
           EnciclopediaPage.routeName: (BuildContext context) {
             return const EnciclopediaPage();
+          },
+          GameModePage.routeName: (BuildContext context) {
+            return const GameModePage();
+          },
+          GameSelectPage.routeName: (BuildContext context) {
+            return const GameSelectPage();
+          },
+          RegionModePage.routeName: (BuildContext context) {
+            return RegionMode();
           },
           SudoestePage.routeName: (BuildContext context) {
             return SudoestePage();
