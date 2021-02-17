@@ -1,5 +1,3 @@
-import 'package:jogo_cultura_paraense/model/item_save.dart';
-
 abstract class Games {
   static const String cooking = 'Cooking Game';
   static const String archAndFestiv = 'Archteture and Festivities Game';
@@ -11,25 +9,24 @@ abstract class Games {
 
 class GameSave {
   final String title;
-  final List<ItemSave> savedItens;
-  final List<List<int>> topScores;
+  final bool isOpen;
+  final List<int> topScores;
 
-  GameSave({this.title, this.savedItens, this.topScores});
+  GameSave({this.title, this.isOpen, this.topScores});
 
-  factory GameSave.initial(String title) {
+  factory GameSave.initial(String title, {bool isOpen = false}) {
     return GameSave(
       title: title,
-      savedItens: <ItemSave>[],
-      topScores: <List<int>>[<int>[]],
+      isOpen: isOpen,
+      topScores: <int>[],
     );
   }
 
   factory GameSave.fromJson(Map<String, dynamic> json) {
-    print(json['topScores']);
     return GameSave(
       title: json['title'],
-      savedItens: ItemSave.fromJsonList(json['savedItens']),
-      topScores: (json['topScores'] as List<dynamic>).cast<List<int>>(),
+      isOpen: json['isOpen'],
+      topScores: (json['topScores'] as List<dynamic>).cast<int>(),
     );
   }
 
@@ -52,7 +49,7 @@ class GameSave {
   Map<String, dynamic> toJson() {
     return {
       'title': title,
-      'savedItens': ItemSave.toJsonList(savedItens),
+      'isOpen': isOpen,
       'topScores': topScores,
     };
   }

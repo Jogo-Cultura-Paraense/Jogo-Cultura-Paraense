@@ -20,7 +20,7 @@ class _SaveAlertState extends State<SaveAlert> {
       titles.add(_SaveTitle(
         title: state.saves[i].title,
         progress: 'Meu progresso',
-        isSelected: i == state.currentSave,
+        isSelected: i == state.currentSaveIndex,
         onTap: () {
           BlocProvider.of<SaveBloc>(context).add(SetCurrentSave(i));
         },
@@ -72,12 +72,12 @@ class _SaveAlertState extends State<SaveAlert> {
     return BlocBuilder<SaveBloc, SaveState>(
       buildWhen: (currentState, nextState) {
         if (currentState is SaveLoaded) {
-          return currentState.currentSave != nextState.currentSave;
+          return currentState.currentSaveIndex != nextState.currentSaveIndex;
         }
         return true;
       },
       builder: (context, state) {
-        _setSave = state.currentSave != null;
+        _setSave = state.currentSaveIndex != null;
         if (state is SaveLoaded) {
           return CustomSimpleDialog(
             title: Text(

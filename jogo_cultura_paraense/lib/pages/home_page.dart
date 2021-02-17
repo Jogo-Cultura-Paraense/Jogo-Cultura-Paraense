@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/bloc/home/home_bloc.dart';
+import 'package:jogo_cultura_paraense/bloc/map/map_bloc.dart';
 import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
 import 'package:jogo_cultura_paraense/components/home/save_alert.dart';
 import 'package:share/share.dart';
@@ -70,7 +71,7 @@ class HomePage extends StatelessWidget {
                         elevation: 0,
                         onPressed: () {
                           // _save(context);
-                          Navigator.of(context).pushNamed('/santarem_map');
+                          Navigator.of(context).pushNamed('/marajo');
                         },
                       ),
                     ),
