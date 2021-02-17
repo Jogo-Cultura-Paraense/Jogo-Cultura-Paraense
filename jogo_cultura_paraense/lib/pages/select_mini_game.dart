@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/components/home/buttons_top.dart';
+import 'package:jogo_cultura_paraense/pages/select_level.dart';
 
 class GameSelection extends StatelessWidget {
   @override
@@ -39,24 +40,68 @@ class GameSelectionMenu extends StatelessWidget {
             ),
             SizedBox(
               width: 350.0,
-              height: 600.0,
+              height: 520.0,
               child: Card(
                 color: Colors.redAccent[700],
                 child: SizedBox(
                   width: 200.0,
                   height: 200.0,
-                  child: GridView.count(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 4.0,
-                    mainAxisSpacing: 8.0,
-                    children: List.generate(
-                      choices.length,
-                      (index) {
-                        return Center(
-                          child: SelectCard(choice: choices[index]),
-                        );
-                      },
-                    ),
+                  child: CustomScrollView(
+                    primary: false,
+                    slivers: <Widget>[
+                      SliverPadding(
+                        padding: const EdgeInsets.all(20),
+                        sliver: SliverGrid.count(
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
+                          crossAxisCount: 2,
+                          children: <Widget>[
+                            SelectCard(
+                              title: 'CULINÁRIA',
+                              onTap: () => _gotoLevel(
+                                context,
+                                new GameObject("CULINÁRIA", 1),
+                              ),
+                            ),
+                            SelectCard(
+                              title: 'ARQUITETURA/\nFESTIVIDADES',
+                              onTap: () => _gotoLevel(
+                                context,
+                                new GameObject("ARQUITETURA/\nFESTIVIDADES", 2),
+                              ),
+                            ),
+                            SelectCard(
+                              title: 'FLORA/FAUNA/ARTESANATO',
+                              onTap: () => _gotoLevel(
+                                context,
+                                new GameObject("FLORA/FAUNA/ARTESANATO", 3),
+                              ),
+                            ),
+                            SelectCard(
+                              title: 'LENDAS E MITOS',
+                              onTap: () => _gotoLevel(
+                                context,
+                                new GameObject("LENDAS E MITOS", 4),
+                              ),
+                            ),
+                            SelectCard(
+                              title: 'VOCABULÁRIO',
+                              onTap: () => _gotoLevel(
+                                context,
+                                new GameObject("VOCABULÁRIO", 5),
+                              ),
+                            ),
+                            SelectCard(
+                              title: 'MÚSICAS',
+                              onTap: () => _gotoLevel(
+                                context,
+                                new GameObject("MÚSICAS", 6),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -66,26 +111,27 @@ class GameSelectionMenu extends StatelessWidget {
       ),
     );
   }
+
+  void _gotoLevel(BuildContext context, GameObject gameObject) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => LevelSelection(gameObject: gameObject),
+      ),
+    );
+  }
 }
 
-class Choice {
-  const Choice({this.title, this.onTap});
-  final String title;
-  final Function onTap;
-}
+class GameObject {
+  final String name;
+  final int unlockedLevel;
 
-List<Choice> choices = <Choice>[
-  Choice(title: 'AAA', onTap: () => print("AAA")),
-  Choice(title: 'BBB', onTap: () => print("BBB")),
-  Choice(title: 'CCC', onTap: () => print("CCC")),
-  Choice(title: 'DDD', onTap: () => print("DDD")),
-  Choice(title: 'EEE', onTap: () => print("EEE")),
-  Choice(title: 'FFF', onTap: () => print("FFF")),
-];
+  GameObject(this.name, this.unlockedLevel);
+}
 
 class SelectCard extends StatelessWidget {
-  const SelectCard({Key key, this.choice}) : super(key: key);
-  final Choice choice;
+  const SelectCard({Key key, this.title, this.onTap}) : super(key: key);
+  final String title;
+  final Function onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +139,7 @@ class SelectCard extends StatelessWidget {
       child: Card(
         child: InkWell(
           splashColor: Colors.blue.withAlpha(30),
-          onTap: () => choice.onTap(),
+          onTap: () => onTap(),
           child: Center(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -101,7 +147,7 @@ class SelectCard extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 8),
                   child: Text(
-                    choice.title,
+                    title,
                   ),
                 ),
               ],

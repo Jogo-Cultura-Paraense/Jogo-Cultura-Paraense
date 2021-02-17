@@ -4,6 +4,7 @@ import 'package:jogo_cultura_paraense/bloc/home/home_bloc.dart';
 import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
 import 'package:jogo_cultura_paraense/pages/game_mode_page.dart';
 import 'package:jogo_cultura_paraense/pages/map_mode_page.dart';
+import 'package:jogo_cultura_paraense/pages/select_level.dart';
 import 'pages/pages.dart';
 
 class App extends StatelessWidget {
@@ -42,7 +43,10 @@ class App extends StatelessWidget {
           },
           GameSelectPage.routeName: (BuildContext context) {
             return const GameSelectPage();
-          }
+          },
+          LevelSelection.routeName: (BuildContext context) {
+            return const LevelSelection();
+          },
         },
         initialRoute: LoadingPage.routeName,
       ),
