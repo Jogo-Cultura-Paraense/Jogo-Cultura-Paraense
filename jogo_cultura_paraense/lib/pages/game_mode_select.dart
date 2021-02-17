@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/components/home/buttons_top.dart';
 import 'package:jogo_cultura_paraense/components/home/main_menu.dart';
 import 'package:jogo_cultura_paraense/pages/map_mode_page.dart';
+import 'package:jogo_cultura_paraense/pages/select_mini_game_page.dart';
 
 class GameMode extends StatelessWidget {
   @override
@@ -56,6 +57,6 @@ class GameModeMenu extends StatelessWidget {
 
   void _minigames(BuildContext context) {
     print("MINI-JOGOS");
-    //Navigator.of(context).pushNamed(EnciclopediaPage.routeName);
+    Navigator.of(context).pushNamed(GameSelectPage.routeName);
   }
 }

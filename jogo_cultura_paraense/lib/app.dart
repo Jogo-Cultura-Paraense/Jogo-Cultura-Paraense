@@ -39,6 +39,9 @@ class App extends StatelessWidget {
           },
           MapModePage.routeName: (BuildContext context) {
             return const MapModePage();
+          },
+          GameSelectPage.routeName: (BuildContext context) {
+            return const GameSelectPage();
           }
         },
         initialRoute: LoadingPage.routeName,
