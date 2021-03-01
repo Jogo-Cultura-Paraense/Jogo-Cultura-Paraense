@@ -22,7 +22,7 @@ class Save {
         return mapSave;
       }
     }
-    return null;
+    throw Exception('Region "$region" not found.');
   }
 
   factory Save.initial(String title) {
