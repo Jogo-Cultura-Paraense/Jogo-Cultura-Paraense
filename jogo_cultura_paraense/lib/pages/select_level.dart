@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/components/home/buttons_top.dart';
 import 'package:jogo_cultura_paraense/components/locked_game_alert.dart';
+import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game.dart';
 import 'package:jogo_cultura_paraense/pages/pages.dart';
 import 'package:jogo_cultura_paraense/pages/select_mini_game.dart';
 
@@ -71,7 +72,7 @@ class LevelSelectionMenu extends StatelessWidget {
                     SelectLevelCard(
                       level: 1,
                       unlocked: true,
-                      onTap: () => print("level 1"),
+                      onTap: () => _game(context),
                     ),
                     SelectLevelCard(
                       level: 2,
@@ -106,6 +107,11 @@ class LevelSelectionMenu extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _game(BuildContext context) {
+    Navigator.of(context).pushNamed(FindGame.routeName);
+    //Navigator.of(context).pushNamed(GameModePage.routeName);
   }
 }
 

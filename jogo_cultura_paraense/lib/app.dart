@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/bloc/home/home_bloc.dart';
 import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
+import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game.dart';
 import 'package:jogo_cultura_paraense/pages/game_mode_page.dart';
 import 'package:jogo_cultura_paraense/pages/map_mode_page.dart';
 import 'package:jogo_cultura_paraense/pages/select_level.dart';
@@ -46,6 +47,9 @@ class App extends StatelessWidget {
           },
           LevelSelection.routeName: (BuildContext context) {
             return const LevelSelection();
+          },
+          FindGame.routeName: (BuildContext context) {
+            return FindGame().widget;
           },
         },
         initialRoute: LoadingPage.routeName,
