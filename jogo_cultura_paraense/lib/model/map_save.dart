@@ -40,6 +40,8 @@ class MapSave {
   final bool isOpen;
   final List<GameSave> gamesSave;
 
+  const MapSave({this.region, this.city, this.isOpen, this.gamesSave});
+
   int get gamesOpen {
     int gamesOpen = 0;
     for (GameSave game in gamesSave) {
@@ -48,7 +50,14 @@ class MapSave {
     return gamesOpen;
   }
 
-  const MapSave({this.region, this.city, this.isOpen, this.gamesSave});
+  GameSave getMapSave(String game) {
+    for (GameSave gameSave in gamesSave) {
+      if (gameSave.title == game) {
+        return gameSave;
+      }
+    }
+    throw Exception('Game "$game" not found.');
+  }
 
   factory MapSave.initial(
     Region region, {
