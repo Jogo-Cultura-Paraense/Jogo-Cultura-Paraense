@@ -8,7 +8,7 @@ abstract class SaveEvent {
 class LoadSave extends SaveEvent {}
 
 class SetCurrentSave extends SaveEvent {
-  final int nextCurrentSave;
+  final int nextCurrentSaveIndex;
 
-  const SetCurrentSave(this.nextCurrentSave);
+  const SetCurrentSave(this.nextCurrentSaveIndex);
 }
