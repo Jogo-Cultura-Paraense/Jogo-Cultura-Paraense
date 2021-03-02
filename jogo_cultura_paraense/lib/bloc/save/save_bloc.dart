@@ -16,12 +16,12 @@ class SaveBloc extends Bloc<SaveEvent, SaveState> {
   @override
   Stream<SaveState> mapEventToState(dynamic event) async* {
     if (event is LoadSave) {
-      yield SaveLoading();
+      yield state.saveLoading();
       try {
         final save0 = await _appDataRepository.getSave(0);
         final save1 = await _appDataRepository.getSave(1);
         final save2 = await _appDataRepository.getSave(2);
-        yield SaveLoaded(
+        yield state.saveLoaded(
           saves: <Save>[
             Save.fromJson(json.decode(save0)),
             Save.fromJson(json.decode(save1)),
@@ -29,13 +29,10 @@ class SaveBloc extends Bloc<SaveEvent, SaveState> {
           ],
         );
       } catch (error) {
-        yield SaveFailed(error.toString());
+        yield state.saveFailed(error: error.toString());
       }
     } else if (event is SetCurrentSave) {
-      yield SaveLoaded(
-        currentSaveIndex: event.nextCurrentSaveIndex,
-        saves: state.saves,
-      );
+      yield state.saveLoaded(currentSaveIndex: event.nextCurrentSaveIndex);
     } else {
       yield state;
     }
