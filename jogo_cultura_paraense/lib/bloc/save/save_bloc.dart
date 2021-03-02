@@ -37,10 +37,7 @@ class SaveBloc extends Bloc<SaveEvent, SaveState> {
         saves: state.saves,
       );
     } else {
-      yield SaveLoaded(
-        saves: state.saves,
-        currentSaveIndex: event.nextCurrentSaveIndex,
-      );
+      yield state;
     }
   }
 }
