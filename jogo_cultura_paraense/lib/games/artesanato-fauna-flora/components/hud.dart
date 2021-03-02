@@ -7,7 +7,8 @@ class Hud {
   Paint hudPaint;
 
   Hud(this.game) {
-    hudRect = Rect.fromLTWH(0, 0, game.screenSize.width, game.tileSize);
+    hudRect = Rect.fromLTWH(0, game.screenSize.height - game.tileSize * 2,
+        game.screenSize.width, game.tileSize * 2);
     hudPaint = Paint();
     hudPaint.color = Color(0x77000000);
   }

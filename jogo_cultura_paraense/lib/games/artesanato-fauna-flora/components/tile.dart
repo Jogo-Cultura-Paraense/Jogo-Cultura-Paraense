@@ -23,5 +23,8 @@ class Tile {
 
   void onTapDown() {
     touched = true;
+    if (target) {
+      game.score++;
+    }
   }
 }
