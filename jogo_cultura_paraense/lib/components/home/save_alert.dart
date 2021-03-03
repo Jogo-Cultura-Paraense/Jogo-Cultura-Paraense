@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
 import 'package:jogo_cultura_paraense/components/loading_progress.dart';
 import 'package:jogo_cultura_paraense/components/simple_dialog.dart';
+import 'package:jogo_cultura_paraense/pages/dev.dart';
 
 class SaveAlert extends StatefulWidget {
   const SaveAlert({Key key}) : super(key: key);
@@ -26,43 +27,26 @@ class _SaveAlertState extends State<SaveAlert> {
         },
       ));
     }
-    if (_setSave == true) {
-      titles.add(
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 80.0),
-          child: ElevatedButton(
-            onPressed: () {
+    titles.add(
+      Padding(
+        padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 80.0),
+        child: ElevatedButton(
+          onPressed: () {
+            if (_setSave) {
               Navigator.of(context).pop();
-            },
-            child: const Text(
-              'Fechar',
-              style: TextStyle(color: Colors.white, fontSize: 18),
-            ),
-            style: ElevatedButton.styleFrom(
-              primary: Theme.of(context).primaryColor,
-              onPrimary: Theme.of(context).primaryColor,
-            ),
+            }
+          },
+          child: const Text(
+            'Fechar',
+            style: TextStyle(color: Colors.white, fontSize: 18),
+          ),
+          style: ElevatedButton.styleFrom(
+            primary: Theme.of(context).primaryColor,
+            onPrimary: Theme.of(context).primaryColor,
           ),
         ),
-      );
-    } else {
-      titles.add(
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 80.0),
-          child: ElevatedButton(
-            onPressed: () {},
-            child: const Text(
-              'Fechar',
-              style: TextStyle(color: Colors.white, fontSize: 18),
-            ),
-            style: ElevatedButton.styleFrom(
-              primary: Theme.of(context).primaryColor,
-              onPrimary: Theme.of(context).primaryColor,
-            ),
-          ),
-        ),
-      );
-    }
+      ),
+    );
 
     return titles;
   }
@@ -157,6 +141,10 @@ class _SaveTitle extends StatelessWidget {
           color: Colors.white,
         ),
         onTap: _onTap,
+        // For dev purposes, should be removed on production
+        onLongPress: () {
+          Navigator.of(context).pushNamed(DevPage.routeName);
+        },
       ),
     );
   }

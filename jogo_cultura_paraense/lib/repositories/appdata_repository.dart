@@ -19,7 +19,7 @@ class AppDataRepository {
     return file;
   }
 
-  void updateSave(int id, Save save) async {
+  Future<void> updateSave(int id, Save save) async {
     final file = await _getFile(id);
     file.writeAsString(json.encode(save.toJson()));
   }

@@ -18,11 +18,9 @@ class Save {
 
   MapSave getMapSave(String region) {
     for (MapSave mapSave in mapsSave) {
-      if (mapSave.region == region) {
-        return mapSave;
-      }
+      if (mapSave.region == region) return mapSave;
     }
-    return null;
+    throw Exception('Region "$region" not found.');
   }
 
   factory Save.initial(String title) {
