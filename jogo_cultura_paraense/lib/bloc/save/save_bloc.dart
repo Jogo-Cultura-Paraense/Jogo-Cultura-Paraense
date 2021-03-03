@@ -63,7 +63,7 @@ class SaveBloc extends Bloc<SaveEvent, SaveState> {
     final currentGame = currentMap.getGameSave(game);
     final gameIndex = currentMap.gamesSave.indexOf(currentGame);
 
-    if (currentGame.topScores.length <= 5) {
+    if (currentGame.topScores.length < 5) {
       currentGame.topScores.add(score);
     } else if (score > currentGame.topScores.last) {
       currentGame.topScores.removeLast();
@@ -77,10 +77,12 @@ class SaveBloc extends Bloc<SaveEvent, SaveState> {
       );
     }
 
-    if (gameIndex != currentMap.gamesSave.length - 1) {
-      currentMap.gamesSave[gameIndex + 1] = currentGame.copyWith(isOpen: true);
+    if (currentMap.gamesOpen != currentMap.gamesSave.length) {
+      final nextGame = currentMap.gamesSave[gameIndex + 1];
+      currentMap.gamesSave[gameIndex + 1] = nextGame.copyWith(isOpen: true);
     } else if (mapIndex != currentSave.mapsSave.length - 1) {
-      currentSave.mapsSave[mapIndex + 1] = currentMap.copyWith(isOpen: true);
+      final nextMap = currentSave.mapsSave[mapIndex + 1];
+      currentSave.mapsSave[mapIndex + 1] = nextMap.copyWith(isOpen: true);
     }
 
     await _appDataRepository.updateSave(
