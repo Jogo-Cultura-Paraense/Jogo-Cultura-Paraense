@@ -50,11 +50,9 @@ class MapSave {
     return gamesOpen;
   }
 
-  GameSave getMapSave(String game) {
+  GameSave getGameSave(String game) {
     for (GameSave gameSave in gamesSave) {
-      if (gameSave.title == game) {
-        return gameSave;
-      }
+      if (gameSave.title == game) return gameSave;
     }
     throw Exception('Game "$game" not found.');
   }
@@ -64,8 +62,7 @@ class MapSave {
     bool isOpen = false,
     List<String> order,
   }) {
-    // Check if a order has been sent.
-    // If not, then set default order.
+    // Check if a order has been sent. If not, then set default order.
     if (order == null) {
       order = <String>[
         Games.cooking,
@@ -129,5 +126,20 @@ class MapSave {
       'isOpen': isOpen,
       'gamesSave': GameSave.toJsonList(gamesSave),
     };
+  }
+
+  // Copy the current instance while inserting new values passed as params
+  MapSave copyWith({
+    String region,
+    String city,
+    bool isOpen,
+    List<GameSave> gamesSave,
+  }) {
+    return MapSave(
+      region: region ?? this.region,
+      city: city ?? this.city,
+      isOpen: isOpen ?? this.isOpen,
+      gamesSave: gamesSave ?? this.gamesSave,
+    );
   }
 }
