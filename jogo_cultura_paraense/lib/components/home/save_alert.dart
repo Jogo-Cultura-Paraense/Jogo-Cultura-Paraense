@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
 import 'package:jogo_cultura_paraense/components/loading_progress.dart';
 import 'package:jogo_cultura_paraense/components/simple_dialog.dart';
+import 'package:jogo_cultura_paraense/pages/dev.dart';
 
 class SaveAlert extends StatefulWidget {
   const SaveAlert({Key key}) : super(key: key);
@@ -140,6 +141,10 @@ class _SaveTitle extends StatelessWidget {
           color: Colors.white,
         ),
         onTap: _onTap,
+        // For dev purposes, should be removed on production
+        onLongPress: () {
+          Navigator.of(context).pushNamed(DevPage.routeName);
+        },
       ),
     );
   }

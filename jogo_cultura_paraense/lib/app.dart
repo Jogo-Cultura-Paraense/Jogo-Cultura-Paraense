@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/bloc/home/home_bloc.dart';
 import 'package:jogo_cultura_paraense/bloc/map/map_bloc.dart';
 import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
+import 'package:jogo_cultura_paraense/pages/dev.dart';
 import 'package:jogo_cultura_paraense/pages/maps/maps.dart';
 import 'package:jogo_cultura_paraense/pages/game_mode_page.dart';
 import 'package:jogo_cultura_paraense/pages/region_mode_page.dart';
@@ -29,6 +30,10 @@ class App extends StatelessWidget {
           ),
         ),
         routes: {
+          // For dev purposes, should be removed on production
+          DevPage.routeName: (BuildContext context) {
+            return const DevPage();
+          },
           HomePage.routeName: (BuildContext context) {
             return const HomePage();
           },
