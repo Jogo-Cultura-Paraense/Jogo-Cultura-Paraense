@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flame/flame.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flame/game.dart';
+import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components/background.dart';
 import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components/high_score.dart';
 import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components/hint_button.dart';
 import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components/start_button.dart';
@@ -26,6 +27,8 @@ class FindGame extends Game {
   HighscoreDisplay highscoreDisplay;
   int numTargets;
 
+  Background background;
+
   final int gameLevel = 1;
   final SharedPreferences storage;
 
@@ -49,6 +52,7 @@ class FindGame extends Game {
     resize(
         await Flame.util.initialDimensions()); //delimita as dimensões da tela
     highscoreDisplay = HighscoreDisplay(this);
+    background = Background(this);
     tiles = List<Tile>();
     targetTiles = List<Tile>();
 
@@ -73,6 +77,7 @@ class FindGame extends Game {
     Paint bgPaint = Paint();
     bgPaint.color = Color(0xff576574);
     canvas.drawRect(bgRect, bgPaint);
+    background.render(canvas);
 
     if (activeView == View.howTo)
       howToView.render(canvas);

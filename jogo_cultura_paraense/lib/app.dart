@@ -6,9 +6,13 @@ import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game.dar
 import 'package:jogo_cultura_paraense/pages/game_mode_page.dart';
 import 'package:jogo_cultura_paraense/pages/map_mode_page.dart';
 import 'package:jogo_cultura_paraense/pages/select_level.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'pages/pages.dart';
 
 class App extends StatelessWidget {
+  final SharedPreferences storage;
+  const App({Key key, this.storage}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -49,7 +53,7 @@ class App extends StatelessWidget {
             return const LevelSelection();
           },
           FindGame.routeName: (BuildContext context) {
-            return FindGame(null).widget;
+            return FindGame(storage).widget;
           },
         },
         initialRoute: LoadingPage.routeName,

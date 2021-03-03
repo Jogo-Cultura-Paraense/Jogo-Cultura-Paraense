@@ -55,6 +55,7 @@ flutter:
     - lib/images/MorningBackground.png
     - lib/images/NightBackground.png
     - lib/images/LoadingBackground.png
+    - assets/images/findGame/background.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
