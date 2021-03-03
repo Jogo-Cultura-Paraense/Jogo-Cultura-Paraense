@@ -28,6 +28,10 @@ class Tile {
     if (target) {
       game.score += 100;
       game.timer.timer += 5;
+      if (game.score > (game.storage.getInt('highscore') ?? 0)) {
+        game.storage.setInt('highscore', game.score);
+        game.highscoreDisplay.updateHighscore();
+      }
     }
   }
 }

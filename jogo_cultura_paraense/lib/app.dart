@@ -49,7 +49,7 @@ class App extends StatelessWidget {
             return const LevelSelection();
           },
           FindGame.routeName: (BuildContext context) {
-            return FindGame().widget;
+            return FindGame(null).widget;
           },
         },
         initialRoute: LoadingPage.routeName,

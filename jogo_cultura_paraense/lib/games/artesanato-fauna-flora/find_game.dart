@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flame/flame.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flame/game.dart';
+import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components/high_score.dart';
 import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components/hint_button.dart';
 import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components/start_button.dart';
 import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components/timer.dart';
@@ -10,6 +11,7 @@ import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/views/how_to.
 import 'components/hud.dart';
 import 'components/tile.dart';
 import 'components/views.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:math';
 
 class FindGame extends Game {
@@ -21,10 +23,11 @@ class FindGame extends Game {
   List<Tile> targetTiles;
   int score;
   Hud hud;
+  HighscoreDisplay highscoreDisplay;
   int numTargets;
 
   final int gameLevel = 1;
-  //int timer;
+  final SharedPreferences storage;
 
 // inicializa as views do game
   HowToView howToView;
@@ -35,7 +38,7 @@ class FindGame extends Game {
 
   Random rnd;
 
-  FindGame() {
+  FindGame(this.storage) {
     initialize();
   }
 
@@ -45,6 +48,7 @@ class FindGame extends Game {
 
     resize(
         await Flame.util.initialDimensions()); //delimita as dimensões da tela
+    highscoreDisplay = HighscoreDisplay(this);
     tiles = List<Tile>();
     targetTiles = List<Tile>();
 
@@ -86,6 +90,7 @@ class FindGame extends Game {
 
     if (activeView == View.howTo || activeView == View.endGame) {
       startButton.render(canvas);
+      highscoreDisplay.render(canvas);
     }
   }
 

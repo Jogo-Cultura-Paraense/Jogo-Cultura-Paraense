@@ -3,17 +3,21 @@ import 'find_game.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
-  FindGame game = FindGame();
-  TapGestureRecognizer tapper = TapGestureRecognizer();
-  tapper.onTapDown = game.onTapDown;
-  runApp(game.widget);
-
-// configura o jogo para tela cheia e trava no modo retrato
   WidgetsFlutterBinding.ensureInitialized();
+// configura o jogo para tela cheia e trava no modo retrato
   Util flameUtil = Util();
   await flameUtil.fullScreen();
   await flameUtil.setOrientation(DeviceOrientation.portraitUp);
+
+  SharedPreferences storage = await SharedPreferences.getInstance();
+
+  FindGame game = FindGame(storage);
+  runApp(game.widget);
+
+  TapGestureRecognizer tapper = TapGestureRecognizer();
+  tapper.onTapDown = game.onTapDown;
   flameUtil.addGestureRecognizer(tapper);
 }

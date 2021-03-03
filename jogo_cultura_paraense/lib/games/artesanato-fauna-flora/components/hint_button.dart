@@ -35,6 +35,7 @@ class HintButton {
     if (hintsLeft > 0) {
       // Tile element = game.targetTiles.first;
       hintsLeft--;
+      game.score -= 50;
       print("hints: $hintsLeft");
     }
   }
