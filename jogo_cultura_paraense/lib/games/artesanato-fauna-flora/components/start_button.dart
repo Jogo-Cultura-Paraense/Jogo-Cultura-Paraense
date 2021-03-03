@@ -30,5 +30,6 @@ class StartButton {
 
   void onTapDown() {
     game.activeView = View.play;
+    game.score = 0;
   }
 }

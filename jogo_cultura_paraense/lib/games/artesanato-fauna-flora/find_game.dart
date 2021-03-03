@@ -2,7 +2,9 @@ import 'dart:ui';
 import 'package:flame/flame.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flame/game.dart';
+import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components/hint_button.dart';
 import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components/start_button.dart';
+import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components/timer.dart';
 import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/views/end_game.dart';
 import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/views/how_to.dart';
 import 'components/hud.dart';
@@ -19,11 +21,17 @@ class FindGame extends Game {
   List<Tile> targetTiles;
   int score;
   Hud hud;
+  int numTargets;
+
+  final int gameLevel = 1;
+  //int timer;
 
 // inicializa as views do game
   HowToView howToView;
   StartButton startButton;
   EndGameView endGameView;
+  HintButton hintButton;
+  Timer timer;
 
   Random rnd;
 
@@ -33,6 +41,7 @@ class FindGame extends Game {
 
   void initialize() async {
     score = 0;
+    numTargets = 2 + (2 * gameLevel);
 
     resize(
         await Flame.util.initialDimensions()); //delimita as dimensões da tela
@@ -42,11 +51,14 @@ class FindGame extends Game {
 // carrega os elementos da UI
     hud = Hud(this);
     startButton = StartButton(this);
+    hintButton = HintButton(this);
 
     howToView = HowToView(this);
     endGameView = EndGameView(this);
 
     rnd = Random();
+
+    timer = Timer(this);
 
     spawnTile();
   }
@@ -58,15 +70,19 @@ class FindGame extends Game {
     bgPaint.color = Color(0xff576574);
     canvas.drawRect(bgRect, bgPaint);
 
-    //desenha o hud
-    hud.render(canvas);
-
     if (activeView == View.howTo)
       howToView.render(canvas);
     else if (activeView == View.play) {
       tiles.forEach((Tile tile) => tile.render(canvas));
+      //desenha o hud
+      hud.render(canvas);
+      targetTiles.forEach((Tile target) => target.render(canvas));
+      hintButton.render(canvas);
+      timer.render(canvas);
     }
-    if (activeView == View.endGame) endGameView.render(canvas);
+    if (activeView == View.endGame) {
+      endGameView.render(canvas);
+    }
 
     if (activeView == View.howTo || activeView == View.endGame) {
       startButton.render(canvas);
@@ -74,8 +90,13 @@ class FindGame extends Game {
   }
 
   void update(double t) {
+    if (activeView == View.play) timer.update(t);
+    if (timer.timer <= 0) activeView = View.endGame;
+
     tiles.forEach((Tile tile) => tile.update(t));
+
     tiles.removeWhere((Tile tile) => tile.touched);
+
     if (activeView == View.endGame) {
       initialize();
     }
@@ -102,6 +123,7 @@ class FindGame extends Game {
           if (tile.tileRect.contains(d.globalPosition)) {
             tile.onTapDown();
             isHandled = true;
+            targetTiles.removeWhere((Tile target) => target.name == tile.name);
             if (checkVictory()) {
               activeView = View.endGame;
             }
@@ -109,17 +131,30 @@ class FindGame extends Game {
         },
       );
     }
+    // botão de dica
+    if (!isHandled && hintButton.rect.contains(d.globalPosition)) {
+      if (activeView == View.play) {
+        hintButton.onTapDown();
+      }
+    }
   }
 
   void spawnTile() {
-    for (int i = 0; i < 10; i++) {
+    for (int i = 10; i > 0; i--) {
       double x = rnd.nextDouble() * (screenSize.width - tileSize);
       double y = rnd.nextDouble() * (screenSize.height - tileSize * 3);
-      tiles.add(Tile(this, x, y, i < 4 ? true : false));
+
+      tiles.add(Tile(this, x, y, i.toString(), i <= numTargets ? true : false));
+      if (i <= numTargets) {
+        Tile newTile = Tile(this, tileSize * i * 1.1 + 36,
+            screenSize.height - tileSize * 1.5, i.toString(), true);
+        targetTiles.add(newTile);
+      }
     }
   }
 
   bool checkVictory() {
-    return (score == 4);
+    //return (score == numTargets);
+    return targetTiles.isEmpty;
   }
 }
