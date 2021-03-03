@@ -26,43 +26,26 @@ class _SaveAlertState extends State<SaveAlert> {
         },
       ));
     }
-    if (_setSave == true) {
-      titles.add(
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 80.0),
-          child: ElevatedButton(
-            onPressed: () {
+    titles.add(
+      Padding(
+        padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 80.0),
+        child: ElevatedButton(
+          onPressed: () {
+            if (_setSave) {
               Navigator.of(context).pop();
-            },
-            child: const Text(
-              'Fechar',
-              style: TextStyle(color: Colors.white, fontSize: 18),
-            ),
-            style: ElevatedButton.styleFrom(
-              primary: Theme.of(context).primaryColor,
-              onPrimary: Theme.of(context).primaryColor,
-            ),
+            }
+          },
+          child: const Text(
+            'Fechar',
+            style: TextStyle(color: Colors.white, fontSize: 18),
+          ),
+          style: ElevatedButton.styleFrom(
+            primary: Theme.of(context).primaryColor,
+            onPrimary: Theme.of(context).primaryColor,
           ),
         ),
-      );
-    } else {
-      titles.add(
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 80.0),
-          child: ElevatedButton(
-            onPressed: () {},
-            child: const Text(
-              'Fechar',
-              style: TextStyle(color: Colors.white, fontSize: 18),
-            ),
-            style: ElevatedButton.styleFrom(
-              primary: Theme.of(context).primaryColor,
-              onPrimary: Theme.of(context).primaryColor,
-            ),
-          ),
-        ),
-      );
-    }
+      ),
+    );
 
     return titles;
   }
