@@ -1,26 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jogo_cultura_paraense/bloc/encyclopedia/encyclopedia_bloc.dart';
-import 'package:jogo_cultura_paraense/bloc/home/home_bloc.dart';
-import 'package:jogo_cultura_paraense/bloc/map/map_bloc.dart';
-import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
-import 'package:jogo_cultura_paraense/repositories/datocms_repository.dart';
-import 'package:jogo_cultura_paraense/services/encyclopedia_service.dart';
+import 'package:jogo_cultura_paraense/bloc/bloc.dart';
+import 'package:jogo_cultura_paraense/repositories/repositories.dart';
+import 'package:jogo_cultura_paraense/services/services.dart';
 import 'app.dart';
 
 void main() {
+  // Repositories
   final datoCMSRepository = DatoCMSRepository();
-  final encyclopediaService = EncyclopediaService(datoCMSRepository);
+  final appDataRepository = AppDataRepository();
 
+  // Services
+  final encyclopediaService = EncyclopediaService(datoCMSRepository);
+  final homeAssetsService = HomeAssetsService(datoCMSRepository);
+  final mapAssetsService = MapAssetsService(datoCMSRepository);
+
+  // Blocs
   final blocProviders = <BlocProvider>[
     BlocProvider<HomeBloc>(create: (BuildContext context) {
-      return HomeBloc();
+      return HomeBloc(homeAssetsService);
     }),
     BlocProvider<SaveBloc>(create: (BuildContext context) {
-      return SaveBloc();
+      return SaveBloc(appDataRepository);
     }),
     BlocProvider<MapBloc>(create: (BuildContext context) {
-      return MapBloc();
+      return MapBloc(mapAssetsService);
     }),
     BlocProvider<EncyclopediaBloc>(create: (BuildContext context) {
       return EncyclopediaBloc(encyclopediaService);

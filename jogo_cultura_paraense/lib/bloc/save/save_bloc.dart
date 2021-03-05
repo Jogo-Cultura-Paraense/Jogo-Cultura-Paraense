@@ -10,17 +10,19 @@ part 'save_event.dart';
 part 'save_state.dart';
 
 class SaveBloc extends Bloc<SaveEvent, SaveState> {
-  final AppDataRepository _appDataRepository = AppDataRepository();
-  SaveBloc() : super(SaveInitial());
+  final AppDataRepository _repo;
+  SaveBloc(AppDataRepository repo)
+      : _repo = repo,
+        super(SaveInitial());
 
   @override
   Stream<SaveState> mapEventToState(dynamic event) async* {
     if (event is LoadSave) {
       yield SaveLoading();
       try {
-        final save0 = await _appDataRepository.getSave(0);
-        final save1 = await _appDataRepository.getSave(1);
-        final save2 = await _appDataRepository.getSave(2);
+        final save0 = await _repo.getSave(0);
+        final save1 = await _repo.getSave(1);
+        final save2 = await _repo.getSave(2);
         yield SaveLoaded(
           saves: <Save>[
             Save.fromJson(json.decode(save0)),

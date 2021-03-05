@@ -9,8 +9,10 @@ part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  final HomeAssetsService _homeAssetsService = HomeAssetsService();
-  HomeBloc() : super(HomeInitial());
+  final HomeAssetsService _service;
+  HomeBloc(HomeAssetsService service)
+      : _service = service,
+        super(HomeInitial());
 
   @override
   Stream<HomeState> mapEventToState(
@@ -19,7 +21,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     if (event is LoadHomeAssets) {
       yield HomeAssetsLoading();
       try {
-        HomeAssets homeAssets = await _homeAssetsService.fetchHomeAssets();
+        HomeAssets homeAssets = await _service.fetchHomeAssets();
         yield HomeAssetsLoaded(homeAssets);
       } catch (error) {
         yield HomeAssetsFailed(error.toString());

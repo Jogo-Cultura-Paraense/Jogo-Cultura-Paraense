@@ -2,12 +2,12 @@ import 'package:jogo_cultura_paraense/model/home_assets.dart';
 import 'package:jogo_cultura_paraense/repositories/datocms_repository.dart';
 
 class HomeAssetsService {
-  final DatoCMSRepository _repo = DatoCMSRepository();
+  final DatoCMSRepository _repo;
+  const HomeAssetsService(DatoCMSRepository repo) : _repo = repo;
 
   Future<HomeAssets> fetchHomeAssets() async {
-    try {
-      String time = checkTime();
-      final String query = '''
+    String time = checkTime();
+    final String query = '''
         query homeasset{
           homeasset {
             ${time}Bg {
@@ -17,11 +17,8 @@ class HomeAssetsService {
           }
         }
       ''';
-      dynamic result = await _repo.query(query, data: 'homeasset');
-      return HomeAssets.fromJson(time, result);
-    } catch (error) {
-      throw Exception(error.toString());
-    }
+    dynamic result = await _repo.query(query, data: 'homeasset');
+    return HomeAssets.fromJson(time, result);
   }
 
   String checkTime() {
