@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jogo_cultura_paraense/pages/dev.dart';
-import 'package:jogo_cultura_paraense/pages/maps/maps.dart';
-import 'package:jogo_cultura_paraense/pages/game_mode_page.dart';
-import 'package:jogo_cultura_paraense/pages/region_mode_page.dart';
-import 'package:jogo_cultura_paraense/pages/select_level.dart';
 import 'pages/pages.dart';
 
 class App extends StatelessWidget {
