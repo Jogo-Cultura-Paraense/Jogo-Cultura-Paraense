@@ -25,7 +25,7 @@ class EncyclopediaBloc extends Bloc<EncyclopediaEvent, EncyclopediaState> {
         final entries = await _service.fetchEntries();
         yield EncyclopediaLoaded(entries);
       } catch (error) {
-        yield EncyclopediaFailed(error.toString);
+        yield EncyclopediaFailed(error.toString());
       }
     } else {
       yield state;
