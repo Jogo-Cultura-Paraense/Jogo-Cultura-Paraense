@@ -15,7 +15,7 @@ class CustomAlertDialog extends StatelessWidget {
     @required Widget floatingChild,
     double dialogHeight = 300,
     double dialogWidht = 400,
-    double floatingChildHeight = 280,
+    double floatingChildHeight = 300,
     double floatingChildWidht = 400,
     Key key,
   })  : _title = title,

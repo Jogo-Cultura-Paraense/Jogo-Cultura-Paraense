@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:jogo_cultura_paraense/components/home/buttons_top.dart';
+import 'package:jogo_cultura_paraense/components/home/home_appbar.dart';
+import 'package:jogo_cultura_paraense/components/home/home_scaffold.dart';
 import 'package:jogo_cultura_paraense/components/locked_game_alert.dart';
-import 'package:jogo_cultura_paraense/pages/pages.dart';
-import 'package:jogo_cultura_paraense/pages/select_mini_game.dart';
+import 'package:jogo_cultura_paraense/pages/select_mini_game_page.dart';
 
-class LevelSelection extends StatelessWidget {
+class LevelSelectionPage extends StatelessWidget {
   static const String routeName = '/levelSelect';
   final GameObject gameObject;
 
-  const LevelSelection({Key key, this.gameObject}) : super(key: key);
+  const LevelSelectionPage({Key key, this.gameObject}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return MenuAppBar(
-      bodyWidget: LevelSelectionMenu(
+    return HomeScaffold(
+      appBar: HomeAppBar(),
+      body: LevelSelectionMenu(
         gameObject: gameObject,
       ),
     );

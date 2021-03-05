@@ -38,11 +38,11 @@ class App extends StatelessWidget {
           GameModePage.routeName: (BuildContext context) {
             return const GameModePage();
           },
-          GameSelectPage.routeName: (BuildContext context) {
-            return const GameSelectPage();
+          GameSelectionPage.routeName: (BuildContext context) {
+            return const GameSelectionPage();
           },
-          LevelSelection.routeName: (BuildContext context) {
-            return const LevelSelection();
+          LevelSelectionPage.routeName: (BuildContext context) {
+            return const LevelSelectionPage();
           },
           RegionModePage.routeName: (BuildContext context) {
             return RegionMode();
