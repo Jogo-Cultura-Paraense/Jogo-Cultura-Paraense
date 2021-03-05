@@ -53,4 +53,13 @@ class GameSave {
       'topScores': topScores,
     };
   }
+
+  // Copy the current instance while inserting new values passed as params
+  GameSave copyWith({String title, bool isOpen, List<int> topScores}) {
+    return GameSave(
+      title: title ?? this.title,
+      isOpen: isOpen ?? this.isOpen,
+      topScores: topScores ?? this.topScores,
+    );
+  }
 }

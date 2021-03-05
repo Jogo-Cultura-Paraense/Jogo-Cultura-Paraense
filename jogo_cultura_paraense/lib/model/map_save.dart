@@ -40,6 +40,8 @@ class MapSave {
   final bool isOpen;
   final List<GameSave> gamesSave;
 
+  const MapSave({this.region, this.city, this.isOpen, this.gamesSave});
+
   int get gamesOpen {
     int gamesOpen = 0;
     for (GameSave game in gamesSave) {
@@ -48,15 +50,19 @@ class MapSave {
     return gamesOpen;
   }
 
-  const MapSave({this.region, this.city, this.isOpen, this.gamesSave});
+  GameSave getGameSave(String game) {
+    for (GameSave gameSave in gamesSave) {
+      if (gameSave.title == game) return gameSave;
+    }
+    throw Exception('Game "$game" not found.');
+  }
 
   factory MapSave.initial(
     Region region, {
     bool isOpen = false,
     List<String> order,
   }) {
-    // Check if a order has been sent.
-    // If not, then set default order.
+    // Check if a order has been sent. If not, then set default order.
     if (order == null) {
       order = <String>[
         Games.cooking,
@@ -120,5 +126,20 @@ class MapSave {
       'isOpen': isOpen,
       'gamesSave': GameSave.toJsonList(gamesSave),
     };
+  }
+
+  // Copy the current instance while inserting new values passed as params
+  MapSave copyWith({
+    String region,
+    String city,
+    bool isOpen,
+    List<GameSave> gamesSave,
+  }) {
+    return MapSave(
+      region: region ?? this.region,
+      city: city ?? this.city,
+      isOpen: isOpen ?? this.isOpen,
+      gamesSave: gamesSave ?? this.gamesSave,
+    );
   }
 }
