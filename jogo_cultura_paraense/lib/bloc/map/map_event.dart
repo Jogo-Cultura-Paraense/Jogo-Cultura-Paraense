@@ -9,13 +9,3 @@ class LoadMapAssets extends MapEvent {
 
   LoadMapAssets(this.region, this.gamesOpen);
 }
-
-class CompleteMapAssets extends MapEvent {}
-
-class FailMapAssets extends MapEvent {}
-
-class SetCurrentMap extends MapEvent {
-  final String currentMap;
-
-  SetCurrentMap(this.currentMap);
-}
