@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/components/home/buttons_top.dart';
-import 'package:jogo_cultura_paraense/components/home/main_menu.dart';
+import 'package:jogo_cultura_paraense/components/main_menu_button.dart';
 import 'package:jogo_cultura_paraense/pages/select_mini_game_page.dart';
 import 'package:jogo_cultura_paraense/pages/region_mode_page.dart';
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/components/home/about_alert.dart';
+import 'package:jogo_cultura_paraense/components/main_menu_button.dart';
 import 'package:jogo_cultura_paraense/pages/enciclopedia_page.dart';
 import 'package:jogo_cultura_paraense/pages/game_mode_page.dart';
 import 'package:jogo_cultura_paraense/pages/pages.dart';
@@ -68,28 +69,6 @@ class MainMenu extends StatelessWidget {
       builder: (context) {
         return const AboutAlert();
       },
-    );
-  }
-}
-
-// Widget modelo para criar botões no menu
-class MainMenuButton extends StatelessWidget {
-  final String label;
-  final Function onClick;
-
-  const MainMenuButton({this.label, this.onClick});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 8.0),
-      child: SizedBox(
-        width: double.maxFinite,
-        child: RaisedButton(
-          child: Text(label),
-          onPressed: () => onClick(),
-        ),
-      ),
     );
   }
 }
