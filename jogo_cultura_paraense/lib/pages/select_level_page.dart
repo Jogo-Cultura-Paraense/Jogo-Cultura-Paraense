@@ -22,82 +22,117 @@ class LevelSelectionPage extends StatelessWidget {
 
 class LevelSelectionMenu extends StatelessWidget {
   final GameObject gameObject;
+  LevelSelectionMenu({Key key, this.gameObject}) : super(key: key);
 
-  const LevelSelectionMenu({Key key, this.gameObject}) : super(key: key);
+  List<Widget> _buildList() {
+    return <Widget>[
+      SelectLevelCard(
+        level: 1,
+        unlocked: true,
+        onTap: () => print("level 1"),
+      ),
+      SelectLevelCard(
+        level: 2,
+        unlocked: true,
+        onTap: () => print("level 2"),
+      ),
+      SelectLevelCard(
+        level: 3,
+        unlocked: false,
+        onTap: () => print("level 3 bloqueado"),
+      ),
+      SelectLevelCard(
+        level: 4,
+        unlocked: false,
+        onTap: () => print("level 4 bloqueado"),
+      ),
+      SelectLevelCard(
+        level: 5,
+        unlocked: false,
+        onTap: () => print("level 5 bloqueado"),
+      ),
+      SelectLevelCard(
+        level: 6,
+        unlocked: false,
+        onTap: () => print("level 6 bloqueado"),
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      resizeToAvoidBottomInset: false,
-      body: Center(
+    final list = _buildList();
+
+    return Container(
+      padding: EdgeInsets.only(top: 100, bottom: 20),
+      width: MediaQuery.of(context).size.width,
+      child: FittedBox(
+        fit: BoxFit.fill,
+        alignment: Alignment.center,
         child: Column(
-          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            SizedBox(
-              width: 275.0,
-              height: 60.0,
-              child: Card(
-                color: Colors.redAccent[700],
-                child: Center(
-                  child: Text(
-                    gameObject.name,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+            Container(
+              height: 60,
+              width: MediaQuery.of(context).size.width,
+              margin: EdgeInsets.only(bottom: 5.0),
+              decoration: BoxDecoration(
+                color: Theme.of(context).accentColor,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(5),
                 ),
               ),
+              alignment: Alignment.center,
+              child: Text(
+                gameObject.name,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+                textAlign: TextAlign.center,
+              ),
             ),
-            SizedBox(
-              width: 350.0,
-              height: 600.0,
-              child: Card(
-                color: Colors.redAccent[700],
+            Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              margin: EdgeInsets.symmetric(horizontal: 5.0),
+              decoration: BoxDecoration(
+                color: Theme.of(context).accentColor,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(5),
+                ),
+              ),
+              child: FittedBox(
+                fit: BoxFit.fill,
+                clipBehavior: Clip.hardEdge,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 32.0),
+                      padding: EdgeInsets.symmetric(vertical: 10.0),
                       child: Text(
-                        "ESCOLHA UM NÍVEL",
+                        'Escolha uma dificuldade',
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: 16,
+                          fontSize: 20,
                         ),
+                        textAlign: TextAlign.center,
                       ),
                     ),
-                    SelectLevelCard(
-                      level: 1,
-                      unlocked: true,
-                      onTap: () => print("level 1"),
-                    ),
-                    SelectLevelCard(
-                      level: 2,
-                      unlocked: true,
-                      onTap: () => print("level 2"),
-                    ),
-                    SelectLevelCard(
-                      level: 3,
-                      unlocked: false,
-                      onTap: () => print("level 3 bloqueado"),
-                    ),
-                    SelectLevelCard(
-                      level: 4,
-                      unlocked: false,
-                      onTap: () => print("level 4 bloqueado"),
-                    ),
-                    SelectLevelCard(
-                      level: 5,
-                      unlocked: false,
-                      onTap: () => print("level 5 bloqueado"),
-                    ),
-                    SelectLevelCard(
-                      level: 6,
-                      unlocked: false,
-                      onTap: () => print("level 6 bloqueado"),
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.7,
+                      width: MediaQuery.of(context).size.width,
+                      margin: EdgeInsets.symmetric(horizontal: 5.0),
+                      color: Colors.transparent,
+                      child: ListView.builder(
+                        padding: EdgeInsets.zero,
+                        itemCount: list.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return list[index];
+                        },
+                      ),
                     ),
                   ],
                 ),
