@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
 import 'package:jogo_cultura_paraense/components/home/info_alert.dart';
-import 'package:jogo_cultura_paraense/components/home/save_alert.dart';
+import 'package:jogo_cultura_paraense/components/save/save_selection.dart';
 import 'package:share/share.dart';
 
 class HomeAppBar extends StatefulWidget implements PreferredSizeWidget {
@@ -46,25 +46,18 @@ class _HomeAppBarState extends State<HomeAppBar> {
             },
           ),
         ),
-        BlocBuilder<SaveBloc, SaveState>(
-          builder: (context, state) {
-            if (state is SaveInitial) {
-              WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-                _save(context);
-              });
-            }
-            return Padding(
-              padding: EdgeInsets.symmetric(horizontal: 2),
-              child: FloatingActionButton(
-                heroTag: 'saveButton',
-                child: Icon(Icons.save),
-                elevation: 0,
-                onPressed: () {
-                  _save(context);
-                },
-              ),
-            );
-          },
+        SaveSelection(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 2),
+            child: FloatingActionButton(
+              heroTag: 'saveButton',
+              child: Icon(Icons.save),
+              elevation: 0,
+              onPressed: () {
+                SaveSelection.show(context);
+              },
+            ),
+          ),
         ),
       ],
     );
@@ -82,16 +75,6 @@ class _HomeAppBarState extends State<HomeAppBar> {
       context: context,
       builder: (context) {
         return const InfoAlert();
-      },
-    );
-  }
-
-  void _save(BuildContext context) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) {
-        return const SaveAlert();
       },
     );
   }
