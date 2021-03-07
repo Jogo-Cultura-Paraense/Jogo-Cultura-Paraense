@@ -27,6 +27,9 @@ class FindGame extends Game {
   HighscoreDisplay highscoreDisplay;
   int numTargets;
 
+//lista com a ordem dos sprites
+  var listaSprites = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
   Background background;
 
   final int gameLevel = 1;
@@ -46,8 +49,10 @@ class FindGame extends Game {
   }
 
   void initialize() async {
+//inicializa as variáveis de instância
     score = 0;
     numTargets = 2 + (2 * gameLevel);
+    listaSprites.shuffle();
 
     resize(
         await Flame.util.initialDimensions()); //delimita as dimensões da tela
@@ -150,14 +155,15 @@ class FindGame extends Game {
   }
 
   void spawnTile() {
-    for (int i = 10; i > 0; i--) {
+    for (int i = 9; i >= 0; i--) {
       double x = rnd.nextDouble() * (screenSize.width - tileSize);
       double y = rnd.nextDouble() * (screenSize.height - tileSize * 3);
-
-      tiles.add(Tile(this, x, y, i.toString(), i <= numTargets ? true : false));
-      if (i <= numTargets) {
-        Tile newTile = Tile(this, tileSize * i * 1.1 + 36,
-            screenSize.height - tileSize * 1.5, i.toString(), true);
+      //int name = rnd.nextInt(7);
+      tiles.add(
+          Tile(this, x, y, listaSprites[i], i <= numTargets ? true : false));
+      if (i < numTargets) {
+        Tile newTile = Tile(this, tileSize * (i + 1) * 1.1 + 36,
+            screenSize.height - tileSize * 1.5, listaSprites[i], true);
         targetTiles.add(newTile);
       }
     }

@@ -15,6 +15,19 @@ void main() async {
 
   Flame.images.loadAll(<String>[
     'findGame/background.jpg',
+    'findGame/00.png',
+    'findGame/01.png',
+    'findGame/02.png',
+    'findGame/03.png',
+    'findGame/04.png',
+    'findGame/05.png',
+    'findGame/06.png',
+    'findGame/07.png',
+    'findGame/08.png',
+    'findGame/09.png',
+    'findGame/start_button.png',
+    'findGame/no_button.png',
+    'findGame/hint_button.png',
   ]);
 
   SharedPreferences storage = await SharedPreferences.getInstance();

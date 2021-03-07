@@ -7,8 +7,9 @@ import '../find_game.dart';
 class HintButton {
   final FindGame game;
   Rect rect;
-  // Sprite sprite;
-  Paint paint;
+  Sprite noSprite;
+  Sprite hintSprite;
+  // Paint paint;
   int hintsLeft;
 
   HintButton(this.game) {
@@ -20,14 +21,23 @@ class HintButton {
       game.tileSize,
     );
     hintsLeft = 1 * game.gameLevel;
-    //sprite = Sprite('ui/icon-help.png');
-    paint = Paint();
-    paint.color = Color(0xffffffff);
+    noSprite = Sprite(
+      'findGame/no_button.png',
+    );
+    hintSprite = Sprite(
+      'findGame/hint_button.png',
+    );
+    // paint = Paint();
+    // paint.color = Color(0xffffffff);
   }
 
   void render(Canvas c) {
-    // sprite.renderRect(c, rect);
-    c.drawRect(rect, paint);
+    if (hintsLeft > 0) {
+      hintSprite.renderRect(c, rect);
+    } else {
+      noSprite.renderRect(c, rect);
+    }
+    // c.drawRect(rect, paint);
   }
 
   void onTapDown() {

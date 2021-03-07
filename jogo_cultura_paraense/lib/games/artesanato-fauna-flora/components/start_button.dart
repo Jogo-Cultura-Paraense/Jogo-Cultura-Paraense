@@ -17,13 +17,14 @@ class StartButton {
       game.tileSize * 6,
       game.tileSize * 2,
     );
-    startButtonPaint = Paint();
-    startButtonPaint.color = Color(0xff004fff);
+    sprite = Sprite('findGame/start_button.png');
+    // startButtonPaint = Paint();
+    // startButtonPaint.color = Color(0xff004fff);
   }
 
   void render(Canvas c) {
-    c.drawRect(startButtonRect, startButtonPaint);
-    //sprite.renderRect(c, startButtonRect); // caso use sprite
+    // c.drawRect(startButtonRect, startButtonPaint);
+    sprite.renderRect(c, startButtonRect); // caso use sprite
   }
 
   void update(double t) {}
