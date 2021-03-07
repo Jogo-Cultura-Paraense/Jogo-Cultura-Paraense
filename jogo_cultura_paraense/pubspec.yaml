@@ -69,6 +69,8 @@ flutter:
     - assets/images/findGame/start_button.png
     - assets/images/findGame/no_button.png
     - assets/images/findGame/hint_button.png
+    - assets/images/findGame/how_to.png
+    - assets/images/findGame/end_game.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

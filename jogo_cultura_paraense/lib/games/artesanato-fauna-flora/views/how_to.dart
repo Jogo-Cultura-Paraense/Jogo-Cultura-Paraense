@@ -1,12 +1,13 @@
 import 'dart:ui';
 
+import 'package:flame/sprite.dart';
 import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game.dart';
 
 class HowToView {
   final FindGame game;
   Rect howToRect;
-  Paint howToPaint;
-  //Sprite titleSprite;
+  // Paint howToPaint;
+  Sprite titleSprite;
 
   HowToView(this.game) {
     howToRect = Rect.fromLTWH(
@@ -15,12 +16,13 @@ class HowToView {
       game.tileSize * 7,
       game.tileSize * 11,
     );
-    howToPaint = Paint();
-    howToPaint.color = Color(0xff00ffff);
+    // howToPaint = Paint();
+    // howToPaint.color = Color(0xff00ffff);
+    titleSprite = Sprite('findGame/how_to.png');
   }
 
   void render(Canvas c) {
-    c.drawRect(howToRect, howToPaint);
+    titleSprite.renderRect(c, howToRect);
   }
 
   void update(double t) {}

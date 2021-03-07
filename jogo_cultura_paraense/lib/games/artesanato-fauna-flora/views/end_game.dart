@@ -5,7 +5,7 @@ import '../find_game.dart';
 class EndGameView {
   final FindGame game;
   Rect rect;
-  Paint paint;
+  // Paint paint;
   Sprite sprite;
 
   EndGameView(this.game) {
@@ -15,13 +15,14 @@ class EndGameView {
       game.tileSize * 7,
       game.tileSize * 5,
     );
-    paint = Paint();
-    paint.color = Color(0xff004fff);
-    //sprite = Sprite('bg/lose-splash.png');
+    // paint = Paint();
+    // paint.color = Color(0xff004fff);
+    sprite = Sprite('findGame/end_game.png');
   }
 
   void render(Canvas c) {
-    c.drawRect(rect, paint);
+    // c.drawRect(rect, paint);
+    sprite.renderRect(c, rect);
   }
 
   void update(double t) {}

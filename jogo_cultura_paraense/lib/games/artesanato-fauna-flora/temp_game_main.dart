@@ -28,6 +28,8 @@ void main() async {
     'findGame/start_button.png',
     'findGame/no_button.png',
     'findGame/hint_button.png',
+    'findGame/how_to.png',
+    'findGame/end_game.png',
   ]);
 
   SharedPreferences storage = await SharedPreferences.getInstance();

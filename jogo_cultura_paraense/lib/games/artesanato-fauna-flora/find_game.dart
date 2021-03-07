@@ -158,6 +158,7 @@ class FindGame extends Game {
     for (int i = 9; i >= 0; i--) {
       double x = rnd.nextDouble() * (screenSize.width - tileSize);
       double y = rnd.nextDouble() * (screenSize.height - tileSize * 3);
+
       //int name = rnd.nextInt(7);
       tiles.add(
           Tile(this, x, y, listaSprites[i], i <= numTargets ? true : false));
