@@ -5,15 +5,8 @@ import 'package:jogo_cultura_paraense/components/loading_progress.dart';
 import 'package:jogo_cultura_paraense/components/simple_dialog.dart';
 import 'package:jogo_cultura_paraense/pages/dev.dart';
 
-class SaveAlert extends StatefulWidget {
+class SaveAlert extends StatelessWidget {
   const SaveAlert({Key key}) : super(key: key);
-
-  @override
-  _SaveAlertState createState() => _SaveAlertState();
-}
-
-class _SaveAlertState extends State<SaveAlert> {
-  bool _setSave = false;
 
   List<Widget> _buildSaveTitles(BuildContext context, SaveState state) {
     final titles = <Widget>[];
@@ -27,27 +20,26 @@ class _SaveAlertState extends State<SaveAlert> {
         },
       ));
     }
-    titles.add(
-      Padding(
-        padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 80.0),
-        child: ElevatedButton(
-          onPressed: () {
-            if (_setSave) {
+    if (state.currentSaveIndex != null) {
+      titles.add(
+        Padding(
+          padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 80.0),
+          child: ElevatedButton(
+            onPressed: () {
               Navigator.of(context).pop();
-            }
-          },
-          child: const Text(
-            'Fechar',
-            style: TextStyle(color: Colors.white, fontSize: 18),
-          ),
-          style: ElevatedButton.styleFrom(
-            primary: Theme.of(context).primaryColor,
-            onPrimary: Theme.of(context).primaryColor,
+            },
+            child: const Text(
+              'Fechar',
+              style: TextStyle(color: Colors.white, fontSize: 18),
+            ),
+            style: ElevatedButton.styleFrom(
+              primary: Theme.of(context).primaryColor,
+              onPrimary: Theme.of(context).primaryColor,
+            ),
           ),
         ),
-      ),
-    );
-
+      );
+    }
     return titles;
   }
 
@@ -61,7 +53,6 @@ class _SaveAlertState extends State<SaveAlert> {
         return true;
       },
       builder: (context, state) {
-        _setSave = state.currentSaveIndex != null;
         if (state is SaveLoaded) {
           return CustomSimpleDialog(
             title: Text(

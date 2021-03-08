@@ -9,8 +9,10 @@ part 'map_event.dart';
 part 'map_state.dart';
 
 class MapBloc extends Bloc<MapEvent, MapState> {
-  final MapAssetsService _mapAssetsService = MapAssetsService();
-  MapBloc() : super(MapInitial());
+  final MapAssetsService _service;
+  MapBloc(MapAssetsService service)
+      : _service = service,
+        super(MapInitial());
 
   @override
   Stream<MapState> mapEventToState(
@@ -19,7 +21,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     if (event is LoadMapAssets) {
       yield MapAssetsLoading();
       try {
-        MapAssets mapAssets = await _mapAssetsService.fetchMapAssets(
+        MapAssets mapAssets = await _service.fetchMapAssets(
           event.region,
           event.gamesOpen,
         );

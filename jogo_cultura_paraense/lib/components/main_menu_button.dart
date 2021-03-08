@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-class RectangleButton extends StatelessWidget {
+// Widget modelo para criar botões no menu
+class MainMenuButton extends StatelessWidget {
   final String _label;
   final Function _onClick;
 
-  const RectangleButton({
+  const MainMenuButton({
     @required String label,
     @required Function onClick,
     Key key,

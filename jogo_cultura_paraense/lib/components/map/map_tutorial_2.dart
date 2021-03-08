@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jogo_cultura_paraense/components/rectangle_button.dart';
+import 'package:jogo_cultura_paraense/components/main_menu_button.dart';
 
 class MapSecondTutorial extends StatefulWidget {
   final Function _onClick;
@@ -41,7 +41,7 @@ class _MapSecondTutorialState extends State<MapSecondTutorial> {
       list.add(
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 40),
-          child: RectangleButton(label: 'Jogar', onClick: widget._onClick),
+          child: MainMenuButton(label: 'Jogar', onClick: widget._onClick),
         ),
       );
     }

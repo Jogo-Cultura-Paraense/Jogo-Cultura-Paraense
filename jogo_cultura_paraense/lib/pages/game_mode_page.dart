@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
-import 'package:jogo_cultura_paraense/components/home/save_alert.dart';
-
-import 'game_mode_select.dart';
+import 'package:jogo_cultura_paraense/components/home/home_appbar.dart';
+import 'package:jogo_cultura_paraense/components/home/home_scaffold.dart';
+import 'package:jogo_cultura_paraense/components/main_menu_button.dart';
+import 'package:jogo_cultura_paraense/pages/select_mini_game_page.dart';
+import 'package:jogo_cultura_paraense/pages/region_mode_page.dart';
 
 class GameModePage extends StatelessWidget {
   static const String routeName = '/gameMode';
@@ -12,47 +12,59 @@ class GameModePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
+    return HomeScaffold(
+      appBar: HomeAppBar(),
+      body: const GameModeMenu(),
+    );
+  }
+}
 
-      body: BlocConsumer<SaveBloc, SaveState>(
-        buildWhen: (previousState, currentState) {
-          if (currentState is SaveLoaded &&
-              previousState.currentSave != currentState.currentSave) {
-            return true;
-          }
-          return false;
-        },
-        builder: (context, state) {
-          if (state is SaveLoaded && state.currentSave == null) {
-            WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-              _save(context);
-            });
-          }
-          return GameMode();
-        },
-        listenWhen: (previousState, currentState) {
-          if (currentState is SaveLoaded && currentState.currentSave == null) {
-            return true;
-          }
-          return false;
-        },
-        listener: (context, state) {
-          if (state is SaveLoaded && state.currentSave == null) {
-            _save(context);
-          }
-        },
-      ),
+class GameModeMenu extends StatelessWidget {
+  const GameModeMenu({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        const Text(
+          'Escolha o modo de jogo',
+          style: TextStyle(
+            fontSize: 24.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            shadows: <Shadow>[
+              Shadow(
+                offset: Offset(1.0, 1.0),
+                blurRadius: 2.0,
+                color: Color.fromARGB(255, 0, 0, 0),
+              ),
+              Shadow(
+                offset: Offset(1.0, 1.0),
+                blurRadius: 1.0,
+                color: Color.fromARGB(255, 0, 0, 0),
+              ),
+            ],
+          ),
+        ),
+        MainMenuButton(
+          label: 'MAPA',
+          onClick: () => _mapa(context),
+        ),
+        MainMenuButton(
+          label: 'MINI-JOGOS',
+          onClick: () => _minigames(context),
+        ),
+      ],
     );
   }
 
-  void _save(context) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) {
-        return const SaveAlert();
-      },
-    );
+  void _mapa(BuildContext context) {
+    Navigator.of(context).pushNamed(RegionModePage.routeName);
+  }
+
+  void _minigames(BuildContext context) {
+    print("MINI-JOGOS");
+    Navigator.of(context).pushNamed(GameSelectionPage.routeName);
   }
 }

@@ -1,24 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jogo_cultura_paraense/bloc/home/home_bloc.dart';
-import 'package:jogo_cultura_paraense/bloc/map/map_bloc.dart';
-import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
-import 'package:jogo_cultura_paraense/pages/dev.dart';
-import 'package:jogo_cultura_paraense/pages/maps/maps.dart';
-import 'package:jogo_cultura_paraense/pages/game_mode_page.dart';
-import 'package:jogo_cultura_paraense/pages/region_mode_page.dart';
-import 'package:jogo_cultura_paraense/pages/select_level.dart';
+import 'package:jogo_cultura_paraense/pages/encyclopedia_page.dart';
 import 'pages/pages.dart';
 
 class App extends StatelessWidget {
+  final List<BlocProvider> _blocs;
+
+  const App({@required List<BlocProvider> blocs}) : _blocs = blocs;
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: <BlocProvider>[
-        BlocProvider<HomeBloc>(create: (BuildContext context) => HomeBloc()),
-        BlocProvider<SaveBloc>(create: (BuildContext context) => SaveBloc()),
-        BlocProvider<MapBloc>(create: (BuildContext context) => MapBloc()),
-      ],
+      providers: _blocs,
       child: MaterialApp(
         title: 'Jogo Cultura Paraense',
         theme: ThemeData(
@@ -40,17 +33,17 @@ class App extends StatelessWidget {
           LoadingPage.routeName: (BuildContext context) {
             return const LoadingPage();
           },
-          EnciclopediaPage.routeName: (BuildContext context) {
-            return const EnciclopediaPage();
+          EncyclopediaPage.routeName: (BuildContext context) {
+            return const EncyclopediaPage();
           },
           GameModePage.routeName: (BuildContext context) {
             return const GameModePage();
           },
-          GameSelectPage.routeName: (BuildContext context) {
-            return const GameSelectPage();
+          GameSelectionPage.routeName: (BuildContext context) {
+            return const GameSelectionPage();
           },
-          LevelSelection.routeName: (BuildContext context) {
-            return const LevelSelection();
+          LevelSelectionPage.routeName: (BuildContext context) {
+            return const LevelSelectionPage();
           },
           RegionModePage.routeName: (BuildContext context) {
             return RegionMode();
