@@ -6,7 +6,9 @@ abstract class SaveState {
   final int currentSaveIndex;
   final List<Save> saves;
 
-  Save get currentSave => saves[currentSaveIndex];
+  Save get currentSave {
+    return currentSaveIndex != null ? saves[currentSaveIndex] : null;
+  }
 
   const SaveState({this.error, this.currentSaveIndex, this.saves});
 
