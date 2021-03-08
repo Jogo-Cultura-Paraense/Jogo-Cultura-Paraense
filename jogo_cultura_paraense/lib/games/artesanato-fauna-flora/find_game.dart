@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flame/flame.dart';
+import 'package:flame/gestures.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flame/game.dart';
 import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components/background.dart';
@@ -15,7 +16,7 @@ import 'components/views.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:math';
 
-class FindGame extends Game {
+class FindGame extends Game with TapDetector {
   View activeView = View.howTo;
   static const String routeName = '/findGame';
   Size screenSize;
