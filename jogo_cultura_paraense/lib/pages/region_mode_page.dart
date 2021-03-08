@@ -25,141 +25,152 @@ class RegionModePage extends State<RegionMode> {
       ),
       body: SaveSelection(
         child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.1,
-              ),
-              SizedBox(
-                width: 275.0,
-                height: 60.0,
-                child: Card(
-                  color: Colors.redAccent[700],
-                  child: Center(
-                    child: Text(
-                      'MESO REGIÕES PARAENSES',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ), //Text
-                  ), //Center
-                ), //Card
-              ),
-              Visibility(
-                visible: mapSave,
-                child: GestureDetector(
-                  onTap: () {
-                    goToLevel();
-                  },
-                  child: SizedBox(
-                    width: 350.0,
-                    height: 400.0,
-                    child: Card(
-                      color: Colors.amber[200],
-                      child: Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: mapImage,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ), //Card
+          child: BlocBuilder<SaveBloc, SaveState>(
+            buildWhen: (previousState, currentState) {
+              if (previousState.currentSave != currentState.currentSave) {
+                return true;
+              }
+              return false;
+            },
+            builder: (context, state) {
+              mapSave = state.currentSave.getMapSave(regionName).isOpen;
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.1,
                   ),
-                ),
-              ),
-              Visibility(
-                visible: mapSave == false,
-                child: GestureDetector(
-                  onTap: () {
-                    goToLevel();
-                  },
-                  child: SizedBox(
-                    width: 350.0,
-                    height: 400.0,
+                  SizedBox(
+                    width: 275.0,
+                    height: 60.0,
                     child: Card(
-                      color: Colors.amber[200],
-                      child: Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            colorFilter: ColorFilter.mode(
-                                Colors.black87.withOpacity(0.1),
-                                BlendMode.dstATop),
-                            image: mapImage,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ), //Card
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: 300.0,
-                height: 60.0,
-                child: Card(
-                  color: Colors.redAccent[700],
-                  child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Visibility(
-                          visible: counter != 0,
-                          child: ButtonTheme(
-                            minWidth: 5.0,
-                            buttonColor: Colors.red[700],
-                            child: RaisedButton(
-                              onPressed: () {
-                                passLeft();
-                              },
-                              shape: CircleBorder(),
-                              child: Text(
-                                '<',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Text(
-                          bottomText,
+                      color: Colors.redAccent[700],
+                      child: Center(
+                        child: Text(
+                          'MESO REGIÕES PARAENSES',
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
-                        ),
-                        Visibility(
-                          visible: counter != 6,
-                          child: ButtonTheme(
-                            minWidth: 5.0,
-                            buttonColor: Colors.red[700],
-                            child: RaisedButton(
-                              onPressed: () {
-                                passRight();
-                              },
-                              shape: CircleBorder(),
-                              child: Text(
-                                '>',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                        ), //Text
+                      ), //Center
+                    ), //Card
+                  ),
+                  Visibility(
+                    visible: mapSave,
+                    child: GestureDetector(
+                      onTap: () {
+                        goToLevel();
+                      },
+                      child: SizedBox(
+                        width: 350.0,
+                        height: 400.0,
+                        child: Card(
+                          color: Colors.amber[200],
+                          child: Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: mapImage,
+                                fit: BoxFit.cover,
                               ),
                             ),
                           ),
-                        )
-                      ],
-                    ), //Text
-                  ), //Center
-                ), //Card
-              ),
-            ],
+                        ), //Card
+                      ),
+                    ),
+                  ),
+                  Visibility(
+                    visible: mapSave == false,
+                    child: GestureDetector(
+                      onTap: () {
+                        goToLevel();
+                      },
+                      child: SizedBox(
+                        width: 350.0,
+                        height: 400.0,
+                        child: Card(
+                          color: Colors.amber[200],
+                          child: Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                colorFilter: ColorFilter.mode(
+                                    Colors.black87.withOpacity(0.1),
+                                    BlendMode.dstATop),
+                                image: mapImage,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ), //Card
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 300.0,
+                    height: 60.0,
+                    child: Card(
+                      color: Colors.redAccent[700],
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Visibility(
+                              visible: counter != 0,
+                              child: ButtonTheme(
+                                minWidth: 5.0,
+                                buttonColor: Colors.red[700],
+                                child: RaisedButton(
+                                  onPressed: () {
+                                    passLeft();
+                                  },
+                                  shape: CircleBorder(),
+                                  child: Text(
+                                    '<',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Text(
+                              bottomText,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Visibility(
+                              visible: counter != 6,
+                              child: ButtonTheme(
+                                minWidth: 5.0,
+                                buttonColor: Colors.red[700],
+                                child: RaisedButton(
+                                  onPressed: () {
+                                    passRight();
+                                  },
+                                  shape: CircleBorder(),
+                                  child: Text(
+                                    '>',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ), //Text
+                      ), //Center
+                    ), //Card
+                  ),
+                ],
+              );
+            },
           ),
         ),
       ),
