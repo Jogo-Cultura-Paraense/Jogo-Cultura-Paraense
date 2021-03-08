@@ -1,6 +1,6 @@
 export 'home_page.dart';
 export 'loading_page.dart';
-export 'enciclopedia_page.dart';
+export 'encyclopedia_page.dart';
 export 'select_mini_game_page.dart';
 
 export 'dev.dart';

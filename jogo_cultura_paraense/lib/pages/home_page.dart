@@ -4,7 +4,7 @@ import 'package:jogo_cultura_paraense/components/alert_dialog.dart';
 import 'package:jogo_cultura_paraense/components/home/home_appbar.dart';
 import 'package:jogo_cultura_paraense/components/home/home_scaffold.dart';
 import 'package:jogo_cultura_paraense/components/main_menu_button.dart';
-import 'package:jogo_cultura_paraense/pages/enciclopedia_page.dart';
+import 'package:jogo_cultura_paraense/pages/encyclopedia_page.dart';
 import 'package:jogo_cultura_paraense/pages/game_mode_page.dart';
 import 'package:jogo_cultura_paraense/pages/pages.dart';
 
@@ -74,7 +74,7 @@ class MainMenu extends StatelessWidget {
   }
 
   void _enciclopedia(BuildContext context) {
-    Navigator.of(context).pushNamed(EnciclopediaPage.routeName);
+    Navigator.of(context).pushNamed(EncyclopediaPage.routeName);
   }
 
   void _settings(BuildContext context) {

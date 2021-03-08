@@ -14,7 +14,7 @@ class EncyclopediaService {
       }
     }
     ''';
-    final result = await _repo.query(query, data: 'mapasset');
+    final result = await _repo.query(query, data: 'allEntryencs');
     return EncyclopediaEntry.fromJsonList(result);
   }
 }

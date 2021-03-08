@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jogo_cultura_paraense/pages/encyclopedia_page.dart';
 import 'pages/pages.dart';
 
 class App extends StatelessWidget {
@@ -32,8 +33,8 @@ class App extends StatelessWidget {
           LoadingPage.routeName: (BuildContext context) {
             return const LoadingPage();
           },
-          EnciclopediaPage.routeName: (BuildContext context) {
-            return const EnciclopediaPage();
+          EncyclopediaPage.routeName: (BuildContext context) {
+            return const EncyclopediaPage();
           },
           GameModePage.routeName: (BuildContext context) {
             return const GameModePage();
