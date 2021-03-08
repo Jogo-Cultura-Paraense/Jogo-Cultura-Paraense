@@ -21,33 +21,22 @@ class SaveSelection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SaveBloc, SaveState>(
+    return BlocBuilder<SaveBloc, SaveState>(
       buildWhen: (previousState, currentState) {
-        if (currentState is SaveLoaded &&
-            previousState.currentSave != currentState.currentSave) {
+        if (previousState is SaveLoaded &&
+            currentState is SaveLoaded &&
+            previousState.currentSaveIndex != currentState.currentSaveIndex) {
           return true;
         }
         return false;
       },
       builder: (context, state) {
-        if ((state is SaveLoaded && state.currentSave == null) ||
-            state is SaveInitial) {
+        if (state.currentSave == null) {
           WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
             SaveSelection.show(context);
           });
         }
         return _child;
-      },
-      listenWhen: (previousState, currentState) {
-        if (currentState is SaveLoaded && currentState.currentSave == null) {
-          return true;
-        }
-        return false;
-      },
-      listener: (context, state) {
-        if (state is SaveLoaded && state.currentSave == null) {
-          SaveSelection.show(context);
-        }
       },
     );
   }
