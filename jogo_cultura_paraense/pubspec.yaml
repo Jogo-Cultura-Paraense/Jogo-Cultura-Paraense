@@ -24,6 +24,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flame: ^0.29.3
+  shared_preferences: ^0.5.1+2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -56,6 +58,22 @@ flutter:
     - lib/images/nordesteparaense.png
     - lib/images/marajo.png
     - lib/images/metropolitana.png
+    - assets/images/findGame/background.jpg
+    - assets/images/findGame/00.png
+    - assets/images/findGame/01.png
+    - assets/images/findGame/02.png
+    - assets/images/findGame/03.png
+    - assets/images/findGame/04.png
+    - assets/images/findGame/05.png
+    - assets/images/findGame/06.png
+    - assets/images/findGame/07.png
+    - assets/images/findGame/08.png
+    - assets/images/findGame/09.png
+    - assets/images/findGame/start_button.png
+    - assets/images/findGame/no_button.png
+    - assets/images/findGame/hint_button.png
+    - assets/images/findGame/how_to.png
+    - assets/images/findGame/end_game.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

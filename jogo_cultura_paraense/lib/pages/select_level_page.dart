@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/components/home/home_appbar.dart';
 import 'package:jogo_cultura_paraense/components/home/home_scaffold.dart';
 import 'package:jogo_cultura_paraense/components/locked_game_alert.dart';
+import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game.dart';
 import 'package:jogo_cultura_paraense/pages/select_mini_game_page.dart';
 
 class LevelSelectionPage extends StatelessWidget {
@@ -24,12 +25,12 @@ class LevelSelectionMenu extends StatelessWidget {
   final GameObject gameObject;
   LevelSelectionMenu({Key key, this.gameObject}) : super(key: key);
 
-  List<Widget> _buildList() {
+  List<Widget> _buildList(BuildContext context) {
     return <Widget>[
       SelectLevelCard(
         level: 1,
         unlocked: true,
-        onTap: () => print("level 1"),
+        onTap: () => Navigator.of(context).pushNamed(FindGame.routeName),
       ),
       SelectLevelCard(
         level: 2,
@@ -61,7 +62,7 @@ class LevelSelectionMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final list = _buildList();
+    final list = _buildList(context);
 
     return Container(
       padding: EdgeInsets.only(top: 100, bottom: 20),

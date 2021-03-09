@@ -10,6 +10,7 @@ import 'package:jogo_cultura_paraense/pages/pages.dart';
 
 class HomePage extends StatelessWidget {
   static const String routeName = '/home';
+  static ImageProvider<Object> backgroundImage;
   const HomePage({Key key}) : super(key: key);
 
   @override
