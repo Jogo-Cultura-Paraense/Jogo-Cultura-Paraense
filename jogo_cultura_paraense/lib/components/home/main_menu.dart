@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/components/home/about_alert.dart';
 import 'package:jogo_cultura_paraense/pages/enciclopedia_page.dart';
+import 'package:jogo_cultura_paraense/pages/game_mode_page.dart';
+import 'package:jogo_cultura_paraense/pages/pages.dart';
 
 class MainMenu extends StatelessWidget {
   @override
@@ -27,19 +29,19 @@ class MainMenu extends StatelessWidget {
                 ),
               ]),
         ),
-        _MainMenuButton(
+        MainMenuButton(
           label: 'JOGAR',
           onClick: () => _game(context),
         ),
-        _MainMenuButton(
+        MainMenuButton(
           label: 'ENCICLOPÉDIA',
           onClick: () => _enciclopedia(context),
         ),
-        _MainMenuButton(
+        MainMenuButton(
           label: 'CONFIGURAÇÕES',
           onClick: () => _settings(context),
         ),
-        _MainMenuButton(
+        MainMenuButton(
           label: 'SOBRE',
           onClick: () => _about(context),
         ),
@@ -48,7 +50,7 @@ class MainMenu extends StatelessWidget {
   }
 
   void _game(BuildContext context) {
-    print('game...');
+    Navigator.of(context).pushNamed(GameModePage.routeName);
   }
 
   void _enciclopedia(BuildContext context) {
@@ -71,11 +73,11 @@ class MainMenu extends StatelessWidget {
 }
 
 // Widget modelo para criar botões no menu
-class _MainMenuButton extends StatelessWidget {
+class MainMenuButton extends StatelessWidget {
   final String label;
   final Function onClick;
 
-  const _MainMenuButton({this.label, this.onClick});
+  const MainMenuButton({this.label, this.onClick});
 
   @override
   Widget build(BuildContext context) {
