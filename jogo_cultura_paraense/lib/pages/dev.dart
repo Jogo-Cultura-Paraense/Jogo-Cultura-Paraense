@@ -123,8 +123,7 @@ class _DevPageState extends State<DevPage> {
                 listener: (context, state) {
                   if (state is SaveFailed) {
                     showDialog(
-                      context: context,
-                      child: SimpleDialog(
+                      context: context, builder: (context) => SimpleDialog(
                         children: <Widget>[Text(state.error)],
                       ),
                     );

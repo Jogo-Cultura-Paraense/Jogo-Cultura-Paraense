@@ -30,7 +30,7 @@ class LevelSelectionMenu extends StatelessWidget {
       SelectLevelCard(
         level: 1,
         unlocked: true,
-        onTap: () => Navigator.of(context).pushNamed(FindGame.routeName),
+        onTap: () => _selectGame(context, gameObject.name)
       ),
       SelectLevelCard(
         level: 2,
@@ -144,6 +144,13 @@ class LevelSelectionMenu extends StatelessWidget {
       ),
     );
   }
+  void _selectGame(BuildContext context, String gameName) {
+    if (gameName == "FLORA/FAUNA/ARTESANATO") {
+      Navigator.of(context).pushNamed(FindGame.routeName);
+    }
+  }
+
+
 }
 
 class SelectLevelCard extends StatelessWidget {

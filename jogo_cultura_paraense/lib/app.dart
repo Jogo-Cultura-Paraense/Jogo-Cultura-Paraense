@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/pages/encyclopedia_page.dart';
 import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:jogo_cultura_paraense/pages/finished_game_page.dart';
+import 'package:jogo_cultura_paraense/pages/score_page.dart';
 import 'pages/pages.dart';
 
 class App extends StatelessWidget {
@@ -72,6 +74,12 @@ class App extends StatelessWidget {
           },
           FindGame.routeName: (BuildContext context) {
             return FindGame(storage).widget;
+          },
+          FinishedGame.routeName: (BuildContext context) {
+            return const FinishedGame();
+          },
+          ScorePage.routeName: (BuildContext context) {
+            return const ScorePage();
           },
         },
         initialRoute: LoadingPage.routeName,

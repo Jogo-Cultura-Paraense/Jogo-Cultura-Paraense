@@ -5,6 +5,7 @@ import 'package:jogo_cultura_paraense/components/home/home_appbar.dart';
 import 'package:jogo_cultura_paraense/components/home/home_scaffold.dart';
 import 'package:jogo_cultura_paraense/components/main_menu_button.dart';
 import 'package:jogo_cultura_paraense/pages/encyclopedia_page.dart';
+import 'package:jogo_cultura_paraense/pages/finished_game_page.dart';
 import 'package:jogo_cultura_paraense/pages/game_mode_page.dart';
 import 'package:jogo_cultura_paraense/pages/pages.dart';
 
@@ -80,7 +81,7 @@ class MainMenu extends StatelessWidget {
 
   void _settings(BuildContext context) {
     //print(checkTime());
-    print('settings...');
+    Navigator.of(context).pushNamed(FinishedGame.routeName);
   }
 
   void _about(BuildContext context) {

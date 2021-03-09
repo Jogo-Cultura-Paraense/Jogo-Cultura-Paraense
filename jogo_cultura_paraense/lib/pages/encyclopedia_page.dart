@@ -248,8 +248,7 @@ class ViewlessEntry extends EntryTile {
   @override
   void onTap(BuildContext context) {
     showDialog(
-      context: context,
-      child: const SimpleDialog(
+      context: context, builder: (context) => const SimpleDialog(
         children: <Widget>[
           Text('Jogue mais para desbloquear esse item'),
         ],
