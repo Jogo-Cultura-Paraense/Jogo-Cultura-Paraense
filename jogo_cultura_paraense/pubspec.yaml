@@ -49,12 +49,15 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-
   assets:
-    - lib/images/EveningBackground.png
-    - lib/images/MorningBackground.png
-    - lib/images/NightBackground.png
     - lib/images/LoadingBackground.png
+    - lib/images/mesoregioes.png
+    - lib/images/sudoesteparaense.png
+    - lib/images/baixoamazonas.png
+    - lib/images/sudesteparaense.png
+    - lib/images/nordesteparaense.png
+    - lib/images/marajo.png
+    - lib/images/metropolitana.png
     - assets/images/findGame/background.jpg
     - assets/images/findGame/00.png
     - assets/images/findGame/01.png

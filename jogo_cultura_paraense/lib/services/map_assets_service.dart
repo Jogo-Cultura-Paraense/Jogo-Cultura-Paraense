@@ -2,25 +2,21 @@ import 'package:jogo_cultura_paraense/model/map_assets.dart';
 import 'package:jogo_cultura_paraense/repositories/datocms_repository.dart';
 
 class MapAssetsService {
-  final DatoCMSRepository _repo = DatoCMSRepository();
+  final DatoCMSRepository _repo;
+  const MapAssetsService(DatoCMSRepository repo) : _repo = repo;
 
-  Future<MapAssets> fetchHomeAssets() async {
-    try {
-      final String query = '''
-        query MyQuery {
-          allMaps {
-            info
-            image {
+  Future<MapAssets> fetchMapAssets(String region, int gamesOpen) async {
+    final String query = '''
+        query mapasset{
+          mapasset(filter: {region: {eq: "$region"}, gamesOpen: {eq: "$gamesOpen"}}) {
+            mapImage {
               url
             }
+            region
           }
         }
       ''';
-      dynamic result = await _repo.query(query, data: 'allMaps');
-      return MapAssets.fromJson(result);
-    } catch (error) {
-      throw Exception(error.toString());
-    }
+    dynamic result = await _repo.query(query, data: 'mapasset');
+    return MapAssets.fromJson(result);
   }
-
 }

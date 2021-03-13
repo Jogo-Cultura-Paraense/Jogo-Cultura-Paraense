@@ -1,4 +1,5 @@
-import 'package:jogo_cultura_paraense/model/game_save.dart';
+import 'package:jogo_cultura_paraense/model/item_save.dart';
+import 'package:jogo_cultura_paraense/model/map_save.dart';
 
 abstract class Saves {
   static const String cupuacu = 'Cupuaçu';
@@ -10,20 +11,30 @@ abstract class Saves {
 
 class Save {
   final String title;
-  final List<GameSave> savedGames;
+  final List<ItemSave> itensSave;
+  final List<MapSave> mapsSave;
 
-  const Save({this.title, this.savedGames});
+  const Save({this.title, this.itensSave, this.mapsSave});
+
+  MapSave getMapSave(String region) {
+    for (MapSave mapSave in mapsSave) {
+      if (mapSave.region == region) return mapSave;
+    }
+    throw Exception('Region "$region" not found.');
+  }
 
   factory Save.initial(String title) {
     return Save(
       title: title,
-      savedGames: <GameSave>[
-        GameSave.initial(Games.cooking),
-        GameSave.initial(Games.archAndFestiv),
-        GameSave.initial(Games.faunaAndFlora),
-        GameSave.initial(Games.legendAndMyths),
-        GameSave.initial(Games.vocabulary),
-        GameSave.initial(Games.rhythms),
+      itensSave: <ItemSave>[],
+      mapsSave: <MapSave>[
+        // First map of every save is always open.
+        MapSave.initial(Maps.sudoeste, isOpen: true),
+        MapSave.initial(Maps.baixoAmazonas, isOpen: true),
+        MapSave.initial(Maps.sudeste),
+        MapSave.initial(Maps.nordeste),
+        MapSave.initial(Maps.marajo),
+        MapSave.initial(Maps.metropolitana),
       ],
     );
   }
@@ -31,14 +42,16 @@ class Save {
   factory Save.fromJson(Map<String, dynamic> json) {
     return Save(
       title: json['title'],
-      savedGames: GameSave.fromJsonList(json['savedGames']),
+      itensSave: ItemSave.fromJsonList(json['itensSave']),
+      mapsSave: MapSave.fromJsonList(json['mapsSave']),
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'title': title,
-      'savedGames': GameSave.toJsonList(savedGames),
+      'itensSave': ItemSave.toJsonList(itensSave),
+      'mapsSave': MapSave.toJsonList(mapsSave),
     };
   }
 }

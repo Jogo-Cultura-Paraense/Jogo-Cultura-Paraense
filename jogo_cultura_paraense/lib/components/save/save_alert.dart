@@ -3,16 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
 import 'package:jogo_cultura_paraense/components/loading_progress.dart';
 import 'package:jogo_cultura_paraense/components/simple_dialog.dart';
+import 'package:jogo_cultura_paraense/pages/dev.dart';
 
-class SaveAlert extends StatefulWidget {
+class SaveAlert extends StatelessWidget {
   const SaveAlert({Key key}) : super(key: key);
-
-  @override
-  _SaveAlertState createState() => _SaveAlertState();
-}
-
-class _SaveAlertState extends State<SaveAlert> {
-  bool _setSave = false;
 
   List<Widget> _buildSaveTitles(BuildContext context, SaveState state) {
     final titles = <Widget>[];
@@ -20,13 +14,13 @@ class _SaveAlertState extends State<SaveAlert> {
       titles.add(_SaveTitle(
         title: state.saves[i].title,
         progress: 'Meu progresso',
-        isSelected: i == state.currentSave,
+        isSelected: i == state.currentSaveIndex,
         onTap: () {
           BlocProvider.of<SaveBloc>(context).add(SetCurrentSave(i));
         },
       ));
     }
-    if (_setSave == true) {
+    if (state.currentSaveIndex != null) {
       titles.add(
         Padding(
           padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 80.0),
@@ -45,25 +39,7 @@ class _SaveAlertState extends State<SaveAlert> {
           ),
         ),
       );
-    } else {
-      titles.add(
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 80.0),
-          child: ElevatedButton(
-            onPressed: () {},
-            child: const Text(
-              'Fechar',
-              style: TextStyle(color: Colors.white, fontSize: 18),
-            ),
-            style: ElevatedButton.styleFrom(
-              primary: Theme.of(context).primaryColor,
-              onPrimary: Theme.of(context).primaryColor,
-            ),
-          ),
-        ),
-      );
     }
-
     return titles;
   }
 
@@ -72,12 +48,11 @@ class _SaveAlertState extends State<SaveAlert> {
     return BlocBuilder<SaveBloc, SaveState>(
       buildWhen: (currentState, nextState) {
         if (currentState is SaveLoaded) {
-          return currentState.currentSave != nextState.currentSave;
+          return currentState.currentSaveIndex != nextState.currentSaveIndex;
         }
         return true;
       },
       builder: (context, state) {
-        _setSave = state.currentSave != null;
         if (state is SaveLoaded) {
           return CustomSimpleDialog(
             title: Text(
@@ -157,6 +132,10 @@ class _SaveTitle extends StatelessWidget {
           color: Colors.white,
         ),
         onTap: _onTap,
+        // For dev purposes, should be removed on production
+        onLongPress: () {
+          Navigator.of(context).pushNamed(DevPage.routeName);
+        },
       ),
     );
   }

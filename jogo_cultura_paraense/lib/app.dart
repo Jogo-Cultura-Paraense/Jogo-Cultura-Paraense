@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jogo_cultura_paraense/bloc/home/home_bloc.dart';
-import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
+import 'package:jogo_cultura_paraense/pages/encyclopedia_page.dart';
 import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game.dart';
-import 'package:jogo_cultura_paraense/pages/game_mode_page.dart';
-import 'package:jogo_cultura_paraense/pages/map_mode_page.dart';
-import 'package:jogo_cultura_paraense/pages/select_level.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:jogo_cultura_paraense/pages/finished_game_page.dart';
+import 'package:jogo_cultura_paraense/pages/score_page.dart';
 import 'pages/pages.dart';
 
 class App extends StatelessWidget {
   final SharedPreferences storage;
-  const App({Key key, this.storage}) : super(key: key);
+  final List<BlocProvider> _blocs;
+  const App({@required List<BlocProvider> blocs, Key key, this.storage})
+      : _blocs = blocs,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: <BlocProvider>[
-        BlocProvider<HomeBloc>(create: (BuildContext context) => HomeBloc()),
-        BlocProvider<SaveBloc>(create: (BuildContext context) => SaveBloc()),
-      ],
+      providers: _blocs,
       child: MaterialApp(
         title: 'Jogo Cultura Paraense',
         theme: ThemeData(
@@ -31,29 +29,57 @@ class App extends StatelessWidget {
           ),
         ),
         routes: {
+          // For dev purposes, should be removed on production
+          DevPage.routeName: (BuildContext context) {
+            return const DevPage();
+          },
           HomePage.routeName: (BuildContext context) {
             return const HomePage();
           },
           LoadingPage.routeName: (BuildContext context) {
             return const LoadingPage();
           },
-          EnciclopediaPage.routeName: (BuildContext context) {
-            return const EnciclopediaPage();
+          EncyclopediaPage.routeName: (BuildContext context) {
+            return const EncyclopediaPage();
           },
           GameModePage.routeName: (BuildContext context) {
             return const GameModePage();
           },
-          MapModePage.routeName: (BuildContext context) {
-            return const MapModePage();
+          GameSelectionPage.routeName: (BuildContext context) {
+            return const GameSelectionPage();
           },
-          GameSelectPage.routeName: (BuildContext context) {
-            return const GameSelectPage();
+          LevelSelectionPage.routeName: (BuildContext context) {
+            return const LevelSelectionPage();
           },
-          LevelSelection.routeName: (BuildContext context) {
-            return const LevelSelection();
+          RegionModePage.routeName: (BuildContext context) {
+            return RegionMode();
+          },
+          SudoestePage.routeName: (BuildContext context) {
+            return SudoestePage();
+          },
+          SudestePage.routeName: (BuildContext context) {
+            return SudestePage();
+          },
+          NordestePage.routeName: (BuildContext context) {
+            return NordestePage();
+          },
+          BaixoAmazonasPage.routeName: (BuildContext context) {
+            return BaixoAmazonasPage();
+          },
+          MetropolitanaPage.routeName: (BuildContext context) {
+            return MetropolitanaPage();
+          },
+          MarajoPage.routeName: (BuildContext context) {
+            return MarajoPage();
           },
           FindGame.routeName: (BuildContext context) {
             return FindGame(storage).widget;
+          },
+          FinishedGame.routeName: (BuildContext context) {
+            return const FinishedGame();
+          },
+          ScorePage.routeName: (BuildContext context) {
+            return const ScorePage();
           },
         },
         initialRoute: LoadingPage.routeName,
