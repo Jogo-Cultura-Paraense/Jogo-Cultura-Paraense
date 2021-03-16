@@ -63,8 +63,8 @@ class FindGame extends Game with TapDetector {
         await Flame.util.initialDimensions()); //delimita as dimensões da tela
     highscoreDisplay = HighscoreDisplay(this);
     background = Background(this);
-    tiles = List<Tile>();
-    targetTiles = List<Tile>();
+    tiles = <Tile>[];
+    targetTiles = <Tile>[];
 
 // carrega os elementos da UI
     hud = Hud(this);
