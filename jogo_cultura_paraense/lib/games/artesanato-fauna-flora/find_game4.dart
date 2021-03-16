@@ -18,7 +18,7 @@ import 'dart:math';
 
 class FindGame4 extends Game with TapDetector {
   View activeView = View.howTo;
-  static const String routeName = '/findGame3';
+  static const String routeName = '/findGame4';
   Size screenSize;
   double tileSize;
   List<Tile> tiles;

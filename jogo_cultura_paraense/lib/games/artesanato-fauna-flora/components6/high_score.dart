@@ -1,10 +1,10 @@
 import 'dart:ui';
 import 'package:flutter/painting.dart';
 
-import '../find_game.dart';
+import '../find_game6.dart';
 
 class HighscoreDisplay {
-  final FindGame game;
+  final FindGame6 game;
   TextPainter painter;
   TextStyle textStyle;
   Offset position;

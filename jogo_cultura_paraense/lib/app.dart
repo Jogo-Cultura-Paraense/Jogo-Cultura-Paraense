@@ -89,6 +89,12 @@ class App extends StatelessWidget {
           FindGame4.routeName: (BuildContext context) {
             return FindGame4(storage).widget;
           },
+          FindGame5.routeName: (BuildContext context) {
+            return FindGame5(storage).widget;
+          },
+          FindGame6.routeName: (BuildContext context) {
+            return FindGame6(storage).widget;
+          },
           FinishedGame.routeName: (BuildContext context) {
             return const FinishedGame();
           },

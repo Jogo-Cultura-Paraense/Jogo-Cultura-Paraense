@@ -17,7 +17,7 @@ class Tile {
   double rotateSpriteIndex = 0;
 
   Tile(this.game, double x, double y, this.name, this.target) {
-    tileRect = Rect.fromLTWH(x, y, game.tileSize/3, game.tileSize/3);
+    tileRect = Rect.fromLTWH(x, y, game.tileSize/4, game.tileSize/4);
     touched = false;
     isHinted = false;
     tileSprite = Sprite('findGame/0$name.png');
@@ -26,9 +26,9 @@ class Tile {
   void render(Canvas c) {
     if (isHinted) {
       rotateTileSprite[rotateSpriteIndex.toInt()]
-          .renderRect(c, tileRect.inflate(7.5));
+          .renderRect(c, tileRect.inflate(10));
     } else {
-      tileSprite.renderRect(c, tileRect.inflate(7.5));
+      tileSprite.renderRect(c, tileRect.inflate(10));
     }
   }
 

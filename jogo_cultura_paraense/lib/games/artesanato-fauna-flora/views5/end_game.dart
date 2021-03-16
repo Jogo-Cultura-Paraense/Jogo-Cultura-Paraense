@@ -1,9 +1,9 @@
 import 'dart:ui';
 import 'package:flame/sprite.dart';
-import '../find_game.dart';
+import '../find_game5.dart';
 
 class EndGameView {
-  final FindGame game;
+  final FindGame5 game;
   Rect rect;
   Sprite sprite;
 

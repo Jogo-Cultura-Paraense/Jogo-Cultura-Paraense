@@ -1,10 +1,10 @@
 import 'dart:ui';
 import 'package:flame/sprite.dart';
 
-import '../find_game.dart';
+import '../find_game6.dart';
 
 class Background {
-  final FindGame game;
+  final FindGame6 game;
   Sprite bgSprite;
   Rect bgRect;
 

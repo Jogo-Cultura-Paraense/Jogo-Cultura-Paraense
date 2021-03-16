@@ -1,9 +1,9 @@
 import 'dart:ui';
 import 'package:flame/sprite.dart';
-import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game.dart';
+import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game5.dart';
 
 class Tile {
-  final FindGame game;
+  final FindGame5 game;
   final bool target;
   final int name;
   Rect tileRect;
@@ -39,13 +39,13 @@ class Tile {
     print("$name");
     if (target) {
       game.score += 100;
-      game.timer.timer += 2;
+      game.timer.timer += 1;
       if (game.score > (game.storage.getInt('highscore') ?? 0)) {
         game.storage.setInt('highscore', game.score);
         game.highscoreDisplay.updateHighscore();
       }
     } else {
-      game.timer.timer -= 2;
+      game.timer.timer -= 1;
     }
   }
 }

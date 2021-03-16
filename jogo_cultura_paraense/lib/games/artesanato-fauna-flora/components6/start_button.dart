@@ -1,11 +1,11 @@
 import 'dart:ui';
 import 'package:flame/sprite.dart';
-import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components/views.dart';
+import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components6/views.dart';
 
-import '../find_game.dart';
+import '../find_game6.dart';
 
 class StartButton {
-  final FindGame game;
+  final FindGame6 game;
   Rect startButtonRect;
   Paint startButtonPaint;
   Sprite sprite;

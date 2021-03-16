@@ -54,13 +54,13 @@ class LevelSelectionMenu extends StatelessWidget {
       ),
       SelectLevelCard(
         level: 5,
-        unlocked: false,
-        onTap: () => print("level 5 bloqueado"),
+        unlocked: true,
+        onTap: () => _selectGame5(context, gameObject.name)
       ),
       SelectLevelCard(
         level: 6,
-        unlocked: false,
-        onTap: () => print("level 6 bloqueado"),
+        unlocked: true,
+          onTap: () => _selectGame6(context, gameObject.name)
       ),
     ];
   }
@@ -171,6 +171,19 @@ class LevelSelectionMenu extends StatelessWidget {
       Navigator.of(context).pushNamed(FindGame4.routeName);
     }
   }
+
+  void _selectGame5(BuildContext context, String gameName) {
+    if (gameName == "FLORA/FAUNA/ARTESANATO") {
+      Navigator.of(context).pushNamed(FindGame5.routeName);
+    }
+  }
+
+  void _selectGame6(BuildContext context, String gameName) {
+    if (gameName == "FLORA/FAUNA/ARTESANATO") {
+      Navigator.of(context).pushNamed(FindGame6.routeName);
+    }
+  }
+
 
 
 
