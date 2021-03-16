@@ -81,7 +81,7 @@ class EncyclopediaSave extends StatelessWidget {
           entries: _entries,
           viewableEntries: List<String>.generate(
             state.currentSave.itensSave.length,
-            (int index) => state.currentSave.itensSave[index],
+            (int index) => state.currentSave.itensSave[index].title,
           ),
         );
       },
@@ -248,7 +248,8 @@ class ViewlessEntry extends EntryTile {
   @override
   void onTap(BuildContext context) {
     showDialog(
-      context: context, builder: (context) => const SimpleDialog(
+      context: context,
+      builder: (context) => const SimpleDialog(
         children: <Widget>[
           Text('Jogue mais para desbloquear esse item'),
         ],
