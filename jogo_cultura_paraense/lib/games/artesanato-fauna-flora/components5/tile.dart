@@ -20,7 +20,7 @@ class Tile {
     tileRect = Rect.fromLTWH(x, y, game.tileSize / 3, game.tileSize / 3);
     touched = false;
     isHinted = false;
-    tileSprite = Sprite('findGame/0$name.png');
+    tileSprite = Sprite('findGame/$name.png');
   }
 
   void render(Canvas c) {

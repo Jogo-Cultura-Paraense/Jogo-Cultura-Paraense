@@ -30,7 +30,29 @@ class FindGame5 extends Game with TapDetector {
   int numTargets;
 
 //lista com a ordem dos sprites
-  var listaSprites = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  var listaSprites = [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ];
 
   Background background;
 
@@ -158,7 +180,7 @@ class FindGame5 extends Game with TapDetector {
   }
 
   void spawnTile() {
-    for (int i = 9; i >= 0; i--) {
+    for (int i = listaSprites.length; i >= 0; i--) {
       double x = rnd.nextDouble() * (screenSize.width - tileSize);
       double y = rnd.nextDouble() * (screenSize.height - tileSize * 3);
 
