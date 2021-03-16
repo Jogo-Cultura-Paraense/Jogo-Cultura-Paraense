@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/painting.dart';
-import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game.dart';
+import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game4.dart';
 
 class Timer {
   TextPainter painter;
@@ -9,7 +9,7 @@ class Timer {
   Offset position;
 
   double timer;
-  final FindGame game;
+  final FindGame4 game;
 
   Timer(this.game) {
     start();
@@ -34,7 +34,7 @@ class Timer {
   }
 
   void start() {
-    timer = 5;
+    timer = 3;
   }
 
   void update(double t) {

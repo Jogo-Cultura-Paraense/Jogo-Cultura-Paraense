@@ -3,6 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/pages/encyclopedia_page.dart';
 import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game.dart';
 import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game2.dart';
+import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game3.dart';
+import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game4.dart';
+import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game5.dart';
+import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game6.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:jogo_cultura_paraense/pages/finished_game_page.dart';
 import 'package:jogo_cultura_paraense/pages/score_page.dart';
@@ -78,6 +82,12 @@ class App extends StatelessWidget {
           },
           FindGame2.routeName: (BuildContext context) {
             return FindGame2(storage).widget;
+          },
+          FindGame3.routeName: (BuildContext context) {
+            return FindGame3(storage).widget;
+          },
+          FindGame4.routeName: (BuildContext context) {
+            return FindGame4(storage).widget;
           },
           FinishedGame.routeName: (BuildContext context) {
             return const FinishedGame();

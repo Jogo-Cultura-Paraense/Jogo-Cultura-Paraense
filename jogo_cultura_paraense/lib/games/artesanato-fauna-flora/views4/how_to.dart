@@ -1,10 +1,10 @@
 import 'dart:ui';
 
 import 'package:flame/sprite.dart';
-import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game.dart';
+import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game4.dart';
 
 class HowToView {
-  final FindGame game;
+  final FindGame4 game;
   Rect howToRect;
   // Paint howToPaint;
   Sprite titleSprite;

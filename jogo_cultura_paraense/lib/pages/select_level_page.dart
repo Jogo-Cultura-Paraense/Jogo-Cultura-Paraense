@@ -4,6 +4,10 @@ import 'package:jogo_cultura_paraense/components/home/home_scaffold.dart';
 import 'package:jogo_cultura_paraense/components/locked_game_alert.dart';
 import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game.dart';
 import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game2.dart';
+import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game3.dart';
+import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game4.dart';
+import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game5.dart';
+import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game6.dart';
 import 'package:jogo_cultura_paraense/pages/select_mini_game_page.dart';
 
 class LevelSelectionPage extends StatelessWidget {
@@ -40,13 +44,13 @@ class LevelSelectionMenu extends StatelessWidget {
       ),
       SelectLevelCard(
         level: 3,
-        unlocked: false,
-        onTap: () => print("level 3 bloqueado"),
+        unlocked: true,
+        onTap: () => _selectGame3(context, gameObject.name)
       ),
       SelectLevelCard(
         level: 4,
-        unlocked: false,
-        onTap: () => print("level 4 bloqueado"),
+        unlocked: true,
+        onTap: () => _selectGame4(context, gameObject.name)
       ),
       SelectLevelCard(
         level: 5,
@@ -155,6 +159,19 @@ class LevelSelectionMenu extends StatelessWidget {
       Navigator.of(context).pushNamed(FindGame2.routeName);
     }
   }
+
+  void _selectGame3(BuildContext context, String gameName) {
+    if (gameName == "FLORA/FAUNA/ARTESANATO") {
+      Navigator.of(context).pushNamed(FindGame3.routeName);
+    }
+  }
+
+  void _selectGame4(BuildContext context, String gameName) {
+    if (gameName == "FLORA/FAUNA/ARTESANATO") {
+      Navigator.of(context).pushNamed(FindGame4.routeName);
+    }
+  }
+
 
 
 }

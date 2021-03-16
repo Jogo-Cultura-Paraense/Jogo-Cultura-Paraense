@@ -2,10 +2,10 @@ import 'dart:ui';
 import 'package:flame/sprite.dart';
 import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components/tile.dart';
 
-import '../find_game.dart';
+import '../find_game3.dart';
 
 class HintButton {
-  final FindGame game;
+  final FindGame3 game;
   Rect rect;
   Sprite noSprite;
   Sprite hintSprite;

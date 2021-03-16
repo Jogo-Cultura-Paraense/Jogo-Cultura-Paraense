@@ -33,7 +33,7 @@ class FindGame extends Game with TapDetector {
 
   Background background;
 
-  final int gameLevel = 3;
+  final int gameLevel = 1;
   final SharedPreferences storage;
 
 // inicializa as views do game

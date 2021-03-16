@@ -1,9 +1,9 @@
 import 'dart:ui';
 import 'package:flame/sprite.dart';
-import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game.dart';
+import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game4.dart';
 
 class Tile {
-  final FindGame game;
+  final FindGame4 game;
   final bool target;
   final int name;
   Rect tileRect;
@@ -17,7 +17,7 @@ class Tile {
   double rotateSpriteIndex = 0;
 
   Tile(this.game, double x, double y, this.name, this.target) {
-    tileRect = Rect.fromLTWH(x, y, game.tileSize/3, game.tileSize/3);
+    tileRect = Rect.fromLTWH(x, y, game.tileSize, game.tileSize);
     touched = false;
     isHinted = false;
     tileSprite = Sprite('findGame/0$name.png');
@@ -26,9 +26,9 @@ class Tile {
   void render(Canvas c) {
     if (isHinted) {
       rotateTileSprite[rotateSpriteIndex.toInt()]
-          .renderRect(c, tileRect.inflate(7.5));
+          .renderRect(c, tileRect.inflate(5));
     } else {
-      tileSprite.renderRect(c, tileRect.inflate(7.5));
+      tileSprite.renderRect(c, tileRect.inflate(5));
     }
   }
 
@@ -39,13 +39,13 @@ class Tile {
     print("$name");
     if (target) {
       game.score += 100;
-      game.timer.timer += 2;
+      game.timer.timer += 1;
       if (game.score > (game.storage.getInt('highscore') ?? 0)) {
         game.storage.setInt('highscore', game.score);
         game.highscoreDisplay.updateHighscore();
       }
     } else {
-      game.timer.timer -= 2;
+      game.timer.timer -= 1;
     }
   }
 }
