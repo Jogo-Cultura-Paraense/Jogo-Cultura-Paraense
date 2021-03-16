@@ -2,6 +2,8 @@ import 'dart:ui';
 import 'package:flame/sprite.dart';
 import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game2.dart';
 
+import '../find_game2.dart';
+
 class HintButton {
   final FindGame2 game;
   Rect rect;
@@ -43,7 +45,9 @@ class HintButton {
     if (hintsLeft > 0) {
       // Tile element = game.targetTiles.first;
       hintsLeft--;
+      game.targetTiles.removeLast();
       game.score -= 50;
+      game.score += 100;
       print("hints: $hintsLeft");
     }
   }

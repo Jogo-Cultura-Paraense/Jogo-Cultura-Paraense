@@ -36,7 +36,7 @@ class HighscoreDisplay {
     int highscore = game.topScore;
 
     painter.text = TextSpan(
-      text: 'MAIOR PLACAR: ' + highscore.toString(),
+      text: 'MAIOR PLACAR: $highscore',
       style: textStyle,
     );
 

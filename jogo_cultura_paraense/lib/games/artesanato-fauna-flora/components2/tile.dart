@@ -17,10 +17,10 @@ class Tile {
   double rotateSpriteIndex = 0;
 
   Tile(this.game, double x, double y, this.name, this.target) {
-    tileRect = Rect.fromLTWH(x, y, game.tileSize / 3, game.tileSize / 3);
+    tileRect = Rect.fromLTWH(x, y, game.tileSize, game.tileSize);
     touched = false;
     isHinted = false;
-    tileSprite = Sprite('findGame/$name.png');
+    tileSprite = Sprite('findGame/0$name.png');
   }
 
   void render(Canvas c) {

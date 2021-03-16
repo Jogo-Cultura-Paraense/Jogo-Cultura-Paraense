@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flame/sprite.dart';
+
 import '../find_game3.dart';
 
 class HintButton {
@@ -43,7 +44,9 @@ class HintButton {
     if (hintsLeft > 0) {
       // Tile element = game.targetTiles.first;
       hintsLeft--;
+      game.targetTiles.removeLast();
       game.score -= 50;
+      game.score += 100;
       print("hints: $hintsLeft");
     }
   }

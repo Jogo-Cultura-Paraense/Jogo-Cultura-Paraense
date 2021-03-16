@@ -17,18 +17,18 @@ class Tile {
   double rotateSpriteIndex = 0;
 
   Tile(this.game, double x, double y, this.name, this.target) {
-    tileRect = Rect.fromLTWH(x, y, game.tileSize / 4, game.tileSize / 4);
+    tileRect = Rect.fromLTWH(x, y, game.tileSize, game.tileSize);
     touched = false;
     isHinted = false;
-    tileSprite = Sprite('findGame/$name.png');
+    tileSprite = Sprite('findGame/0$name.png');
   }
 
   void render(Canvas c) {
     if (isHinted) {
       rotateTileSprite[rotateSpriteIndex.toInt()]
-          .renderRect(c, tileRect.inflate(10));
+          .renderRect(c, tileRect.inflate(7.5));
     } else {
-      tileSprite.renderRect(c, tileRect.inflate(10));
+      tileSprite.renderRect(c, tileRect.inflate(7.5));
     }
   }
 

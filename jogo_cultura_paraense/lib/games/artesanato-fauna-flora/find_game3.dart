@@ -28,8 +28,10 @@ class FindGame3 extends Game with TapDetector {
   Hud hud;
   HighscoreDisplay highscoreDisplay;
   int numTargets;
+  Background background;
 
-//lista com a ordem dos sprites
+  final int topScore;
+  final BuildContext context;
   var listaSprites = [
     0,
     1,
@@ -48,17 +50,10 @@ class FindGame3 extends Game with TapDetector {
     14,
     15,
     16,
-    17,
-    18,
-    19,
-    20
+    17
   ];
 
-  Background background;
-
-  final int gameLevel = 3;
-  final int topScore;
-  final BuildContext context;
+  final int gameLevel = 1;
 
 // inicializa as views do game
   HowToView howToView;
