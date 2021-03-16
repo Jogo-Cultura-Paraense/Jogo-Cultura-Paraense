@@ -22,6 +22,9 @@ class MainMenuButton extends StatelessWidget {
         child: ElevatedButton(
           child: Text(_label),
           onPressed: _onClick,
+          style: ElevatedButton.styleFrom(
+            primary: Theme.of(context).primaryColor,
+          ),
         ),
       ),
     );
