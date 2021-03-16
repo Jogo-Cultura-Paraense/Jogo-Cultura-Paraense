@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
 import 'package:jogo_cultura_paraense/components/home/info_alert.dart';
 import 'package:jogo_cultura_paraense/components/save/save_selection.dart';
 import 'package:share/share.dart';
