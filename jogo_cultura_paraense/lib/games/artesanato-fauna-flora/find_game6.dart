@@ -180,7 +180,7 @@ class FindGame6 extends Game with TapDetector {
   }
 
   void spawnTile() {
-    for (int i = listaSprites.length; i >= 0; i--) {
+    for (int i = listaSprites.length - 1; i >= 0; i--) {
       double x = rnd.nextDouble() * (screenSize.width - tileSize);
       double y = rnd.nextDouble() * (screenSize.height - tileSize * 3);
 
