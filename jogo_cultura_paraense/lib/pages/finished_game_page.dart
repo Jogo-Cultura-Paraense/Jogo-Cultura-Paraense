@@ -69,8 +69,10 @@ class FinishedGame extends StatelessWidget {
                         )))),
             Padding(
                 padding: const EdgeInsets.only(left: 200.0),
-                child: RaisedButton(
-                    color: Colors.grey[600],
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.grey[500],
+                    ),
                     onPressed: () => _pass(context),
                     child: Icon(Icons.arrow_forward_rounded,
                         color: Colors.black, size: 45.0))),

@@ -121,11 +121,13 @@ class RegionModePage extends State<RegionMode> {
                               child: ButtonTheme(
                                 minWidth: 5.0,
                                 buttonColor: Colors.red[700],
-                                child: RaisedButton(
+                                child: ElevatedButton(
                                   onPressed: () {
                                     passLeft();
                                   },
-                                  shape: CircleBorder(),
+                                  style: ElevatedButton.styleFrom(
+                                    shape: CircleBorder(),
+                                  ),
                                   child: Text(
                                     '<',
                                     style: TextStyle(
@@ -148,11 +150,13 @@ class RegionModePage extends State<RegionMode> {
                               child: ButtonTheme(
                                 minWidth: 5.0,
                                 buttonColor: Colors.red[700],
-                                child: RaisedButton(
+                                child: ElevatedButton(
                                   onPressed: () {
                                     passRight();
                                   },
-                                  shape: CircleBorder(),
+                                  style: ElevatedButton.styleFrom(
+                                    shape: CircleBorder(),
+                                  ),
                                   child: Text(
                                     '>',
                                     style: TextStyle(
@@ -230,15 +234,13 @@ class RegionModePage extends State<RegionMode> {
     }
   }
 
-  String passLeft() {
+  void passLeft() {
     this.counter = this.counter - 1;
-    print(this.counter);
     selectMap();
   }
 
-  String passRight() {
+  void passRight() {
     this.counter = this.counter + 1;
-    print(this.counter);
     selectMap();
   }
 
