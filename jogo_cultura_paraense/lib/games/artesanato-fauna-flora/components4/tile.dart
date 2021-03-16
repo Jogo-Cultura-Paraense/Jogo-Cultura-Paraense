@@ -26,9 +26,9 @@ class Tile {
   void render(Canvas c) {
     if (isHinted) {
       rotateTileSprite[rotateSpriteIndex.toInt()]
-          .renderRect(c, tileRect.inflate(5));
+          .renderRect(c, tileRect.inflate(7.5));
     } else {
-      tileSprite.renderRect(c, tileRect.inflate(5));
+      tileSprite.renderRect(c, tileRect.inflate(7.5));
     }
   }
 
@@ -39,13 +39,13 @@ class Tile {
     print("$name");
     if (target) {
       game.score += 100;
-      game.timer.timer += 1;
+      game.timer.timer += 1.5;
       if (game.score > (game.storage.getInt('highscore') ?? 0)) {
         game.storage.setInt('highscore', game.score);
         game.highscoreDisplay.updateHighscore();
       }
     } else {
-      game.timer.timer -= 1;
+      game.timer.timer -= 1.5;
     }
   }
 }

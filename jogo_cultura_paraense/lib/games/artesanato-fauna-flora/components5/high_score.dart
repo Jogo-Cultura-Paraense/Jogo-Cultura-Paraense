@@ -36,7 +36,7 @@ class HighscoreDisplay {
     int highscore = game.storage.getInt('highscore') ?? 0;
 
     painter.text = TextSpan(
-      text: 'MAIOR PLACAR: ' + highscore.toString(),
+      text: 'PONTUAÇÃO: ' + highscore.toString(),
       style: textStyle,
     );
 

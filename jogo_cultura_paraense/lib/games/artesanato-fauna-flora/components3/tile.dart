@@ -17,7 +17,7 @@ class Tile {
   double rotateSpriteIndex = 0;
 
   Tile(this.game, double x, double y, this.name, this.target) {
-    tileRect = Rect.fromLTWH(x, y, game.tileSize/4, game.tileSize/4);
+    tileRect = Rect.fromLTWH(x, y, game.tileSize, game.tileSize);
     touched = false;
     isHinted = false;
     tileSprite = Sprite('findGame/0$name.png');
@@ -26,9 +26,9 @@ class Tile {
   void render(Canvas c) {
     if (isHinted) {
       rotateTileSprite[rotateSpriteIndex.toInt()]
-          .renderRect(c, tileRect.inflate(10));
+          .renderRect(c, tileRect.inflate(7.5));
     } else {
-      tileSprite.renderRect(c, tileRect.inflate(10));
+      tileSprite.renderRect(c, tileRect.inflate(7.5));
     }
   }
 
@@ -39,13 +39,13 @@ class Tile {
     print("$name");
     if (target) {
       game.score += 100;
-      game.timer.timer += 2;
+      game.timer.timer += 1.5;
       if (game.score > (game.storage.getInt('highscore') ?? 0)) {
         game.storage.setInt('highscore', game.score);
         game.highscoreDisplay.updateHighscore();
       }
     } else {
-      game.timer.timer -= 2;
+      game.timer.timer -= 1.5;
     }
   }
 }

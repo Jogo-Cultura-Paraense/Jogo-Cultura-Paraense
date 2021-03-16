@@ -46,6 +46,9 @@ class HintButton {
       // Tile element = game.targetTiles.first;
       hintsLeft--;
       game.score -= 50;
+      game.score += 100;
+      game.targetTiles.removeLast();
+
       print("hints: $hintsLeft");
     }
   }

@@ -34,7 +34,7 @@ class Timer {
   }
 
   void start() {
-    timer = 3;
+    timer = 4;
   }
 
   void update(double t) {
