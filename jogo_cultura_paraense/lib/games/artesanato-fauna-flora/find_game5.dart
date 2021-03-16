@@ -3,23 +3,23 @@ import 'package:flame/flame.dart';
 import 'package:flame/gestures.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flame/game.dart';
-import 'package:flutter/widgets.dart';
-import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components/background.dart';
-import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components/high_score.dart';
-import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components/hint_button.dart';
-import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components/start_button.dart';
-import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components/timer.dart';
-import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/views/end_game.dart';
-import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/views/how_to.dart';
+import 'package:flutter/material.dart';
+import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components5/background.dart';
+import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components5/high_score.dart';
+import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components5/hint_button.dart';
+import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components5/start_button.dart';
+import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components5/timer.dart';
+import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/views5/end_game.dart';
+import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/views5/how_to.dart';
 import 'package:jogo_cultura_paraense/pages/score_page.dart';
-import 'components/hud.dart';
-import 'components/tile.dart';
-import 'components/views.dart';
+import 'components5/hud.dart';
+import 'components5/tile.dart';
+import 'components5/views.dart';
 import 'dart:math';
 
-class FindGame extends Game with TapDetector {
+class FindGame5 extends Game with TapDetector {
   View activeView = View.howTo;
-  static const String routeName = '/findGame';
+  static const String routeName = '/findGame5';
   Size screenSize;
   double tileSize;
   List<Tile> tiles;
@@ -34,8 +34,7 @@ class FindGame extends Game with TapDetector {
 
   Background background;
 
-  final int gameLevel = 1;
-
+  final int gameLevel = 2;
   final int topScore;
   final BuildContext context;
 
@@ -48,7 +47,7 @@ class FindGame extends Game with TapDetector {
 
   Random rnd;
 
-  FindGame({this.context, this.topScore}) {
+  FindGame5({this.context, this.topScore}) {
     initialize();
   }
 
@@ -103,9 +102,7 @@ class FindGame extends Game with TapDetector {
     }
 
     if (activeView == View.howTo || activeView == View.endGame) {
-      if (activeView == View.howTo) {
-        startButton.render(canvas);
-      }
+      startButton.render(canvas);
       highscoreDisplay.render(canvas);
     }
   }

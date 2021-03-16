@@ -32,30 +32,25 @@ class LevelSelectionMenu extends StatelessWidget {
           unlocked: true,
           onTap: () => _selectGame(context, gameObject.name)),
       SelectLevelCard(
-        level: 2,
-        unlocked: true,
-        onTap: () => print("level 2"),
-      ),
+          level: 2,
+          unlocked: true,
+          onTap: () => _selectGame2(context, gameObject.name)),
       SelectLevelCard(
-        level: 3,
-        unlocked: false,
-        onTap: () => print("level 3 bloqueado"),
-      ),
+          level: 3,
+          unlocked: true,
+          onTap: () => _selectGame3(context, gameObject.name)),
       SelectLevelCard(
-        level: 4,
-        unlocked: false,
-        onTap: () => print("level 4 bloqueado"),
-      ),
+          level: 4,
+          unlocked: true,
+          onTap: () => _selectGame4(context, gameObject.name)),
       SelectLevelCard(
-        level: 5,
-        unlocked: false,
-        onTap: () => print("level 5 bloqueado"),
-      ),
+          level: 5,
+          unlocked: true,
+          onTap: () => _selectGame5(context, gameObject.name)),
       SelectLevelCard(
-        level: 6,
-        unlocked: false,
-        onTap: () => print("level 6 bloqueado"),
-      ),
+          level: 6,
+          unlocked: true,
+          onTap: () => _selectGame6(context, gameObject.name)),
     ];
   }
 
@@ -133,6 +128,36 @@ class LevelSelectionMenu extends StatelessWidget {
   void _selectGame(BuildContext context, String gameName) {
     if (gameName == "FLORA/FAUNA/ARTESANATO") {
       Navigator.of(context).pushNamed(ArtFaunaFloraGamePage.routeName);
+    }
+  }
+
+  void _selectGame2(BuildContext context, String gameName) {
+    if (gameName == "FLORA/FAUNA/ARTESANATO") {
+      Navigator.of(context).pushNamed(ArtFaunaFloraGamePage2.routeName);
+    }
+  }
+
+  void _selectGame3(BuildContext context, String gameName) {
+    if (gameName == "FLORA/FAUNA/ARTESANATO") {
+      Navigator.of(context).pushNamed(ArtFaunaFloraGamePage3.routeName);
+    }
+  }
+
+  void _selectGame4(BuildContext context, String gameName) {
+    if (gameName == "FLORA/FAUNA/ARTESANATO") {
+      Navigator.of(context).pushNamed(ArtFaunaFloraGamePage4.routeName);
+    }
+  }
+
+  void _selectGame5(BuildContext context, String gameName) {
+    if (gameName == "FLORA/FAUNA/ARTESANATO") {
+      Navigator.of(context).pushNamed(ArtFaunaFloraGamePage5.routeName);
+    }
+  }
+
+  void _selectGame6(BuildContext context, String gameName) {
+    if (gameName == "FLORA/FAUNA/ARTESANATO") {
+      Navigator.of(context).pushNamed(ArtFaunaFloraGamePage6.routeName);
     }
   }
 }

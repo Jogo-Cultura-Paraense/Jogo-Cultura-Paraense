@@ -4,10 +4,7 @@ import 'package:flame/util.dart';
 import 'package:jogo_cultura_paraense/bloc/bloc.dart';
 import 'package:jogo_cultura_paraense/repositories/repositories.dart';
 import 'package:jogo_cultura_paraense/services/services.dart';
-import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/gestures.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'app.dart';
 
 void main() async {

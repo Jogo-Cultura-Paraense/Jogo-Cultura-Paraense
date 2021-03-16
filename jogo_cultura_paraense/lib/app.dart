@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/pages/encyclopedia_page.dart';
-import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game.dart';
 import 'package:jogo_cultura_paraense/pages/games/art_fauna_flora.dart';
 import 'package:jogo_cultura_paraense/pages/finished_game_page.dart';
 import 'package:jogo_cultura_paraense/pages/score_page.dart';
@@ -71,8 +70,23 @@ class App extends StatelessWidget {
           MarajoPage.routeName: (BuildContext context) {
             return MarajoPage();
           },
-          FindGame.routeName: (BuildContext context) {
-            return FindGame().widget;
+          ArtFaunaFloraGamePage.routeName: (BuildContext context) {
+            return const ArtFaunaFloraGamePage();
+          },
+          ArtFaunaFloraGamePage2.routeName: (BuildContext context) {
+            return const ArtFaunaFloraGamePage2();
+          },
+          ArtFaunaFloraGamePage3.routeName: (BuildContext context) {
+            return const ArtFaunaFloraGamePage3();
+          },
+          ArtFaunaFloraGamePage4.routeName: (BuildContext context) {
+            return const ArtFaunaFloraGamePage4();
+          },
+          ArtFaunaFloraGamePage5.routeName: (BuildContext context) {
+            return const ArtFaunaFloraGamePage5();
+          },
+          ArtFaunaFloraGamePage6.routeName: (BuildContext context) {
+            return const ArtFaunaFloraGamePage6();
           },
           FinishedGame.routeName: (BuildContext context) {
             return const FinishedGame();
@@ -80,9 +94,6 @@ class App extends StatelessWidget {
           ScorePage.routeName: (BuildContext context) {
             return const ScorePage();
           },
-          ArtFaunaFloraGamePage.routeName: (BuildContext context) {
-            return const ArtFaunaFloraGamePage();
-          }
         },
         initialRoute: LoadingPage.routeName,
       ),
