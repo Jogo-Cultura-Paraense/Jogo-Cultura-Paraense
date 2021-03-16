@@ -52,7 +52,7 @@ class EncyclopediaAssets extends StatelessWidget {
       },
       listener: (context, state) {
         if (state is EncyclopediaFailed) {
-          Scaffold.of(context).showSnackBar(
+          ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(state.error)),
           );
         }

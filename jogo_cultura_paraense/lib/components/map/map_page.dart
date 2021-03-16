@@ -177,7 +177,7 @@ class MapPage extends StatelessWidget {
         return false;
       },
       listener: (context, dynamic state) {
-        Scaffold.of(context).showSnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(state.error)),
         );
       },
