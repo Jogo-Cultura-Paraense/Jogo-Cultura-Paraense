@@ -33,10 +33,10 @@ class HighscoreDisplay {
   }
 
   void updateHighscore() {
-    int highscore = game.storage.getInt('highscore') ?? 0;
+    int highscore = game.topScore;
 
     painter.text = TextSpan(
-      text: 'MAIOR PLACAR: ' + highscore.toString(),
+      text: 'MAIOR PLACAR: $highscore',
       style: textStyle,
     );
 

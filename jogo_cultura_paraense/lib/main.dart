@@ -44,7 +44,7 @@ void main() async {
 
   SharedPreferences storage = await SharedPreferences.getInstance();
 
-  FindGame game = FindGame(storage);
+  FindGame game = FindGame();
   //runApp(game.widget);
 
   TapGestureRecognizer tapper = TapGestureRecognizer();

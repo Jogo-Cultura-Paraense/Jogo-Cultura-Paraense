@@ -3,6 +3,7 @@ import 'package:flame/flame.dart';
 import 'package:flame/gestures.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flame/game.dart';
+import 'package:flutter/widgets.dart';
 import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components/background.dart';
 import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components/high_score.dart';
 import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components/hint_button.dart';
@@ -10,6 +11,7 @@ import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components/st
 import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components/timer.dart';
 import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/views/end_game.dart';
 import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/views/how_to.dart';
+import 'package:jogo_cultura_paraense/pages/score_page.dart';
 import 'components/hud.dart';
 import 'components/tile.dart';
 import 'components/views.dart';
@@ -34,7 +36,10 @@ class FindGame extends Game with TapDetector {
   Background background;
 
   final int gameLevel = 1;
-  final SharedPreferences storage;
+  final int topScore;
+  // final SharedPreferences storage;
+
+  final BuildContext context;
 
 // inicializa as views do game
   HowToView howToView;
@@ -45,7 +50,7 @@ class FindGame extends Game with TapDetector {
 
   Random rnd;
 
-  FindGame(this.storage) {
+  FindGame({this.context, this.topScore}) {
     initialize();
   }
 
@@ -100,7 +105,9 @@ class FindGame extends Game with TapDetector {
     }
 
     if (activeView == View.howTo || activeView == View.endGame) {
-      startButton.render(canvas);
+      if (activeView == View.howTo) {
+        startButton.render(canvas);
+      }
       highscoreDisplay.render(canvas);
     }
   }
@@ -141,7 +148,7 @@ class FindGame extends Game with TapDetector {
             isHandled = true;
             targetTiles.removeWhere((Tile target) => target.name == tile.name);
             if (checkVictory()) {
-              activeView = View.endGame;
+              Navigator.of(context).popAndPushNamed(ScorePage.routeName);
             }
           }
         },

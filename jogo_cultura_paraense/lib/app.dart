@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/pages/encyclopedia_page.dart';
 import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game.dart';
+import 'package:jogo_cultura_paraense/pages/games/art_fauna_flora.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:jogo_cultura_paraense/pages/finished_game_page.dart';
 import 'package:jogo_cultura_paraense/pages/score_page.dart';
@@ -73,7 +74,7 @@ class App extends StatelessWidget {
             return MarajoPage();
           },
           FindGame.routeName: (BuildContext context) {
-            return FindGame(storage).widget;
+            return FindGame().widget;
           },
           FinishedGame.routeName: (BuildContext context) {
             return const FinishedGame();
@@ -81,6 +82,9 @@ class App extends StatelessWidget {
           ScorePage.routeName: (BuildContext context) {
             return const ScorePage();
           },
+          ArtFaunaFloraGamePage.routeName: (BuildContext context) {
+            return const ArtFaunaFloraGamePage();
+          }
         },
         initialRoute: LoadingPage.routeName,
       ),
