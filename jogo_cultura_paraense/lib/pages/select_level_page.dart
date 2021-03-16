@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/components/home/home_appbar.dart';
 import 'package:jogo_cultura_paraense/components/home/home_scaffold.dart';
 import 'package:jogo_cultura_paraense/components/locked_game_alert.dart';
-import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game.dart';
+import 'package:jogo_cultura_paraense/pages/games/art_fauna_flora.dart';
 import 'package:jogo_cultura_paraense/pages/select_mini_game_page.dart';
 
 class LevelSelectionPage extends StatelessWidget {
@@ -28,10 +28,9 @@ class LevelSelectionMenu extends StatelessWidget {
   List<Widget> _buildList(BuildContext context) {
     return <Widget>[
       SelectLevelCard(
-        level: 1,
-        unlocked: true,
-        onTap: () => _selectGame(context, gameObject.name)
-      ),
+          level: 1,
+          unlocked: true,
+          onTap: () => _selectGame(context, gameObject.name)),
       SelectLevelCard(
         level: 2,
         unlocked: true,
@@ -65,92 +64,77 @@ class LevelSelectionMenu extends StatelessWidget {
     final list = _buildList(context);
 
     return Container(
-      padding: EdgeInsets.only(top: 100, bottom: 20),
+      height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
-      child: FittedBox(
-        fit: BoxFit.fill,
-        alignment: Alignment.center,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              height: 60,
-              width: MediaQuery.of(context).size.width,
-              margin: EdgeInsets.only(bottom: 5.0),
+      padding: EdgeInsets.only(top: 100.0, bottom: 20.0),
+      alignment: Alignment.center,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.only(bottom: 5.0),
+            padding: EdgeInsets.symmetric(vertical: 5.0),
+            decoration: BoxDecoration(
+              color: Theme.of(context).accentColor,
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+            ),
+            alignment: Alignment.center,
+            child: Text(
+              gameObject.name,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Expanded(
+            child: Container(
               decoration: BoxDecoration(
                 color: Theme.of(context).accentColor,
                 borderRadius: BorderRadius.all(
                   Radius.circular(5),
                 ),
               ),
-              alignment: Alignment.center,
-              child: Text(
-                gameObject.name,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
-                textAlign: TextAlign.center,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 5.0),
+                    child: Text(
+                      'Escolha uma dificuldade',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    padding: EdgeInsets.zero,
+                    itemCount: list.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return list[index];
+                    },
+                  ),
+                ],
               ),
             ),
-            Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              margin: EdgeInsets.symmetric(horizontal: 5.0),
-              decoration: BoxDecoration(
-                color: Theme.of(context).accentColor,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(5),
-                ),
-              ),
-              child: FittedBox(
-                fit: BoxFit.fill,
-                clipBehavior: Clip.hardEdge,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10.0),
-                      child: Text(
-                        'Escolha uma dificuldade',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.7,
-                      width: MediaQuery.of(context).size.width,
-                      margin: EdgeInsets.symmetric(horizontal: 5.0),
-                      color: Colors.transparent,
-                      child: ListView.builder(
-                        padding: EdgeInsets.zero,
-                        itemCount: list.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return list[index];
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
+
   void _selectGame(BuildContext context, String gameName) {
     if (gameName == "FLORA/FAUNA/ARTESANATO") {
-      Navigator.of(context).pushNamed(FindGame.routeName);
+      Navigator.of(context).pushNamed(ArtFaunaFloraGamePage.routeName);
     }
   }
-
-
 }
 
 class SelectLevelCard extends StatelessWidget {
