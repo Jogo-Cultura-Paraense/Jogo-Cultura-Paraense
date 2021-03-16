@@ -15,7 +15,6 @@ import 'package:jogo_cultura_paraense/pages/score_page.dart';
 import 'components/hud.dart';
 import 'components/tile.dart';
 import 'components/views.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:math';
 
 class FindGame extends Game with TapDetector {

@@ -1,8 +1,6 @@
 import 'dart:ui';
 import 'package:flame/sprite.dart';
-import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/components/tile.dart';
-
-import '../find_game.dart';
+import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game.dart';
 
 class HintButton {
   final FindGame game;

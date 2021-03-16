@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jogo_cultura_paraense/model/Eentry.dart';
 import 'package:jogo_cultura_paraense/model/encyclopedia_entry.dart';
 
 class EncyclopediaEntryPage extends StatelessWidget {
