@@ -137,40 +137,12 @@ class _EncyclopediaState extends State<Encyclopedia> {
       children: <Widget>[
         Padding(
           padding: EdgeInsets.only(top: 10.0, right: 10.0, left: 10.0),
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Pesquisar',
-                  ),
-                  onChanged: (value) => _searchEntries(value),
-                ),
-              ),
-              IconButton(
-                icon: Icon(Icons.filter_list),
-                onPressed: () {
-                  showModalBottomSheet(
-                    context: context,
-                    builder: (context) {
-                      return Container(
-                        height: 180,
-                        width: MediaQuery.of(context).size.width,
-                        child: Text('Aqui'),
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).canvasColor,
-                          borderRadius: BorderRadius.only(
-                            topLeft: const Radius.circular(25),
-                            topRight: const Radius.circular(25),
-                          ),
-                        ),
-                      );
-                    },
-                  );
-                },
-              ),
-            ],
+          child: TextField(
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              labelText: 'Pesquisar',
+            ),
+            onChanged: (value) => _searchEntries(value),
           ),
         ),
         Expanded(
