@@ -37,20 +37,10 @@ void main() async {
   ];
 
   WidgetsFlutterBinding.ensureInitialized();
-// configura o jogo para tela cheia e trava no modo retrato
+  // configura o jogo para tela cheia e trava no modo retrato
   Util flameUtil = Util();
   await flameUtil.fullScreen();
   await flameUtil.setOrientation(DeviceOrientation.portraitUp);
 
-  SharedPreferences storage = await SharedPreferences.getInstance();
-
-  FindGame game = FindGame();
-  //runApp(game.widget);
-
-  TapGestureRecognizer tapper = TapGestureRecognizer();
-  tapper.onTapDown = game.onTapDown;
-  // ignore: deprecated_member_use
-  flameUtil.addGestureRecognizer(tapper);
-
-  runApp(App(blocs: blocProviders, storage: storage));
+  runApp(App(blocs: blocProviders));
 }

@@ -3,15 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/pages/encyclopedia_page.dart';
 import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game.dart';
 import 'package:jogo_cultura_paraense/pages/games/art_fauna_flora.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:jogo_cultura_paraense/pages/finished_game_page.dart';
 import 'package:jogo_cultura_paraense/pages/score_page.dart';
 import 'pages/pages.dart';
 
 class App extends StatelessWidget {
-  final SharedPreferences storage;
   final List<BlocProvider> _blocs;
-  const App({@required List<BlocProvider> blocs, Key key, this.storage})
+  const App({@required List<BlocProvider> blocs, Key key})
       : _blocs = blocs,
         super(key: key);
 
