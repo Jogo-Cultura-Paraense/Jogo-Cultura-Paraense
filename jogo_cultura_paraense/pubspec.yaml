@@ -59,6 +59,8 @@ flutter:
     - lib/images/marajo.png
     - lib/images/metropolitana.png
     - assets/images/findGame/background.jpg
+    - assets/images/findGame/bosqueRA.jpg
+    - assets/images/findGame/mangalG.jpeg
     - assets/images/findGame/00.png
     - assets/images/findGame/01.png
     - assets/images/findGame/02.png
