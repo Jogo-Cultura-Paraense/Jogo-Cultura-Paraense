@@ -39,9 +39,9 @@ class Tile {
     print("$name");
     if (target) {
       game.score += 100;
-      game.timer.timer += 2;
+      game.timer.timer += 1.5;
     } else {
-      game.timer.timer -= 2;
+      game.timer.timer -= 0.75;
     }
   }
 }

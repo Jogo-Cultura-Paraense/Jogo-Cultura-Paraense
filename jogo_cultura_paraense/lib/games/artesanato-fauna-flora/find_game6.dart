@@ -31,33 +31,13 @@ class FindGame6 extends Game with TapDetector {
 
   final int topScore;
   final BuildContext context;
-  var listaSprites = [
-    0,
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19,
-    20
-  ];
+
+  var listaSprites = new List(); //lista com o índice dos sprites
+  final int numSprites = 17; //total de texturas no jogo
 
   Background background;
 
-  final int gameLevel = 2;
+  //final int gameLevel = 2;
 
 // inicializa as views do game
   HowToView howToView;
@@ -75,7 +55,11 @@ class FindGame6 extends Game with TapDetector {
   void initialize() async {
 //inicializa as variáveis de instância
     score = 0;
-    numTargets = 2 + (2 * gameLevel);
+    numTargets = 6;
+
+    for (int i = 0; i <= numSprites; i++) {
+      listaSprites.add(i);
+    }
     listaSprites.shuffle();
 
     resize(

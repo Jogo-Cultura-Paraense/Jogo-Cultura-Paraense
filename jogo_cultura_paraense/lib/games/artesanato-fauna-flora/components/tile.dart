@@ -41,7 +41,7 @@ class Tile {
       game.score += 100;
       game.timer.timer += 2;
     } else {
-      game.timer.timer -= 2;
+      game.timer.timer -= 1;
     }
   }
 }

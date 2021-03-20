@@ -30,7 +30,8 @@ class FindGame2 extends Game with TapDetector {
   int numTargets;
 
 //lista com a ordem dos sprites
-  var listaSprites = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+  var listaSprites = new List(); //lista com o índice dos sprites
+  final int numSprites = 13; //total de texturas no jogo
 
   Background background;
 
@@ -55,7 +56,12 @@ class FindGame2 extends Game with TapDetector {
   void initialize() async {
 //inicializa as variáveis de instância
     score = 0;
-    numTargets = 2 + (2 * gameLevel);
+    numTargets = 6;
+
+    for (int i = 0; i <= numSprites; i++) {
+      listaSprites.add(i);
+    }
+
     listaSprites.shuffle();
 
     resize(

@@ -19,7 +19,7 @@ class HintButton {
       game.tileSize,
       game.tileSize,
     );
-    hintsLeft = 1 * game.gameLevel;
+    hintsLeft = 1;
     noSprite = Sprite(
       'findGame/no_button.png',
     );
