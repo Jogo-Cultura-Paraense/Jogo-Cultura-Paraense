@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
-import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game.dart';
-import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game2.dart';
-import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game3.dart';
-import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game4.dart';
-import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game5.dart';
-import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game6.dart';
+import 'package:jogo_cultura_paraense/games/art-fauna-flora/art_fauna_flora_game.dart';
 import 'package:jogo_cultura_paraense/model/game_save.dart';
 import 'package:jogo_cultura_paraense/model/map_save.dart';
 
@@ -25,9 +20,14 @@ class ArtFaunaFloraGamePage extends StatelessWidget {
             .getMapSave(Maps.sudoeste.name)
             .getGameSave(Games.faunaAndFlora)
             .topScores;
-        return FindGame(
+        return ArtFaunaFloraGame(
           context: context,
           topScore: topScores.isEmpty ? 0 : topScores[0],
+          numTargets: 4,
+          startTime: 5,
+          timeCorrectTile: 2,
+          timeIncorrectTile: -1,
+          spritesRange: 13,
         ).widget;
       },
     );
@@ -49,9 +49,14 @@ class ArtFaunaFloraGamePage2 extends StatelessWidget {
             .getMapSave(Maps.sudoeste.name)
             .getGameSave(Games.faunaAndFlora)
             .topScores;
-        return FindGame2(
+        return ArtFaunaFloraGame(
           context: context,
           topScore: topScores.isEmpty ? 0 : topScores[0],
+          numTargets: 6,
+          startTime: 5,
+          timeCorrectTile: 2,
+          timeIncorrectTile: -1,
+          spritesRange: 13,
         ).widget;
       },
     );
@@ -73,9 +78,14 @@ class ArtFaunaFloraGamePage3 extends StatelessWidget {
             .getMapSave(Maps.sudoeste.name)
             .getGameSave(Games.faunaAndFlora)
             .topScores;
-        return FindGame3(
+        return ArtFaunaFloraGame(
           context: context,
           topScore: topScores.isEmpty ? 0 : topScores[0],
+          numTargets: 4,
+          startTime: 4.5,
+          timeCorrectTile: 1.5,
+          timeIncorrectTile: -0.75,
+          spritesRange: 17,
         ).widget;
       },
     );
@@ -97,9 +107,14 @@ class ArtFaunaFloraGamePage4 extends StatelessWidget {
             .getMapSave(Maps.sudoeste.name)
             .getGameSave(Games.faunaAndFlora)
             .topScores;
-        return FindGame4(
+        return ArtFaunaFloraGame(
           context: context,
           topScore: topScores.isEmpty ? 0 : topScores[0],
+          numTargets: 6,
+          startTime: 4.5,
+          timeCorrectTile: 1.5,
+          timeIncorrectTile: -0.75,
+          spritesRange: 17,
         ).widget;
       },
     );
@@ -121,9 +136,14 @@ class ArtFaunaFloraGamePage5 extends StatelessWidget {
             .getMapSave(Maps.sudoeste.name)
             .getGameSave(Games.faunaAndFlora)
             .topScores;
-        return FindGame5(
+        return ArtFaunaFloraGame(
           context: context,
           topScore: topScores.isEmpty ? 0 : topScores[0],
+          numTargets: 4,
+          startTime: 4,
+          timeCorrectTile: 1,
+          timeIncorrectTile: -0.5,
+          spritesRange: 20,
         ).widget;
       },
     );
@@ -145,9 +165,14 @@ class ArtFaunaFloraGamePage6 extends StatelessWidget {
             .getMapSave(Maps.sudoeste.name)
             .getGameSave(Games.faunaAndFlora)
             .topScores;
-        return FindGame6(
+        return ArtFaunaFloraGame(
           context: context,
           topScore: topScores.isEmpty ? 0 : topScores[0],
+          numTargets: 6,
+          startTime: 4,
+          timeCorrectTile: 1,
+          timeIncorrectTile: -0.5,
+          spritesRange: 20,
         ).widget;
       },
     );
