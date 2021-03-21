@@ -113,21 +113,21 @@ class ArtFaunaFloraGame extends Game with TapDetector {
       _tiles.add(Tile(
         x,
         y,
-        imageName: i,
+        imageName: spritesList[i],
         tileSize: _tileSize,
         onTapDown: i <= _numTargets
             ? () {
-                tapCorretTile(i);
+                tapCorretTile(spritesList[i]);
               }
             : () {
-                tapIncorrentTile(i);
+                tapIncorrentTile(spritesList[i]);
               },
       ));
       if (i < _numTargets) {
         _targets.add(Tile(
           _tileSize * (i + 1) * 1.1 + 36,
           _screenSize.height - _tileSize * 1.5,
-          imageName: i,
+          imageName: spritesList[i],
           tileSize: _tileSize,
         ));
       }
@@ -190,7 +190,7 @@ class ArtFaunaFloraGame extends Game with TapDetector {
         _hintButton.onTapDown();
       } else {
         int i = 0;
-        while (_tiles[i].containsTapDown(d) == false && i < _tiles.length) {
+        while (i < _tiles.length && _tiles[i].containsTapDown(d) == false) {
           i += 1;
         }
         if (i < _tiles.length) {
