@@ -62,7 +62,8 @@ class ArtFaunaFloraGame extends Game with TapDetector {
     resize(await Flame.util.initialDimensions());
 
     _background = Background(
-      imagePath: 'findGame/background.jpg',
+      imagePath:
+          _numTargets == 4 ? 'findGame/mangalG.jpeg' : 'findGame/bosqueRA.jpg',
       screenHeight: _screenSize.height,
       screenWidth: _screenSize.width,
     );
@@ -191,7 +192,7 @@ class ArtFaunaFloraGame extends Game with TapDetector {
         hintButton.onTapDown();
       } else {
         int i = 0;
-        while (_tiles[i].containsTapDown(d) == false && i <= _tiles.length) {
+        while (i < _tiles.length && _tiles[i].containsTapDown(d) == false) {
           i += 1;
         }
         if (i < _tiles.length) {
