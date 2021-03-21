@@ -69,7 +69,7 @@ class ScorePage extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 10.0),
                   color: Colors.grey[600],
                   child: Text(
-                    '\nPONTUAÇÃO: \n\nJogo Concluído: \t\t\t\t ${game.scoreDisplay.score}pts  \nTempo Restante: \t\t\t\t ${game.timer.format(game.timer.currentTime)} segundos \nDicas Usadas: \t\t\t\t ${game.hintButton.hintsLeft}\nTotal de Dicas: \t\t\t\t x2\n\n TOTAL: ${game.scoreDisplay.score} / ${game.topScore} \n',
+                    '\nPONTUAÇÃO: \n\nJogo Concluído: \t\t\t\t ${game.scoreDisplay.score}pts  \nTempo Restante: \t\t\t\t ${game.timer.format(game.timer.currentTime)} segundos \nDicas Usadas: \t\t\t\t ${game.hintButton.totalHints - game.hintButton.hintsLeft}\nTotal de Dicas: \t\t\t\t x${game.hintButton.totalHints}\n\n TOTAL: ${game.scoreDisplay.score} / ${game.topScore} \n',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,

@@ -8,6 +8,7 @@ class HintButton {
   final Sprite _hintSprite;
   final VoidCallback _onTapDown;
   int hintsLeft;
+  final int totalHints;
 
   HintButton({
     @required double screenWidth,
@@ -22,6 +23,7 @@ class HintButton {
           tileSize,
         ),
         hintsLeft = hints,
+        totalHints = hints,
         _noSprite = Sprite('findGame/no_button.png'),
         _hintSprite = Sprite('findGame/hint_button.png'),
         _onTapDown = onTapDown;
