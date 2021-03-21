@@ -14,13 +14,13 @@ import 'package:jogo_cultura_paraense/pages/score_page.dart';
 
 class ArtFaunaFloraGame extends Game with TapDetector {
   final BuildContext _context;
-  final int _topScore;
+  final int topScore;
 
   final int _numTargets;
   final double _startTime;
   final double _timeCorrectTile;
   final double _timeIncorrectTile;
-  final int _pointsCorrectTile;
+  final int pointsCorrectTile;
 
   final int _spritesRange;
   final List<Tile> _tiles = <Tile>[];
@@ -28,11 +28,11 @@ class ArtFaunaFloraGame extends Game with TapDetector {
 
   Rect _hudRect;
   Paint _hudPaint;
-  Timer _timer;
-  ScoreDisplay _scoreDisplay;
+  Timer timer;
+  ScoreDisplay scoreDisplay;
   Background _background;
   ArtFaunaFloraTutorial _tutorial;
-  HintButton _hintButton;
+  HintButton hintButton;
 
   Size _screenSize;
   double _tileSize;
@@ -48,12 +48,12 @@ class ArtFaunaFloraGame extends Game with TapDetector {
     @required int spritesRange,
     int pointsCorrectTile = 100,
   })  : _context = context,
-        _topScore = topScore,
+        topScore = topScore,
         _numTargets = numTargets,
         _startTime = startTime,
         _timeCorrectTile = timeCorrectTile,
         _timeIncorrectTile = timeIncorrectTile,
-        _pointsCorrectTile = pointsCorrectTile,
+        pointsCorrectTile = pointsCorrectTile,
         _spritesRange = spritesRange {
     _initialize();
   }
@@ -75,12 +75,12 @@ class ArtFaunaFloraGame extends Game with TapDetector {
       _screenSize.width,
       _tileSize * 2,
     );
-    _timer = Timer(
+    timer = Timer(
       _startTime,
       screenHeight: _screenSize.height,
       tileSize: _tileSize,
     );
-    _scoreDisplay = ScoreDisplay(
+    scoreDisplay = ScoreDisplay(
       screenWidth: _screenSize.width,
       tileSize: _tileSize,
     );
@@ -93,7 +93,7 @@ class ArtFaunaFloraGame extends Game with TapDetector {
       },
     );
 
-    _hintButton = HintButton(
+    hintButton = HintButton(
       screenWidth: _screenSize.width,
       screenHeight: _screenSize.height,
       tileSize: _tileSize,
@@ -105,7 +105,7 @@ class ArtFaunaFloraGame extends Game with TapDetector {
 
     final rnd = Random();
     double x, y;
-    final spritesList = List<int>.generate(_spritesRange, (index) => index);
+    var spritesList = List<int>.generate(_spritesRange, (index) => index);
     spritesList.shuffle();
     for (int i = spritesList.length - 1; i >= 0; i--) {
       x = rnd.nextDouble() * (_screenSize.width - _tileSize);
@@ -113,21 +113,21 @@ class ArtFaunaFloraGame extends Game with TapDetector {
       _tiles.add(Tile(
         x,
         y,
-        imageName: i,
+        imageName: spritesList[i],
         tileSize: _tileSize,
         onTapDown: i <= _numTargets
             ? () {
-                tapCorretTile(i);
+                tapCorretTile(spritesList[i]);
               }
             : () {
-                tapIncorrentTile(i);
+                tapIncorrentTile(spritesList[i]);
               },
       ));
       if (i < _numTargets) {
         _targets.add(Tile(
           _tileSize * (i + 1) * 1.1 + 36,
           _screenSize.height - _tileSize * 1.5,
-          imageName: i,
+          imageName: spritesList[i],
           tileSize: _tileSize,
         ));
       }
@@ -135,19 +135,19 @@ class ArtFaunaFloraGame extends Game with TapDetector {
   }
 
   void tapCorretTile(int tileId) {
-    _scoreDisplay.updateScore(_pointsCorrectTile);
-    _timer.updateTime(_timeCorrectTile);
+    scoreDisplay.updateScore(pointsCorrectTile);
+    timer.updateTime(_timeCorrectTile);
     removeTarget(tileId);
     removeTile(tileId);
   }
 
   void tapIncorrentTile(int tileId) {
-    _timer.updateTime(_timeIncorrectTile);
+    timer.updateTime(_timeIncorrectTile);
     removeTile(tileId);
   }
 
   void useHint() {
-    _scoreDisplay.updateScore(50);
+    scoreDisplay.updateScore(50);
     removeTile(_targets.last.id);
     removeTarget(_targets.last.id);
   }
@@ -169,14 +169,15 @@ class ArtFaunaFloraGame extends Game with TapDetector {
   }
 
   bool isGameFinished() {
-    if (_timer.currentTime <= 0 || _targets.isEmpty) {
+    if (timer.currentTime <= 0 || _targets.isEmpty) {
       return true;
     }
     return false;
   }
 
   void onGameFinished() {
-    Navigator.of(_context).popAndPushNamed(ScorePage.routeName);
+    Navigator.of(_context)
+        .popAndPushNamed(ScorePage.routeName, arguments: this);
   }
 
   @override
@@ -186,11 +187,11 @@ class ArtFaunaFloraGame extends Game with TapDetector {
         _tutorial.onStartTap();
       }
     } else {
-      if (_hintButton.containsTapDown(d)) {
-        _hintButton.onTapDown();
+      if (hintButton.containsTapDown(d)) {
+        hintButton.onTapDown();
       } else {
         int i = 0;
-        while (_tiles[i].containsTapDown(d) == false && i < _tiles.length) {
+        while (_tiles[i].containsTapDown(d) == false && i <= _tiles.length) {
           i += 1;
         }
         if (i < _tiles.length) {
@@ -220,16 +221,16 @@ class ArtFaunaFloraGame extends Game with TapDetector {
       canvas.drawRect(_hudRect, _hudPaint);
       _tiles.forEach((Tile tile) => tile.render(canvas));
       _targets.forEach((Tile target) => target.render(canvas));
-      _timer.render(canvas);
-      _scoreDisplay.render(canvas);
-      _hintButton.render(canvas);
+      timer.render(canvas);
+      scoreDisplay.render(canvas);
+      hintButton.render(canvas);
     }
   }
 
   @override
   void update(double t) {
     if (_showTutorial == false) {
-      _timer.update(t);
+      timer.update(t);
       if (isGameFinished()) {
         onGameFinished();
       }

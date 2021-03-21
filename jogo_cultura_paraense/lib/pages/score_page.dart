@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:jogo_cultura_paraense/games/art-fauna-flora/art_fauna_flora_game.dart';
 import 'package:jogo_cultura_paraense/pages/home_page.dart';
 
 class ScorePage extends StatelessWidget {
@@ -8,6 +9,8 @@ class ScorePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ArtFaunaFloraGame game = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       backgroundColor: Colors.red,
       body: Container(
@@ -66,7 +69,7 @@ class ScorePage extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 10.0),
                   color: Colors.grey[600],
                   child: Text(
-                    '\nPONTUAÇÃO: \n\nJogo Concluído: \t\t\t\t 1000pts  \nTempo Restante: \t\t\t\t 12 segundos \nDicas Usadas: \t\t\t\t -0\nTotal de Dicas: \t\t\t\t x2\n\n TOTAL: 1800 / 2000 \n',
+                    '\nPONTUAÇÃO: \n\nJogo Concluído: \t\t\t\t ${game.scoreDisplay.score}pts  \nTempo Restante: \t\t\t\t ${game.timer.format(game.timer.currentTime)} segundos \nDicas Usadas: \t\t\t\t ${game.hintButton.hintsLeft}\nTotal de Dicas: \t\t\t\t x2\n\n TOTAL: ${game.scoreDisplay.score} / ${game.topScore} \n',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -131,6 +134,8 @@ class ScorePage extends StatelessWidget {
       ),
     );
   }
+
+  void _calculeScore() {}
 
   void _pass(BuildContext context) {
     //print(checkTime());

@@ -29,9 +29,9 @@ class Timer {
 
   void update(double t) {
     if (_time > 0) updateTime(-t);
-    if ((_painter.text?.toPlainText() ?? '') != _format(_time)) {
+    if ((_painter.text?.toPlainText() ?? '') != format(_time)) {
       _painter.text = TextSpan(
-        text: _format(_time),
+        text: format(_time),
         style: TextStyle(
           color: Color(0xffffffff),
           fontSize: 24,
@@ -58,7 +58,7 @@ class Timer {
     _painter.paint(canvas, _position);
   }
 
-  String _format(double n) {
+  String format(double n) {
     return n.toStringAsFixed(n.truncateToDouble() == n ? 0 : 1);
   }
 }
