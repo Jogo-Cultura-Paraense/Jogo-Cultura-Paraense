@@ -10,11 +10,14 @@ import 'package:jogo_cultura_paraense/games/art-fauna-flora/components/hint_butt
 import 'package:jogo_cultura_paraense/games/art-fauna-flora/components/score_display.dart';
 import 'package:jogo_cultura_paraense/games/art-fauna-flora/components/tile.dart';
 import 'package:jogo_cultura_paraense/games/art-fauna-flora/components/timer.dart';
+import 'package:jogo_cultura_paraense/model/game_save.dart';
+import 'package:jogo_cultura_paraense/model/map_save.dart';
 import 'package:jogo_cultura_paraense/pages/score_page.dart';
 
 class ArtFaunaFloraGame extends Game with TapDetector {
   final BuildContext _context;
-  final int topScore;
+  final int _topScore;
+  final int _gameLevel;
 
   final int _numTargets;
   final double _startTime;
@@ -28,11 +31,11 @@ class ArtFaunaFloraGame extends Game with TapDetector {
 
   Rect _hudRect;
   Paint _hudPaint;
-  Timer timer;
-  ScoreDisplay scoreDisplay;
+  Timer _timer;
+  ScoreDisplay _scoreDisplay;
   Background _background;
   ArtFaunaFloraTutorial _tutorial;
-  HintButton hintButton;
+  HintButton _hintButton;
 
   Size _screenSize;
   double _tileSize;
@@ -41,6 +44,7 @@ class ArtFaunaFloraGame extends Game with TapDetector {
   ArtFaunaFloraGame({
     @required BuildContext context,
     @required int topScore,
+    @required int gameLevel,
     @required int numTargets,
     @required double startTime,
     @required double timeCorrectTile,
@@ -48,7 +52,8 @@ class ArtFaunaFloraGame extends Game with TapDetector {
     @required int spritesRange,
     int pointsCorrectTile = 100,
   })  : _context = context,
-        topScore = topScore,
+        _topScore = topScore,
+        _gameLevel = gameLevel,
         _numTargets = numTargets,
         _startTime = startTime,
         _timeCorrectTile = timeCorrectTile,
@@ -76,12 +81,12 @@ class ArtFaunaFloraGame extends Game with TapDetector {
       _screenSize.width,
       _tileSize * 2,
     );
-    timer = Timer(
+    _timer = Timer(
       _startTime,
       screenHeight: _screenSize.height,
       tileSize: _tileSize,
     );
-    scoreDisplay = ScoreDisplay(
+    _scoreDisplay = ScoreDisplay(
       screenWidth: _screenSize.width,
       tileSize: _tileSize,
     );
@@ -94,7 +99,7 @@ class ArtFaunaFloraGame extends Game with TapDetector {
       },
     );
 
-    hintButton = HintButton(
+    _hintButton = HintButton(
       screenWidth: _screenSize.width,
       screenHeight: _screenSize.height,
       tileSize: _tileSize,
@@ -136,19 +141,19 @@ class ArtFaunaFloraGame extends Game with TapDetector {
   }
 
   void tapCorretTile(int tileId) {
-    scoreDisplay.updateScore(pointsCorrectTile);
-    timer.updateTime(_timeCorrectTile);
+    _scoreDisplay.updateScore(pointsCorrectTile);
+    _timer.updateTime(_timeCorrectTile);
     removeTarget(tileId);
     removeTile(tileId);
   }
 
   void tapIncorrentTile(int tileId) {
-    timer.updateTime(_timeIncorrectTile);
+    _timer.updateTime(_timeIncorrectTile);
     removeTile(tileId);
   }
 
   void useHint() {
-    scoreDisplay.updateScore(50);
+    _scoreDisplay.updateScore(-50);
     removeTile(_targets.last.id);
     removeTarget(_targets.last.id);
   }
@@ -170,15 +175,52 @@ class ArtFaunaFloraGame extends Game with TapDetector {
   }
 
   bool isGameFinished() {
-    if (timer.currentTime <= 0 || _targets.isEmpty) {
+    if (_timer.currentTime <= 0 || _targets.isEmpty) {
       return true;
     }
     return false;
   }
 
   void onGameFinished() {
-    Navigator.of(_context)
-        .popAndPushNamed(ScorePage.routeName, arguments: this);
+    Navigator.of(_context).popAndPushNamed(
+      ScorePage.routeName,
+      arguments: ScorePageArgs(
+        game: Games.faunaAndFlora,
+        map: _convertLevelToMap(_gameLevel),
+        score: _scoreDisplay.score,
+        finalScore: _scoreDisplay.score,
+        topScore: _topScore,
+        time: _timer.currentTime,
+        prettyTime: _timer.format(_timer.currentTime),
+        hintsLeft: (_numTargets == 4 ? 1 : 2) - _hintButton.hintsLeft,
+        hints: (_numTargets == 4 ? 1 : 2),
+      ),
+    );
+  }
+
+  String _convertLevelToMap(int gameLevel) {
+    switch (gameLevel) {
+      case 1:
+        return Maps.sudoeste.name;
+        break;
+      case 2:
+        return Maps.baixoAmazonas.name;
+        break;
+      case 3:
+        return Maps.sudeste.name;
+        break;
+      case 4:
+        return Maps.nordeste.name;
+        break;
+      case 5:
+        return Maps.marajo.name;
+        break;
+      case 6:
+        return Maps.metropolitana.name;
+        break;
+      default:
+        return '';
+    }
   }
 
   @override
@@ -188,8 +230,8 @@ class ArtFaunaFloraGame extends Game with TapDetector {
         _tutorial.onStartTap();
       }
     } else {
-      if (hintButton.containsTapDown(d)) {
-        hintButton.onTapDown();
+      if (_hintButton.containsTapDown(d)) {
+        _hintButton.onTapDown();
       } else {
         int i = 0;
         while (i < _tiles.length && _tiles[i].containsTapDown(d) == false) {
@@ -222,16 +264,16 @@ class ArtFaunaFloraGame extends Game with TapDetector {
       canvas.drawRect(_hudRect, _hudPaint);
       _tiles.forEach((Tile tile) => tile.render(canvas));
       _targets.forEach((Tile target) => target.render(canvas));
-      timer.render(canvas);
-      scoreDisplay.render(canvas);
-      hintButton.render(canvas);
+      _timer.render(canvas);
+      _scoreDisplay.render(canvas);
+      _hintButton.render(canvas);
     }
   }
 
   @override
   void update(double t) {
     if (_showTutorial == false) {
-      timer.update(t);
+      _timer.update(t);
       if (isGameFinished()) {
         onGameFinished();
       }

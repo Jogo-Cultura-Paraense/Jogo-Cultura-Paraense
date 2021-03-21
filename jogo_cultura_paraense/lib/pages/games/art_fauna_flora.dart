@@ -22,6 +22,7 @@ class ArtFaunaFloraGamePage extends StatelessWidget {
             .topScores;
         return ArtFaunaFloraGame(
           context: context,
+          gameLevel: 1,
           topScore: topScores.isEmpty ? 0 : topScores[0],
           numTargets: 4,
           startTime: 5,
@@ -51,6 +52,7 @@ class ArtFaunaFloraGamePage2 extends StatelessWidget {
             .topScores;
         return ArtFaunaFloraGame(
           context: context,
+          gameLevel: 2,
           topScore: topScores.isEmpty ? 0 : topScores[0],
           numTargets: 6,
           startTime: 5,
@@ -80,6 +82,7 @@ class ArtFaunaFloraGamePage3 extends StatelessWidget {
             .topScores;
         return ArtFaunaFloraGame(
           context: context,
+          gameLevel: 3,
           topScore: topScores.isEmpty ? 0 : topScores[0],
           numTargets: 4,
           startTime: 4.5,
@@ -109,6 +112,7 @@ class ArtFaunaFloraGamePage4 extends StatelessWidget {
             .topScores;
         return ArtFaunaFloraGame(
           context: context,
+          gameLevel: 4,
           topScore: topScores.isEmpty ? 0 : topScores[0],
           numTargets: 6,
           startTime: 4.5,
@@ -138,6 +142,7 @@ class ArtFaunaFloraGamePage5 extends StatelessWidget {
             .topScores;
         return ArtFaunaFloraGame(
           context: context,
+          gameLevel: 5,
           topScore: topScores.isEmpty ? 0 : topScores[0],
           numTargets: 4,
           startTime: 4,
@@ -167,6 +172,7 @@ class ArtFaunaFloraGamePage6 extends StatelessWidget {
             .topScores;
         return ArtFaunaFloraGame(
           context: context,
+          gameLevel: 6,
           topScore: topScores.isEmpty ? 0 : topScores[0],
           numTargets: 6,
           startTime: 4,

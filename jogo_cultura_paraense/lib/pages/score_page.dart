@@ -1,7 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:jogo_cultura_paraense/games/art-fauna-flora/art_fauna_flora_game.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
 import 'package:jogo_cultura_paraense/pages/home_page.dart';
+
+class ScorePageArgs {
+  final String game;
+  final String map;
+  final int score;
+  final double time;
+  final String prettyTime;
+  final int hints;
+  final int hintsLeft;
+  final int finalScore;
+  final int topScore;
+
+  const ScorePageArgs({
+    @required this.game,
+    @required this.map,
+    @required this.score,
+    @required this.time,
+    @required this.prettyTime,
+    @required this.hints,
+    @required this.hintsLeft,
+    @required this.finalScore,
+    @required this.topScore,
+  });
+}
 
 class ScorePage extends StatelessWidget {
   static const String routeName = '/scorePage';
@@ -9,7 +34,22 @@ class ScorePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ArtFaunaFloraGame game = ModalRoute.of(context).settings.arguments;
+    final ScorePageArgs args = ModalRoute.of(context).settings.arguments;
+
+    final gameSummary = '''
+    \nPONTUAÇÃO
+    Jogo concluído: ${args.score}
+    Tempo Restante: ${args.prettyTime} segundos
+    Dicas Usadas: ${args.hints - args.hintsLeft} / ${args.hints}
+    TOTAL: ${args.finalScore} / ${args.topScore}
+    ''';
+
+    String interjection = "\nPai D'égua\n";
+    if (args.time <= 0) {
+      interjection = '\nLevou o Farelo!\n';
+    } else if (args.topScore < args.finalScore) {
+      interjection = "\nÉ-G-U-A\n";
+    }
 
     return Scaffold(
       backgroundColor: Colors.red,
@@ -69,7 +109,7 @@ class ScorePage extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 10.0),
                   color: Colors.grey[600],
                   child: Text(
-                    '\nPONTUAÇÃO: \n\nJogo Concluído: \t\t\t\t ${game.scoreDisplay.score}pts  \nTempo Restante: \t\t\t\t ${game.timer.format(game.timer.currentTime)} segundos \nDicas Usadas: \t\t\t\t ${game.hintButton.totalHints - game.hintButton.hintsLeft}\nTotal de Dicas: \t\t\t\t x${game.hintButton.totalHints}\n\n TOTAL: ${game.scoreDisplay.score} / ${game.topScore} \n',
+                    gameSummary,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -96,7 +136,7 @@ class ScorePage extends StatelessWidget {
                       padding: EdgeInsets.all(10.0),
                       child: Container(
                         child: Text(
-                          "\n PAI D'ÉGUA!!!  \n",
+                          interjection,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -115,7 +155,13 @@ class ScorePage extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.all(10.0),
                       child: ElevatedButton(
-                        onPressed: () => _pass(context),
+                        onPressed: () => pass(
+                          context,
+                          args.time,
+                          args.map,
+                          args.game,
+                          args.score,
+                        ),
                         child: Icon(
                           Icons.arrow_forward_rounded,
                           color: Colors.black,
@@ -135,10 +181,24 @@ class ScorePage extends StatelessWidget {
     );
   }
 
-  void _calculeScore() {}
-
-  void _pass(BuildContext context) {
-    //print(checkTime());
+  void pass(
+    BuildContext context,
+    double time,
+    String map,
+    String game,
+    int score, {
+    List<String> itens,
+  }) {
+    if (time > 0) {
+      BlocProvider.of<SaveBloc>(context).add(
+        SaveClearedGame(
+          map,
+          game,
+          score: score,
+          itens: itens ?? <String>[],
+        ),
+      );
+    }
     Navigator.of(context).popUntil(
       (route) => route.settings.name == HomePage.routeName,
     );

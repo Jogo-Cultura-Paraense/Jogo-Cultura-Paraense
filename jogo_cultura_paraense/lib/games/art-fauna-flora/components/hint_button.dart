@@ -7,8 +7,7 @@ class HintButton {
   final Sprite _noSprite;
   final Sprite _hintSprite;
   final VoidCallback _onTapDown;
-  int hintsLeft;
-  final int totalHints;
+  int _hintsLeft;
 
   HintButton({
     @required double screenWidth,
@@ -22,14 +21,15 @@ class HintButton {
           tileSize,
           tileSize,
         ),
-        hintsLeft = hints,
-        totalHints = hints,
+        _hintsLeft = hints,
         _noSprite = Sprite('findGame/no_button.png'),
         _hintSprite = Sprite('findGame/hint_button.png'),
         _onTapDown = onTapDown;
 
+  int get hintsLeft => _hintsLeft;
+
   void render(Canvas canvas) {
-    if (hintsLeft > 0) {
+    if (_hintsLeft > 0) {
       _hintSprite.renderRect(canvas, _rect);
     } else {
       _noSprite.renderRect(canvas, _rect);
@@ -37,8 +37,8 @@ class HintButton {
   }
 
   void onTapDown() {
-    if (hintsLeft > 0) {
-      hintsLeft -= 1;
+    if (_hintsLeft > 0) {
+      _hintsLeft -= 1;
       _onTapDown();
     }
   }
