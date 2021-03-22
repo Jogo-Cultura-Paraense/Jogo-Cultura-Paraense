@@ -200,7 +200,7 @@ class LevelSelectionMenu extends StatelessWidget {
           startTime: 4,
           timeCorrectTile: 1,
           timeIncorrectTile: -0.5,
-          spritesRange: 20,
+          spritesRange: 24,
         ),
       );
     }
@@ -216,7 +216,7 @@ class LevelSelectionMenu extends StatelessWidget {
           startTime: 4,
           timeCorrectTile: 1,
           timeIncorrectTile: -0.5,
-          spritesRange: 20,
+          spritesRange: 24,
         ),
       );
     }
