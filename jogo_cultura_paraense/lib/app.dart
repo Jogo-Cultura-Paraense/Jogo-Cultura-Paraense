@@ -73,21 +73,6 @@ class App extends StatelessWidget {
           ArtFaunaFloraGamePage.routeName: (BuildContext context) {
             return const ArtFaunaFloraGamePage();
           },
-          ArtFaunaFloraGamePage2.routeName: (BuildContext context) {
-            return const ArtFaunaFloraGamePage2();
-          },
-          ArtFaunaFloraGamePage3.routeName: (BuildContext context) {
-            return const ArtFaunaFloraGamePage3();
-          },
-          ArtFaunaFloraGamePage4.routeName: (BuildContext context) {
-            return const ArtFaunaFloraGamePage4();
-          },
-          ArtFaunaFloraGamePage5.routeName: (BuildContext context) {
-            return const ArtFaunaFloraGamePage5();
-          },
-          ArtFaunaFloraGamePage6.routeName: (BuildContext context) {
-            return const ArtFaunaFloraGamePage6();
-          },
           FinishedGame.routeName: (BuildContext context) {
             return const FinishedGame();
           },

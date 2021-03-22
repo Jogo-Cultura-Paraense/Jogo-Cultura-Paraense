@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/components/home/home_appbar.dart';
 import 'package:jogo_cultura_paraense/components/home/home_scaffold.dart';
 import 'package:jogo_cultura_paraense/components/locked_game_alert.dart';
+import 'package:jogo_cultura_paraense/model/map_save.dart';
 import 'package:jogo_cultura_paraense/pages/games/art_fauna_flora.dart';
 import 'package:jogo_cultura_paraense/pages/select_mini_game_page.dart';
 
@@ -127,37 +128,97 @@ class LevelSelectionMenu extends StatelessWidget {
 
   void _selectGame(BuildContext context, String gameName) {
     if (gameName == "FLORA/FAUNA/ARTESANATO") {
-      Navigator.of(context).pushNamed(ArtFaunaFloraGamePage.routeName);
+      Navigator.of(context).pushNamed(
+        ArtFaunaFloraGamePage.routeName,
+        arguments: ArtFaunaFloraGamePageArgs(
+          map: Maps.sudoeste.name,
+          numTargets: 4,
+          startTime: 5,
+          timeCorrectTile: 2,
+          timeIncorrectTile: -1,
+          spritesRange: 13,
+        ),
+      );
     }
   }
 
   void _selectGame2(BuildContext context, String gameName) {
     if (gameName == "FLORA/FAUNA/ARTESANATO") {
-      Navigator.of(context).pushNamed(ArtFaunaFloraGamePage2.routeName);
+      Navigator.of(context).pushNamed(
+        ArtFaunaFloraGamePage.routeName,
+        arguments: ArtFaunaFloraGamePageArgs(
+          map: Maps.sudoeste.name,
+          numTargets: 6,
+          startTime: 5,
+          timeCorrectTile: 2,
+          timeIncorrectTile: -1,
+          spritesRange: 13,
+        ),
+      );
     }
   }
 
   void _selectGame3(BuildContext context, String gameName) {
     if (gameName == "FLORA/FAUNA/ARTESANATO") {
-      Navigator.of(context).pushNamed(ArtFaunaFloraGamePage3.routeName);
+      Navigator.of(context).pushNamed(
+        ArtFaunaFloraGamePage.routeName,
+        arguments: ArtFaunaFloraGamePageArgs(
+          map: Maps.baixoAmazonas.name,
+          numTargets: 4,
+          startTime: 4.5,
+          timeCorrectTile: 1.5,
+          timeIncorrectTile: -0.75,
+          spritesRange: 17,
+        ),
+      );
     }
   }
 
   void _selectGame4(BuildContext context, String gameName) {
     if (gameName == "FLORA/FAUNA/ARTESANATO") {
-      Navigator.of(context).pushNamed(ArtFaunaFloraGamePage4.routeName);
+      Navigator.of(context).pushNamed(
+        ArtFaunaFloraGamePage.routeName,
+        arguments: ArtFaunaFloraGamePageArgs(
+          map: Maps.sudeste.name,
+          numTargets: 6,
+          startTime: 4.5,
+          timeCorrectTile: 1.5,
+          timeIncorrectTile: -0.75,
+          spritesRange: 17,
+        ),
+      );
     }
   }
 
   void _selectGame5(BuildContext context, String gameName) {
     if (gameName == "FLORA/FAUNA/ARTESANATO") {
-      Navigator.of(context).pushNamed(ArtFaunaFloraGamePage5.routeName);
+      Navigator.of(context).pushNamed(
+        ArtFaunaFloraGamePage.routeName,
+        arguments: ArtFaunaFloraGamePageArgs(
+          map: Maps.marajo.name,
+          numTargets: 4,
+          startTime: 4,
+          timeCorrectTile: 1,
+          timeIncorrectTile: -0.5,
+          spritesRange: 20,
+        ),
+      );
     }
   }
 
   void _selectGame6(BuildContext context, String gameName) {
     if (gameName == "FLORA/FAUNA/ARTESANATO") {
-      Navigator.of(context).pushNamed(ArtFaunaFloraGamePage6.routeName);
+      Navigator.of(context).pushNamed(
+        ArtFaunaFloraGamePage.routeName,
+        arguments: ArtFaunaFloraGamePageArgs(
+          map: Maps.metropolitana.name,
+          numTargets: 6,
+          startTime: 4,
+          timeCorrectTile: 1,
+          timeIncorrectTile: -0.5,
+          spritesRange: 20,
+        ),
+      );
     }
   }
 }

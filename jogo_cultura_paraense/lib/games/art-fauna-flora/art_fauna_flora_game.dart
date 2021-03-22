@@ -11,13 +11,12 @@ import 'package:jogo_cultura_paraense/games/art-fauna-flora/components/score_dis
 import 'package:jogo_cultura_paraense/games/art-fauna-flora/components/tile.dart';
 import 'package:jogo_cultura_paraense/games/art-fauna-flora/components/timer.dart';
 import 'package:jogo_cultura_paraense/model/game_save.dart';
-import 'package:jogo_cultura_paraense/model/map_save.dart';
 import 'package:jogo_cultura_paraense/pages/score_page.dart';
 
 class ArtFaunaFloraGame extends Game with TapDetector {
   final BuildContext _context;
   final int _topScore;
-  final int _gameLevel;
+  final String _gameMap;
 
   final int _numTargets;
   final double _startTime;
@@ -44,7 +43,7 @@ class ArtFaunaFloraGame extends Game with TapDetector {
   ArtFaunaFloraGame({
     @required BuildContext context,
     @required int topScore,
-    @required int gameLevel,
+    @required String gameMap,
     @required int numTargets,
     @required double startTime,
     @required double timeCorrectTile,
@@ -53,7 +52,7 @@ class ArtFaunaFloraGame extends Game with TapDetector {
     int pointsCorrectTile = 100,
   })  : _context = context,
         _topScore = topScore,
-        _gameLevel = gameLevel,
+        _gameMap = gameMap,
         _numTargets = numTargets,
         _startTime = startTime,
         _timeCorrectTile = timeCorrectTile,
@@ -186,7 +185,7 @@ class ArtFaunaFloraGame extends Game with TapDetector {
       ScorePage.routeName,
       arguments: ScorePageArgs(
         game: Games.faunaAndFlora,
-        map: _convertLevelToMap(_gameLevel),
+        map: _gameMap,
         score: _scoreDisplay.score,
         finalScore: _scoreDisplay.score,
         topScore: _topScore,
@@ -196,31 +195,6 @@ class ArtFaunaFloraGame extends Game with TapDetector {
         hints: (_numTargets == 4 ? 1 : 2),
       ),
     );
-  }
-
-  String _convertLevelToMap(int gameLevel) {
-    switch (gameLevel) {
-      case 1:
-        return Maps.sudoeste.name;
-        break;
-      case 2:
-        return Maps.baixoAmazonas.name;
-        break;
-      case 3:
-        return Maps.sudeste.name;
-        break;
-      case 4:
-        return Maps.nordeste.name;
-        break;
-      case 5:
-        return Maps.marajo.name;
-        break;
-      case 6:
-        return Maps.metropolitana.name;
-        break;
-      default:
-        return '';
-    }
   }
 
   @override
