@@ -3,7 +3,7 @@ import 'package:jogo_cultura_paraense/components/home/home_appbar.dart';
 import 'package:jogo_cultura_paraense/components/home/home_scaffold.dart';
 import 'package:jogo_cultura_paraense/components/locked_game_alert.dart';
 import 'package:jogo_cultura_paraense/model/map_save.dart';
-import 'package:jogo_cultura_paraense/pages/games/art_fauna_flora.dart';
+import 'package:jogo_cultura_paraense/pages/games/art_fauna_flora_page.dart';
 import 'package:jogo_cultura_paraense/pages/select_mini_game_page.dart';
 
 class LevelSelectionPage extends StatelessWidget {
