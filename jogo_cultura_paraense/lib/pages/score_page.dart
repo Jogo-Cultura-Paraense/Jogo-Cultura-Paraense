@@ -26,6 +26,20 @@ class ScorePageArgs {
     @required this.finalScore,
     @required this.topScore,
   });
+
+  factory ScorePageArgs.initial() {
+    return ScorePageArgs(
+      game: "",
+      map: "",
+      score: 0,
+      time: 0,
+      prettyTime: '0',
+      hints: 0,
+      hintsLeft: 0,
+      finalScore: 1,
+      topScore: 2,
+    );
+  }
 }
 
 class ScorePage extends StatelessWidget {
@@ -34,7 +48,8 @@ class ScorePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ScorePageArgs args = ModalRoute.of(context).settings.arguments;
+    final ScorePageArgs args =
+        ModalRoute.of(context).settings.arguments ?? ScorePageArgs.initial();
 
     final gameSummary = '''
     \nPONTUAÇÃO
