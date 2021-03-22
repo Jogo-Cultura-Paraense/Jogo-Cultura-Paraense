@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
-import 'package:jogo_cultura_paraense/games/art-fauna-flora/art_fauna_flora_game.dart';
+import 'package:jogo_cultura_paraense/games/art_fauna_flora/art_fauna_flora_game.dart';
 import 'package:jogo_cultura_paraense/model/game_save.dart';
 import 'package:jogo_cultura_paraense/model/map_save.dart';
 

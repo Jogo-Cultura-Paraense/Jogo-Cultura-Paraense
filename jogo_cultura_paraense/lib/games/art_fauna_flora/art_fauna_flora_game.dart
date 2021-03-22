@@ -4,12 +4,12 @@ import 'package:flame/flame.dart';
 import 'package:flame/gestures.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/widgets.dart';
-import 'package:jogo_cultura_paraense/games/art-fauna-flora/art_fauna_flora_tutorial.dart';
-import 'package:jogo_cultura_paraense/games/art-fauna-flora/components/background.dart';
-import 'package:jogo_cultura_paraense/games/art-fauna-flora/components/hint_button.dart';
-import 'package:jogo_cultura_paraense/games/art-fauna-flora/components/score_display.dart';
-import 'package:jogo_cultura_paraense/games/art-fauna-flora/components/tile.dart';
-import 'package:jogo_cultura_paraense/games/art-fauna-flora/components/timer.dart';
+import 'package:jogo_cultura_paraense/games/art_fauna_flora/art_fauna_flora_tutorial.dart';
+import 'package:jogo_cultura_paraense/games/art_fauna_flora/components/background.dart';
+import 'package:jogo_cultura_paraense/games/art_fauna_flora/components/hint_button.dart';
+import 'package:jogo_cultura_paraense/games/art_fauna_flora/components/score_display.dart';
+import 'package:jogo_cultura_paraense/games/art_fauna_flora/components/tile.dart';
+import 'package:jogo_cultura_paraense/games/art_fauna_flora/components/timer.dart';
 import 'package:jogo_cultura_paraense/model/game_save.dart';
 import 'package:jogo_cultura_paraense/pages/score_page.dart';
 
