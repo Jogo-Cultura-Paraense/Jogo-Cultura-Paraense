@@ -5,6 +5,7 @@ import 'package:jogo_cultura_paraense/components/locked_game_alert.dart';
 import 'package:jogo_cultura_paraense/model/map_save.dart';
 import 'package:jogo_cultura_paraense/pages/games/art_fauna_flora_page.dart';
 import 'package:jogo_cultura_paraense/pages/select_mini_game_page.dart';
+import 'package:jogo_cultura_paraense/games/vocabulario/main_vocabulario.dart';
 
 class LevelSelectionPage extends StatelessWidget {
   static const String routeName = '/levelSelect';
@@ -139,6 +140,8 @@ class LevelSelectionMenu extends StatelessWidget {
           spritesRange: 13,
         ),
       );
+    } else if (gameName == "VOCABULÁRIO") {
+      Navigator.of(context).pushNamed(MainVocabularioScreen.routeName);
     }
   }
 

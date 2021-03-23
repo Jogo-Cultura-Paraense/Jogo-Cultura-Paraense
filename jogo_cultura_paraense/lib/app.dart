@@ -4,6 +4,7 @@ import 'package:jogo_cultura_paraense/pages/encyclopedia_page.dart';
 import 'package:jogo_cultura_paraense/pages/games/art_fauna_flora_page.dart';
 import 'package:jogo_cultura_paraense/pages/finished_game_page.dart';
 import 'package:jogo_cultura_paraense/pages/score_page.dart';
+import 'package:jogo_cultura_paraense/games/vocabulario/main_vocabulario.dart';
 import 'pages/pages.dart';
 
 class App extends StatelessWidget {
@@ -75,6 +76,9 @@ class App extends StatelessWidget {
           },
           FinishedGame.routeName: (BuildContext context) {
             return const FinishedGame();
+          },
+          MainVocabularioScreen.routeName: (BuildContext context) {
+            return MainVocabulario();
           },
           ScorePage.routeName: (BuildContext context) {
             return const ScorePage();
