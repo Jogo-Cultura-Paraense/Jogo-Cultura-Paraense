@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jogo_cultura_paraense/pages/encyclopedia_page.dart';
-import 'package:jogo_cultura_paraense/pages/games/art_fauna_flora_page.dart';
 import 'package:jogo_cultura_paraense/pages/finished_game_page.dart';
-import 'package:jogo_cultura_paraense/pages/score_page.dart';
 import 'package:jogo_cultura_paraense/games/vocabulario/main_vocabulario.dart';
-import 'pages/pages.dart';
+import 'package:jogo_cultura_paraense/pages/pages.dart';
 
 class App extends StatelessWidget {
   final List<BlocProvider> _blocs;
@@ -47,9 +44,6 @@ class App extends StatelessWidget {
           GameSelectionPage.routeName: (BuildContext context) {
             return const GameSelectionPage();
           },
-          LevelSelectionPage.routeName: (BuildContext context) {
-            return const LevelSelectionPage();
-          },
           RegionModePage.routeName: (BuildContext context) {
             return RegionMode();
           },
@@ -83,6 +77,12 @@ class App extends StatelessWidget {
           ScorePage.routeName: (BuildContext context) {
             return const ScorePage();
           },
+          AFFLevelSelectionPage.routeName: (BuildContext context) {
+            return const AFFLevelSelectionPage();
+          },
+          VocabLevelSelectionPage.routeName: (BuildContext context) {
+            return const VocabLevelSelectionPage();
+          }
         },
         initialRoute: LoadingPage.routeName,
       ),

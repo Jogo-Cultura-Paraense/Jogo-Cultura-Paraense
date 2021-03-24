@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/components/home/home_appbar.dart';
 import 'package:jogo_cultura_paraense/components/home/home_scaffold.dart';
-import 'package:jogo_cultura_paraense/pages/select_level_page.dart';
+import 'package:jogo_cultura_paraense/pages/level_selection/level_selection_pages.dart';
 
 class GameSelectionPage extends StatelessWidget {
   static const String routeName = '/gameSelect';
@@ -24,45 +24,29 @@ class GameSelectionMenu extends StatelessWidget {
     return <Widget>[
       SelectCard(
         title: 'CULINÁRIA',
-        onTap: () => _gotoLevel(
-          context,
-          new GameObject("CULINÁRIA", 1),
-        ),
+        onTap: () {},
       ),
       SelectCard(
         title: 'ARQUITETURA/\nFESTIVIDADES',
-        onTap: () => _gotoLevel(
-          context,
-          new GameObject("ARQUITETURA/\nFESTIVIDADES", 2),
-        ),
+        onTap: () {},
       ),
       SelectCard(
         title: 'FLORA/FAUNA/ARTESANATO',
-        onTap: () => _gotoLevel(
-          context,
-          new GameObject("FLORA/FAUNA/ARTESANATO", 3),
-        ),
+        onTap: () =>
+            Navigator.of(context).pushNamed(AFFLevelSelectionPage.routeName),
       ),
       SelectCard(
         title: 'LENDAS E MITOS',
-        onTap: () => _gotoLevel(
-          context,
-          new GameObject("LENDAS E MITOS", 4),
-        ),
+        onTap: () {},
       ),
       SelectCard(
         title: 'VOCABULÁRIO',
-        onTap: () => _gotoLevel(
-          context,
-          new GameObject("VOCABULÁRIO", 5),
-        ),
+        onTap: () =>
+            Navigator.of(context).pushNamed(VocabLevelSelectionPage.routeName),
       ),
       SelectCard(
         title: 'MÚSICAS',
-        onTap: () => _gotoLevel(
-          context,
-          new GameObject("MÚSICAS", 6),
-        ),
+        onTap: () {},
       ),
     ];
   }
@@ -118,21 +102,6 @@ class GameSelectionMenu extends StatelessWidget {
       ),
     );
   }
-
-  void _gotoLevel(BuildContext context, GameObject gameObject) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => LevelSelectionPage(gameObject: gameObject),
-      ),
-    );
-  }
-}
-
-class GameObject {
-  final String name;
-  final int unlockedLevel;
-
-  GameObject(this.name, this.unlockedLevel);
 }
 
 class SelectCard extends StatelessWidget {
