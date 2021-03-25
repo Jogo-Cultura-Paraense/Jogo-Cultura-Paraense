@@ -1,38 +1,6 @@
+import 'package:jogo_cultura_paraense/model/game.dart';
 import 'package:jogo_cultura_paraense/model/game_save.dart';
-
-class Region {
-  final String name;
-  final String mainCity;
-  const Region({this.name, this.mainCity});
-}
-
-abstract class Maps {
-  static const Region sudoeste = Region(
-    name: 'Sudoeste',
-    mainCity: 'Altamira',
-  );
-  static const Region baixoAmazonas = Region(
-    name: 'Baixo Amazonas',
-    mainCity: 'Santarém',
-  );
-
-  static const Region sudeste = Region(
-    name: 'Sudeste',
-    mainCity: 'Marabá',
-  );
-  static const Region nordeste = Region(
-    name: 'Nordeste',
-    mainCity: 'Abaetetuba',
-  );
-  static const Region marajo = Region(
-    name: 'Marajó',
-    mainCity: 'Breves',
-  );
-  static const Region metropolitana = Region(
-    name: 'Metropolitana',
-    mainCity: 'Belém',
-  );
-}
+import 'package:jogo_cultura_paraense/model/map.dart';
 
 class MapSave {
   final String region;
@@ -58,7 +26,7 @@ class MapSave {
   }
 
   factory MapSave.initial(
-    Region region, {
+    GameMap map, {
     bool isOpen = false,
     List<String> order,
   }) {
@@ -79,8 +47,8 @@ class MapSave {
     }
 
     return MapSave(
-      region: region.name,
-      city: region.mainCity,
+      region: map.region,
+      city: map.city,
       isOpen: isOpen,
       gamesSave: <GameSave>[
         // First game of every map is always open.
@@ -121,7 +89,7 @@ class MapSave {
 
   Map<String, dynamic> toJson() {
     return {
-      'region': region,
+      'map': region,
       'city': city,
       'isOpen': isOpen,
       'gamesSave': GameSave.toJsonList(gamesSave),

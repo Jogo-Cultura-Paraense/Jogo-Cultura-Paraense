@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/components/map/map_page.dart';
 import 'package:jogo_cultura_paraense/components/map/region_page.dart';
-import 'package:jogo_cultura_paraense/model/map_save.dart';
+import 'package:jogo_cultura_paraense/model/map.dart';
 
 class MarajoPage extends RegionPage {
   static const String routeName = '/marajo';
-  const MarajoPage({Key key}) : super(region: Maps.marajo, key: key);
+  const MarajoPage({Key key}) : super(gameMap: Maps.marajo, key: key);
 
   @override
   List<GamePosition> getGamesPositions() {

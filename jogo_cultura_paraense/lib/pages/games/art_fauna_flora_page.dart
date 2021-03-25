@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
 import 'package:jogo_cultura_paraense/games/art_fauna_flora/art_fauna_flora_game.dart';
 import 'package:jogo_cultura_paraense/model/game_save.dart';
-import 'package:jogo_cultura_paraense/model/map_save.dart';
+import 'package:jogo_cultura_paraense/model/map.dart';
 
 class ArtFaunaFloraGamePageArgs {
   final String map;
@@ -24,7 +24,7 @@ class ArtFaunaFloraGamePageArgs {
 
   factory ArtFaunaFloraGamePageArgs.initial() {
     return ArtFaunaFloraGamePageArgs(
-      map: Maps.sudoeste.name,
+      map: Maps.sudoeste.region,
       numTargets: 4,
       startTime: 5,
       timeCorrectTile: 2,
@@ -50,7 +50,7 @@ class ArtFaunaFloraGamePage extends StatelessWidget {
       },
       builder: (context, state) {
         final topScores = state.currentSave
-            .getMapSave(Maps.sudoeste.name)
+            .getMapSave(Maps.sudoeste.region)
             .getGameSave(Games.faunaAndFlora)
             .topScores;
         return ArtFaunaFloraGame(

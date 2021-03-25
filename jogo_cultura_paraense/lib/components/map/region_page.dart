@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
 import 'package:jogo_cultura_paraense/components/map/map_page.dart';
-import 'package:jogo_cultura_paraense/model/map_save.dart';
+import 'package:jogo_cultura_paraense/model/map.dart';
 
 // Class to build a region page.
 // It should be extended, not used by itself.
 class RegionPage extends StatelessWidget {
-  final Region _region;
+  final GameMap _gameMap;
 
   const RegionPage({
-    @required Region region,
+    @required GameMap gameMap,
     Key key,
-  })  : _region = region,
+  })  : _gameMap = gameMap,
         super(key: key);
 
   // Must be implemented on child.
@@ -26,7 +26,7 @@ class RegionPage extends StatelessWidget {
     return BlocBuilder<SaveBloc, SaveState>(
       builder: (context, state) {
         // Get the save of the map from the state.
-        final mapSave = state.currentSave.getMapSave(_region.name);
+        final mapSave = state.currentSave.getMapSave(_gameMap.region);
         final gamesPositions = getGamesPositions();
         // Add the save information on the games.
         for (int i = 0; i < mapSave.gamesSave.length; i++) {
@@ -35,10 +35,12 @@ class RegionPage extends StatelessWidget {
         }
 
         return Scaffold(
-          appBar: AppBar(title: Text(_region.name + ' - ' + _region.mainCity)),
+          appBar: AppBar(
+            title: Text(_gameMap.region + ' - ' + _gameMap.city),
+          ),
           body: MapPage(
-            region: _region.name,
-            city: _region.mainCity,
+            region: _gameMap.region,
+            city: _gameMap.city,
             gamesOpen: mapSave.gamesOpen,
             gamesPositions: gamesPositions,
           ),

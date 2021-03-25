@@ -1,4 +1,5 @@
 import 'package:jogo_cultura_paraense/model/item_save.dart';
+import 'package:jogo_cultura_paraense/model/map.dart';
 import 'package:jogo_cultura_paraense/model/map_save.dart';
 
 abstract class Saves {

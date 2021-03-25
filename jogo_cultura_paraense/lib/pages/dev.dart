@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
 import 'package:jogo_cultura_paraense/model/game_save.dart';
-import 'package:jogo_cultura_paraense/model/map_save.dart';
+import 'package:jogo_cultura_paraense/model/map.dart';
 
 class DevPage extends StatefulWidget {
   static const String routeName = '/dev';
@@ -20,7 +20,7 @@ class _DevPageState extends State<DevPage> {
   final TextEditingController _scoreControl = TextEditingController();
   final TextEditingController _itensControl = TextEditingController();
 
-  final List<Region> _maps = <Region>[
+  final List<GameMap> _maps = <GameMap>[
     Maps.sudoeste,
     Maps.baixoAmazonas,
     Maps.sudeste,
@@ -54,10 +54,10 @@ class _DevPageState extends State<DevPage> {
             ),
             DropdownButtonFormField(
               decoration: const InputDecoration(labelText: 'Map'),
-              items: _maps.map<DropdownMenuItem>((Region region) {
+              items: _maps.map<DropdownMenuItem>((GameMap gameMap) {
                 return DropdownMenuItem(
-                  child: Text(region.name),
-                  value: region.name,
+                  child: Text(gameMap.region),
+                  value: gameMap.region,
                 );
               }).toList(),
               onChanged: (value) {
@@ -123,7 +123,8 @@ class _DevPageState extends State<DevPage> {
                 listener: (context, state) {
                   if (state is SaveFailed) {
                     showDialog(
-                      context: context, builder: (context) => SimpleDialog(
+                      context: context,
+                      builder: (context) => SimpleDialog(
                         children: <Widget>[Text(state.error)],
                       ),
                     );

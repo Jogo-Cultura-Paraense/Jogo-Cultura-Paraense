@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/model/game_save.dart';
-import 'package:jogo_cultura_paraense/model/map_save.dart';
+import 'package:jogo_cultura_paraense/model/map.dart';
 import 'dart:async';
 import 'package:jogo_cultura_paraense/pages/score_page.dart';
 
@@ -46,7 +46,7 @@ class MainVocabularioScreen extends State<MainVocabulario> {
           Navigator.of(context).popAndPushNamed(
             ScorePage.routeName,
             arguments: ScorePageArgs(
-              map: Maps.sudoeste.name,
+              map: Maps.sudoeste.region,
               game: Games.vocabulary,
               score: score.round(),
               finalScore: score.round(),
@@ -213,7 +213,7 @@ class MainVocabularioScreen extends State<MainVocabulario> {
       Navigator.of(context).popAndPushNamed(
         ScorePage.routeName,
         arguments: ScorePageArgs(
-          map: Maps.sudoeste.name,
+          map: Maps.sudoeste.region,
           game: Games.vocabulary,
           score: score.round(),
           finalScore: score.round(),

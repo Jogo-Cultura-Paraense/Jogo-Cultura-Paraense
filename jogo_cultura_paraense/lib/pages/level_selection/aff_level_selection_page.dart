@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/components/level_selection/level_selection_card.dart';
 import 'package:jogo_cultura_paraense/components/level_selection/level_selection_page.dart';
 import 'package:jogo_cultura_paraense/model/game_save.dart';
-import 'package:jogo_cultura_paraense/model/map_save.dart';
+import 'package:jogo_cultura_paraense/model/map.dart';
 import 'package:jogo_cultura_paraense/pages/games/art_fauna_flora_page.dart';
 
 class AFFLevelSelectionPage extends StatelessWidget {
@@ -18,7 +18,7 @@ class AFFLevelSelectionPage extends StatelessWidget {
           Navigator.of(context).pushNamed(
             ArtFaunaFloraGamePage.routeName,
             arguments: ArtFaunaFloraGamePageArgs(
-              map: Maps.sudoeste.name,
+              map: Maps.sudoeste.region,
               numTargets: 4,
               startTime: 5,
               timeCorrectTile: 2,
@@ -35,7 +35,7 @@ class AFFLevelSelectionPage extends StatelessWidget {
           Navigator.of(context).pushNamed(
             ArtFaunaFloraGamePage.routeName,
             arguments: ArtFaunaFloraGamePageArgs(
-              map: Maps.sudoeste.name,
+              map: Maps.sudoeste.region,
               numTargets: 6,
               startTime: 5,
               timeCorrectTile: 2,
@@ -52,7 +52,7 @@ class AFFLevelSelectionPage extends StatelessWidget {
           Navigator.of(context).pushNamed(
             ArtFaunaFloraGamePage.routeName,
             arguments: ArtFaunaFloraGamePageArgs(
-              map: Maps.baixoAmazonas.name,
+              map: Maps.baixoAmazonas.region,
               numTargets: 4,
               startTime: 4.5,
               timeCorrectTile: 1.5,
@@ -69,7 +69,7 @@ class AFFLevelSelectionPage extends StatelessWidget {
           Navigator.of(context).pushNamed(
             ArtFaunaFloraGamePage.routeName,
             arguments: ArtFaunaFloraGamePageArgs(
-              map: Maps.sudeste.name,
+              map: Maps.sudeste.region,
               numTargets: 6,
               startTime: 4.5,
               timeCorrectTile: 1.5,
@@ -86,7 +86,7 @@ class AFFLevelSelectionPage extends StatelessWidget {
           Navigator.of(context).pushNamed(
             ArtFaunaFloraGamePage.routeName,
             arguments: ArtFaunaFloraGamePageArgs(
-              map: Maps.marajo.name,
+              map: Maps.marajo.region,
               numTargets: 4,
               startTime: 4,
               timeCorrectTile: 1,
@@ -103,7 +103,7 @@ class AFFLevelSelectionPage extends StatelessWidget {
           Navigator.of(context).pushNamed(
             ArtFaunaFloraGamePage.routeName,
             arguments: ArtFaunaFloraGamePageArgs(
-              map: Maps.metropolitana.name,
+              map: Maps.metropolitana.region,
               numTargets: 6,
               startTime: 4,
               timeCorrectTile: 1,
