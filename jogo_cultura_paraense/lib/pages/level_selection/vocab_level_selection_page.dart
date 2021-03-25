@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/components/level_selection/level_selection_card.dart';
 import 'package:jogo_cultura_paraense/components/level_selection/level_selection_page.dart';
 import 'package:jogo_cultura_paraense/games/vocabulario/main_vocabulario.dart';
-import 'package:jogo_cultura_paraense/model/game_save.dart';
+import 'package:jogo_cultura_paraense/model/game.dart';
 
 class VocabLevelSelectionPage extends StatelessWidget {
   static const String routeName = 'vocab_selection_level';
