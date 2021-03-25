@@ -58,7 +58,8 @@ flutter:
     - lib/images/nordesteparaense.png
     - lib/images/marajo.png
     - lib/images/metropolitana.png
-    - assets/images/findGame/background.jpg
+    - assets/images/findGame/bosqueRA.jpg
+    - assets/images/findGame/mangalG.jpeg
     - assets/images/findGame/00.png
     - assets/images/findGame/01.png
     - assets/images/findGame/02.png
@@ -69,11 +70,25 @@ flutter:
     - assets/images/findGame/07.png
     - assets/images/findGame/08.png
     - assets/images/findGame/09.png
+    - assets/images/findGame/010.png
+    - assets/images/findGame/011.png
+    - assets/images/findGame/012.png
+    - assets/images/findGame/013.png
+    - assets/images/findGame/014.png
+    - assets/images/findGame/015.png
+    - assets/images/findGame/016.png
+    - assets/images/findGame/017.png
+    - assets/images/findGame/018.png
+    - assets/images/findGame/019.png
+    - assets/images/findGame/020.png
+    - assets/images/findGame/021.png
+    - assets/images/findGame/022.png
+    - assets/images/findGame/023.png
+    - assets/images/findGame/024.png
     - assets/images/findGame/start_button.png
     - assets/images/findGame/no_button.png
     - assets/images/findGame/hint_button.png
     - assets/images/findGame/how_to.png
-    - assets/images/findGame/end_game.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

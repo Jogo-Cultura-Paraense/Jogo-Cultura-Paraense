@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/components/map/map_page.dart';
 import 'package:jogo_cultura_paraense/components/map/region_page.dart';
-import 'package:jogo_cultura_paraense/model/map_save.dart';
+import 'package:jogo_cultura_paraense/model/map.dart';
 
 class SudestePage extends RegionPage {
   static const String routeName = '/sudeste';
-  const SudestePage({Key key}) : super(region: Maps.sudeste, key: key);
+  const SudestePage({Key key}) : super(gameMap: Maps.sudeste, key: key);
 
   @override
   List<GamePosition> getGamesPositions() {

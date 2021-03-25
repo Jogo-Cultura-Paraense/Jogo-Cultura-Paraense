@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jogo_cultura_paraense/pages/encyclopedia_page.dart';
-import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:jogo_cultura_paraense/pages/finished_game_page.dart';
-import 'package:jogo_cultura_paraense/pages/score_page.dart';
-import 'pages/pages.dart';
+import 'package:jogo_cultura_paraense/games/vocabulario/main_vocabulario.dart';
+import 'package:jogo_cultura_paraense/pages/pages.dart';
 
 class App extends StatelessWidget {
-  final SharedPreferences storage;
   final List<BlocProvider> _blocs;
-  const App({@required List<BlocProvider> blocs, Key key, this.storage})
+  const App({@required List<BlocProvider> blocs, Key key})
       : _blocs = blocs,
         super(key: key);
 
@@ -48,9 +44,6 @@ class App extends StatelessWidget {
           GameSelectionPage.routeName: (BuildContext context) {
             return const GameSelectionPage();
           },
-          LevelSelectionPage.routeName: (BuildContext context) {
-            return const LevelSelectionPage();
-          },
           RegionModePage.routeName: (BuildContext context) {
             return RegionMode();
           },
@@ -72,15 +65,24 @@ class App extends StatelessWidget {
           MarajoPage.routeName: (BuildContext context) {
             return MarajoPage();
           },
-          FindGame.routeName: (BuildContext context) {
-            return FindGame(storage).widget;
+          ArtFaunaFloraGamePage.routeName: (BuildContext context) {
+            return const ArtFaunaFloraGamePage();
           },
           FinishedGame.routeName: (BuildContext context) {
             return const FinishedGame();
           },
+          MainVocabularioScreen.routeName: (BuildContext context) {
+            return MainVocabulario();
+          },
           ScorePage.routeName: (BuildContext context) {
             return const ScorePage();
           },
+          AFFLevelSelectionPage.routeName: (BuildContext context) {
+            return const AFFLevelSelectionPage();
+          },
+          VocabLevelSelectionPage.routeName: (BuildContext context) {
+            return const VocabLevelSelectionPage();
+          }
         },
         initialRoute: LoadingPage.routeName,
       ),

@@ -19,9 +19,12 @@ class MainMenuButton extends StatelessWidget {
       padding: const EdgeInsets.only(top: 8.0),
       child: SizedBox(
         width: double.maxFinite,
-        child: RaisedButton(
+        child: ElevatedButton(
           child: Text(_label),
           onPressed: _onClick,
+          style: ElevatedButton.styleFrom(
+            primary: Theme.of(context).primaryColor,
+          ),
         ),
       ),
     );

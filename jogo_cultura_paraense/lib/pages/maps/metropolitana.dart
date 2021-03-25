@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/components/map/map_page.dart';
 import 'package:jogo_cultura_paraense/components/map/region_page.dart';
-import 'package:jogo_cultura_paraense/model/map_save.dart';
+import 'package:jogo_cultura_paraense/model/map.dart';
 
 class MetropolitanaPage extends RegionPage {
   static const String routeName = '/metropolitana';
   const MetropolitanaPage({Key key})
-      : super(region: Maps.metropolitana, key: key);
+      : super(gameMap: Maps.metropolitana, key: key);
 
   @override
   List<GamePosition> getGamesPositions() {

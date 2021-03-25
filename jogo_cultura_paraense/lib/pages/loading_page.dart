@@ -46,7 +46,7 @@ class LoadingHomeAssets extends StatelessWidget {
       },
       listener: (context, dynamic state) {
         if (state is HomeAssetsFailed) {
-          Scaffold.of(context).showSnackBar(
+          Scaffold /* Messenger */ .of(context).showSnackBar(
             SnackBar(content: Text(state.error)),
           );
         } else if (state is HomeAssetsLoaded) {
