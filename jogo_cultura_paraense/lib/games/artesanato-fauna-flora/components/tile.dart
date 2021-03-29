@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flame/sprite.dart';
 import 'package:jogo_cultura_paraense/games/artesanato-fauna-flora/find_game.dart';
+import 'package:flame/flame_audio.dart';
 
 class Tile {
   final FindGame game;
@@ -10,6 +11,8 @@ class Tile {
   // Paint tilePaint;
   bool touched;
   bool isHinted;
+
+  FlameAudio audio;
 
   //carega os sprites
   Sprite tileSprite;
@@ -21,6 +24,8 @@ class Tile {
     touched = false;
     isHinted = false;
     tileSprite = Sprite('findGame/0$name.png');
+    audio = game.audio;
+    audio.disableLog();
   }
 
   void render(Canvas c) {
@@ -37,15 +42,18 @@ class Tile {
   void onTapDown() {
     touched = true;
     print("$name");
+
     if (target) {
-      game.score += 100;
-      game.timer.timer += 2;
+      game.score += 100; //aumenta o score
+      game.timer.timer += 2; //aumenta o tempo de jogo
+      audio.play('completetask_0.mp3'); //toca o som de 'correto'
       if (game.score > (game.storage.getInt('highscore') ?? 0)) {
         game.storage.setInt('highscore', game.score);
         game.highscoreDisplay.updateHighscore();
       }
     } else {
-      game.timer.timer -= 2;
+      game.timer.timer -= 2; //diminui o tempo de jogo
+      audio.play('explosion.wav'); //toca o som de 'errado'
     }
   }
 }

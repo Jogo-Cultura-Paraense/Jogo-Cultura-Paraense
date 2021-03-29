@@ -32,6 +32,10 @@ void main() async {
     'findGame/end_game.png',
   ]);
 
+  Flame.audio.disableLog();
+  Flame.audio.loadAll(
+      <String>['completetask_0.mp3', 'explosion.wav', 'win_sound.wav']);
+
   SharedPreferences storage = await SharedPreferences.getInstance();
 
   FindGame game = FindGame(storage);

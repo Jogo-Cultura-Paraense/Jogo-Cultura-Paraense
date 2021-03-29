@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flame/flame.dart';
+import 'package:flame/flame_audio.dart';
 import 'package:flame/gestures.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flame/game.dart';
@@ -27,6 +28,7 @@ class FindGame extends Game with TapDetector {
   Hud hud;
   HighscoreDisplay highscoreDisplay;
   int numTargets;
+  FlameAudio audio = FlameAudio();
 
 //lista com a ordem dos sprites
   var listaSprites = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -66,6 +68,10 @@ class FindGame extends Game with TapDetector {
     hud = Hud(this);
     startButton = StartButton(this);
     hintButton = HintButton(this);
+
+// carrega os efeitos sonoros
+    audio.disableLog();
+    audio.loadAll(<String>['completetask_0.mp3', 'explosion.wav']);
 
     howToView = HowToView(this);
     endGameView = EndGameView(this);
@@ -141,6 +147,8 @@ class FindGame extends Game with TapDetector {
             isHandled = true;
             targetTiles.removeWhere((Tile target) => target.name == tile.name);
             if (checkVictory()) {
+              audio.play('win_sound.wav');
+              audio.clearAll();
               activeView = View.endGame;
             }
           }
@@ -172,7 +180,6 @@ class FindGame extends Game with TapDetector {
   }
 
   bool checkVictory() {
-    //return (score == numTargets);
     return targetTiles.isEmpty;
   }
 }
