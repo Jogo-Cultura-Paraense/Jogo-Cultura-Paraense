@@ -6,7 +6,7 @@ import 'package:jogo_cultura_paraense/model/map.dart';
 import 'package:jogo_cultura_paraense/pages/games/art_fauna_flora_page.dart';
 
 class AFFLevelSelectionPage extends StatelessWidget {
-  static const String routeName = 'aff_selection_level';
+  static const String routeName = '/aff_selection_level';
   const AFFLevelSelectionPage({Key key}) : super(key: key);
 
   List<LevelSelectionCard> _buildList(BuildContext context) {
@@ -31,7 +31,7 @@ class AFFLevelSelectionPage extends StatelessWidget {
       LevelSelectionCard(
         level: 2,
         unlocked: true,
-        onTap: () => () {
+        onTap: () {
           Navigator.of(context).pushNamed(
             ArtFaunaFloraGamePage.routeName,
             arguments: ArtFaunaFloraGamePageArgs(
@@ -48,7 +48,7 @@ class AFFLevelSelectionPage extends StatelessWidget {
       LevelSelectionCard(
         level: 3,
         unlocked: true,
-        onTap: () => () {
+        onTap: () {
           Navigator.of(context).pushNamed(
             ArtFaunaFloraGamePage.routeName,
             arguments: ArtFaunaFloraGamePageArgs(
@@ -65,7 +65,7 @@ class AFFLevelSelectionPage extends StatelessWidget {
       LevelSelectionCard(
         level: 4,
         unlocked: true,
-        onTap: () => () {
+        onTap: () {
           Navigator.of(context).pushNamed(
             ArtFaunaFloraGamePage.routeName,
             arguments: ArtFaunaFloraGamePageArgs(
@@ -82,7 +82,7 @@ class AFFLevelSelectionPage extends StatelessWidget {
       LevelSelectionCard(
         level: 5,
         unlocked: true,
-        onTap: () => () {
+        onTap: () {
           Navigator.of(context).pushNamed(
             ArtFaunaFloraGamePage.routeName,
             arguments: ArtFaunaFloraGamePageArgs(
@@ -99,7 +99,7 @@ class AFFLevelSelectionPage extends StatelessWidget {
       LevelSelectionCard(
         level: 6,
         unlocked: true,
-        onTap: () => () {
+        onTap: () {
           Navigator.of(context).pushNamed(
             ArtFaunaFloraGamePage.routeName,
             arguments: ArtFaunaFloraGamePageArgs(

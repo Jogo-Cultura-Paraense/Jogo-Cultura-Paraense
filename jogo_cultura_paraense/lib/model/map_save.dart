@@ -89,7 +89,7 @@ class MapSave {
 
   Map<String, dynamic> toJson() {
     return {
-      'map': region,
+      'region': region,
       'city': city,
       'isOpen': isOpen,
       'gamesSave': GameSave.toJsonList(gamesSave),
