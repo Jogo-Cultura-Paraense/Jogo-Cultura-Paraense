@@ -82,6 +82,12 @@ class App extends StatelessWidget {
           },
           VocabLevelSelectionPage.routeName: (BuildContext context) {
             return const VocabLevelSelectionPage();
+          },
+          CookingLevelSelectionPage.routeName: (BuildContext context) {
+            return const CookingLevelSelectionPage();
+          },
+          CookingGamePage.routeName: (BuildContext context) {
+            return const CookingGamePage();
           }
         },
         initialRoute: LoadingPage.routeName,

@@ -24,7 +24,9 @@ class GameSelectionMenu extends StatelessWidget {
     return <Widget>[
       SelectCard(
         title: 'CULINÁRIA',
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).pushNamed(CookingLevelSelectionPage.routeName);
+        },
       ),
       SelectCard(
         title: 'ARQUITETURA/\nFESTIVIDADES',
