@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/games/cooking_game/order_card.dart';
+import 'package:jogo_cultura_paraense/games/models/recipe.dart';
 
 class OrderRow extends StatelessWidget {
   final double height;
@@ -21,7 +22,11 @@ class OrderRow extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: 5,
         itemBuilder: (context, index) {
-          return OrderCard(height: height, width: width / 2);
+          return OrderCard(
+            recipe: Recipes.casquinhaDeCarangueijo,
+            height: height,
+            width: width / 3,
+          );
         },
       ),
     );
