@@ -4,16 +4,21 @@ import 'package:jogo_cultura_paraense/games/models/recipe.dart';
 class OrderCard extends StatelessWidget {
   final double height;
   final double width;
+  final Recipe recipe;
 
-  const OrderCard({@required this.height, @required this.width, Key key})
-      : super(key: key);
+  const OrderCard({
+    @required this.recipe,
+    @required this.height,
+    @required this.width,
+    Key key,
+  }) : super(key: key);
 
-  List<Widget> _buildGridList(Recipe recipe) {
+  List<Widget> _buildGridList() {
     final gridList = <Widget>[];
     for (RecipeIngredient ingredient in recipe.ingredients) {
       gridList.addAll([
         Container(
-          margin: EdgeInsets.only(left: 8.0),
+          // margin: EdgeInsets.only(left: 5.0),
           child: FittedBox(
             fit: BoxFit.fitWidth,
             child: Text("${ingredient.quantity}x"),
@@ -34,13 +39,25 @@ class OrderCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(5.0),
+      padding: EdgeInsets.all(5.0),
       height: height,
       width: width,
       color: Colors.yellow,
-      child: GridView.count(
-        padding: EdgeInsets.all(5.0),
-        crossAxisCount: 4,
-        children: _buildGridList(Recipes.patoNoTucupi),
+      child: Column(
+        children: [
+          FittedBox(
+            fit: BoxFit.fitWidth,
+            child: Text(recipe.name),
+          ),
+          Expanded(
+            child: GridView.count(
+              shrinkWrap: true,
+              padding: EdgeInsets.all(5.0),
+              crossAxisCount: 4,
+              children: _buildGridList(),
+            ),
+          ),
+        ],
       ),
     );
   }
