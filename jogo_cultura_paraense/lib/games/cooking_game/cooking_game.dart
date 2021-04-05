@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/games/cooking_game/order_row.dart';
+import 'package:jogo_cultura_paraense/games/cooking_game/tapper_box.dart';
 import 'package:jogo_cultura_paraense/games/cooking_game/timer.dart';
 
 class CookingGame extends StatelessWidget {
@@ -22,9 +23,16 @@ class CookingGame extends StatelessWidget {
             width: deviceWidth,
           ),
           Expanded(
-            child: Container(
-              color: Colors.yellow,
-            ),
+            child: TapperBox(
+              onRightTap: () {
+                print('Aqui');
+              },
+              onWrongTap: () {
+                print('Aculá');
+              },
+              height: 5 * deviceHeight / 6,
+              width: deviceWidth,
+            ).widget,
           ),
           Container(
             height: deviceHeight / 6,
