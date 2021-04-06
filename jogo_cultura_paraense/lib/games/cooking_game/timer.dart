@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Timer extends StatelessWidget {
   final int timeLimit;
 
-  const Timer({this.timeLimit = 10, Key key}) : super(key: key);
+  const Timer({this.timeLimit = 2 * 60, Key key}) : super(key: key);
 
   String getFormatedTime(int minutes, int seconds) {
     String formatedSec = seconds < 10 ? "0$seconds" : "$seconds";
