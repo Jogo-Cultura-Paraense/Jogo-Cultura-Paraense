@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:jogo_cultura_paraense/games/models/recipe.dart';
+import 'package:jogo_cultura_paraense/games/models/order.dart';
 
 class OrderCard extends StatelessWidget {
   final double height;
   final double width;
-  final Recipe recipe;
+  final Order order;
 
   const OrderCard({
-    @required this.recipe,
+    @required this.order,
     @required this.height,
     @required this.width,
     Key key,
@@ -15,20 +15,22 @@ class OrderCard extends StatelessWidget {
 
   List<Widget> _buildGridList() {
     final gridList = <Widget>[];
-    for (RecipeIngredient ingredient in recipe.ingredients) {
+    for (OrderIngredient ingredient in order.ingredients) {
       gridList.addAll([
         Container(
-          // margin: EdgeInsets.only(left: 5.0),
+          margin: EdgeInsets.only(bottom: 5.0),
           child: FittedBox(
-            fit: BoxFit.fitWidth,
-            child: Text("${ingredient.quantity}x"),
+            fit: BoxFit.fitHeight,
+            child: Text(
+              "${ingredient.quantity}x",
+              textAlign: TextAlign.center,
+            ),
           ),
         ),
         Container(
-          child: FittedBox(
-            fit: BoxFit.fitHeight,
-            child: Text(ingredient.ingredient.imagePath),
-          ),
+          margin: EdgeInsets.only(bottom: 5.0),
+          child: FittedBox(fit: BoxFit.fitHeight),
+          color: Colors.red,
         ),
       ]);
     }
@@ -47,7 +49,7 @@ class OrderCard extends StatelessWidget {
         children: [
           FittedBox(
             fit: BoxFit.fitWidth,
-            child: Text(recipe.name),
+            child: Text(order.name),
           ),
           Expanded(
             child: GridView.count(

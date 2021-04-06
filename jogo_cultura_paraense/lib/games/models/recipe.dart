@@ -19,14 +19,7 @@ class Recipe {
       : _ingredients = ingredients;
 
   List<RecipeIngredient> get ingredients => _ingredients;
-
-  Recipe doubleRecipe() {
-    final List<RecipeIngredient> newIngredients = [];
-    for (RecipeIngredient ingredient in this._ingredients) {
-      newIngredients.add(ingredient.doubleQuantity());
-    }
-    return Recipe(name: this.name, ingredients: newIngredients);
-  }
+  String get twoLinesName => name;
 }
 
 abstract class Recipes {
@@ -44,15 +37,19 @@ class PatoNoTucupi extends Recipe {
           RecipeIngredient(Ingredients.jambu),
           RecipeIngredient(Ingredients.arroz),
         ]);
+  @override
+  String get twoLinesName => "Pato no\nTucupi";
 }
 
 class CasquinhaDeCarangueijo extends Recipe {
   CasquinhaDeCarangueijo()
       : super(name: "Casquinha de Carangueijo", ingredients: [
-          RecipeIngredient(Ingredients.carangueijo),
+          RecipeIngredient(Ingredients.carangueijo, quantity: 2),
           RecipeIngredient(Ingredients.leiteDeCoco),
           RecipeIngredient(Ingredients.farofa),
         ]);
+  @override
+  String get twoLinesName => "Casquinha de\nCarangueijo";
 }
 
 class Tacaca extends Recipe {
