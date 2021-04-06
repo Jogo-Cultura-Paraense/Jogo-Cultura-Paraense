@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jogo_cultura_paraense/games/cooking_game/bloc/cooking_game_bloc.dart';
 import 'package:jogo_cultura_paraense/games/cooking_game/order_card.dart';
-import 'package:jogo_cultura_paraense/games/models/recipe.dart';
 
 class OrderRow extends StatelessWidget {
   final double height;
@@ -14,21 +15,25 @@ class OrderRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      width: width,
-      color: Colors.transparent,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: 5,
-        itemBuilder: (context, index) {
-          return OrderCard(
-            recipe: Recipes.casquinhaDeCarangueijo,
-            height: height,
-            width: width / 3,
-          );
-        },
-      ),
+    return BlocBuilder<CookingGameBloc, CookingGameState>(
+      builder: (context, state) {
+        return Container(
+          height: height,
+          width: width,
+          color: Colors.transparent,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: state.orders.length,
+            itemBuilder: (context, index) {
+              return OrderCard(
+                order: state.orders[index],
+                height: height,
+                width: width / 3,
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }
