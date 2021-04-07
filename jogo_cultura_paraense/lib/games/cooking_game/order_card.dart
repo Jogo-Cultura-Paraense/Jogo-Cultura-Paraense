@@ -29,8 +29,11 @@ class OrderCard extends StatelessWidget {
         ),
         Container(
           margin: EdgeInsets.only(bottom: 5.0),
-          child: FittedBox(fit: BoxFit.fitHeight),
-          color: Colors.red,
+          child: FittedBox(
+            fit: BoxFit.fitHeight,
+            child: Container(),
+          ),
+          color: Color(int.parse(ingredient.ingredient.imagePath)),
         ),
       ]);
     }

@@ -42,10 +42,15 @@ class Order {
     return Order(name: recipe.twoLinesName, ingredients: orderIngredients);
   }
 
-  void removeIngredient() {
-    _ingredients[0].removeQuantity();
-    if (_ingredients[0].quantity < 1) {
-      _ingredients.removeAt(0);
+  void removeIngredient(String ingredientId) {
+    for (int i = 0; i < _ingredients.length; i += 1) {
+      if (_ingredients[i].ingredient.id == ingredientId) {
+        _ingredients[i].removeQuantity();
+        if (_ingredients[i].quantity < 1) {
+          _ingredients.removeAt(i);
+        }
+        break;
+      }
     }
   }
 

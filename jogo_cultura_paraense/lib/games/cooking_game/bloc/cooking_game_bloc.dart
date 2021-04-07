@@ -15,7 +15,7 @@ class CookingGameBloc extends Bloc<CookingGameEvent, CookingGameState> {
     if (event is RemoveIngredient) {
       if (state.orders.length > 0) {
         final newOrders = state.orders;
-        newOrders[0].removeIngredient();
+        newOrders[0].removeIngredient(event.ingredientId);
         if (newOrders[0].ingredients.length < 1) {
           newOrders.removeAt(0);
         }

@@ -1,7 +1,8 @@
 class Ingredient {
+  final String id;
   final String imagePath;
 
-  const Ingredient({this.imagePath});
+  const Ingredient(this.id, {this.imagePath});
 }
 
 abstract class Ingredients {
@@ -17,37 +18,37 @@ abstract class Ingredients {
 }
 
 class Pato extends Ingredient {
-  const Pato() : super(imagePath: 'P');
+  const Pato() : super("pato", imagePath: "0xFF998100");
 }
 
 class Tucupi extends Ingredient {
-  const Tucupi() : super(imagePath: 'T');
+  const Tucupi() : super("tucupi", imagePath: "0xFF00007F");
 }
 
 class Jambu extends Ingredient {
-  const Jambu() : super(imagePath: 'J');
+  const Jambu() : super("jambu", imagePath: "0xFFBADA55");
 }
 
 class Arroz extends Ingredient {
-  const Arroz() : super(imagePath: 'A');
+  const Arroz() : super("arroz", imagePath: "0xFFA936EE");
 }
 
 class Carangueijo extends Ingredient {
-  const Carangueijo() : super(imagePath: 'Cr');
+  const Carangueijo() : super("carangueijo", imagePath: "0xFF631717");
 }
 
 class LeiteDeCoco extends Ingredient {
-  const LeiteDeCoco() : super(imagePath: 'L');
+  const LeiteDeCoco() : super("leite_coco", imagePath: "0xFFFF8142");
 }
 
 class Farofa extends Ingredient {
-  const Farofa() : super(imagePath: 'F');
+  const Farofa() : super("farofa", imagePath: "0xFFFFC5BE");
 }
 
 class Camarao extends Ingredient {
-  const Camarao() : super(imagePath: 'Cm');
+  const Camarao() : super("camarao", imagePath: "0xFF2EB9B5");
 }
 
 class GomaDeTapica extends Ingredient {
-  const GomaDeTapica() : super(imagePath: 'G');
+  const GomaDeTapica() : super("goma_tapioca", imagePath: "0xFFCCFF00");
 }
