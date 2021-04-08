@@ -15,7 +15,7 @@ class TapperBox extends Game with TapDetector {
   final double height;
   final double width;
   final Rect _rect;
-  final Rect _visibleArea;
+  final Rect _moveableArea;
   final double spriteSize;
   final List<List<IngredientSprite>> _ingredientsPool = [];
   final List<IngredientSprite> _currentIngredients = [];
@@ -29,7 +29,7 @@ class TapperBox extends Game with TapDetector {
     this.top = 0,
   })  : _context = context,
         _rect = Rect.fromLTWH(width / 4, 0, width / 2, height),
-        _visibleArea = Rect.fromLTWH(
+        _moveableArea = Rect.fromLTWH(
           0,
           0,
           width,
@@ -52,8 +52,8 @@ class TapperBox extends Game with TapDetector {
               id: id,
               ingredientId: ingredient.ingredient.id,
               sprite: ingredient.ingredient.imagePath,
-              x: i % 2 == 0 ? width / 20 : width - width / 10,
-              y: rnd.nextDouble() * (height - width / 10),
+              x: width / 2,
+              y: height / 2,
               size: width / 10,
             ),
           );
@@ -126,16 +126,23 @@ class TapperBox extends Game with TapDetector {
   }
 
   void moveSprites() {
+    final rnd = Random();
     for (IngredientSprite ingredient in _currentIngredients) {
-      if (1 + ingredient.left < _visibleArea.left ||
-          1 + ingredient.right > _visibleArea.right) {
+      if (1 + ingredient.left < _moveableArea.left ||
+          1 + ingredient.right > _moveableArea.right) {
         ingredient.changeHorizontal();
+        if (rnd.nextInt(10) > 7) {
+          ingredient.changeVertical();
+        }
       }
-      if (1 + ingredient.top < _visibleArea.top ||
-          1 + ingredient.bottom > _visibleArea.bottom) {
+      if (1 + ingredient.top < _moveableArea.top ||
+          1 + ingredient.bottom > _moveableArea.bottom) {
         ingredient.changeVertical();
+        if (rnd.nextInt(10) > 7) {
+          ingredient.changeHorizontal();
+        }
       }
-      ingredient.translate(4, 1);
+      ingredient.translate();
     }
   }
 }

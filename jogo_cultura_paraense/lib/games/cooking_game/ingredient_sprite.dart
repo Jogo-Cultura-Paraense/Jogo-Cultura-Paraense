@@ -10,8 +10,10 @@ class IngredientSprite {
   Paint _paint = Paint();
   Rect _rect;
   Rect _tappeable;
-  int _vertical;
-  int _horizontal;
+  int _verticalDirection;
+  double _verticalSpeed;
+  int _horizontalDirection;
+  double _horizontalSpeed = 4;
 
   IngredientSprite({
     @required this.id,
@@ -32,8 +34,9 @@ class IngredientSprite {
         ) {
     _paint.color = Color(int.parse(sprite));
     final rnd = Random();
-    _vertical = IngredientSprite.directions[rnd.nextInt(2)];
-    _horizontal = IngredientSprite.directions[rnd.nextInt(2)];
+    _verticalDirection = IngredientSprite.directions[rnd.nextInt(2)];
+    _horizontalDirection = IngredientSprite.directions[rnd.nextInt(2)];
+    _verticalSpeed = (rnd.nextInt(3) + 1).toDouble();
   }
 
   bool contains(Offset d) => _tappeable.contains(d);
@@ -48,15 +51,17 @@ class IngredientSprite {
   }
 
   void changeVertical() {
-    _vertical = -_vertical;
+    _verticalDirection = -_verticalDirection;
   }
 
   void changeHorizontal() {
-    _horizontal = -_horizontal;
+    _horizontalDirection = -_horizontalDirection;
   }
 
-  void translate(double x, double y) {
-    _rect = _rect.translate(x * _horizontal, y * _vertical);
-    _tappeable = _tappeable.translate(x * _horizontal, y * _vertical);
+  void translate([double x, double y]) {
+    final translateX = x ?? _horizontalSpeed * _horizontalDirection;
+    final translateY = y ?? _verticalSpeed * _verticalDirection;
+    _rect = _rect.translate(translateX, translateY);
+    _tappeable = _tappeable.translate(translateX, translateY);
   }
 }
