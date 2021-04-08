@@ -37,8 +37,6 @@ class PatoNoTucupi extends Recipe {
           RecipeIngredient(Ingredients.jambu),
           RecipeIngredient(Ingredients.arroz),
         ]);
-  @override
-  String get twoLinesName => "Pato no\nTucupi";
 }
 
 class CasquinhaDeCarangueijo extends Recipe {
