@@ -25,10 +25,15 @@ class CookingGame extends StatelessWidget {
           ),
           Expanded(
             child: TapperWidget(
-              height: 3 * deviceHeight / 6,
+              height: 3 * deviceHeight / 5,
               width: deviceWidth,
               top: deviceHeight / 6,
             ),
+          ),
+          Container(
+            height: deviceHeight / 6,
+            width: deviceWidth / 2,
+            color: Colors.red,
           ),
         ],
       ),
