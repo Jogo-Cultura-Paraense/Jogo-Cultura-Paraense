@@ -41,7 +41,6 @@ class TapperBox extends Game with TapDetector {
 
   void _initIngredients(List<Order> orders) {
     List<IngredientSprite> ingredients;
-    final rnd = Random();
     int id = 0;
     for (Order order in orders) {
       ingredients = <IngredientSprite>[];
@@ -113,7 +112,7 @@ class TapperBox extends Game with TapDetector {
   void render(Canvas canvas) {
     final paint = Paint();
     paint.color = Color(0xff576574);
-    canvas.drawRect(_rect, paint);
+    // canvas.drawRect(_rect, paint);
 
     for (IngredientSprite ingredient in _currentIngredients) {
       ingredient.render(canvas);
