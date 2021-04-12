@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/games/cooking_game/bloc/cooking_game_bloc.dart';
 import 'package:jogo_cultura_paraense/games/cooking_game/ingredient_sprite.dart';
-import 'package:jogo_cultura_paraense/games/models/order.dart';
+import 'package:jogo_cultura_paraense/games/cooking_game/models/order.dart';
 
 class TapperBox extends Game with TapDetector {
   final BuildContext _context;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jogo_cultura_paraense/games/models/order.dart';
+import 'package:jogo_cultura_paraense/games/cooking_game/models/order.dart';
 
 class OrderCard extends StatelessWidget {
   final double height;

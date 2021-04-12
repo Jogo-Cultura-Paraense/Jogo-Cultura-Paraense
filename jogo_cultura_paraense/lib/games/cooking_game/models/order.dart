@@ -1,5 +1,5 @@
-import 'package:jogo_cultura_paraense/games/models/ingredient.dart';
-import 'package:jogo_cultura_paraense/games/models/recipe.dart';
+import 'package:jogo_cultura_paraense/games/cooking_game/models/ingredient.dart';
+import 'package:jogo_cultura_paraense/games/cooking_game/models/recipe.dart';
 
 class OrderIngredient {
   int _quantity;
