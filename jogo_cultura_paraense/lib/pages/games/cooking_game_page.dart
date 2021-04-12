@@ -3,31 +3,38 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/games/cooking_game/bloc/cooking_game_bloc.dart';
 import 'package:jogo_cultura_paraense/games/cooking_game/cooking_game.dart';
 import 'package:jogo_cultura_paraense/games/cooking_game/cooking_game_rules.dart';
+import 'package:jogo_cultura_paraense/games/models/order.dart';
 
 class CookingGamePage extends StatelessWidget {
   static const String routeName = '/cooking_game';
+  final List<Order> _orders;
+  final int time;
 
-  const CookingGamePage({Key key}) : super(key: key);
+  const CookingGamePage({
+    @required List<Order> orders,
+    @required this.time,
+    Key key,
+  })  : _orders = orders,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final CookingGamePageArgs args =
-        ModalRoute.of(context).settings.arguments ??
-            CookingGamePageArgs.initial();
-
     return BlocProvider(
-      create: (context) => CookingGameBloc(args.rules.allOrders),
-      child: CookingGame(args.rules.time),
+      create: (context) => CookingGameBloc(_orders),
+      child: CookingGame(time),
     );
   }
 }
 
 class CookingGamePageArgs {
-  final CookingGameRules rules;
+  final List<Order> _orders;
+  final int time;
 
-  const CookingGamePageArgs(this.rules);
+  List<Order> get orders => _orders;
 
-  factory CookingGamePageArgs.initial() {
-    return CookingGamePageArgs(CookingGameRules1());
+  const CookingGamePageArgs(this.time, List<Order> orders) : _orders = orders;
+
+  factory CookingGamePageArgs.fromRules(CookingGameRules rules) {
+    return CookingGamePageArgs(rules.time, rules.allOrders);
   }
 }

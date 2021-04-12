@@ -24,6 +24,7 @@ class App extends StatelessWidget {
             textTheme: ButtonTextTheme.primary,
           ),
         ),
+        initialRoute: LoadingPage.routeName,
         routes: {
           // For dev purposes, should be removed on production
           DevPage.routeName: (BuildContext context) {
@@ -87,10 +88,11 @@ class App extends StatelessWidget {
             return const CookingLevelSelectionPage();
           },
           CookingGamePage.routeName: (BuildContext context) {
-            return const CookingGamePage();
+            final CookingGamePageArgs args =
+                ModalRoute.of(context).settings.arguments;
+            return CookingGamePage(time: args.time, orders: args.orders);
           }
         },
-        initialRoute: LoadingPage.routeName,
       ),
     );
   }
