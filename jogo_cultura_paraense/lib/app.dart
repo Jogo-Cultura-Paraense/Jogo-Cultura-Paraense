@@ -87,10 +87,16 @@ class App extends StatelessWidget {
           CookingLevelSelectionPage.routeName: (BuildContext context) {
             return const CookingLevelSelectionPage();
           },
-          CookingGamePage.routeName: (BuildContext context) {
+        },
+        onGenerateRoute: (settings) {
+          if (settings.name == CookingGamePage.routeName) {
             final CookingGamePageArgs args =
-                ModalRoute.of(context).settings.arguments;
-            return CookingGamePage(time: args.time, orders: args.orders);
+                settings.arguments as CookingGamePageArgs;
+            return MaterialPageRoute(
+              builder: (context) {
+                return CookingGamePage(time: args.time, orders: args.orders);
+              },
+            );
           }
         },
       ),
