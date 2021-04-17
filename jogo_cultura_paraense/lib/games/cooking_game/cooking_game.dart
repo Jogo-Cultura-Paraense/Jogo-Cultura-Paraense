@@ -5,7 +5,7 @@ import 'package:jogo_cultura_paraense/games/cooking_game/timer.dart';
 
 class CookingGame extends StatelessWidget {
   final int timeLimit;
-  const CookingGame(this.timeLimit, {Key key}) : super(key: key);
+  CookingGame(this.timeLimit, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +24,7 @@ class CookingGame extends StatelessWidget {
             width: deviceWidth,
           ),
           Expanded(
+            key: key,
             child: TapperWidget(
               height: 3 * deviceHeight / 5,
               width: deviceWidth,

@@ -92,18 +92,16 @@ class TapperBox extends Game with TapDetector {
 
   @override
   void onTapDown(TapDownDetails d) {
-    bool tappedTile = false;
-    IngredientSprite tappedIngredient;
+    List<IngredientSprite> tappedIngredients = [];
     for (IngredientSprite ingredient in _currentIngredients) {
       if (ingredient.contains(d.localPosition)) {
-        tappedIngredient = ingredient;
-        tappedTile = true;
+        tappedIngredients.add(ingredient);
         break;
       }
     }
-    if (tappedTile) {
-      if (_rect.contains(d.localPosition)) {
-        removeIngredient(tappedIngredient);
+    if (tappedIngredients.isNotEmpty && _rect.contains(d.localPosition)) {
+      for (IngredientSprite ingredient in tappedIngredients) {
+        removeIngredient(ingredient);
       }
     }
   }
@@ -121,27 +119,54 @@ class TapperBox extends Game with TapDetector {
 
   @override
   void update(double t) {
-    moveSprites();
+    moveSprites(t);
   }
 
-  void moveSprites() {
+  void moveSprites(double t) {
     final rnd = Random();
+    bool changedHorizontal;
+    bool changedVertical;
+
     for (IngredientSprite ingredient in _currentIngredients) {
-      if (1 + ingredient.left < _moveableArea.left ||
-          1 + ingredient.right > _moveableArea.right) {
-        ingredient.changeHorizontal();
-        if (rnd.nextInt(10) > 7) {
-          ingredient.changeVertical();
+      changedVertical = false;
+      changedHorizontal = false;
+
+      // If sprite is too far to the left, send it to the right
+      if (ingredient.left < _moveableArea.left) {
+        ingredient.toTheRight();
+        changedHorizontal = true;
+      }
+      // Else if sprite is too far to the right, send it to the left
+      else if (ingredient.right > _moveableArea.right) {
+        ingredient.toTheLeft();
+        changedHorizontal = true;
+      }
+      // If sprite is too far to the top, send it to the bottom
+      if (ingredient.top < _moveableArea.top) {
+        ingredient.toTheBottom();
+        changedVertical = true;
+      }
+      // Else if sprite is too far to the bottom, send it to the top
+      else if (ingredient.bottom > _moveableArea.bottom) {
+        ingredient.toTheTop();
+        changedVertical = true;
+      }
+
+      final flipChance = rnd.nextInt(10) + 1;
+      // If only vertical direction changed, roll if horizontal change as well
+      if (changedVertical == true && changedHorizontal == false) {
+        if (flipChance > 7) {
+          ingredient.flipHorizontalDirection();
         }
       }
-      if (1 + ingredient.top < _moveableArea.top ||
-          1 + ingredient.bottom > _moveableArea.bottom) {
-        ingredient.changeVertical();
-        if (rnd.nextInt(10) > 7) {
-          ingredient.changeHorizontal();
+      // Else if only horizontal direction changed, roll if vertical change as well
+      else if (changedVertical == false && changedHorizontal == true) {
+        if (flipChance > 7) {
+          ingredient.flipVerticalDirection();
         }
       }
-      ingredient.translate();
+
+      ingredient.translate(t: t);
     }
   }
 }
