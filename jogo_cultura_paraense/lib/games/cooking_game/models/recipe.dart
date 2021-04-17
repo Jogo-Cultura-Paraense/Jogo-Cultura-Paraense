@@ -27,6 +27,11 @@ abstract class Recipes {
   static CasquinhaDeCarangueijo get casquinhaDeCarangueijo =>
       CasquinhaDeCarangueijo();
   static Tacaca get tacaca => Tacaca();
+  static Manicoba get manicoba => Manicoba();
+  static FilhoteComAcai get filhoteComAcai => FilhoteComAcai();
+  static BoloDeMacaxeira get boloDeMacaxeira => BoloDeMacaxeira();
+  static CremeDeCupuacu get cremeDeCupuacu => CremeDeCupuacu();
+  static Vatapa get vatapa => Vatapa();
 }
 
 class PatoNoTucupi extends Recipe {
@@ -57,5 +62,53 @@ class Tacaca extends Recipe {
           RecipeIngredient(Ingredients.camarao),
           RecipeIngredient(Ingredients.jambu),
           RecipeIngredient(Ingredients.gomaDeTapica),
+        ]);
+}
+
+class Manicoba extends Recipe {
+  Manicoba()
+      : super(name: "Maniçoba", ingredients: [
+          RecipeIngredient(Ingredients.maniva),
+          RecipeIngredient(Ingredients.carnePorco),
+          RecipeIngredient(Ingredients.carneBoi),
+          RecipeIngredient(Ingredients.arroz),
+        ]);
+}
+
+class FilhoteComAcai extends Recipe {
+  FilhoteComAcai()
+      : super(name: "Filhote com Açai", ingredients: [
+          RecipeIngredient(Ingredients.filhote),
+          RecipeIngredient(Ingredients.arroz),
+          RecipeIngredient(Ingredients.acai),
+          RecipeIngredient(Ingredients.farinhaTapioca),
+        ]);
+}
+
+class BoloDeMacaxeira extends Recipe {
+  BoloDeMacaxeira()
+      : super(name: "Bolo de Macaxeira", ingredients: [
+          RecipeIngredient(Ingredients.macaxeira),
+          RecipeIngredient(Ingredients.acucar),
+          RecipeIngredient(Ingredients.ovos),
+          RecipeIngredient(Ingredients.cocoRalado),
+        ]);
+}
+
+class CremeDeCupuacu extends Recipe {
+  CremeDeCupuacu()
+      : super(name: "Creme de Cupuaçu", ingredients: [
+          RecipeIngredient(Ingredients.cupuacu),
+          RecipeIngredient(Ingredients.leiteCondensado),
+          RecipeIngredient(Ingredients.cremeLeite),
+        ]);
+}
+
+class Vatapa extends Recipe {
+  Vatapa()
+      : super(name: "Vatapá", ingredients: [
+          RecipeIngredient(Ingredients.camarao),
+          RecipeIngredient(Ingredients.tucupi),
+          RecipeIngredient(Ingredients.arroz),
         ]);
 }
