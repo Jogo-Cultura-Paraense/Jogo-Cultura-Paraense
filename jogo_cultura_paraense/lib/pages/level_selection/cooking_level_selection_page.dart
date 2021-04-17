@@ -24,27 +24,52 @@ class CookingLevelSelectionPage extends StatelessWidget {
       LevelSelectionCard(
         level: 2,
         unlocked: true,
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).pushNamed(
+            CookingGamePage.routeName,
+            arguments: CookingGamePageArgs.fromRules(CookingGameRules2()),
+          );
+        },
       ),
       LevelSelectionCard(
         level: 3,
         unlocked: true,
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).pushNamed(
+            CookingGamePage.routeName,
+            arguments: CookingGamePageArgs.fromRules(CookingGameRules3()),
+          );
+        },
       ),
       LevelSelectionCard(
         level: 4,
         unlocked: true,
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).pushNamed(
+            CookingGamePage.routeName,
+            arguments: CookingGamePageArgs.fromRules(CookingGameRules4()),
+          );
+        },
       ),
       LevelSelectionCard(
         level: 5,
         unlocked: true,
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).pushNamed(
+            CookingGamePage.routeName,
+            arguments: CookingGamePageArgs.fromRules(CookingGameRules5()),
+          );
+        },
       ),
       LevelSelectionCard(
         level: 6,
         unlocked: true,
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).pushNamed(
+            CookingGamePage.routeName,
+            arguments: CookingGamePageArgs.fromRules(CookingGameRules6()),
+          );
+        },
       ),
     ];
   }
