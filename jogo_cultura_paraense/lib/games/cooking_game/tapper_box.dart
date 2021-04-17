@@ -3,13 +3,12 @@ import 'dart:math';
 import 'package:flame/game/game.dart';
 import 'package:flame/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jogo_cultura_paraense/games/cooking_game/bloc/cooking_game_bloc.dart';
 import 'package:jogo_cultura_paraense/games/cooking_game/ingredient_sprite.dart';
 import 'package:jogo_cultura_paraense/games/cooking_game/models/order.dart';
 
+typedef IngredientIdCallBack = Function(String ingredientId);
+
 class TapperBox extends Game with TapDetector {
-  final BuildContext _context;
   final double top;
   final double left;
   final double height;
@@ -19,15 +18,16 @@ class TapperBox extends Game with TapDetector {
   final double spriteSize;
   final List<List<IngredientSprite>> _ingredientsByOrder = [];
   final List<IngredientSprite> _ingredientsToRender = [];
+  final IngredientIdCallBack _signalCorrectTap;
 
   TapperBox({
-    @required BuildContext context,
     @required this.height,
     @required this.width,
     @required List<Order> orders,
+    @required IngredientIdCallBack onCorrectTap,
     this.left = 0,
     this.top = 0,
-  })  : _context = context,
+  })  : _signalCorrectTap = onCorrectTap,
         _tappableArea = Rect.fromLTWH(width / 4, 0, width / 2, height),
         _visibleArea = Rect.fromLTWH(
           0,
@@ -80,9 +80,7 @@ class TapperBox extends Game with TapDetector {
         _ingredientsToRender.removeWhere(
           (element) => element.id == tappedIngredient.id,
         );
-        BlocProvider.of<CookingGameBloc>(_context).add(
-          RemoveIngredient(tappedIngredient.ingredientId),
-        );
+        _signalCorrectTap(tappedIngredient.ingredientId);
         break;
       }
     }

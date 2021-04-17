@@ -24,11 +24,15 @@ class TapperWidget extends StatelessWidget {
       buildWhen: (previousState, currentState) => false,
       builder: (context, state) {
         return TapperBox(
-          context: context,
           orders: state.orders,
           height: height ?? deviceHeight,
           width: width ?? deviceWidth,
           top: top ?? 0,
+          onCorrectTap: (String ingredientId) {
+            BlocProvider.of<CookingGameBloc>(context).add(
+              RemoveIngredient(ingredientId),
+            );
+          },
         ).widget;
       },
     );
