@@ -27,6 +27,7 @@ class OrderRow extends StatelessWidget {
             itemBuilder: (context, index) {
               return OrderCard(
                 order: state.orders[index],
+                currentOrder: index == 0,
                 height: height,
                 width: width / 3,
               );

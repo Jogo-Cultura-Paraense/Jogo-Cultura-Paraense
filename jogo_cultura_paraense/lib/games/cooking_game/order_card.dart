@@ -5,11 +5,13 @@ class OrderCard extends StatelessWidget {
   final double height;
   final double width;
   final Order order;
+  final bool currentOrder;
 
   const OrderCard({
     @required this.order,
     @required this.height,
     @required this.width,
+    this.currentOrder = false,
     Key key,
   }) : super(key: key);
 
@@ -47,7 +49,11 @@ class OrderCard extends StatelessWidget {
       padding: EdgeInsets.all(5.0),
       height: height,
       width: width,
-      color: Colors.yellow,
+      decoration: BoxDecoration(
+        color: Colors.yellow,
+        border: currentOrder ? Border.all(width: 1, color: Colors.red) : null,
+        borderRadius: BorderRadius.circular(10),
+      ),
       child: Column(
         children: [
           FittedBox(
