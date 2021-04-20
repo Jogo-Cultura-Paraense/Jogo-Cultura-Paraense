@@ -1,15 +1,35 @@
 part of 'cooking_game_bloc.dart';
 
+enum CookingGameStatus { ready, running, finished }
+
 @immutable
-abstract class CookingGameState {
+class CookingGameState {
+  final CookingGameStatus status;
   final List<Order> orders;
-  const CookingGameState({this.orders});
+  final int time;
 
-  CookingGameInitial gameInitial({List<Order> orders}) {
-    return CookingGameInitial(orders ?? this.orders);
+  CookingGameState({this.status, this.orders, this.time});
+
+  factory CookingGameState.initial({
+    @required List<Order> orders,
+    @required int time,
+  }) {
+    return CookingGameState(
+      status: CookingGameStatus.ready,
+      orders: orders,
+      time: time,
+    );
   }
-}
 
-class CookingGameInitial extends CookingGameState {
-  const CookingGameInitial(List<Order> orders) : super(orders: orders);
+  CookingGameState copyWith({
+    CookingGameStatus status,
+    List<Order> orders,
+    int time,
+  }) {
+    return CookingGameState(
+      status: status ?? this.status,
+      orders: orders ?? this.orders,
+      time: time ?? this.time,
+    );
+  }
 }
