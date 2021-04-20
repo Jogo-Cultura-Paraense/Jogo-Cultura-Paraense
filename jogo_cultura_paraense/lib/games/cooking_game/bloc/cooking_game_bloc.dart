@@ -8,20 +8,23 @@ part 'cooking_game_event.dart';
 part 'cooking_game_state.dart';
 
 class CookingGameBloc extends Bloc<CookingGameEvent, CookingGameState> {
-  CookingGameBloc(List<Order> orders) : super(CookingGameInitial(orders));
+  CookingGameBloc(List<Order> orders, int time)
+      : super(CookingGameState.initial(orders: orders, time: time));
 
   @override
   Stream<CookingGameState> mapEventToState(CookingGameEvent event) async* {
     if (event is RemoveIngredient) {
-      if (state.orders.length > 0) {
-        final newOrders = state.orders;
-        newOrders[0].removeIngredient(event.ingredientId);
-        if (newOrders[0].ingredients.length < 1) {
-          newOrders.removeAt(0);
-        }
-        yield state.gameInitial(orders: newOrders);
+      final newOrders = state.orders;
+      newOrders[0].removeIngredient(event.ingredientId);
+      if (newOrders[0].ingredients.length < 1) {
+        newOrders.removeAt(0);
       }
-      yield state;
+      yield state.copyWith(
+        status: newOrders.isEmpty ? CookingGameStatus.finished : state.status,
+        orders: newOrders,
+      );
+    } else if (event is FinishGame) {
+      yield state.copyWith(status: CookingGameStatus.finished);
     }
   }
 }
