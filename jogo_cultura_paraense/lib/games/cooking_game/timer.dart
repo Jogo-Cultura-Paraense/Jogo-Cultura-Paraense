@@ -14,17 +14,20 @@ class Timer extends StatelessWidget {
     return "$minutes:" + formatedSec;
   }
 
-  void toScorePage(BuildContext context, double time) {
+  void toScorePage(BuildContext context, Duration duration, int score) {
     Navigator.of(context).popAndPushNamed(
       ScorePage.routeName,
       arguments: ScorePageArgs(
         game: Games.faunaAndFlora,
         map: "Teste",
-        score: 0,
-        finalScore: 0,
+        score: score,
+        finalScore: score,
         topScore: 0,
-        time: time,
-        prettyTime: "00:00",
+        time: duration.inSeconds.toDouble(),
+        prettyTime: getFormatedTime(
+          duration.inMinutes,
+          duration.inSeconds % 60,
+        ),
         hintsLeft: 0,
         hints: 0,
       ),
@@ -44,7 +47,7 @@ class Timer extends StatelessWidget {
           duration: Duration(seconds: timeLimit),
           tween: Tween(begin: Duration(seconds: timeLimit), end: Duration.zero),
           onEnd: () {
-            toScorePage(context, 0.0);
+            BlocProvider.of<CookingGameBloc>(context).add(FinishGame());
           },
           builder: (BuildContext context, Duration value, Widget child) {
             final minutes = value.inMinutes;
@@ -55,7 +58,11 @@ class Timer extends StatelessWidget {
               },
               listener: (context, state) {
                 if (state.status == CookingGameStatus.finished) {
-                  toScorePage(context, value.inSeconds.toDouble());
+                  toScorePage(
+                    context,
+                    value,
+                    state.getScore(value.inSeconds),
+                  );
                 }
               },
               child: Padding(

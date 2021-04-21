@@ -32,4 +32,14 @@ class CookingGameState {
       rules: this.rules,
     );
   }
+
+  int getScore(int timeLeft) {
+    final maxScore = rules.level * 1000;
+    // How much time is left from the available time
+    final timePercentage = timeLeft / rules.time;
+    // How much objectives were left from the available objects
+    final objectivePercentage = orders.length / rules.allOrders.length;
+    final scorePercentage = (timePercentage - objectivePercentage + 1) / 2;
+    return (maxScore * scorePercentage).floor().toInt();
+  }
 }
