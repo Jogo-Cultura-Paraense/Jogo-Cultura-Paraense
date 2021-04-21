@@ -8,8 +8,8 @@ part 'cooking_game_event.dart';
 part 'cooking_game_state.dart';
 
 class CookingGameBloc extends Bloc<CookingGameEvent, CookingGameState> {
-  CookingGameBloc(List<Order> orders, int time)
-      : super(CookingGameState.initial(orders: orders, time: time));
+  CookingGameBloc(List<Order> orders, int timeLimit)
+      : super(CookingGameState.initial(orders: orders, timeLimit: timeLimit));
 
   @override
   Stream<CookingGameState> mapEventToState(CookingGameEvent event) async* {

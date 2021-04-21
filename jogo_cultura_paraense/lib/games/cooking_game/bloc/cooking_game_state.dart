@@ -6,30 +6,30 @@ enum CookingGameStatus { ready, running, finished }
 class CookingGameState {
   final CookingGameStatus status;
   final List<Order> orders;
-  final int time;
+  final int timeLimit;
 
-  CookingGameState({this.status, this.orders, this.time});
+  CookingGameState({this.status, this.orders, this.timeLimit});
 
   factory CookingGameState.initial({
     @required List<Order> orders,
-    @required int time,
+    @required int timeLimit,
   }) {
     return CookingGameState(
       status: CookingGameStatus.ready,
       orders: orders,
-      time: time,
+      timeLimit: timeLimit,
     );
   }
 
   CookingGameState copyWith({
     CookingGameStatus status,
     List<Order> orders,
-    int time,
+    int timeLimit,
   }) {
     return CookingGameState(
       status: status ?? this.status,
       orders: orders ?? this.orders,
-      time: time ?? this.time,
+      timeLimit: timeLimit ?? this.timeLimit,
     );
   }
 }
