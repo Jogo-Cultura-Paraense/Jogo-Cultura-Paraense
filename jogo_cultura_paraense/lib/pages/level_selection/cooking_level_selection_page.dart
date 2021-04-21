@@ -17,9 +17,7 @@ class CookingLevelSelectionPage extends StatelessWidget {
         onTap: () {
           Navigator.of(context).pushNamed(
             CookingGamePage.routeName,
-            arguments: CookingGamePageArgs.fromRules(
-              CookingGameRulebook.level1,
-            ),
+            arguments: CookingGameRulebook.level1,
           );
         },
       ),
@@ -29,9 +27,7 @@ class CookingLevelSelectionPage extends StatelessWidget {
         onTap: () {
           Navigator.of(context).pushNamed(
             CookingGamePage.routeName,
-            arguments: CookingGamePageArgs.fromRules(
-              CookingGameRulebook.level2,
-            ),
+            arguments: CookingGameRulebook.level2,
           );
         },
       ),
@@ -41,9 +37,7 @@ class CookingLevelSelectionPage extends StatelessWidget {
         onTap: () {
           Navigator.of(context).pushNamed(
             CookingGamePage.routeName,
-            arguments: CookingGamePageArgs.fromRules(
-              CookingGameRulebook.level3,
-            ),
+            arguments: CookingGameRulebook.level3,
           );
         },
       ),
@@ -53,9 +47,7 @@ class CookingLevelSelectionPage extends StatelessWidget {
         onTap: () {
           Navigator.of(context).pushNamed(
             CookingGamePage.routeName,
-            arguments: CookingGamePageArgs.fromRules(
-              CookingGameRulebook.level4,
-            ),
+            arguments: CookingGameRulebook.level4,
           );
         },
       ),
@@ -65,9 +57,7 @@ class CookingLevelSelectionPage extends StatelessWidget {
         onTap: () {
           Navigator.of(context).pushNamed(
             CookingGamePage.routeName,
-            arguments: CookingGamePageArgs.fromRules(
-              CookingGameRulebook.level5,
-            ),
+            arguments: CookingGameRulebook.level5,
           );
         },
       ),
@@ -77,9 +67,7 @@ class CookingLevelSelectionPage extends StatelessWidget {
         onTap: () {
           Navigator.of(context).pushNamed(
             CookingGamePage.routeName,
-            arguments: CookingGamePageArgs.fromRules(
-              CookingGameRulebook.level6,
-            ),
+            arguments: CookingGameRulebook.level6,
           );
         },
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jogo_cultura_paraense/games/cooking_game/cooking_game_rules.dart';
 import 'package:jogo_cultura_paraense/pages/finished_game_page.dart';
 import 'package:jogo_cultura_paraense/games/vocabulario/main_vocabulario.dart';
 import 'package:jogo_cultura_paraense/pages/pages.dart';
@@ -88,13 +89,13 @@ class App extends StatelessWidget {
             return const CookingLevelSelectionPage();
           },
         },
+        // ignore: missing_return
         onGenerateRoute: (settings) {
           if (settings.name == CookingGamePage.routeName) {
-            final CookingGamePageArgs args =
-                settings.arguments as CookingGamePageArgs;
+            final CookingGameRules rules = settings.arguments;
             return MaterialPageRoute(
               builder: (context) {
-                return CookingGamePage(time: args.time, orders: args.orders);
+                return CookingGamePage(rules: rules);
               },
             );
           }
