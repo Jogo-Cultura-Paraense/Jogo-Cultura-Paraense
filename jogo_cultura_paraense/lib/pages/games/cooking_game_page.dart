@@ -20,7 +20,7 @@ class CookingGamePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CookingGameBloc(_orders),
+      create: (context) => CookingGameBloc(_orders, time),
       child: CookingGame(time),
     );
   }

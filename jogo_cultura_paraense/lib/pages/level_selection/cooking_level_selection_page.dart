@@ -17,7 +17,9 @@ class CookingLevelSelectionPage extends StatelessWidget {
         onTap: () {
           Navigator.of(context).pushNamed(
             CookingGamePage.routeName,
-            arguments: CookingGamePageArgs.fromRules(CookingGameRules1()),
+            arguments: CookingGamePageArgs.fromRules(
+              CookingGameRulebook.level1,
+            ),
           );
         },
       ),
@@ -27,7 +29,9 @@ class CookingLevelSelectionPage extends StatelessWidget {
         onTap: () {
           Navigator.of(context).pushNamed(
             CookingGamePage.routeName,
-            arguments: CookingGamePageArgs.fromRules(CookingGameRules2()),
+            arguments: CookingGamePageArgs.fromRules(
+              CookingGameRulebook.level2,
+            ),
           );
         },
       ),
@@ -37,7 +41,9 @@ class CookingLevelSelectionPage extends StatelessWidget {
         onTap: () {
           Navigator.of(context).pushNamed(
             CookingGamePage.routeName,
-            arguments: CookingGamePageArgs.fromRules(CookingGameRules3()),
+            arguments: CookingGamePageArgs.fromRules(
+              CookingGameRulebook.level3,
+            ),
           );
         },
       ),
@@ -47,7 +53,9 @@ class CookingLevelSelectionPage extends StatelessWidget {
         onTap: () {
           Navigator.of(context).pushNamed(
             CookingGamePage.routeName,
-            arguments: CookingGamePageArgs.fromRules(CookingGameRules4()),
+            arguments: CookingGamePageArgs.fromRules(
+              CookingGameRulebook.level4,
+            ),
           );
         },
       ),
@@ -57,7 +65,9 @@ class CookingLevelSelectionPage extends StatelessWidget {
         onTap: () {
           Navigator.of(context).pushNamed(
             CookingGamePage.routeName,
-            arguments: CookingGamePageArgs.fromRules(CookingGameRules5()),
+            arguments: CookingGamePageArgs.fromRules(
+              CookingGameRulebook.level5,
+            ),
           );
         },
       ),
@@ -67,7 +77,9 @@ class CookingLevelSelectionPage extends StatelessWidget {
         onTap: () {
           Navigator.of(context).pushNamed(
             CookingGamePage.routeName,
-            arguments: CookingGamePageArgs.fromRules(CookingGameRules6()),
+            arguments: CookingGamePageArgs.fromRules(
+              CookingGameRulebook.level6,
+            ),
           );
         },
       ),
