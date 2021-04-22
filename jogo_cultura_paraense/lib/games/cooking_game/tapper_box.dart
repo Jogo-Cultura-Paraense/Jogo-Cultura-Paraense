@@ -75,6 +75,7 @@ class TapperBox extends Game with TapDetector {
       // If tapped ingredient is on the list of ingredients of current order:
       // 1. Remove it from current order
       // 2. Remove it from ingredients to render
+      // 3. Signal state manager to remove it from state
       if (currentOrder[i].ingredientId == tappedIngredient.ingredientId) {
         currentOrder.removeAt(i);
         _ingredientsToRender.removeWhere(
