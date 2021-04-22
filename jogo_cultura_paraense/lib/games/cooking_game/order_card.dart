@@ -56,17 +56,23 @@ class OrderCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          FittedBox(
-            fit: BoxFit.fitWidth,
-            child: Text(order.name),
+          Flexible(
+            child: FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Text(order.name),
+            ),
+            fit: FlexFit.tight,
+            flex: 2,
           ),
-          Expanded(
+          Flexible(
             child: GridView.count(
               shrinkWrap: true,
               padding: EdgeInsets.all(5.0),
               crossAxisCount: 4,
               children: _buildGridList(),
             ),
+            fit: FlexFit.tight,
+            flex: 4,
           ),
         ],
       ),
