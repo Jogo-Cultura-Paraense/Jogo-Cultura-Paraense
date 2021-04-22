@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jogo_cultura_paraense/games/cooking_game/bloc/cooking_game_bloc.dart';
+import 'package:jogo_cultura_paraense/games/cooking_game/models/order.dart';
 import 'package:jogo_cultura_paraense/games/cooking_game/order_row.dart';
-import 'package:jogo_cultura_paraense/games/cooking_game/tapper_widget.dart';
+import 'package:jogo_cultura_paraense/games/cooking_game/tapper_box.dart';
 import 'package:jogo_cultura_paraense/games/cooking_game/timer.dart';
 
 class CookingGame extends StatelessWidget {
   final int timeLimit;
-  CookingGame(this.timeLimit, {Key key}) : super(key: key);
+  final List<Order> _orders;
+  CookingGame(this.timeLimit, List<Order> orders, {Key key})
+      : _orders = orders,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +30,17 @@ class CookingGame extends StatelessWidget {
             width: deviceWidth,
           ),
           Expanded(
-            key: key,
-            child: TapperWidget(
+            child: TapperBox(
+              orders: _orders,
               height: 3 * deviceHeight / 5,
               width: deviceWidth,
               top: deviceHeight / 6,
-            ),
+              onCorrectTap: (String ingredientId) {
+                BlocProvider.of<CookingGameBloc>(context).add(
+                  RemoveIngredient(ingredientId),
+                );
+              },
+            ).widget,
           ),
           Container(
             height: deviceHeight / 6,

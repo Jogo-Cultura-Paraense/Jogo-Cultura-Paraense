@@ -6,19 +6,19 @@ import 'package:jogo_cultura_paraense/games/cooking_game/cooking_game_rules.dart
 
 class CookingGamePage extends StatelessWidget {
   static const String routeName = '/cooking_game';
-  final CookingGameRules _rules;
+  final CookingGameBloc _bloc;
 
-  const CookingGamePage({
+  CookingGamePage({
     @required CookingGameRules rules,
     Key key,
-  })  : _rules = rules,
+  })  : _bloc = CookingGameBloc(rules),
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CookingGameBloc(_rules),
-      child: CookingGame(_rules.time),
+      create: (context) => _bloc,
+      child: CookingGame(_bloc.state.rules.time, _bloc.state.orders),
     );
   }
 }
