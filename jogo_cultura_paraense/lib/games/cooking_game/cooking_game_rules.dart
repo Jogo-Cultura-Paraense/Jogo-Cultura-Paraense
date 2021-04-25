@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/games/cooking_game/models/order.dart';
 import 'package:jogo_cultura_paraense/games/cooking_game/models/recipe.dart';
+import 'package:jogo_cultura_paraense/model/map.dart';
 
 class CookingGameRules {
+  final String levelName;
   final int level;
   final int time;
   final int hints;
@@ -14,8 +16,10 @@ class CookingGameRules {
     @required this.time,
     @required this.normalOrders,
     @required this.doubleOrders,
+    String levelName,
     int hints,
-  }) : this.hints = hints ?? level;
+  })  : this.hints = hints ?? level,
+        this.levelName = levelName ?? level.toString();
 
   List<Order> get allOrders {
     final allOrders = <Order>[];
@@ -29,6 +33,7 @@ class CookingGameRules {
 abstract class CookingGameRulebook {
   static CookingGameRules get level1 => CookingGameRules(
         level: 1,
+        levelName: Maps.sudoeste.region,
         normalOrders: <Order>[
           Order.fromRecipe(Recipes.patoNoTucupi),
           Order.fromRecipe(Recipes.casquinhaDeCarangueijo),
@@ -43,6 +48,7 @@ abstract class CookingGameRulebook {
 
   static CookingGameRules get level2 => CookingGameRules(
         level: 2,
+        levelName: Maps.baixoAmazonas.region,
         normalOrders: <Order>[
           Order.fromRecipe(Recipes.patoNoTucupi),
           Order.fromRecipe(Recipes.casquinhaDeCarangueijo),
@@ -58,6 +64,7 @@ abstract class CookingGameRulebook {
 
   static CookingGameRules get level3 => CookingGameRules(
         level: 3,
+        levelName: Maps.sudeste.region,
         normalOrders: <Order>[
           Order.fromRecipe(Recipes.patoNoTucupi),
           Order.fromRecipe(Recipes.casquinhaDeCarangueijo),
@@ -74,6 +81,7 @@ abstract class CookingGameRulebook {
 
   static CookingGameRules get level4 => CookingGameRules(
         level: 4,
+        levelName: Maps.nordeste.region,
         normalOrders: <Order>[
           Order.fromRecipe(Recipes.patoNoTucupi),
           Order.fromRecipe(Recipes.casquinhaDeCarangueijo),
@@ -91,6 +99,7 @@ abstract class CookingGameRulebook {
 
   static CookingGameRules get level5 => CookingGameRules(
         level: 5,
+        levelName: Maps.marajo.region,
         normalOrders: <Order>[
           Order.fromRecipe(Recipes.patoNoTucupi),
           Order.fromRecipe(Recipes.casquinhaDeCarangueijo),
@@ -109,6 +118,7 @@ abstract class CookingGameRulebook {
 
   static CookingGameRules get level6 => CookingGameRules(
         level: 6,
+        levelName: Maps.metropolitana.region,
         normalOrders: <Order>[
           Order.fromRecipe(Recipes.patoNoTucupi),
           Order.fromRecipe(Recipes.casquinhaDeCarangueijo),

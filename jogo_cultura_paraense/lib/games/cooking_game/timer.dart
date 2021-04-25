@@ -21,12 +21,13 @@ class Timer extends StatelessWidget {
     int finalScore,
     int hints,
     int hintsLeft,
+    String map,
   ) {
     Navigator.of(context).popAndPushNamed(
       ScorePage.routeName,
       arguments: ScorePageArgs(
-        game: Games.faunaAndFlora,
-        map: "Teste",
+        game: Games.cooking,
+        map: map,
         score: score,
         finalScore: finalScore,
         topScore: 0,
@@ -72,6 +73,7 @@ class Timer extends StatelessWidget {
                     state.getFinalScore(value.inSeconds),
                     state.rules.hints,
                     state.rules.hints - state.hints,
+                    state.rules.levelName,
                   );
                 }
               },
