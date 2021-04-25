@@ -34,13 +34,17 @@ class OrderIngredient extends RecipeIngredient {
   }
 }
 
-class Order {
-  final String name;
+class Order extends Recipe {
   final List<OrderIngredient> _ingredients;
 
-  const Order({List<OrderIngredient> ingredients, this.name})
-      : _ingredients = ingredients;
+  const Order(String name, {List<OrderIngredient> ingredients})
+      : _ingredients = ingredients,
+        super(name);
 
+  @override
+  String get twoLinesName => name;
+
+  @override
   List<OrderIngredient> get ingredients => _ingredients;
 
   factory Order.fromRecipe(Recipe recipe) {
@@ -48,7 +52,7 @@ class Order {
     for (RecipeIngredient ingredient in recipe.ingredients) {
       orderIngredients.add(OrderIngredient.fromRecipeIngredient(ingredient));
     }
-    return Order(name: recipe.twoLinesName, ingredients: orderIngredients);
+    return Order(recipe.twoLinesName, ingredients: orderIngredients);
   }
 
   void removeIngredient(String ingredientId) {
@@ -73,6 +77,6 @@ class Order {
     for (OrderIngredient ingredient in this._ingredients) {
       newIngredients.add(ingredient.doubleQuantity());
     }
-    return Order(name: this.name, ingredients: newIngredients);
+    return Order(this.name, ingredients: newIngredients);
   }
 }
