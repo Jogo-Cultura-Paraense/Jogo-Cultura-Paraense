@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flame/flame_audio.dart';
 import 'package:flame/game/game.dart';
 import 'package:flame/gestures.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,7 @@ class TapperBox extends Game with TapDetector {
   final IngredientIdCallBack _signalCorrectTap;
   final VoidCallback _signalHintTap;
   final int hints;
+  final FlameAudio _audio = FlameAudio();
   int _hintsUsed = 0;
 
   TapperBox({
@@ -39,6 +41,7 @@ class TapperBox extends Game with TapDetector {
         _visibleArea = Rect.fromLTWH(0, 0, width, height),
         _hintRect = Rect.fromLTWH(0, 0, width / 10, width / 10),
         spriteSize = width / 10 {
+    _audio.disableLog();
     _initIngredients(orders);
   }
 
@@ -99,6 +102,7 @@ class TapperBox extends Game with TapDetector {
 
   void handleCorrectTap(IngredientSprite tappedIngredient) {
     // First list of ingredients represent the current order to be cooked
+    bool foundIngredient = false;
     final orderToRemoveFrom = _ingredientsByOrder[0];
     for (int i = 0; i < orderToRemoveFrom.length; i += 1) {
       // If tapped ingredient is on the list of ingredients of current order:
@@ -111,8 +115,14 @@ class TapperBox extends Game with TapDetector {
           (element) => element.id == tappedIngredient.id,
         );
         _signalCorrectTap(tappedIngredient.ingredientId);
+        foundIngredient = true;
         break;
       }
+    }
+    if (foundIngredient) {
+      _audio.play('completetask_0.mp3');
+    } else {
+      _audio.play('explosion.wav');
     }
     // If current order is empty, then remove it
     if (orderToRemoveFrom.isEmpty) {
@@ -146,6 +156,8 @@ class TapperBox extends Game with TapDetector {
         for (IngredientSprite ingredient in tappedIngredients) {
           handleCorrectTap(ingredient);
         }
+      } else if (!_tappableArea.contains(d.localPosition)) {
+        _audio.play('explosion.wav');
       }
     }
   }

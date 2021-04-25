@@ -89,6 +89,9 @@ flutter:
     - assets/images/findGame/no_button.png
     - assets/images/findGame/hint_button.png
     - assets/images/findGame/how_to.png
+    - assets/audio/completetask_0.mp3
+    - assets/audio/explosion.wav
+    - assets/audio/win_sound.wav
 
   # To add assets to your application, add an assets section, like this:
   # assets:
