@@ -21,6 +21,8 @@ class TapperBox extends Game with TapDetector {
   final List<IngredientSprite> _ingredientsToRender = [];
   final IngredientIdCallBack _signalCorrectTap;
   final VoidCallback _signalHintTap;
+  final int hints;
+  int _hintsUsed = 0;
 
   TapperBox({
     @required this.height,
@@ -28,6 +30,7 @@ class TapperBox extends Game with TapDetector {
     @required List<Order> orders,
     @required IngredientIdCallBack onCorrectTap,
     @required VoidCallback onHintTap,
+    @required this.hints,
     this.left = 0,
     this.top = 0,
   })  : _signalCorrectTap = onCorrectTap,
@@ -69,23 +72,26 @@ class TapperBox extends Game with TapDetector {
   }
 
   void handleHintTap() {
-    // Remove the next 5 ingredients in sequence
-    for (int i = 0; i < 5; i++) {
-      final orderToRemoveFrom = _ingredientsByOrder[0];
-      final ingredientToRemove = orderToRemoveFrom[0];
-      orderToRemoveFrom.removeAt(0);
-      _ingredientsToRender
-          .removeWhere((element) => element.id == ingredientToRemove.id);
-      if (orderToRemoveFrom.isEmpty) {
-        _ingredientsByOrder.removeAt(0);
-        // If there are more orders to finish, add to the render
-        if (_ingredientsByOrder.length > 1) {
-          _ingredientsToRender.addAll(_ingredientsByOrder[1]);
+    if (_hintsUsed < hints) {
+      // Remove the next 5 ingredients in sequence
+      for (int i = 0; i < 5; i++) {
+        final orderToRemoveFrom = _ingredientsByOrder[0];
+        final ingredientToRemove = orderToRemoveFrom[0];
+        orderToRemoveFrom.removeAt(0);
+        _ingredientsToRender
+            .removeWhere((element) => element.id == ingredientToRemove.id);
+        if (orderToRemoveFrom.isEmpty) {
+          _ingredientsByOrder.removeAt(0);
+          // If there are more orders to finish, add to the render
+          if (_ingredientsByOrder.length > 1) {
+            _ingredientsToRender.addAll(_ingredientsByOrder[1]);
+          }
+          // Else stop remove loop
+          else {
+            break;
+          }
         }
-        // Else stop remove loop
-        else {
-          break;
-        }
+        _hintsUsed += 1;
       }
     }
     _signalHintTap();

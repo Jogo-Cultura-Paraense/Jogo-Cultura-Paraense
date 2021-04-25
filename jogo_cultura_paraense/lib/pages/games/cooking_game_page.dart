@@ -18,7 +18,11 @@ class CookingGamePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => _bloc,
-      child: CookingGame(_bloc.state.rules.time, _bloc.state.orders),
+      child: CookingGame(
+        _bloc.state.rules.time,
+        _bloc.state.orders,
+        _bloc.state.rules.hints,
+      ),
     );
   }
 }

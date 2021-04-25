@@ -14,22 +14,29 @@ class Timer extends StatelessWidget {
     return "$minutes:" + formatedSec;
   }
 
-  void toScorePage(BuildContext context, Duration duration, int score) {
+  void toScorePage(
+    BuildContext context,
+    Duration duration,
+    int score,
+    int finalScore,
+    int hints,
+    int hintsLeft,
+  ) {
     Navigator.of(context).popAndPushNamed(
       ScorePage.routeName,
       arguments: ScorePageArgs(
         game: Games.faunaAndFlora,
         map: "Teste",
         score: score,
-        finalScore: score,
+        finalScore: finalScore,
         topScore: 0,
         time: duration.inSeconds.toDouble(),
         prettyTime: getFormatedTime(
           duration.inMinutes,
           duration.inSeconds % 60,
         ),
-        hintsLeft: 0,
-        hints: 0,
+        hintsLeft: hintsLeft,
+        hints: hints,
       ),
     );
   }
@@ -62,6 +69,9 @@ class Timer extends StatelessWidget {
                     context,
                     value,
                     state.getScore(value.inSeconds),
+                    state.getFinalScore(value.inSeconds),
+                    state.rules.hints,
+                    state.rules.hints - state.hints,
                   );
                 }
               },

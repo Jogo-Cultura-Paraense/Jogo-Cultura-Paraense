@@ -9,7 +9,8 @@ import 'package:jogo_cultura_paraense/games/cooking_game/timer.dart';
 class CookingGame extends StatelessWidget {
   final int timeLimit;
   final List<Order> _orders;
-  CookingGame(this.timeLimit, List<Order> orders, {Key key})
+  final int hints;
+  CookingGame(this.timeLimit, List<Order> orders, this.hints, {Key key})
       : _orders = orders,
         super(key: key);
 
@@ -32,6 +33,7 @@ class CookingGame extends StatelessWidget {
           Expanded(
             child: TapperBox(
               orders: _orders,
+              hints: hints,
               height: 3 * deviceHeight / 5,
               width: deviceWidth,
               top: deviceHeight / 6,

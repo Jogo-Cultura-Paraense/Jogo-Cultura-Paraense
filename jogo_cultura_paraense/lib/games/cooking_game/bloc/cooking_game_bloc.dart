@@ -44,6 +44,7 @@ class CookingGameBloc extends Bloc<CookingGameEvent, CookingGameState> {
       yield state.copyWith(
         status: newOrders.isEmpty ? CookingGameStatus.finished : state.status,
         orders: newOrders,
+        hints: state.hints + 1,
       );
     } else if (event is FinishGame) {
       yield state.copyWith(status: CookingGameStatus.finished);

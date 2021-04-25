@@ -5,6 +5,7 @@ import 'package:jogo_cultura_paraense/games/cooking_game/models/recipe.dart';
 class CookingGameRules {
   final int level;
   final int time;
+  final int hints;
   final List<Order> normalOrders;
   final List<Order> doubleOrders;
 
@@ -13,7 +14,8 @@ class CookingGameRules {
     @required this.time,
     @required this.normalOrders,
     @required this.doubleOrders,
-  });
+    int hints,
+  }) : this.hints = hints ?? level;
 
   List<Order> get allOrders {
     final allOrders = <Order>[];
