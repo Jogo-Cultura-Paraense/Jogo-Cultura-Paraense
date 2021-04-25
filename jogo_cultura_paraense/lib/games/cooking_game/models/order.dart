@@ -1,27 +1,36 @@
-import 'package:jogo_cultura_paraense/games/cooking_game/models/ingredient.dart';
 import 'package:jogo_cultura_paraense/games/cooking_game/models/recipe.dart';
 
-class OrderIngredient {
-  int _quantity;
-  final Ingredient ingredient;
+class OrderIngredient extends RecipeIngredient {
+  int _currentQuantity;
 
-  OrderIngredient(this.ingredient, {int quantity = 1}) : _quantity = quantity;
+  OrderIngredient(String id, {int quantity = 1, String imagePath})
+      : _currentQuantity = quantity,
+        super(
+          id,
+          imagePath: imagePath,
+          quantity: quantity,
+        );
 
   factory OrderIngredient.fromRecipeIngredient(RecipeIngredient ingredient) {
     return OrderIngredient(
-      ingredient.ingredient,
+      ingredient.id,
       quantity: ingredient.quantity,
+      imagePath: ingredient.imagePath,
     );
   }
 
-  int get quantity => _quantity;
+  int get currentQuantity => _currentQuantity;
 
   void removeQuantity() {
-    _quantity -= 1;
+    _currentQuantity -= 1;
   }
 
   OrderIngredient doubleQuantity() {
-    return OrderIngredient(this.ingredient, quantity: 2 * this.quantity);
+    return OrderIngredient(
+      this.id,
+      quantity: 2 * this.quantity,
+      imagePath: this.imagePath,
+    );
   }
 }
 
@@ -43,14 +52,19 @@ class Order {
   }
 
   void removeIngredient(String ingredientId) {
+    bool found = false;
     for (int i = 0; i < _ingredients.length; i += 1) {
-      if (_ingredients[i].ingredient.id == ingredientId) {
+      if (_ingredients[i].id == ingredientId) {
+        found = true;
         _ingredients[i].removeQuantity();
-        if (_ingredients[i].quantity < 1) {
+        if (_ingredients[i].currentQuantity < 1) {
           _ingredients.removeAt(i);
         }
         break;
       }
+    }
+    if (!found) {
+      throw Exception("Ingredient with id '$ingredientId' not found");
     }
   }
 

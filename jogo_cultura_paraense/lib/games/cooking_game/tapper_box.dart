@@ -54,8 +54,8 @@ class TapperBox extends Game with TapDetector {
           ingredients.add(
             IngredientSprite(
               id: id,
-              ingredientId: ingredient.ingredient.id,
-              sprite: ingredient.ingredient.imagePath,
+              ingredientId: ingredient.id,
+              sprite: ingredient.imagePath,
               x: width / 2,
               y: height / 2,
               size: spriteSize,

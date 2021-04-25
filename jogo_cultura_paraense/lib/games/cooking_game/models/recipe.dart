@@ -1,13 +1,23 @@
 import 'package:jogo_cultura_paraense/games/cooking_game/models/ingredient.dart';
 
-class RecipeIngredient {
+class RecipeIngredient extends Ingredient {
   final int quantity;
-  final Ingredient ingredient;
 
-  const RecipeIngredient(this.ingredient, {this.quantity = 1});
+  RecipeIngredient(
+    String id, {
+    this.quantity = 1,
+    String imagePath,
+  }) : super(id, imagePath: imagePath);
 
-  RecipeIngredient doubleQuantity() {
-    return RecipeIngredient(this.ingredient, quantity: 2 * this.quantity);
+  factory RecipeIngredient.fromIngredient(
+    Ingredient ingredient, {
+    int quantity = 1,
+  }) {
+    return RecipeIngredient(
+      ingredient.id,
+      quantity: quantity,
+      imagePath: ingredient.imagePath,
+    );
   }
 }
 
@@ -37,19 +47,19 @@ abstract class Recipes {
 class PatoNoTucupi extends Recipe {
   PatoNoTucupi()
       : super(name: "Pato no Tucupi", ingredients: [
-          RecipeIngredient(Ingredients.pato),
-          RecipeIngredient(Ingredients.tucupi),
-          RecipeIngredient(Ingredients.jambu),
-          RecipeIngredient(Ingredients.arroz),
+          RecipeIngredient.fromIngredient(Ingredients.pato),
+          RecipeIngredient.fromIngredient(Ingredients.tucupi),
+          RecipeIngredient.fromIngredient(Ingredients.jambu),
+          RecipeIngredient.fromIngredient(Ingredients.arroz),
         ]);
 }
 
 class CasquinhaDeCarangueijo extends Recipe {
   CasquinhaDeCarangueijo()
       : super(name: "Casquinha de Carangueijo", ingredients: [
-          RecipeIngredient(Ingredients.carangueijo, quantity: 2),
-          RecipeIngredient(Ingredients.leiteDeCoco),
-          RecipeIngredient(Ingredients.farofa),
+          RecipeIngredient.fromIngredient(Ingredients.carangueijo, quantity: 2),
+          RecipeIngredient.fromIngredient(Ingredients.leiteDeCoco),
+          RecipeIngredient.fromIngredient(Ingredients.farofa),
         ]);
   @override
   String get twoLinesName => "Casquinha de\nCarangueijo";
@@ -58,57 +68,57 @@ class CasquinhaDeCarangueijo extends Recipe {
 class Tacaca extends Recipe {
   Tacaca()
       : super(name: "Tacacá", ingredients: [
-          RecipeIngredient(Ingredients.tucupi),
-          RecipeIngredient(Ingredients.camarao),
-          RecipeIngredient(Ingredients.jambu),
-          RecipeIngredient(Ingredients.gomaDeTapica),
+          RecipeIngredient.fromIngredient(Ingredients.tucupi),
+          RecipeIngredient.fromIngredient(Ingredients.camarao),
+          RecipeIngredient.fromIngredient(Ingredients.jambu),
+          RecipeIngredient.fromIngredient(Ingredients.gomaDeTapica),
         ]);
 }
 
 class Manicoba extends Recipe {
   Manicoba()
       : super(name: "Maniçoba", ingredients: [
-          RecipeIngredient(Ingredients.maniva),
-          RecipeIngredient(Ingredients.carnePorco),
-          RecipeIngredient(Ingredients.carneBoi),
-          RecipeIngredient(Ingredients.arroz),
+          RecipeIngredient.fromIngredient(Ingredients.maniva),
+          RecipeIngredient.fromIngredient(Ingredients.carnePorco),
+          RecipeIngredient.fromIngredient(Ingredients.carneBoi),
+          RecipeIngredient.fromIngredient(Ingredients.arroz),
         ]);
 }
 
 class FilhoteComAcai extends Recipe {
   FilhoteComAcai()
       : super(name: "Filhote com Açai", ingredients: [
-          RecipeIngredient(Ingredients.filhote),
-          RecipeIngredient(Ingredients.arroz),
-          RecipeIngredient(Ingredients.acai),
-          RecipeIngredient(Ingredients.farinhaTapioca),
+          RecipeIngredient.fromIngredient(Ingredients.filhote),
+          RecipeIngredient.fromIngredient(Ingredients.arroz),
+          RecipeIngredient.fromIngredient(Ingredients.acai),
+          RecipeIngredient.fromIngredient(Ingredients.farinhaTapioca),
         ]);
 }
 
 class BoloDeMacaxeira extends Recipe {
   BoloDeMacaxeira()
       : super(name: "Bolo de Macaxeira", ingredients: [
-          RecipeIngredient(Ingredients.macaxeira),
-          RecipeIngredient(Ingredients.acucar),
-          RecipeIngredient(Ingredients.ovos),
-          RecipeIngredient(Ingredients.cocoRalado),
+          RecipeIngredient.fromIngredient(Ingredients.macaxeira),
+          RecipeIngredient.fromIngredient(Ingredients.acucar),
+          RecipeIngredient.fromIngredient(Ingredients.ovos),
+          RecipeIngredient.fromIngredient(Ingredients.cocoRalado),
         ]);
 }
 
 class CremeDeCupuacu extends Recipe {
   CremeDeCupuacu()
       : super(name: "Creme de Cupuaçu", ingredients: [
-          RecipeIngredient(Ingredients.cupuacu),
-          RecipeIngredient(Ingredients.leiteCondensado),
-          RecipeIngredient(Ingredients.cremeLeite),
+          RecipeIngredient.fromIngredient(Ingredients.cupuacu),
+          RecipeIngredient.fromIngredient(Ingredients.leiteCondensado),
+          RecipeIngredient.fromIngredient(Ingredients.cremeLeite),
         ]);
 }
 
 class Vatapa extends Recipe {
   Vatapa()
       : super(name: "Vatapá", ingredients: [
-          RecipeIngredient(Ingredients.camarao),
-          RecipeIngredient(Ingredients.tucupi),
-          RecipeIngredient(Ingredients.arroz),
+          RecipeIngredient.fromIngredient(Ingredients.camarao),
+          RecipeIngredient.fromIngredient(Ingredients.tucupi),
+          RecipeIngredient.fromIngredient(Ingredients.arroz),
         ]);
 }

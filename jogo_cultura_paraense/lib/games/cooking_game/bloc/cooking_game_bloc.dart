@@ -31,7 +31,7 @@ class CookingGameBloc extends Bloc<CookingGameEvent, CookingGameState> {
       for (int i = 0; i < event.top; i++) {
         final ingredientToRemove = newOrders[0].ingredients[0];
         // Remove a ingredient in first order (it removes quantity first)
-        newOrders[0].removeIngredient(ingredientToRemove.ingredient.id);
+        newOrders[0].removeIngredient(ingredientToRemove.id);
         // If there are no more ingredients in order, remove it
         if (newOrders[0].ingredients.length < 1) {
           newOrders.removeAt(0);

@@ -24,7 +24,7 @@ class OrderCard extends StatelessWidget {
           child: FittedBox(
             fit: BoxFit.fitHeight,
             child: Text(
-              "${ingredient.quantity}x",
+              "${ingredient.currentQuantity}x",
               textAlign: TextAlign.center,
             ),
           ),
@@ -35,7 +35,7 @@ class OrderCard extends StatelessWidget {
             fit: BoxFit.fitHeight,
             child: Container(),
           ),
-          color: Color(int.parse(ingredient.ingredient.imagePath)),
+          color: Color(int.parse(ingredient.imagePath)),
         ),
       ]);
     }
