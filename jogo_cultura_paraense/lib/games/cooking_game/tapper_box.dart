@@ -93,8 +93,8 @@ class TapperBox extends Game with TapDetector {
         }
         _hintsUsed += 1;
       }
+      _signalHintTap();
     }
-    _signalHintTap();
   }
 
   void handleCorrectTap(IngredientSprite tappedIngredient) {
