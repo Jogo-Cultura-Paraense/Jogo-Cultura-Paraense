@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:jogo_cultura_paraense/games/cooking_game/cooking_game_rules.dart';
+import 'package:jogo_cultura_paraense/games/cooking_game/models/rules.dart';
 import 'package:jogo_cultura_paraense/games/cooking_game/models/order.dart';
 import 'package:meta/meta.dart';
 

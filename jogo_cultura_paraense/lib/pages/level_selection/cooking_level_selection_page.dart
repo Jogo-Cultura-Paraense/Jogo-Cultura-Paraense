@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/components/level_selection/level_selection_card.dart';
 import 'package:jogo_cultura_paraense/components/level_selection/level_selection_page.dart';
-import 'package:jogo_cultura_paraense/games/cooking_game/cooking_game_rules.dart';
+import 'package:jogo_cultura_paraense/games/cooking_game/models/rules.dart';
 import 'package:jogo_cultura_paraense/model/game.dart';
 import 'package:jogo_cultura_paraense/pages/games/game_pages.dart';
 

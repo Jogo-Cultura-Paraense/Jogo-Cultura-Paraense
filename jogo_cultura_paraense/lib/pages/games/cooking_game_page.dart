@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/games/cooking_game/bloc/cooking_game_bloc.dart';
 import 'package:jogo_cultura_paraense/games/cooking_game/cooking_game.dart';
-import 'package:jogo_cultura_paraense/games/cooking_game/cooking_game_rules.dart';
+import 'package:jogo_cultura_paraense/games/cooking_game/models/rules.dart';
 
 class CookingGamePage extends StatelessWidget {
   static const String routeName = '/cooking_game';
