@@ -12,3 +12,8 @@ class RemoveIngredient extends CookingGameEvent {
 }
 
 class FinishGame extends CookingGameEvent {}
+
+class RemoveTopIngredients extends CookingGameEvent {
+  final int top;
+  RemoveTopIngredients(this.top);
+}

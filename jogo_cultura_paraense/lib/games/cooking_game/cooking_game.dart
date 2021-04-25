@@ -40,6 +40,11 @@ class CookingGame extends StatelessWidget {
                   RemoveIngredient(ingredientId),
                 );
               },
+              onHintTap: () {
+                BlocProvider.of<CookingGameBloc>(context).add(
+                  RemoveTopIngredients(5),
+                );
+              },
             ).widget,
           ),
           Container(

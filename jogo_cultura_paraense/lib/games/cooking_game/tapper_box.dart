@@ -15,26 +15,26 @@ class TapperBox extends Game with TapDetector {
   final double width;
   final Rect _tappableArea;
   final Rect _visibleArea;
+  final Rect _hintRect;
   final double spriteSize;
   final List<List<IngredientSprite>> _ingredientsByOrder = [];
   final List<IngredientSprite> _ingredientsToRender = [];
   final IngredientIdCallBack _signalCorrectTap;
+  final VoidCallback _signalHintTap;
 
   TapperBox({
     @required this.height,
     @required this.width,
     @required List<Order> orders,
     @required IngredientIdCallBack onCorrectTap,
+    @required VoidCallback onHintTap,
     this.left = 0,
     this.top = 0,
   })  : _signalCorrectTap = onCorrectTap,
+        _signalHintTap = onHintTap,
         _tappableArea = Rect.fromLTWH(width / 4, 0, width / 2, height),
-        _visibleArea = Rect.fromLTWH(
-          0,
-          0,
-          width,
-          height,
-        ),
+        _visibleArea = Rect.fromLTWH(0, 0, width, height),
+        _hintRect = Rect.fromLTWH(0, 0, width / 10, width / 10),
         spriteSize = width / 10 {
     _initIngredients(orders);
   }
@@ -55,7 +55,7 @@ class TapperBox extends Game with TapDetector {
               sprite: ingredient.ingredient.imagePath,
               x: width / 2,
               y: height / 2,
-              size: width / 10,
+              size: spriteSize,
             ),
           );
           id += 1;
@@ -68,16 +68,39 @@ class TapperBox extends Game with TapDetector {
     _ingredientsToRender.addAll(_ingredientsByOrder[1]);
   }
 
+  void handleHintTap() {
+    // Remove the next 5 ingredients in sequence
+    for (int i = 0; i < 5; i++) {
+      final orderToRemoveFrom = _ingredientsByOrder[0];
+      final ingredientToRemove = orderToRemoveFrom[0];
+      orderToRemoveFrom.removeAt(0);
+      _ingredientsToRender
+          .removeWhere((element) => element.id == ingredientToRemove.id);
+      if (orderToRemoveFrom.isEmpty) {
+        _ingredientsByOrder.removeAt(0);
+        // If there are more orders to finish, add to the render
+        if (_ingredientsByOrder.length > 1) {
+          _ingredientsToRender.addAll(_ingredientsByOrder[1]);
+        }
+        // Else stop remove loop
+        else {
+          break;
+        }
+      }
+    }
+    _signalHintTap();
+  }
+
   void handleCorrectTap(IngredientSprite tappedIngredient) {
     // First list of ingredients represent the current order to be cooked
-    final currentOrder = _ingredientsByOrder[0];
-    for (int i = 0; i < currentOrder.length; i += 1) {
+    final orderToRemoveFrom = _ingredientsByOrder[0];
+    for (int i = 0; i < orderToRemoveFrom.length; i += 1) {
       // If tapped ingredient is on the list of ingredients of current order:
       // 1. Remove it from current order
       // 2. Remove it from ingredients to render
       // 3. Signal state manager to remove it from state
-      if (currentOrder[i].ingredientId == tappedIngredient.ingredientId) {
-        currentOrder.removeAt(i);
+      if (orderToRemoveFrom[i].ingredientId == tappedIngredient.ingredientId) {
+        orderToRemoveFrom.removeAt(i);
         _ingredientsToRender.removeWhere(
           (element) => element.id == tappedIngredient.id,
         );
@@ -86,7 +109,7 @@ class TapperBox extends Game with TapDetector {
       }
     }
     // If current order is empty, then remove it
-    if (currentOrder.isEmpty) {
+    if (orderToRemoveFrom.isEmpty) {
       _ingredientsByOrder.removeAt(0);
       // If there are more orders to finish, add to the render
       if (_ingredientsByOrder.length > 1) {
@@ -100,19 +123,23 @@ class TapperBox extends Game with TapDetector {
 
   @override
   void onTapDown(TapDownDetails d) {
-    List<IngredientSprite> tappedIngredients = [];
-    // Check which ingredients were tapped
-    for (IngredientSprite ingredient in _ingredientsToRender) {
-      if (ingredient.contains(d.localPosition)) {
-        tappedIngredients.add(ingredient);
+    if (_hintRect.contains(d.localPosition)) {
+      handleHintTap();
+    } else {
+      List<IngredientSprite> tappedIngredients = [];
+      // Check which ingredients were tapped
+      for (IngredientSprite ingredient in _ingredientsToRender) {
+        if (ingredient.contains(d.localPosition)) {
+          tappedIngredients.add(ingredient);
+        }
       }
-    }
-    // Check if there is tapped ingredients and the tap was inside tappable area
-    if (tappedIngredients.isNotEmpty &&
-        _tappableArea.contains(d.localPosition)) {
-      // Handle correct tap for each tapped ingredient
-      for (IngredientSprite ingredient in tappedIngredients) {
-        handleCorrectTap(ingredient);
+      // Check if there is tapped ingredients and the tap was inside tappable area
+      if (tappedIngredients.isNotEmpty &&
+          _tappableArea.contains(d.localPosition)) {
+        // Handle correct tap for each tapped ingredient
+        for (IngredientSprite ingredient in tappedIngredients) {
+          handleCorrectTap(ingredient);
+        }
       }
     }
   }
@@ -122,6 +149,8 @@ class TapperBox extends Game with TapDetector {
     final paint = Paint();
     paint.color = Color(0xff576574);
     // canvas.drawRect(_tappableArea, paint);
+
+    canvas.drawRect(_hintRect, paint);
 
     for (IngredientSprite ingredient in _ingredientsToRender) {
       ingredient.render(canvas);
