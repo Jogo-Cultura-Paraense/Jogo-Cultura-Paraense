@@ -74,9 +74,11 @@ class TapperBox extends Game with TapDetector {
   void handleHintTap() {
     if (_hintsUsed < hints) {
       // Remove the next 5 ingredients in sequence
+      List<IngredientSprite> orderToRemoveFrom;
+      IngredientSprite ingredientToRemove;
       for (int i = 0; i < 5; i++) {
-        final orderToRemoveFrom = _ingredientsByOrder[0];
-        final ingredientToRemove = orderToRemoveFrom[0];
+        orderToRemoveFrom = _ingredientsByOrder[0];
+        ingredientToRemove = orderToRemoveFrom[0];
         orderToRemoveFrom.removeAt(0);
         _ingredientsToRender
             .removeWhere((element) => element.id == ingredientToRemove.id);
@@ -85,9 +87,7 @@ class TapperBox extends Game with TapDetector {
           // If there are more orders to finish, add to the render
           if (_ingredientsByOrder.length > 1) {
             _ingredientsToRender.addAll(_ingredientsByOrder[1]);
-          }
-          // Else stop remove loop
-          else {
+          } else if (_ingredientsByOrder.isEmpty) {
             break;
           }
         }
