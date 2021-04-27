@@ -22,7 +22,12 @@ class CookingGame extends StatelessWidget {
     return Container(
       height: deviceHeight,
       width: deviceWidth,
-      decoration: BoxDecoration(color: Colors.grey[200]),
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/images/cooking_game/bg.jpeg"),
+          fit: BoxFit.cover,
+        ),
+      ),
       child: Column(
         children: [
           Timer(timeLimit: timeLimit),

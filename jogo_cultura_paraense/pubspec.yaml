@@ -116,6 +116,7 @@ flutter:
     - assets/images/cooking_game/tucupi.png
     - assets/images/cooking_game/panela.png
     - assets/images/cooking_game/dica.png
+    - assets/images/cooking_game/bg.jpeg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
