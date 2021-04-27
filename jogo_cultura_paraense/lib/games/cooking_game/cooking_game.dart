@@ -52,7 +52,12 @@ class CookingGame extends StatelessWidget {
           Container(
             height: deviceHeight / 6,
             width: deviceWidth / 2,
-            color: Colors.red,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/cooking_game/panela.png"),
+                fit: BoxFit.fill,
+              ),
+            ),
           ),
         ],
       ),

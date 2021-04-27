@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flame/flame_audio.dart';
 import 'package:flame/game/game.dart';
 import 'package:flame/gestures.dart';
+import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/games/cooking_game/ingredient_sprite.dart';
 import 'package:jogo_cultura_paraense/games/cooking_game/models/order.dart';
@@ -23,6 +24,7 @@ class TapperBox extends Game with TapDetector {
   final IngredientIdCallBack _signalCorrectTap;
   final VoidCallback _signalHintTap;
   final int hints;
+  final Sprite _hintSprite = Sprite("cooking_game/dica.png");
   final FlameAudio _audio = FlameAudio();
   int _hintsUsed = 0;
 
@@ -164,11 +166,13 @@ class TapperBox extends Game with TapDetector {
 
   @override
   void render(Canvas canvas) {
-    final paint = Paint();
-    paint.color = Color(0xff576574);
+    // final paint = Paint();
+    // paint.color = Color(0xff576574);
     // canvas.drawRect(_tappableArea, paint);
 
-    canvas.drawRect(_hintRect, paint);
+    if (_hintsUsed < hints) {
+      _hintSprite.renderRect(canvas, _hintRect);
+    }
 
     for (IngredientSprite ingredient in _ingredientsToRender) {
       ingredient.render(canvas);
