@@ -75,12 +75,11 @@ class Maniva extends Ingredient {
 
 class CarnePorco extends Ingredient {
   const CarnePorco()
-      : super("carne_porco", imagePath: "cooking_game/carne_porco.png");
+      : super("carne_porco", imagePath: "cooking_game/porco.png");
 }
 
 class CarneBoi extends Ingredient {
-  const CarneBoi()
-      : super("carne_boi", imagePath: "cooking_game/carne_boi.png");
+  const CarneBoi() : super("carne_boi", imagePath: "cooking_game/boi.png");
 }
 
 class Filhote extends Ingredient {
@@ -110,8 +109,7 @@ class Ovos extends Ingredient {
 }
 
 class CocoRalado extends Ingredient {
-  const CocoRalado()
-      : super("coco_ralado", imagePath: "cooking_game/coco_ralado.png");
+  const CocoRalado() : super("coco_ralado", imagePath: "cooking_game/coco.png");
 }
 
 class Cupuacu extends Ingredient {
