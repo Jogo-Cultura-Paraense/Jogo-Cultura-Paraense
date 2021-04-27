@@ -5,6 +5,7 @@ import 'package:flame/flame.dart';
 import 'package:flame/game/game.dart';
 import 'package:flame/gestures.dart';
 import 'package:flutter/widgets.dart';
+import 'package:jogo_cultura_paraense/games/musica/components/hit_text.dart';
 import 'package:jogo_cultura_paraense/games/musica/components/music_disc.dart';
 
 class MusicaGame extends Game with TapDetector {
@@ -18,6 +19,7 @@ class MusicaGame extends Game with TapDetector {
   bool hasWon = false;
   int numtoques = 0;
   List<MusicDisc> discs;
+  List<HitText> hitTexts;
   Random rnd;
   double timer = 0;
   int perfectsHits;
@@ -37,15 +39,19 @@ class MusicaGame extends Game with TapDetector {
     earlyHits = 0;
     missHits = 0;
     discs = List<MusicDisc>();
+    hitTexts = List<HitText>();
     rnd = Random();
     resize(await Flame.util.initialDimensions());
   }
 
   void spawnDisc() {
-    double x = rnd.nextInt(6) * tileSize;
-    double y = rnd.nextInt(6) * tileSize + _screenSize.height / 3;
-    //double y = rnd.nextDouble() * (_screenSize.height - tileSize);
+    double x = rnd.nextInt(5) * tileSize;
+    double y = rnd.nextInt(7) * tileSize;
     discs.add(MusicDisc(this, x, y));
+  }
+
+  void drawHitText(String text, Offset center) {
+    hitTexts.add(HitText(this, text, center));
   }
 
   @override
@@ -56,6 +62,7 @@ class MusicaGame extends Game with TapDetector {
     canvas.drawRect(bgRect, bgPaint);
 
     discs.forEach((MusicDisc disc) => disc.render(canvas));
+    hitTexts.forEach((HitText hitText) => hitText.render(canvas));
   }
 
   @override
@@ -67,12 +74,15 @@ class MusicaGame extends Game with TapDetector {
     }
     discs.forEach((MusicDisc disc) => disc.update(t));
     discs.removeWhere((MusicDisc disc) => disc.isDead);
+
+    hitTexts.forEach((HitText hitText) => hitText.update(t));
+    hitTexts.removeWhere((HitText hitText) => hitText.timer > 1);
   }
 
   @override
   void resize(Size size) {
     _screenSize = size;
-    tileSize = _screenSize.width / 5;
+    tileSize = _screenSize.width / 4;
   }
 
   @override
@@ -80,6 +90,7 @@ class MusicaGame extends Game with TapDetector {
     discs.forEach((MusicDisc disc) {
       if (disc.discRect.contains(d.globalPosition)) {
         disc.onTapDown();
+        drawHitText(disc.text, disc.discRect.center);
       }
     });
   }
