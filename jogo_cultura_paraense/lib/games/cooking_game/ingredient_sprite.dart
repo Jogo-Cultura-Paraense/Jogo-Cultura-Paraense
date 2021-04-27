@@ -1,13 +1,14 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flame/sprite.dart';
 
 class IngredientSprite {
   static const directions = [1, -1];
 
   final int id;
   final String ingredientId;
-  Paint _paint = Paint();
+  final Sprite _sprite;
   Rect _rect;
   Rect _tappeable;
   int _verticalDirection;
@@ -21,7 +22,7 @@ class IngredientSprite {
     @required double x,
     @required double y,
     @required double size,
-    String sprite = "0xFFF44336",
+    @required String sprite,
   })  : _rect = Rect.fromCenter(
           center: Offset(x, y),
           width: size,
@@ -31,8 +32,8 @@ class IngredientSprite {
           center: Offset(x, y),
           width: size + 10,
           height: size + 10,
-        ) {
-    _paint.color = Color(int.parse(sprite));
+        ),
+        _sprite = Sprite(sprite) {
     final rnd = Random();
     _verticalDirection = IngredientSprite.directions[rnd.nextInt(2)];
     _horizontalDirection = IngredientSprite.directions[rnd.nextInt(2)];
@@ -47,7 +48,7 @@ class IngredientSprite {
   double get top => _rect.top;
 
   void render(Canvas canvas) {
-    canvas.drawRect(_rect, _paint);
+    _sprite.renderRect(canvas, _rect);
   }
 
   void toTheLeft() {

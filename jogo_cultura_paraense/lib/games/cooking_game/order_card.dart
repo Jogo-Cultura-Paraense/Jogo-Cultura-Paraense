@@ -35,7 +35,11 @@ class OrderCard extends StatelessWidget {
             fit: BoxFit.fitHeight,
             child: Container(),
           ),
-          color: Color(int.parse(ingredient.imagePath)),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/${ingredient.imagePath}'),
+            ),
+          ),
         ),
       ]);
     }

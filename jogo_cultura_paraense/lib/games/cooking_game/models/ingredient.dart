@@ -31,89 +31,100 @@ abstract class Ingredients {
 }
 
 class Pato extends Ingredient {
-  const Pato() : super("pato", imagePath: "0xFFADD8E6");
+  const Pato() : super("pato", imagePath: "cooking_game/pato.png");
 }
 
 class Tucupi extends Ingredient {
-  const Tucupi() : super("tucupi", imagePath: "0xFF7B68EE");
+  const Tucupi() : super("tucupi", imagePath: "cooking_game/tucupi.png");
 }
 
 class Jambu extends Ingredient {
-  const Jambu() : super("jambu", imagePath: "0xFF7FFFD4");
+  const Jambu() : super("jambu", imagePath: "cooking_game/jambu.png");
 }
 
 class Arroz extends Ingredient {
-  const Arroz() : super("arroz", imagePath: "0xFF8B008B");
+  const Arroz() : super("arroz", imagePath: "cooking_game/arroz.png");
 }
 
 class Carangueijo extends Ingredient {
-  const Carangueijo() : super("carangueijo", imagePath: "0xFFBA55D3");
+  const Carangueijo()
+      : super("carangueijo", imagePath: "cooking_game/carangueijo.png");
 }
 
 class LeiteDeCoco extends Ingredient {
-  const LeiteDeCoco() : super("leite_coco", imagePath: "0xFF1E90FF");
+  const LeiteDeCoco()
+      : super("leite_coco", imagePath: "cooking_game/leite_coco.png");
 }
 
 class Farofa extends Ingredient {
-  const Farofa() : super("farofa", imagePath: "0xFF5F9EA0");
+  const Farofa() : super("farofa", imagePath: "cooking_game/farofa.png");
 }
 
 class Camarao extends Ingredient {
-  const Camarao() : super("camarao", imagePath: "0xFFDB7093");
+  const Camarao() : super("camarao", imagePath: "cooking_game/camarao.png");
 }
 
 class GomaDeTapica extends Ingredient {
-  const GomaDeTapica() : super("goma_tapioca", imagePath: "0xFFDEB887");
+  const GomaDeTapica()
+      : super("goma_tapioca", imagePath: "cooking_game/goma_tapioca.png");
 }
 
 class Maniva extends Ingredient {
-  const Maniva() : super("maniva", imagePath: "0xFFD8BFD8");
+  const Maniva() : super("maniva", imagePath: "cooking_game/maniva.png");
 }
 
 class CarnePorco extends Ingredient {
-  const CarnePorco() : super("carne_porco", imagePath: "0xFFFAFAD2");
+  const CarnePorco()
+      : super("carne_porco", imagePath: "cooking_game/carne_porco.png");
 }
 
 class CarneBoi extends Ingredient {
-  const CarneBoi() : super("carne_boi", imagePath: "0xFF00008B");
+  const CarneBoi()
+      : super("carne_boi", imagePath: "cooking_game/carne_boi.png");
 }
 
 class Filhote extends Ingredient {
-  const Filhote() : super("filhote", imagePath: "0xFF66CDAA");
+  const Filhote() : super("filhote", imagePath: "cooking_game/filhote.png");
 }
 
 class Acai extends Ingredient {
-  const Acai() : super("acai", imagePath: "0xFFFF1493");
+  const Acai() : super("acai", imagePath: "cooking_game/acai.png");
 }
 
 class FarinhaTapioca extends Ingredient {
-  const FarinhaTapioca() : super("farinha_tapioca", imagePath: "0xFF6495ED");
+  const FarinhaTapioca()
+      : super("farinha_tapioca", imagePath: "cooking_game/farinha_tapioca.png");
 }
 
 class Macaxeira extends Ingredient {
-  const Macaxeira() : super("macaxeira", imagePath: "0xFF000000");
+  const Macaxeira()
+      : super("macaxeira", imagePath: "cooking_game/macaxeira.png");
 }
 
 class Acucar extends Ingredient {
-  const Acucar() : super("acucar", imagePath: "0xFFB82DC7");
+  const Acucar() : super("acucar", imagePath: "cooking_game/acucar.png");
 }
 
 class Ovos extends Ingredient {
-  const Ovos() : super("ovos", imagePath: "0xFF800000");
+  const Ovos() : super("ovos", imagePath: "cooking_game/ovos.png");
 }
 
 class CocoRalado extends Ingredient {
-  const CocoRalado() : super("coco_ralado", imagePath: "0xFFFF6347");
+  const CocoRalado()
+      : super("coco_ralado", imagePath: "cooking_game/coco_ralado.png");
 }
 
 class Cupuacu extends Ingredient {
-  const Cupuacu() : super("cupuacu", imagePath: "0xFF8B0000");
+  const Cupuacu() : super("cupuacu", imagePath: "cooking_game/cupuacu.png");
 }
 
 class LeiteCondensado extends Ingredient {
-  const LeiteCondensado() : super("leite_condensado", imagePath: "0xFFA9A9A9");
+  const LeiteCondensado()
+      : super("leite_condensado",
+            imagePath: "cooking_game/leite_condensado.png");
 }
 
 class CremeLeite extends Ingredient {
-  const CremeLeite() : super("creme_leite", imagePath: "0xFFFEECA0");
+  const CremeLeite()
+      : super("creme_leite", imagePath: "cooking_game/creme_leite.png");
 }
