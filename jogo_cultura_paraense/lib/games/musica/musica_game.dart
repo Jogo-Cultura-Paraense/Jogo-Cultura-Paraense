@@ -7,6 +7,7 @@ import 'package:flame/gestures.dart';
 import 'package:flutter/widgets.dart';
 import 'package:jogo_cultura_paraense/games/musica/components/hit_text.dart';
 import 'package:jogo_cultura_paraense/games/musica/components/music_disc.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class MusicaGame extends Game with TapDetector {
   /* final BuildContext _context;
@@ -17,11 +18,16 @@ class MusicaGame extends Game with TapDetector {
   Size _screenSize;
   double tileSize;
   bool hasWon = false;
-  int numtoques = 0;
+  // int numtoques = 0;
   List<MusicDisc> discs;
   List<HitText> hitTexts;
+
+  AudioPlayer playingBGM;
+
   Random rnd;
-  double timer = 0;
+  double discTimer;
+  double gameTimer;
+  double musicDuration;
   int perfectsHits;
   int goodHits;
   int earlyHits;
@@ -33,6 +39,9 @@ class MusicaGame extends Game with TapDetector {
   }
 
   void _initialize() async {
+    discTimer = 0;
+    gameTimer = 0;
+    musicDuration = 10;
     score = 0;
     perfectsHits = 0;
     goodHits = 0;
@@ -42,6 +51,16 @@ class MusicaGame extends Game with TapDetector {
     hitTexts = List<HitText>();
     rnd = Random();
     resize(await Flame.util.initialDimensions());
+
+    playingBGM =
+        await Flame.audio.playLongAudio('bgm/lenda_do_guarana.mp3', volume: .5);
+    // playingBGM.pause();
+
+    // playPlayingBGM();
+  }
+
+  void playPlayingBGM() {
+    playingBGM.resume();
   }
 
   void spawnDisc() {
@@ -53,6 +72,8 @@ class MusicaGame extends Game with TapDetector {
   void drawHitText(String text, Offset center) {
     hitTexts.add(HitText(this, text, center));
   }
+
+  void drawTimer() {}
 
   @override
   void render(Canvas canvas) {
@@ -67,10 +88,11 @@ class MusicaGame extends Game with TapDetector {
 
   @override
   void update(double t) {
-    timer += t;
-    if (timer > 0.75) {
+    discTimer += t;
+    gameTimer += t;
+    if (discTimer > 0.75 && gameTimer > 3 && gameTimer < musicDuration) {
       spawnDisc();
-      timer = 0;
+      discTimer = 0;
     }
     discs.forEach((MusicDisc disc) => disc.update(t));
     discs.removeWhere((MusicDisc disc) => disc.isDead);
@@ -81,6 +103,9 @@ class MusicaGame extends Game with TapDetector {
 
   @override
   void resize(Size size) {
+    if (gameTimer < 3) {
+      drawTimer();
+    }
     _screenSize = size;
     tileSize = _screenSize.width / 4;
   }
