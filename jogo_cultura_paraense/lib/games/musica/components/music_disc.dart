@@ -23,6 +23,7 @@ class MusicDisc {
     targetPaint.color = Color(0x77ffffff);
     discPaint = Paint();
     discPaint.color = Color(0x55000000);
+    text = "MISS";
   }
 
   void render(Canvas c) {
@@ -34,7 +35,6 @@ class MusicDisc {
     discRect = discRect.deflate(10 * t);
     if (discRect.width < game.tileSize / 2) {
       game.missHits++;
-      text = "MISS";
       isDead = true;
     }
   }

@@ -5,7 +5,7 @@ import 'package:jogo_cultura_paraense/games/musica/musica_game.dart';
 class Timer {
   final MusicaGame game;
   final TextPainter _painter = TextPainter(
-    textAlign: TextAlign.left,
+    textAlign: TextAlign.center,
     textDirection: TextDirection.ltr,
   );
   final double _tileSize;
@@ -29,7 +29,8 @@ class Timer {
   }
 
   void update(double t) {
-    if (_time > 0) updateTime(-t);
+    //if (_time > 0) updateTime(-t);
+    _time++;
     if ((_painter.text?.toPlainText() ?? '') != format(_time)) {
       _painter.text = TextSpan(
         text: format(_time),

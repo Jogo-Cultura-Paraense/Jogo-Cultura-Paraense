@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/pages/finished_game_page.dart';
 import 'package:jogo_cultura_paraense/games/vocabulario/main_vocabulario.dart';
+import 'package:jogo_cultura_paraense/pages/games/musica_page.dart';
 import 'package:jogo_cultura_paraense/pages/pages.dart';
 
 class App extends StatelessWidget {
@@ -68,6 +69,9 @@ class App extends StatelessWidget {
           ArtFaunaFloraGamePage.routeName: (BuildContext context) {
             return const ArtFaunaFloraGamePage();
           },
+          MusicGameGamePage.routeName: (BuildContext context) {
+            return const MusicGameGamePage();
+          },
           FinishedGame.routeName: (BuildContext context) {
             return const FinishedGame();
           },
@@ -79,6 +83,9 @@ class App extends StatelessWidget {
           },
           AFFLevelSelectionPage.routeName: (BuildContext context) {
             return const AFFLevelSelectionPage();
+          },
+          MusicLevelSelectionPage.routeName: (BuildContext context) {
+            return const MusicLevelSelectionPage();
           },
           VocabLevelSelectionPage.routeName: (BuildContext context) {
             return const VocabLevelSelectionPage();

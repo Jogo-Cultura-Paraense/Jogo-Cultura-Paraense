@@ -46,7 +46,8 @@ class GameSelectionMenu extends StatelessWidget {
       ),
       SelectCard(
         title: 'MÚSICAS',
-        onTap: () {},
+        onTap: () =>
+            Navigator.of(context).pushNamed(MusicLevelSelectionPage.routeName),
       ),
     ];
   }
