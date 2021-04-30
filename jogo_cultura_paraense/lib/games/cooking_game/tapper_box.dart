@@ -152,15 +152,17 @@ class TapperBox extends Game with TapDetector {
           tappedIngredients.add(ingredient);
         }
       }
-      // Check if there is tapped ingredients and the tap was inside tappable area
-      if (tappedIngredients.isNotEmpty &&
-          _tappableArea.contains(d.localPosition)) {
-        // Handle correct tap for each tapped ingredient
-        for (IngredientSprite ingredient in tappedIngredients) {
-          handleCorrectTap(ingredient);
+      // Check if there are tapped ingredients
+      if (tappedIngredients.isNotEmpty) {
+        // Check if the tap was inside tappable area
+        if (_tappableArea.contains(d.localPosition)) {
+          // Handle correct tap for each tapped ingredient
+          for (IngredientSprite ingredient in tappedIngredients) {
+            handleCorrectTap(ingredient);
+          }
+        } else if (!_tappableArea.contains(d.localPosition)) {
+          _audio.play('wrong.wav');
         }
-      } else if (!_tappableArea.contains(d.localPosition)) {
-        _audio.play('wrong.wav');
       }
     }
   }
