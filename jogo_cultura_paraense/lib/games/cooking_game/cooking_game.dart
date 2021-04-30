@@ -10,9 +10,11 @@ class CookingGame extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CookingGameBloc, CookingGameState>(
-      buildWhen: (currentState, previousState) {
-        if (currentState.status != previousState.status) {
-          return true;
+      buildWhen: (previousState, currentState) {
+        if (currentState.status != CookingGameStatus.finished) {
+          if (currentState.status != previousState.status) {
+            return true;
+          }
         }
         return false;
       },
