@@ -98,6 +98,7 @@ class TapperBox extends Game with TapDetector {
         }
         _hintsUsed += 1;
       }
+      _audio.play('hint.wav');
       _signalHintTap();
     }
   }
@@ -124,7 +125,7 @@ class TapperBox extends Game with TapDetector {
     if (foundIngredient) {
       _audio.play('completetask_0.mp3');
     } else {
-      _audio.play('explosion.wav');
+      _audio.play('wrong.wav');
     }
     // If current order is empty, then remove it
     if (orderToRemoveFrom.isEmpty) {
@@ -159,7 +160,7 @@ class TapperBox extends Game with TapDetector {
           handleCorrectTap(ingredient);
         }
       } else if (!_tappableArea.contains(d.localPosition)) {
-        _audio.play('explosion.wav');
+        _audio.play('wrong.wav');
       }
     }
   }
