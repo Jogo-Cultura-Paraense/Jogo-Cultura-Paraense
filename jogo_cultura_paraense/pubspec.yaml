@@ -92,6 +92,8 @@ flutter:
     - assets/audio/completetask_0.mp3
     - assets/audio/explosion.wav
     - assets/audio/win_sound.wav
+    - assets/audio/hint.wav
+    - assets/audio/wrong.wav
     - assets/images/cooking_game/acai.png
     - assets/images/cooking_game/acucar.png
     - assets/images/cooking_game/arroz.png
@@ -117,6 +119,9 @@ flutter:
     - assets/images/cooking_game/panela.png
     - assets/images/cooking_game/dica.png
     - assets/images/cooking_game/bg.jpeg
+    - assets/images/cooking_game/tutorial0.jpg
+    - assets/images/cooking_game/tutorial1.jpg
+    - assets/images/cooking_game/tutorial2.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
