@@ -8,21 +8,15 @@ class CookingGamePage extends StatelessWidget {
   static const String routeName = '/cooking_game';
   final CookingGameBloc _bloc;
 
-  CookingGamePage({
-    @required CookingGameRules rules,
-    Key key,
-  })  : _bloc = CookingGameBloc(rules),
+  CookingGamePage({@required CookingGameRules rules, Key key})
+      : _bloc = CookingGameBloc(rules),
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => _bloc,
-      child: CookingGame(
-        _bloc.state.rules.time,
-        _bloc.state.orders,
-        _bloc.state.rules.hints,
-      ),
+      child: const CookingGame(),
     );
   }
 }

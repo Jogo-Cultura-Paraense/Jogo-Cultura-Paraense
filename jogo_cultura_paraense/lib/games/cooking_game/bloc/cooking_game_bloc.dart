@@ -14,7 +14,9 @@ class CookingGameBloc extends Bloc<CookingGameEvent, CookingGameState> {
 
   @override
   Stream<CookingGameState> mapEventToState(CookingGameEvent event) async* {
-    if (event is RemoveIngredient) {
+    if (event is StartGame) {
+      yield state.copyWith(status: CookingGameStatus.running);
+    } else if (event is RemoveIngredient) {
       final newOrders = state.orders;
       // Remove a ingredient in first order (it removes quantity first)
       newOrders[0].removeIngredient(event.ingredientId);
