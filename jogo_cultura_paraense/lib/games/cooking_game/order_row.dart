@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/games/cooking_game/bloc/cooking_game_bloc.dart';
-import 'package:jogo_cultura_paraense/games/cooking_game/order_card.dart';
+import 'package:jogo_cultura_paraense/games/cooking_game/components/order_card.dart';
 
 class OrderRow extends StatelessWidget {
   final double height;

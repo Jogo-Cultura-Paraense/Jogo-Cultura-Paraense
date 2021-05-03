@@ -5,7 +5,7 @@ import 'package:flame/game/game.dart';
 import 'package:flame/gestures.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
-import 'package:jogo_cultura_paraense/games/cooking_game/ingredient_sprite.dart';
+import 'package:jogo_cultura_paraense/games/cooking_game/components/ingredient_sprite.dart';
 import 'package:jogo_cultura_paraense/games/cooking_game/models/order.dart';
 
 typedef IngredientIdCallBack = Function(String ingredientId);
