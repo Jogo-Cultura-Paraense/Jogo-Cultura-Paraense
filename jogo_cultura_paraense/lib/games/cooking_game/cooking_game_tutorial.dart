@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/games/cooking_game/bloc/cooking_game_bloc.dart';
 
 class CookingGameTutorial extends StatefulWidget {
+  const CookingGameTutorial({Key key}) : super(key: key);
+
   @override
   _CookingGameTutorialState createState() => _CookingGameTutorialState();
 }
