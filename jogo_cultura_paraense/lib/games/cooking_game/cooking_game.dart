@@ -11,22 +11,16 @@ class CookingGame extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CookingGameBloc, CookingGameState>(
       buildWhen: (previousState, currentState) {
-        if (currentState.status != CookingGameStatus.finished) {
-          if (currentState.status != previousState.status) {
-            return true;
-          }
+        if (currentState.status != CookingGameStatus.finished &&
+            currentState.status != previousState.status) {
+          return true;
         }
         return false;
       },
       builder: (context, state) {
-        if (state.status == CookingGameStatus.ready) {
-          return CookingGameTutorial();
-        }
-        return CookingGameScaffold(
-          state.rules.time,
-          state.orders,
-          state.rules.hints,
-        );
+        return state.status == CookingGameStatus.ready
+            ? const CookingGameTutorial()
+            : const CookingGameScaffold();
       },
     );
   }
