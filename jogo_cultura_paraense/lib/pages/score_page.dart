@@ -14,6 +14,10 @@ class ScorePageArgs {
   final int hintsLeft;
   final int finalScore;
   final int topScore;
+  final int perfectsHits;
+  final int goodHits;
+  final int earlyHits;
+  final int missHits;
 
   const ScorePageArgs({
     @required this.game,
@@ -25,6 +29,10 @@ class ScorePageArgs {
     @required this.hintsLeft,
     @required this.finalScore,
     @required this.topScore,
+    @required this.perfectsHits,
+    @required this.goodHits,
+    @required this.earlyHits,
+    @required this.missHits,
   });
 
   factory ScorePageArgs.initial() {
@@ -38,6 +46,10 @@ class ScorePageArgs {
       hintsLeft: 0,
       finalScore: 1,
       topScore: 2,
+      perfectsHits: 0,
+      goodHits: 0,
+      earlyHits: 0,
+      missHits: 0,
     );
   }
 }
@@ -51,7 +63,16 @@ class ScorePage extends StatelessWidget {
     final ScorePageArgs args =
         ModalRoute.of(context).settings.arguments ?? ScorePageArgs.initial();
 
-    final gameSummary = '''
+    final gameSummary = args.game == "Music Game"
+        ? '''\nPONTUAÇÃO
+    Jogo concluído:
+    Acertos perfeitos: ${args.perfectsHits}
+    Acertos bons: ${args.goodHits}
+    Acertos cedos: ${args.earlyHits}
+    Erros: ${args.missHits}
+    TOTAL: ${args.finalScore} / ${args.topScore}
+    '''
+        : '''
     \nPONTUAÇÃO
     Jogo concluído: ${args.score}
     Tempo Restante: ${args.prettyTime} segundos

@@ -109,13 +109,17 @@ class MusicaGame extends Game with TapDetector {
       arguments: ScorePageArgs(
         game: Games.music,
         map: _gameMap,
-        score: _scoreDisplay.score,
-        finalScore: _scoreDisplay.score,
+        score: score,
+        finalScore: score,
         topScore: _topScore,
         time: gameTimer,
+        perfectsHits: perfectsHits,
+        goodHits: goodHits,
+        earlyHits: earlyHits,
+        missHits: missHits,
         prettyTime: timer.format(timer.currentTime),
-        //hintsLeft: (_numTargets == 4 ? 1 : 2) - _hintButton.hintsLeft,
-        //hints: (_numTargets == 4 ? 1 : 2),
+        hintsLeft: 0, //(_numTargets == 4 ? 1 : 2) - _hintButton.hintsLeft,
+        hints: 0, //(_numTargets == 4 ? 1 : 2),
       ),
     );
   }
@@ -128,7 +132,7 @@ class MusicaGame extends Game with TapDetector {
   }
 
   bool isGameFinished() {
-    if (timer.currentTime >= _startTime) {
+    if (gameTimer >= _startTime) {
       return true;
     }
     return false;
@@ -151,6 +155,10 @@ class MusicaGame extends Game with TapDetector {
   @override
   void update(double t) {
     if (_showTutorial == false) {
+      if (isGameFinished()) {
+        onGameFinished();
+      }
+      print("timer: $gameTimer");
       discTimer += t;
       gameTimer += t;
       if (discTimer > 0.75 && gameTimer > 3 && gameTimer < 90) {
