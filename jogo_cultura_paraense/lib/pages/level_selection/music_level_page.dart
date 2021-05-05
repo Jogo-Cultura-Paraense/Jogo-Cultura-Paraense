@@ -18,9 +18,7 @@ class MusicLevelSelectionPage extends StatelessWidget {
           Navigator.of(context).pushNamed(
             MusicGameGamePage.routeName,
             arguments: MusicGamePageArgs(
-              map: Maps.sudoeste.region,
-              startTime: 10,
-            ),
+                map: Maps.sudoeste.region, startTime: 60, timeBetweenDiscs: 1),
           );
         },
       ),
@@ -31,9 +29,7 @@ class MusicLevelSelectionPage extends StatelessWidget {
           Navigator.of(context).pushNamed(
             MusicGameGamePage.routeName,
             arguments: MusicGamePageArgs(
-              map: Maps.sudoeste.region,
-              startTime: 90,
-            ),
+                map: Maps.sudoeste.region, startTime: 60, timeBetweenDiscs: 1),
           );
         },
       ),
@@ -44,9 +40,9 @@ class MusicLevelSelectionPage extends StatelessWidget {
           Navigator.of(context).pushNamed(
             MusicGameGamePage.routeName,
             arguments: MusicGamePageArgs(
-              map: Maps.baixoAmazonas.region,
-              startTime: 90,
-            ),
+                map: Maps.baixoAmazonas.region,
+                startTime: 90,
+                timeBetweenDiscs: 0.9),
           );
         },
       ),
@@ -57,9 +53,7 @@ class MusicLevelSelectionPage extends StatelessWidget {
           Navigator.of(context).pushNamed(
             MusicGameGamePage.routeName,
             arguments: MusicGamePageArgs(
-              map: Maps.sudeste.region,
-              startTime: 90,
-            ),
+                map: Maps.sudeste.region, startTime: 90, timeBetweenDiscs: 0.6),
           );
         },
       ),
@@ -70,9 +64,7 @@ class MusicLevelSelectionPage extends StatelessWidget {
           Navigator.of(context).pushNamed(
             MusicGameGamePage.routeName,
             arguments: MusicGamePageArgs(
-              map: Maps.marajo.region,
-              startTime: 90,
-            ),
+                map: Maps.marajo.region, startTime: 120, timeBetweenDiscs: 0.8),
           );
         },
       ),
@@ -83,9 +75,9 @@ class MusicLevelSelectionPage extends StatelessWidget {
           Navigator.of(context).pushNamed(
             MusicGameGamePage.routeName,
             arguments: MusicGamePageArgs(
-              map: Maps.metropolitana.region,
-              startTime: 90,
-            ),
+                map: Maps.metropolitana.region,
+                startTime: 120,
+                timeBetweenDiscs: 0.5),
           );
         },
       ),

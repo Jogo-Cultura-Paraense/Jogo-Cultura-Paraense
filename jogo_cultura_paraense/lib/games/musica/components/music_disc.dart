@@ -23,7 +23,7 @@ class MusicDisc {
     targetPaint.color = Color(0x77ffffff);
     discPaint = Paint();
     discPaint.color = Color(0x55000000);
-    text = "MISS";
+    text = "FALHOU";
   }
 
   void render(Canvas c) {
@@ -48,16 +48,16 @@ class MusicDisc {
     if (discRect.width <= (game.tileSize / 2) + 5) {
       game.score += 100;
       game.perfectsHits++;
-      text = "PERFECT";
+      text = "PERFEITO";
     } else if ((discRect.width > (game.tileSize / 2) + 5) &&
         (discRect.width <= (game.tileSize / 2) + 15)) {
       game.score += 75;
       game.goodHits++;
-      text = "GOOD";
+      text = "BOM";
     } else {
       game.score += 50;
       game.earlyHits++;
-      text = "EARLY";
+      text = "CEDO";
     }
   }
 }

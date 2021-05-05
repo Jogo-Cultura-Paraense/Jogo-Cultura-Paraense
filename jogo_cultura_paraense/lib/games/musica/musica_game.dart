@@ -5,7 +5,6 @@ import 'package:flame/flame.dart';
 import 'package:flame/game/game.dart';
 import 'package:flame/gestures.dart';
 import 'package:flutter/widgets.dart';
-import 'package:jogo_cultura_paraense/games/art_fauna_flora/components/score_display.dart';
 import 'package:jogo_cultura_paraense/games/musica/components/hit_text.dart';
 import 'package:jogo_cultura_paraense/games/musica/components/music_disc.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -22,18 +21,18 @@ class MusicaGame extends Game with TapDetector {
 
   Size _screenSize;
   double tileSize;
-  bool hasWon = false;
   List<MusicDisc> discs;
   List<HitText> hitTexts;
   Timer timer;
-  ScoreDisplay _scoreDisplay;
+  //ScoreDisplay _scoreDisplay;
 
   AudioPlayer music;
 
   Random rnd;
-  double discTimer;
+  double _discTimer;
+  double _timeBetweenDiscs;
   double gameTimer;
-  double _startTime;
+  double _startTime; //a duração da música (em segundos)
   int perfectsHits;
   int goodHits;
   int earlyHits;
@@ -44,21 +43,23 @@ class MusicaGame extends Game with TapDetector {
 
   bool _showTutorial = true;
 
-  MusicaGame({
-    @required BuildContext context,
-    @required int topScore,
-    @required String gameMap,
-    @required double startTime,
-  })  : _context = context,
+  MusicaGame(
+      {@required BuildContext context,
+      @required int topScore,
+      @required String gameMap,
+      @required double startTime,
+      @required double timeBetweenDiscs})
+      : _context = context,
         _startTime = startTime,
         _topScore = topScore,
+        _timeBetweenDiscs = timeBetweenDiscs,
         _gameMap = gameMap {
     _initialize();
   }
 
   void _initialize() async {
     resize(await Flame.util.initialDimensions());
-    discTimer = 0;
+    _discTimer = 0;
     gameTimer = 0;
     score = 0;
     perfectsHits = 0;
@@ -158,18 +159,18 @@ class MusicaGame extends Game with TapDetector {
       if (isGameFinished()) {
         onGameFinished();
       }
-      print("timer: $gameTimer");
-      discTimer += t;
+      _discTimer += t;
       gameTimer += t;
-      if (discTimer > 0.75 && gameTimer > 3 && gameTimer < 90) {
+      if (_discTimer > _timeBetweenDiscs &&
+          gameTimer > 3 &&
+          gameTimer < _startTime - 5) {
         spawnDisc();
-        discTimer = 0;
+        _discTimer = 0;
       }
       discs.forEach((MusicDisc disc) => disc.update(t));
       discs.forEach((MusicDisc disc) {
         if (disc.isDead) {
           drawHitText(disc.text, disc.discRect.center);
-          print("${disc.text} - score: $score");
         }
       });
       discs.removeWhere((MusicDisc disc) => disc.isDead);

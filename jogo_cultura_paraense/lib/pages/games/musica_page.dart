@@ -9,11 +9,16 @@ class MusicGamePageArgs {
   final String map;
 
   final double startTime;
+  final double timeBetweenDiscs;
 
-  const MusicGamePageArgs({@required this.map, @required this.startTime});
+  const MusicGamePageArgs(
+      {@required this.timeBetweenDiscs,
+      @required this.map,
+      @required this.startTime});
 
   factory MusicGamePageArgs.initial() {
-    return MusicGamePageArgs(map: Maps.sudoeste.region, startTime: 90);
+    return MusicGamePageArgs(
+        map: Maps.sudoeste.region, startTime: 60, timeBetweenDiscs: 1);
   }
 }
 
@@ -40,6 +45,7 @@ class MusicGameGamePage extends StatelessWidget {
           gameMap: args.map,
           topScore: topScores.isEmpty ? 0 : topScores[0],
           startTime: args.startTime,
+          timeBetweenDiscs: args.timeBetweenDiscs,
         ).widget;
       },
     );
