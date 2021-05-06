@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/components/home/home_appbar.dart';
 import 'package:jogo_cultura_paraense/components/home/home_scaffold.dart';
+import 'package:jogo_cultura_paraense/games/running_game/gesture_box.dart';
 import 'package:jogo_cultura_paraense/pages/level_selection/level_selection_pages.dart';
 
 class GameSelectionPage extends StatelessWidget {
@@ -37,7 +38,15 @@ class GameSelectionMenu extends StatelessWidget {
       ),
       SelectCard(
         title: 'LENDAS E MITOS',
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) {
+                return GestureBox().widget;
+              },
+            ),
+          );
+        },
       ),
       SelectCard(
         title: 'VOCABULÁRIO',
