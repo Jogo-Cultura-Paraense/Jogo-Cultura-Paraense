@@ -10,15 +10,20 @@ class MusicGamePageArgs {
 
   final double startTime;
   final double timeBetweenDiscs;
+  final int level;
 
   const MusicGamePageArgs(
       {@required this.timeBetweenDiscs,
       @required this.map,
-      @required this.startTime});
+      @required this.startTime,
+      @required this.level});
 
   factory MusicGamePageArgs.initial() {
     return MusicGamePageArgs(
-        map: Maps.sudoeste.region, startTime: 60, timeBetweenDiscs: 1);
+        map: Maps.sudoeste.region,
+        startTime: 60,
+        timeBetweenDiscs: 1,
+        level: 1);
   }
 }
 
@@ -41,12 +46,13 @@ class MusicGameGamePage extends StatelessWidget {
             .getGameSave(Games.music)
             .topScores;
         return MusicaGame(
-          context: context,
-          gameMap: args.map,
-          topScore: topScores.isEmpty ? 0 : topScores[0],
-          startTime: args.startTime,
-          timeBetweenDiscs: args.timeBetweenDiscs,
-        ).widget;
+                context: context,
+                gameMap: args.map,
+                topScore: topScores.isEmpty ? 0 : topScores[0],
+                startTime: args.startTime,
+                timeBetweenDiscs: args.timeBetweenDiscs,
+                level: args.level)
+            .widget;
       },
     );
   }

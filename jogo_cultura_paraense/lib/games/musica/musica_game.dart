@@ -20,6 +20,7 @@ class MusicaGame extends Game with TapDetector {
   final BuildContext _context;
   final int _topScore;
   final String _gameMap;
+  final int _level;
 
   Size _screenSize;
   double tileSize;
@@ -28,7 +29,7 @@ class MusicaGame extends Game with TapDetector {
   Timer timer;
   //ScoreDisplay _scoreDisplay;
   Background _background;
-  AudioPlayer music;
+  String musicName;
 
   Random rnd;
   double _discTimer;
@@ -50,11 +51,13 @@ class MusicaGame extends Game with TapDetector {
       @required int topScore,
       @required String gameMap,
       @required double startTime,
-      @required double timeBetweenDiscs})
+      @required double timeBetweenDiscs,
+      @required int level})
       : _context = context,
         _startTime = startTime,
         _topScore = topScore,
         _timeBetweenDiscs = timeBetweenDiscs,
+        _level = level,
         _gameMap = gameMap {
     _initialize();
   }
@@ -62,12 +65,11 @@ class MusicaGame extends Game with TapDetector {
   void _initialize() async {
     BGM.attachWidgetBindingListener();
     resize(await Flame.util.initialDimensions());
-    /* _background = Background(
-      imagePath:
-          _numTargets == 4 ? 'findGame/mangalG.jpeg' : 'findGame/bosqueRA.jpg',
+    _background = Background(
+      imagePath: 'musicGame/carimbo.jpg',
       screenHeight: _screenSize.height,
       screenWidth: _screenSize.width,
-    ); */
+    );
     _discTimer = 0;
     gameTimer = 0;
     score = 0;
@@ -89,11 +91,10 @@ class MusicaGame extends Game with TapDetector {
       },
     );
 
-    /*  music =
-        await Flame.audio.playLongAudio('bgm/lenda_do_guarana.mp3', volume: .5);
-    music.pause(); */
+    musicName =
+        _level % 2 == 0 ? 'bgm/os_passa_vida.mp3' : 'bgm/lenda_do_guarana.mp3';
 
-    await BGM.add('bgm/lenda_do_guarana.mp3');
+    await BGM.add(musicName);
   }
 
   void playPlayingBGM() async {
@@ -117,8 +118,9 @@ class MusicaGame extends Game with TapDetector {
   }
 
   void onGameFinished() {
+    BGM.stop();
     BGM.removeAll();
-    stopPlayingBGM();
+
     Navigator.of(_context).popAndPushNamed(
       ScorePage.routeName,
       arguments: ScorePageArgs(
@@ -159,7 +161,7 @@ class MusicaGame extends Game with TapDetector {
     Paint bgPaint = Paint();
     bgPaint.color = Color(0xff576574);
     canvas.drawRect(bgRect, bgPaint);
-    //_background.render(canvas);
+    _background.render(canvas);
     if (_showTutorial) {
       tutorial.render(canvas);
     } else {

@@ -20,9 +20,9 @@ class MusicDisc {
         width: discRect.width / 2,
         height: discRect.height / 2);
     targetPaint = Paint();
-    targetPaint.color = Color(0x77ffffff);
+    targetPaint.color = Color(0xffffffff);
     discPaint = Paint();
-    discPaint.color = Color(0x55000000);
+    discPaint.color = Color(0x88000000);
     text = "FALHOU";
   }
 
