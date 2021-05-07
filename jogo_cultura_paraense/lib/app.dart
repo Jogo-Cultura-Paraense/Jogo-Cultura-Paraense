@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/games/cooking_game/models/rules.dart';
 import 'package:jogo_cultura_paraense/pages/finished_game_page.dart';
 import 'package:jogo_cultura_paraense/games/vocabulario/main_vocabulario.dart';
+import 'package:jogo_cultura_paraense/games/lendas_mitos/mainLendasMitos.dart';
 import 'package:jogo_cultura_paraense/pages/pages.dart';
 
 class App extends StatelessWidget {
@@ -87,6 +88,9 @@ class App extends StatelessWidget {
           },
           CookingLevelSelectionPage.routeName: (BuildContext context) {
             return const CookingLevelSelectionPage();
+          },
+          mainLendasMitosScreen.routeName: (BuildContext context) {
+            return mainLendasMitos();
           },
         },
         // ignore: missing_return
