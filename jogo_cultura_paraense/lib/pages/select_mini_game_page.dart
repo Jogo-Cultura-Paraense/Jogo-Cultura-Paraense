@@ -42,7 +42,11 @@ class GameSelectionMenu extends StatelessWidget {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) {
-                return GestureBox().widget;
+                final mediaQuery = MediaQuery.of(context);
+                return GestureBox(
+                  mediaQuery.size.height,
+                  mediaQuery.size.width,
+                ).widget;
               },
             ),
           );
