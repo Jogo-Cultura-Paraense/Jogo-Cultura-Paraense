@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jogo_cultura_paraense/games/cooking_game/models/rules.dart';
 import 'package:jogo_cultura_paraense/pages/finished_game_page.dart';
 import 'package:jogo_cultura_paraense/games/vocabulario/main_vocabulario.dart';
+import 'package:jogo_cultura_paraense/games/lendas_mitos/mainLendasMitos.dart';
 import 'package:jogo_cultura_paraense/pages/pages.dart';
 
 class App extends StatelessWidget {
@@ -24,6 +26,7 @@ class App extends StatelessWidget {
             textTheme: ButtonTextTheme.primary,
           ),
         ),
+        initialRoute: LoadingPage.routeName,
         routes: {
           // For dev purposes, should be removed on production
           DevPage.routeName: (BuildContext context) {
@@ -82,9 +85,25 @@ class App extends StatelessWidget {
           },
           VocabLevelSelectionPage.routeName: (BuildContext context) {
             return const VocabLevelSelectionPage();
+          },
+          CookingLevelSelectionPage.routeName: (BuildContext context) {
+            return const CookingLevelSelectionPage();
+          },
+          mainLendasMitosScreen.routeName: (BuildContext context) {
+            return mainLendasMitos();
+          },
+        },
+        // ignore: missing_return
+        onGenerateRoute: (settings) {
+          if (settings.name == CookingGamePage.routeName) {
+            final CookingGameRules rules = settings.arguments;
+            return MaterialPageRoute(
+              builder: (context) {
+                return CookingGamePage(rules: rules);
+              },
+            );
           }
         },
-        initialRoute: LoadingPage.routeName,
       ),
     );
   }

@@ -89,6 +89,39 @@ flutter:
     - assets/images/findGame/no_button.png
     - assets/images/findGame/hint_button.png
     - assets/images/findGame/how_to.png
+    - assets/audio/completetask_0.mp3
+    - assets/audio/explosion.wav
+    - assets/audio/win_sound.wav
+    - assets/audio/hint.wav
+    - assets/audio/wrong.wav
+    - assets/images/cooking_game/acai.png
+    - assets/images/cooking_game/acucar.png
+    - assets/images/cooking_game/arroz.png
+    - assets/images/cooking_game/boi.png
+    - assets/images/cooking_game/camarao.png
+    - assets/images/cooking_game/carangueijo.png
+    - assets/images/cooking_game/coco.png
+    - assets/images/cooking_game/creme_leite.png
+    - assets/images/cooking_game/cupuacu.png
+    - assets/images/cooking_game/farinha_tapioca.png
+    - assets/images/cooking_game/farofa.png
+    - assets/images/cooking_game/filhote.png
+    - assets/images/cooking_game/goma_tapioca.png
+    - assets/images/cooking_game/jambu.png
+    - assets/images/cooking_game/leite_coco.png
+    - assets/images/cooking_game/leite_condensado.png
+    - assets/images/cooking_game/macaxeira.png
+    - assets/images/cooking_game/maniva.png
+    - assets/images/cooking_game/ovos.png
+    - assets/images/cooking_game/pato.png
+    - assets/images/cooking_game/porco.png
+    - assets/images/cooking_game/tucupi.png
+    - assets/images/cooking_game/panela.png
+    - assets/images/cooking_game/dica.png
+    - assets/images/cooking_game/bg.jpeg
+    - assets/images/cooking_game/tutorial0.jpg
+    - assets/images/cooking_game/tutorial1.jpg
+    - assets/images/cooking_game/tutorial2.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:

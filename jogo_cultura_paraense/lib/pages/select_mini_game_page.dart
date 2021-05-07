@@ -3,6 +3,7 @@ import 'package:jogo_cultura_paraense/components/home/home_appbar.dart';
 import 'package:jogo_cultura_paraense/components/home/home_scaffold.dart';
 import 'package:jogo_cultura_paraense/games/running_game/gesture_box.dart';
 import 'package:jogo_cultura_paraense/pages/level_selection/level_selection_pages.dart';
+import 'package:jogo_cultura_paraense/games/lendas_mitos/mainLendasMitos.dart';
 
 class GameSelectionPage extends StatelessWidget {
   static const String routeName = '/gameSelect';
@@ -25,7 +26,9 @@ class GameSelectionMenu extends StatelessWidget {
     return <Widget>[
       SelectCard(
         title: 'CULINÁRIA',
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).pushNamed(CookingLevelSelectionPage.routeName);
+        },
       ),
       SelectCard(
         title: 'ARQUITETURA/\nFESTIVIDADES',
