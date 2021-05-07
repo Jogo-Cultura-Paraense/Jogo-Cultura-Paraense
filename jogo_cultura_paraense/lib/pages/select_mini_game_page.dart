@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/components/home/home_appbar.dart';
 import 'package:jogo_cultura_paraense/components/home/home_scaffold.dart';
 import 'package:jogo_cultura_paraense/games/running_game/gesture_box.dart';
+import 'package:jogo_cultura_paraense/games/running_game/mainLendasMitos.dart';
 import 'package:jogo_cultura_paraense/pages/level_selection/level_selection_pages.dart';
-import 'package:jogo_cultura_paraense/games/lendas_mitos/mainLendasMitos.dart';
 
 class GameSelectionPage extends StatelessWidget {
   static const String routeName = '/gameSelect';
@@ -41,19 +41,8 @@ class GameSelectionMenu extends StatelessWidget {
       ),
       SelectCard(
         title: 'LENDAS E MITOS',
-        onTap: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) {
-                final mediaQuery = MediaQuery.of(context);
-                return GestureBox(
-                  mediaQuery.size.height,
-                  mediaQuery.size.width,
-                ).widget;
-              },
-            ),
-          );
-        },
+        onTap: () =>
+            Navigator.of(context).pushNamed(mainLendasMitosScreen.routeName),
       ),
       SelectCard(
         title: 'VOCABULÁRIO',
