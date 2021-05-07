@@ -12,6 +12,8 @@ import 'package:jogo_cultura_paraense/games/musica/musica_tutorial.dart';
 import 'package:jogo_cultura_paraense/model/game.dart';
 import 'package:jogo_cultura_paraense/pages/pages.dart';
 
+import 'components/background.dart';
+import 'components/bgm.dart';
 import 'components/timer.dart';
 
 class MusicaGame extends Game with TapDetector {
@@ -25,7 +27,7 @@ class MusicaGame extends Game with TapDetector {
   List<HitText> hitTexts;
   Timer timer;
   //ScoreDisplay _scoreDisplay;
-
+  Background _background;
   AudioPlayer music;
 
   Random rnd;
@@ -58,7 +60,14 @@ class MusicaGame extends Game with TapDetector {
   }
 
   void _initialize() async {
+    BGM.attachWidgetBindingListener();
     resize(await Flame.util.initialDimensions());
+    /* _background = Background(
+      imagePath:
+          _numTargets == 4 ? 'findGame/mangalG.jpeg' : 'findGame/bosqueRA.jpg',
+      screenHeight: _screenSize.height,
+      screenWidth: _screenSize.width,
+    ); */
     _discTimer = 0;
     gameTimer = 0;
     score = 0;
@@ -80,17 +89,21 @@ class MusicaGame extends Game with TapDetector {
       },
     );
 
-    music =
+    /*  music =
         await Flame.audio.playLongAudio('bgm/lenda_do_guarana.mp3', volume: .5);
-    music.pause();
+    music.pause(); */
+
+    await BGM.add('bgm/lenda_do_guarana.mp3');
   }
 
   void playPlayingBGM() async {
-    await music.resume();
+    await BGM.play(0);
+    //await music.resume();
   }
 
   void stopPlayingBGM() async {
-    await music.stop();
+    await BGM.stop();
+    //await music.stop();
   }
 
   void spawnDisc() {
@@ -104,6 +117,7 @@ class MusicaGame extends Game with TapDetector {
   }
 
   void onGameFinished() {
+    BGM.removeAll();
     stopPlayingBGM();
     Navigator.of(_context).popAndPushNamed(
       ScorePage.routeName,
@@ -145,6 +159,7 @@ class MusicaGame extends Game with TapDetector {
     Paint bgPaint = Paint();
     bgPaint.color = Color(0xff576574);
     canvas.drawRect(bgRect, bgPaint);
+    //_background.render(canvas);
     if (_showTutorial) {
       tutorial.render(canvas);
     } else {
