@@ -3,6 +3,7 @@ import 'package:jogo_cultura_paraense/components/home/home_appbar.dart';
 import 'package:jogo_cultura_paraense/components/home/home_scaffold.dart';
 import 'package:jogo_cultura_paraense/games/running_game/gesture_box.dart';
 import 'package:jogo_cultura_paraense/games/running_game/mainLendasMitos.dart';
+import 'package:jogo_cultura_paraense/games/running_game/tutorialRunningGame.dart';
 import 'package:jogo_cultura_paraense/pages/level_selection/level_selection_pages.dart';
 
 class GameSelectionPage extends StatelessWidget {
@@ -42,7 +43,7 @@ class GameSelectionMenu extends StatelessWidget {
       SelectCard(
         title: 'LENDAS E MITOS',
         onTap: () =>
-            Navigator.of(context).pushNamed(mainLendasMitosScreen.routeName),
+            Navigator.of(context).pushNamed(TutorialRunningGameScreen.routeName),
       ),
       SelectCard(
         title: 'VOCABULÁRIO',

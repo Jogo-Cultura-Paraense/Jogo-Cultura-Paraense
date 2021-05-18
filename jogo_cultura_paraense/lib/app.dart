@@ -4,6 +4,7 @@ import 'package:jogo_cultura_paraense/games/cooking_game/models/rules.dart';
 import 'package:jogo_cultura_paraense/pages/finished_game_page.dart';
 import 'package:jogo_cultura_paraense/games/vocabulario/main_vocabulario.dart';
 import 'package:jogo_cultura_paraense/games/running_game/mainLendasMitos.dart';
+import 'package:jogo_cultura_paraense/games/running_game/tutorialRunningGame.dart';
 import 'package:jogo_cultura_paraense/pages/pages.dart';
 
 class App extends StatelessWidget {
@@ -92,6 +93,9 @@ class App extends StatelessWidget {
           mainLendasMitosScreen.routeName: (BuildContext context) {
             return mainLendasMitos();
           },
+          TutorialRunningGameScreen.routeName: (BuildContext context) {
+            return TutorialRunningGame();
+          }
         },
         // ignore: missing_return
         onGenerateRoute: (settings) {

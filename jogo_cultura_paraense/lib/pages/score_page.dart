@@ -3,7 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
 import 'package:jogo_cultura_paraense/pages/home_page.dart';
-
+import 'package:jogo_cultura_paraense/games/running_game/mainLendasMitos.dart';
 class ScorePageArgs {
   final String game;
   final String map;
@@ -48,6 +48,8 @@ class ScorePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
     final ScorePageArgs args =
         ModalRoute.of(context).settings.arguments ?? ScorePageArgs.initial();
 
@@ -214,6 +216,7 @@ class ScorePage extends StatelessWidget {
         ),
       );
     }
+
     Navigator.of(context).popUntil(
       (route) => route.settings.name == HomePage.routeName,
     );

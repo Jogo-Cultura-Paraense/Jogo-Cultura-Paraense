@@ -122,6 +122,8 @@ flutter:
     - assets/images/cooking_game/tutorial0.jpg
     - assets/images/cooking_game/tutorial1.jpg
     - assets/images/cooking_game/tutorial2.jpg
+    - assets/images/runningGame/arvore.png
+    - assets/images/runningGame/curupira.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
