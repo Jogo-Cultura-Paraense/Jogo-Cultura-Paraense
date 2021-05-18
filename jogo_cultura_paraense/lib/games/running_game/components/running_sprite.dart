@@ -13,6 +13,8 @@ abstract class RunningSprite extends SpriteComponent {
 
   bool contains(Offset d) => this.toRect().contains(d);
 
+  void handleCollision() {}
+
   void moveTo(double x, double y) {
     this.x = x;
     this.y = y;
@@ -23,5 +25,11 @@ abstract class RunningSprite extends SpriteComponent {
     final paint = Paint();
     paint.color = this.color;
     canvas.drawRect(this.toRect(), paint);
+  }
+
+  @override
+  void update(double dt) {
+    this.x = x - (400 * dt);
+    super.update(dt);
   }
 }

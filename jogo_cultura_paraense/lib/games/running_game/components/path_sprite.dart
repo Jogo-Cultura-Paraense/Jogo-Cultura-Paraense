@@ -66,9 +66,18 @@ class PathSprite extends SpriteComponent {
 
   @override
   void update(double dt) {
-    onPath.forEach((sprite) {
+    int i = 0;
+    RunningSprite sprite;
+    while (i < this.onPath.length) {
+      sprite = onPath[i];
+      if (player != null && sprite.x < player.x + player.width) {
+        sprite.handleCollision();
+        this.removeFromPath(sprite);
+        i -= 1;
+      }
       sprite.update(dt);
-    });
+      i += 1;
+    }
     super.update(dt);
   }
 
