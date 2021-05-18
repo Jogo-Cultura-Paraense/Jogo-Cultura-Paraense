@@ -6,12 +6,10 @@ import 'package:flame/gestures.dart';
 import 'package:flutter/gestures.dart';
 import 'package:jogo_cultura_paraense/games/running_game/components/obstacle_sprite.dart';
 import 'package:jogo_cultura_paraense/games/running_game/components/path_sprite.dart';
-import 'package:jogo_cultura_paraense/games/running_game/components/player_sprite.dart';
 import 'package:jogo_cultura_paraense/games/running_game/components/running_sprite.dart';
 
 class GestureBox extends BaseGame with VerticalDragDetector {
   final List<PathSprite> paths;
-  final PlayerSprite player;
   final double height;
   final double width;
   int currentPathIndex = 0;
@@ -39,12 +37,7 @@ class GestureBox extends BaseGame with VerticalDragDetector {
             x: 0,
             y: height - 3 * height / 7,
           ),
-        ],
-        player = PlayerSprite(
-          width: height / 7,
-          height: height / 7,
-          imagePath: '0xFF000000',
-        ) {
+        ] {
     initPaths();
     initObstacles();
     initPlayer();
