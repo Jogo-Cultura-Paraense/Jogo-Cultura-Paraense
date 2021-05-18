@@ -82,8 +82,7 @@ class GestureBox extends BaseGame with VerticalDragDetector {
           // and if next path has less then 3 sprites on path
           nextPath = paths[(i + 1) % paths.length];
           if (currentPath.onPath.length > nextPath.onPath.length &&
-              nextPath.onPath.length < 3) {
-            print("$i / $t");
+              nextPath.onPath.length < 5) {
             nextPath.addToPath(
               ObstacleSprite(
                 width: height / 7,
