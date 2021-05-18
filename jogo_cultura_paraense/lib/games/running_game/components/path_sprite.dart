@@ -2,11 +2,13 @@ import 'package:flame/components/component.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/games/running_game/components/obstacle_sprite.dart';
+import 'package:jogo_cultura_paraense/games/running_game/components/player_sprite.dart';
 import 'package:jogo_cultura_paraense/games/running_game/components/running_sprite.dart';
 
 class PathSprite extends SpriteComponent {
   final Color color;
   final List<RunningSprite> onPath = [];
+  PlayerSprite player;
 
   PathSprite({
     @required double width,
@@ -33,6 +35,20 @@ class PathSprite extends SpriteComponent {
   }
 
   bool contains(Offset d) => this.toRect().contains(d);
+
+  void addPlayer() {
+    player = PlayerSprite(
+      x: 0,
+      y: this.y,
+      width: height,
+      height: height,
+      imagePath: '0xFF000000',
+    );
+  }
+
+  void removePlayer() {
+    player = null;
+  }
 
   void addToPath(RunningSprite sprite) {
     sprite.moveTo(this.x + this.width, this.y);
@@ -68,5 +84,9 @@ class PathSprite extends SpriteComponent {
       }
       sprite.render(canvas);
     });
+
+    if (this.player != null) {
+      player.render(canvas);
+    }
   }
 }
