@@ -66,7 +66,8 @@ class MusicaGame extends Game with TapDetector {
     BGM.attachWidgetBindingListener();
     resize(await Flame.util.initialDimensions());
     _background = Background(
-      imagePath: 'musicGame/carimbo.jpg',
+      imagePath:
+          _level % 2 == 0 ? 'musicGame/rubiboy.jpg' : 'musicGame/carimbo.jpg',
       screenHeight: _screenSize.height,
       screenWidth: _screenSize.width,
     );
@@ -97,6 +98,19 @@ class MusicaGame extends Game with TapDetector {
     await BGM.add(musicName);
   }
 
+  String changeBackground() {
+    String backgroundPath;
+    switch (_level) {
+      case 1:
+        backgroundPath = 'musicGame/carimbo.jpg';
+        break;
+      case 2:
+        backgroundPath = 'musicGame/rubiboy.jpg';
+        break;
+    }
+    return backgroundPath;
+  }
+
   void playPlayingBGM() async {
     await BGM.play(0);
     //await music.resume();
@@ -110,7 +124,41 @@ class MusicaGame extends Game with TapDetector {
   void spawnDisc() {
     double x = rnd.nextInt(5) * tileSize;
     double y = rnd.nextInt(7) * tileSize;
-    discs.add(MusicDisc(this, x, y));
+    String nameSprite;
+    switch (_level) {
+      case 1:
+        {
+          nameSprite = "drum";
+        }
+        break;
+      case 2:
+        {
+          nameSprite = "acousticbox";
+        }
+        break;
+      case 3:
+        {
+          nameSprite = "acousticguitar";
+        }
+        break;
+      case 4:
+        {
+          nameSprite = "musicnote";
+        }
+        break;
+      case 5:
+        {
+          nameSprite = "electricguitar";
+        }
+        break;
+      case 6:
+        {
+          nameSprite = "drum";
+        }
+        break;
+    }
+
+    discs.add(MusicDisc(this, x, y, nameSprite));
   }
 
   void drawHitText(String text, Offset center) {

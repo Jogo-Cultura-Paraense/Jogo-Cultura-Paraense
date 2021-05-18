@@ -85,11 +85,17 @@ flutter:
     - assets/images/findGame/022.png
     - assets/images/findGame/023.png
     - assets/images/findGame/024.png
+    - assets/images/musicGame/icons/drum.png
+    - assets/images/musicGame/icons/acousticbox.png
+    - assets/images/musicGame/icons/acousticguitar.png
+    - assets/images/musicGame/icons/musicnote.png
+    - assets/images/musicGame/icons/electricguitar.png
     - assets/images/findGame/start_button.png
     - assets/images/findGame/no_button.png
     - assets/images/findGame/hint_button.png
     - assets/images/findGame/how_to.png
     - assets/images/musicGame/carimbo.jpg
+    - assets/images/musicGame/rubiboy.jpg
     - assets/audio/bgm/lenda_do_guarana.mp3
     - assets/audio/bgm/os_passa_vida.mp3
 

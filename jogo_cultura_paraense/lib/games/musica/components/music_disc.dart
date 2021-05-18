@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:flame/sprite.dart';
+import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/games/musica/musica_game.dart';
 
 class MusicDisc {
@@ -12,7 +14,9 @@ class MusicDisc {
   double timeLeft = 3;
   String text;
 
-  MusicDisc(this.game, double x, double y) {
+  Sprite _sprite;
+
+  MusicDisc(this.game, double x, double y, String spriteName) {
     isDead = false;
     discRect = Rect.fromLTWH(x, y, game.tileSize, game.tileSize);
     targetRect = Rect.fromCenter(
@@ -23,12 +27,14 @@ class MusicDisc {
     targetPaint.color = Color(0xffffffff);
     discPaint = Paint();
     discPaint.color = Color(0x88000000);
+    _sprite = Sprite('musicGame/icons/$spriteName.png');
     text = "FALHOU";
   }
 
   void render(Canvas c) {
     c.drawRect(discRect, discPaint);
     c.drawRect(targetRect, targetPaint);
+    _sprite.renderRect(c, targetRect.inflate(2));
   }
 
   void update(double t) {

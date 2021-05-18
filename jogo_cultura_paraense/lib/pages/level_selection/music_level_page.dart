@@ -19,7 +19,7 @@ class MusicLevelSelectionPage extends StatelessWidget {
             MusicGameGamePage.routeName,
             arguments: MusicGamePageArgs(
                 map: Maps.sudoeste.region,
-                startTime: 15, //60,
+                startTime: 60,
                 timeBetweenDiscs: 1,
                 level: 1),
           );
@@ -33,7 +33,7 @@ class MusicLevelSelectionPage extends StatelessWidget {
             MusicGameGamePage.routeName,
             arguments: MusicGamePageArgs(
                 map: Maps.sudoeste.region,
-                startTime: 15, //60,
+                startTime: 60,
                 timeBetweenDiscs: 1,
                 level: 2),
           );
