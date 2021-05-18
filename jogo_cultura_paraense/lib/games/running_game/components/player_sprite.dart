@@ -17,11 +17,6 @@ class PlayerSprite extends RunningSprite {
     this.sprite = Sprite('findGame/00.png');
   }
 
-  void moveTo(double x, double y) {
-    this.x = x;
-    this.y = y;
-  }
-
   @override
   void render(Canvas canvas) {
     final paint = Paint();
