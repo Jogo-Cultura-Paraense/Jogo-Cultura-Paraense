@@ -87,12 +87,17 @@ class PathSprite extends SpriteComponent {
     paint.color = this.color;
     canvas.drawRect(this.toRect(), paint);
 
-    onPath.forEach((sprite) {
+    int i = 0;
+    RunningSprite sprite;
+    while (i < this.onPath.length) {
+      sprite = this.onPath[i];
       if (sprite.x + sprite.width < 0) {
-        sprite.moveTo(this.x + this.width, this.y);
+        this.removeFromPath(sprite);
+        i -= 1;
       }
       sprite.render(canvas);
-    });
+      i += 1;
+    }
 
     if (this.player != null) {
       player.render(canvas);
