@@ -20,29 +20,29 @@ class GestureBox extends BaseGame with VerticalDragDetector {
       : paths = <PathSprite>[
           PathSprite(
             width: width,
-            height: height / 15,
+            height: height / 7,
             imagePath: '0xFFFFFF00',
             x: 0,
-            y: height - height / 15,
+            y: height - height / 7,
           ),
           PathSprite(
             width: width,
-            height: height / 15,
+            height: height / 7,
             imagePath: '0xFF008000',
             x: 0,
-            y: height - 2 * height / 15,
+            y: height - 2 * height / 7,
           ),
           PathSprite(
             width: width,
-            height: height / 15,
+            height: height / 7,
             imagePath: '0xFFFF0000',
             x: 0,
-            y: height - 3 * height / 15,
+            y: height - 3 * height / 7,
           ),
         ],
         player = PlayerSprite(
-          width: height / 15,
-          height: height / 15,
+          width: height / 7,
+          height: height / 7,
           imagePath: '0xFF000000',
         ) {
     initPaths();
@@ -53,11 +53,7 @@ class GestureBox extends BaseGame with VerticalDragDetector {
   PathSprite get currentPath => paths[currentPathIndex];
 
   void initPlayer() {
-    player.moveTo(
-      this.currentPath.x,
-      this.currentPath.y,
-    );
-    this.add(player);
+    this.currentPath.addPlayer();
   }
 
   void initPaths() {
@@ -71,8 +67,8 @@ class GestureBox extends BaseGame with VerticalDragDetector {
     // Choose a random path to add a random sprite
     paths[random.nextInt(paths.length)].addToPath(
       ObstacleSprite(
-        width: height / 15,
-        height: height / 15,
+        width: height / 7,
+        height: height / 7,
         imagePath: '0xFF0000FF',
       ),
     );
@@ -81,31 +77,28 @@ class GestureBox extends BaseGame with VerticalDragDetector {
   @override
   void update(double t) {
     super.update(t);
-    PathSprite path, nextPath;
-    List<RunningSprite> spritesOnPath;
-    bool passedMiddle;
-    // Check if a sprite on each path has passed middle of screen
+    PathSprite currentPath, nextPath;
+    RunningSprite lastSprite;
+    // Check if the last sprite on each path has passed middle of screen
     for (int i = 0; i < paths.length; i += 1) {
-      passedMiddle = false;
-      path = paths[i];
-      spritesOnPath = path.onPath;
-      for (RunningSprite sprite in spritesOnPath) {
-        if (sprite.x + sprite.width < path.width / 2) {
-          passedMiddle = true;
-          break;
-        }
-      }
-      // If it has, add a random sprite to next path
-      if (passedMiddle) {
-        nextPath = paths[(i + 1) % paths.length];
-        if (nextPath.onPath.length < 3) {
-          nextPath.addToPath(
-            ObstacleSprite(
-              width: height / 15,
-              height: height / 15,
-              imagePath: '0xFF0000FF',
-            ),
-          );
+      currentPath = paths[i];
+      if (currentPath.onPath.isNotEmpty) {
+        lastSprite = currentPath.onPath.last;
+        if (lastSprite.x + lastSprite.width < 2 * currentPath.width / 3) {
+          // If it has, check if current path has more or equal sprites than next path
+          // and if next path has less then 3 sprites on path
+          nextPath = paths[(i + 1) % paths.length];
+          if (currentPath.onPath.length > nextPath.onPath.length &&
+              nextPath.onPath.length < 3) {
+            print("$i / $t");
+            nextPath.addToPath(
+              ObstacleSprite(
+                width: height / 7,
+                height: height / 7,
+                imagePath: '0xFF0000FF',
+              ),
+            );
+          }
         }
       }
     }
@@ -128,8 +121,9 @@ class GestureBox extends BaseGame with VerticalDragDetector {
     }
 
     if (nextPathIndex != currentPathIndex) {
+      this.currentPath.removePlayer();
       currentPathIndex = nextPathIndex;
-      player.moveTo(this.currentPath.x, this.currentPath.y);
+      this.currentPath.addPlayer();
     }
     super.onVerticalDragEnd(details);
   }
