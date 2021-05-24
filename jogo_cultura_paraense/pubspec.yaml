@@ -130,6 +130,7 @@ flutter:
     - assets/images/running_game/matinta.png
     - assets/images/running_game/muiraquita.png
     - assets/images/running_game/vitoria_regia.png
+    - assets/images/running_game/jogador.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
