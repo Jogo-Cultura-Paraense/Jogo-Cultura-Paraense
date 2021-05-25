@@ -137,6 +137,8 @@ flutter:
     - assets/images/running_game/poca.png
     - assets/images/running_game/sapo.png
     - assets/images/running_game/tronco.png
+    - assets/images/running_game/bg.jpg
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
