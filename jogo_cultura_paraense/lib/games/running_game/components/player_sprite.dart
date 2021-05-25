@@ -1,4 +1,3 @@
-import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/games/running_game/components/running_sprite.dart';
 
@@ -14,13 +13,5 @@ class PlayerSprite extends RunningSprite {
     this.y = y;
     this.width = width;
     this.height = height;
-    this.sprite = Sprite('findGame/00.png');
-  }
-
-  @override
-  void render(Canvas canvas) {
-    final paint = Paint();
-    paint.color = color;
-    canvas.drawRect(this.toRect(), paint);
   }
 }

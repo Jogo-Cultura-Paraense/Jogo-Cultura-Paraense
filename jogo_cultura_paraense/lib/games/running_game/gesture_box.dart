@@ -9,6 +9,7 @@ import 'package:jogo_cultura_paraense/games/running_game/components/obstacle_spr
 import 'package:jogo_cultura_paraense/games/running_game/components/path_sprite.dart';
 import 'package:jogo_cultura_paraense/games/running_game/components/running_sprite.dart';
 import 'package:jogo_cultura_paraense/games/running_game/LifeBox.dart';
+import 'package:jogo_cultura_paraense/games/running_game/models/legend.dart';
 
 class GestureBox extends BaseGame with VerticalDragDetector {
   final List<PathSprite> paths;
@@ -17,31 +18,36 @@ class GestureBox extends BaseGame with VerticalDragDetector {
   final Random random = Random();
   int currentPathIndex = 0;
   LifeBox temp = LifeBox();
+  final List<Legend> legendPool = [
+    LegendFactory.boto,
+    LegendFactory.cobraGrande,
+    LegendFactory.curupira,
+  ];
 
   GestureBox(this.height, this.width)
       : paths = <PathSprite>[
-    PathSprite(
-      width: width,
-      height: height / 7,
-      imagePath: '0xFFFFFF00',
-      x: 0,
-      y: height - height / 7,
-    ),
-    PathSprite(
-      width: width,
-      height: height / 7,
-      imagePath: '0xFF008000',
-      x: 0,
-      y: height - 2 * height / 7,
-    ),
-    PathSprite(
-      width: width,
-      height: height / 7,
-      imagePath: '0xFFFF0000',
-      x: 0,
-      y: height - 3 * height / 7,
-    ),
-  ] {
+          PathSprite(
+            width: width,
+            height: height / 7,
+            imagePath: '0xFFFFFF00',
+            x: 0,
+            y: height - height / 7,
+          ),
+          PathSprite(
+            width: width,
+            height: height / 7,
+            imagePath: '0xFF008000',
+            x: 0,
+            y: height - 2 * height / 7,
+          ),
+          PathSprite(
+            width: width,
+            height: height / 7,
+            imagePath: '0xFFFF0000',
+            x: 0,
+            y: height - 3 * height / 7,
+          ),
+        ] {
     initPaths();
     initObstacles();
     initPlayer();
@@ -65,9 +71,16 @@ class GestureBox extends BaseGame with VerticalDragDetector {
       ObstacleSprite(
         width: height / 7,
         height: height / 7,
-        imagePath: '0xFF0000FF',
+        imagePath: 'running_game/jogador.png',
       ),
     );
+  }
+
+  @override
+  void render(Canvas canvas) {
+    this.components.forEach((element) {
+      element.render(canvas);
+    });
   }
 
   @override
@@ -91,7 +104,7 @@ class GestureBox extends BaseGame with VerticalDragDetector {
                 ObstacleSprite(
                   width: height / 7,
                   height: height / 7,
-                  imagePath: '0xFF0000FF',
+                  imagePath: 'running_game/jogador.png',
                 ),
               );
             } else {
@@ -99,7 +112,9 @@ class GestureBox extends BaseGame with VerticalDragDetector {
                 LegendSprite(
                   width: height / 7,
                   height: height / 7,
-                  imagePath: '0xFF00FF00',
+                  imagePath: this
+                      .legendPool[this.random.nextInt(this.legendPool.length)]
+                      .imagePath,
                 ),
               );
             }

@@ -18,7 +18,6 @@ class LegendSprite extends RunningSprite {
     this.y = y;
     this.width = width;
     this.height = height;
-    this.sprite = Sprite('findGame/00.png');
   }
 
   @override

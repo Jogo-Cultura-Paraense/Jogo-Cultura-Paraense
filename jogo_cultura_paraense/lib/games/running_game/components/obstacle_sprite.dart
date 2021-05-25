@@ -1,13 +1,10 @@
 import 'package:flame/flame_audio.dart';
-import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/games/running_game/LifeBox.dart';
 import 'package:jogo_cultura_paraense/games/running_game/components/running_sprite.dart';
-import 'package:jogo_cultura_paraense/games/running_game/gesture_box.dart';
 
 class ObstacleSprite extends RunningSprite {
   final FlameAudio audio = FlameAudio();
-
 
   ObstacleSprite({
     @required double width,
@@ -20,7 +17,13 @@ class ObstacleSprite extends RunningSprite {
     this.y = y;
     this.width = width;
     this.height = height;
-    this.sprite = Sprite('findGame/00.png');
+  }
+
+  @override
+  void render(Canvas canvas) {
+    final paint = Paint();
+    paint.color = Color(0xFF0000FF);
+    canvas.drawRect(this.toRect(), paint);
   }
 
   @override
@@ -30,6 +33,5 @@ class ObstacleSprite extends RunningSprite {
 
     audio.play("wrong.wav");
     super.handleCollision();
-
   }
 }

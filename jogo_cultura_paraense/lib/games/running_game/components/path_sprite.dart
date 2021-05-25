@@ -1,5 +1,4 @@
 import 'package:flame/components/component.dart';
-import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/games/running_game/components/obstacle_sprite.dart';
 import 'package:jogo_cultura_paraense/games/running_game/components/player_sprite.dart';
@@ -21,7 +20,6 @@ class PathSprite extends SpriteComponent {
     this.y = y;
     this.width = width;
     this.height = height;
-    this.sprite = Sprite('findGame/00.png');
   }
 
   int obstaclesOnPath() {
@@ -42,7 +40,7 @@ class PathSprite extends SpriteComponent {
       y: this.y,
       width: height,
       height: height,
-      imagePath: '0xFF000000',
+      imagePath: 'running_game/jogador.png',
     );
   }
 
