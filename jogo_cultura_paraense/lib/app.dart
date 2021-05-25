@@ -6,6 +6,8 @@ import 'package:jogo_cultura_paraense/games/vocabulario/main_vocabulario.dart';
 import 'package:jogo_cultura_paraense/games/running_game/mainLendasMitos.dart';
 import 'package:jogo_cultura_paraense/games/running_game/tutorialRunningGame.dart';
 import 'package:jogo_cultura_paraense/pages/pages.dart';
+import 'package:jogo_cultura_paraense/games/running_game/attributes.dart' as globals;
+
 
 class App extends StatelessWidget {
   final List<BlocProvider> _blocs;
@@ -91,6 +93,7 @@ class App extends StatelessWidget {
             return const CookingLevelSelectionPage();
           },
           mainLendasMitosScreen.routeName: (BuildContext context) {
+            globals.main();
             return mainLendasMitos();
           },
           TutorialRunningGameScreen.routeName: (BuildContext context) {

@@ -2,18 +2,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/games/running_game/mainLendasMitos.dart';
+import 'package:jogo_cultura_paraense/games/running_game/attributes.dart' as globals;
 
 class LifeBox extends StatefulWidget {
-  LifeBoxScreen createState() => LifeBoxScreen.instance;
+  LifeBoxScreen createState() => globals.temp2;
 }
 
 class LifeBoxScreen extends State<LifeBox> {
   int lives = 3;
-  LifeBoxScreen._privateConstructor();
-
-  static final LifeBoxScreen _instance = LifeBoxScreen._privateConstructor();
-
-  static LifeBoxScreen get instance => _instance;
 
   @override
   void initState() {
@@ -29,8 +25,7 @@ class LifeBoxScreen extends State<LifeBox> {
     });
     if (lives == 0) {
       setState(() {
-        mainLendasMitosScreen temp = mainLendasMitosScreen.instance;
-        temp.endGame();
+        globals.temp.endGame();
       });
     }
   }

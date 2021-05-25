@@ -81,9 +81,9 @@ class PathSprite extends SpriteComponent {
 
   @override
   void render(Canvas canvas) {
-    // final paint = Paint();
-    // paint.color = this.color;
-    // canvas.drawRect(this.toRect(), paint);
+     final paint = Paint();
+     paint.color = this.color;
+     canvas.drawRect(this.toRect(), paint);
 
     int i = 0;
     RunningSprite sprite;

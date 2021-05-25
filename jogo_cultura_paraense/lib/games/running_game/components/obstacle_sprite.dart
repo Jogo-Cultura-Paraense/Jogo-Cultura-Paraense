@@ -2,6 +2,8 @@ import 'package:flame/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/games/running_game/LifeBox.dart';
 import 'package:jogo_cultura_paraense/games/running_game/components/running_sprite.dart';
+import 'package:jogo_cultura_paraense/games/running_game/attributes.dart' as globals;
+
 
 class ObstacleSprite extends RunningSprite {
   final FlameAudio audio = FlameAudio();
@@ -21,8 +23,7 @@ class ObstacleSprite extends RunningSprite {
 
   @override
   void handleCollision() {
-    LifeBoxScreen temp = LifeBoxScreen.instance;
-    temp.decreaseLife();
+    globals.temp2.decreaseLife();
 
     audio.play("wrong.wav");
     super.handleCollision();

@@ -6,6 +6,7 @@ class Legend {
 }
 
 abstract class LegendFactory {
+
   static Legend get boto {
     return Legend("boto", "running_game/boto.png");
   }

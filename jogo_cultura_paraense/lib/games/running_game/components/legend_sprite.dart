@@ -3,6 +3,7 @@ import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/games/running_game/TargetsBox.dart';
 import 'package:jogo_cultura_paraense/games/running_game/components/running_sprite.dart';
+import 'package:jogo_cultura_paraense/games/running_game/attributes.dart' as globals;
 
 class LegendSprite extends RunningSprite {
   final FlameAudio audio = FlameAudio();
@@ -22,8 +23,7 @@ class LegendSprite extends RunningSprite {
 
   @override
   void handleCollision() {
-    TargetsBoxScreen temp = TargetsBoxScreen.instance;
-    temp.decreaseTarget();
+    globals.temp3.decreaseTarget();
     audio.play("completetask_0.mp3");
     super.handleCollision();
   }

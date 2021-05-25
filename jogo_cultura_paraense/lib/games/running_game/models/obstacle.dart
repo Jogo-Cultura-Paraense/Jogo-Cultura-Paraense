@@ -6,6 +6,8 @@ class Obstacle {
 }
 
 abstract class ObstacleFactory {
+
+
   static Obstacle get aranha {
     return Obstacle("aranha", "running_game/aranha.png");
   }

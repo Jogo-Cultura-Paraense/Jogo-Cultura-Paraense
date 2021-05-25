@@ -20,8 +20,6 @@ class GestureBox extends BaseGame with VerticalDragDetector {
   int currentPathIndex = 0;
   LifeBox temp = LifeBox();
   final List<Legend> legendPool = [
-    LegendFactory.boto,
-    LegendFactory.cobraGrande,
     LegendFactory.curupira,
   ];
   final List<Obstacle> obstaclePool = ObstacleFactory.all;
@@ -31,21 +29,21 @@ class GestureBox extends BaseGame with VerticalDragDetector {
           PathSprite(
             width: width,
             height: height / 7,
-            imagePath: '0xFFFFFF00',
+            imagePath: '0xFF008000',
             x: 0,
             y: height - height / 7,
           ),
           PathSprite(
             width: width,
             height: height / 7,
-            imagePath: '0xFF008000',
+            imagePath: '0xFF800000',
             x: 0,
             y: height - 2 * height / 7,
           ),
           PathSprite(
             width: width,
             height: height / 7,
-            imagePath: '0xFFFF0000',
+            imagePath: '0xFF590000',
             x: 0,
             y: height - 3 * height / 7,
           ),

@@ -8,12 +8,13 @@ import 'package:jogo_cultura_paraense/games/running_game/attributes.dart'
     as globals;
 import 'package:jogo_cultura_paraense/games/running_game/LifeBox.dart';
 import 'package:jogo_cultura_paraense/games/running_game/TargetsBox.dart';
+import 'package:jogo_cultura_paraense/games/running_game/HintsBox.dart';
 import 'package:jogo_cultura_paraense/pages/score_page.dart';
 import 'package:jogo_cultura_paraense/model/game.dart';
 import 'package:jogo_cultura_paraense/model/map.dart';
 
 class mainLendasMitos extends StatefulWidget {
-  mainLendasMitosScreen createState() => mainLendasMitosScreen.instance;
+  mainLendasMitosScreen createState() => globals.temp;
 }
 
 class mainLendasMitosScreen extends State<mainLendasMitos> {
@@ -23,16 +24,9 @@ class mainLendasMitosScreen extends State<mainLendasMitos> {
   var timer;
   var game;
   var hasTimerStopped;
-  double score = 100.0;
-  LifeBoxScreen temp = LifeBoxScreen.instance;
+  double score = 1000.0;
+  bool usedHint = false;
 
-  mainLendasMitosScreen._privateConstructor();
-  static final mainLendasMitosScreen _instance =
-      mainLendasMitosScreen._privateConstructor();
-  static mainLendasMitosScreen get instance => _instance;
-  static void set instance(value) {
-    instance = null;
-  }
 
   @override
   void initState() {
@@ -85,6 +79,8 @@ class mainLendasMitosScreen extends State<mainLendasMitos> {
     );
   }
 
+
+
   Widget timeBox() {
     return Flexible(
         flex: 15,
@@ -114,7 +110,9 @@ class mainLendasMitosScreen extends State<mainLendasMitos> {
 
     return Scaffold(
         body: Stack(
+
       children: [
+
         Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
@@ -125,11 +123,13 @@ class mainLendasMitosScreen extends State<mainLendasMitos> {
             ),
           ),
         ),
+
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [TargetsBox(), timeBox(), LifeBox()],
         ),
         game.widget,
+        HintsBox()
       ],
     ));
   }
