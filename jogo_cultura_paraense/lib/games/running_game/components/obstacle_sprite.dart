@@ -20,13 +20,6 @@ class ObstacleSprite extends RunningSprite {
   }
 
   @override
-  void render(Canvas canvas) {
-    final paint = Paint();
-    paint.color = Color(0xFF0000FF);
-    canvas.drawRect(this.toRect(), paint);
-  }
-
-  @override
   void handleCollision() {
     LifeBoxScreen temp = LifeBoxScreen.instance;
     temp.decreaseLife();

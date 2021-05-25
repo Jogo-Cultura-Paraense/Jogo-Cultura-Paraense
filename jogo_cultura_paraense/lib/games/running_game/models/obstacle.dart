@@ -29,4 +29,15 @@ abstract class ObstacleFactory {
   static Obstacle get tronco {
     return Obstacle("tronco", "running_game/tronco.png");
   }
+
+  static List<Obstacle> get all {
+    return [
+      ObstacleFactory.aranha,
+      ObstacleFactory.onca,
+      ObstacleFactory.pedra,
+      ObstacleFactory.poca,
+      ObstacleFactory.sapo,
+      ObstacleFactory.tronco,
+    ];
+  }
 }

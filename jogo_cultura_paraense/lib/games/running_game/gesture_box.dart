@@ -10,6 +10,7 @@ import 'package:jogo_cultura_paraense/games/running_game/components/path_sprite.
 import 'package:jogo_cultura_paraense/games/running_game/components/running_sprite.dart';
 import 'package:jogo_cultura_paraense/games/running_game/LifeBox.dart';
 import 'package:jogo_cultura_paraense/games/running_game/models/legend.dart';
+import 'package:jogo_cultura_paraense/games/running_game/models/obstacle.dart';
 
 class GestureBox extends BaseGame with VerticalDragDetector {
   final List<PathSprite> paths;
@@ -23,6 +24,7 @@ class GestureBox extends BaseGame with VerticalDragDetector {
     LegendFactory.cobraGrande,
     LegendFactory.curupira,
   ];
+  final List<Obstacle> obstaclePool = ObstacleFactory.all;
 
   GestureBox(this.height, this.width)
       : paths = <PathSprite>[
@@ -104,7 +106,11 @@ class GestureBox extends BaseGame with VerticalDragDetector {
                 ObstacleSprite(
                   width: height / 7,
                   height: height / 7,
-                  imagePath: 'running_game/jogador.png',
+                  imagePath: this
+                      .obstaclePool[this.random.nextInt(
+                            this.obstaclePool.length,
+                          )]
+                      .imagePath,
                 ),
               );
             } else {
