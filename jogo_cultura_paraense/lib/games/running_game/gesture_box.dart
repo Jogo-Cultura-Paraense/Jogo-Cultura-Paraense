@@ -73,7 +73,11 @@ class GestureBox extends BaseGame with VerticalDragDetector {
       ObstacleSprite(
         width: height / 7,
         height: height / 7,
-        imagePath: 'running_game/jogador.png',
+        imagePath: this
+            .obstaclePool[this.random.nextInt(
+                  this.obstaclePool.length,
+                )]
+            .imagePath,
       ),
     );
   }
