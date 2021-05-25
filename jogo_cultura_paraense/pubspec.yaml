@@ -90,12 +90,16 @@ flutter:
     - assets/images/musicGame/icons/acousticguitar.png
     - assets/images/musicGame/icons/musicnote.png
     - assets/images/musicGame/icons/electricguitar.png
+    - assets/images/musicGame/how_to.png
     - assets/images/findGame/start_button.png
     - assets/images/findGame/no_button.png
     - assets/images/findGame/hint_button.png
     - assets/images/findGame/how_to.png
     - assets/images/musicGame/carimbo.jpg
     - assets/images/musicGame/rubiboy.jpg
+    - assets/images/musicGame/mestresolano.jpg
+    - assets/images/musicGame/mpp.jpg
+    - assets/images/musicGame/Vincent_Rosenblatt_Tecnobrega.jpg
     - assets/audio/bgm/lenda_do_guarana.mp3
     - assets/audio/bgm/os_passa_vida.mp3
 

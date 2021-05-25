@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class MusicaGameTutorial {
   final Rect _tutorialRect;
-  //final Sprite _tutorialSprite;
+  final Sprite _tutorialSprite;
   final Rect _startRect;
   final Sprite _startSprite;
   final VoidCallback onStartTap;
@@ -15,22 +15,22 @@ class MusicaGameTutorial {
     @required double tileSize,
     @required this.onStartTap,
   })  : _tutorialRect = Rect.fromLTWH(
-          tileSize,
+          tileSize / 2,
           (screenHeight / 2) - (tileSize * 3),
           tileSize * 3,
-          tileSize * 7,
+          tileSize * 5,
         ),
-        //_tutorialSprite = Sprite('findGame/how_to.png'),
+        _tutorialSprite = Sprite('musicGame/how_to.png'),
         _startRect = Rect.fromLTWH(
           tileSize / 2,
-          (screenHeight * .75) - (tileSize),
+          (screenHeight * .75),
           tileSize * 3,
           tileSize,
         ),
         _startSprite = Sprite('findGame/start_button.png');
 
   void render(Canvas canvas) {
-    //_tutorialSprite.renderRect(canvas, _tutorialRect);
+    _tutorialSprite.renderRect(canvas, _tutorialRect);
     _startSprite.renderRect(canvas, _startRect);
   }
 

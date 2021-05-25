@@ -66,8 +66,8 @@ class MusicaGame extends Game with TapDetector {
     BGM.attachWidgetBindingListener();
     resize(await Flame.util.initialDimensions());
     _background = Background(
-      imagePath:
-          _level % 2 == 0 ? 'musicGame/rubiboy.jpg' : 'musicGame/carimbo.jpg',
+      imagePath: changeBackground(),
+      //_level % 2 == 0 ? 'musicGame/rubiboy.jpg' : 'musicGame/carimbo.jpg',
       screenHeight: _screenSize.height,
       screenWidth: _screenSize.width,
     );
@@ -106,6 +106,18 @@ class MusicaGame extends Game with TapDetector {
         break;
       case 2:
         backgroundPath = 'musicGame/rubiboy.jpg';
+        break;
+      case 3:
+        backgroundPath = 'musicGame/mestresolano.jpg';
+        break;
+      case 4:
+        backgroundPath = 'musicGame/mpp.jpg';
+        break;
+      case 5:
+        backgroundPath = 'musicGame/Vincent_Rosenblatt_Tecnobrega.jpg';
+        break;
+      case 6:
+        backgroundPath = 'musicGame/carimbo.jpg';
         break;
     }
     return backgroundPath;
