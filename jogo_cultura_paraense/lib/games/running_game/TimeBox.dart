@@ -22,22 +22,22 @@ class TimeBox extends StatelessWidget {
     int hints,
     int hintsLeft,
     String map,
+      int level
   ) {
     Navigator.of(context).popAndPushNamed(
       ScorePage.routeName,
       arguments: ScorePageArgs(
         game: Games.legendAndMyths,
         map: map,
-        score: score,
         finalScore: finalScore,
-        topScore: 0,
+        topScore: 1000*level,
         time: duration.inSeconds.toDouble(),
         prettyTime: getFormatedTime(
           duration.inMinutes,
           duration.inSeconds % 60,
         ),
-        hintsLeft: hintsLeft,
-        hints: hints,
+        hintsLeft: 1,
+        hints: hints
       ),
     );
   }
@@ -74,6 +74,7 @@ class TimeBox extends StatelessWidget {
                     state.rules.hints,
                     state.rules.hints - state.hints,
                     state.rules.levelName,
+                    state.getLevel()
                   );
                 }
               },

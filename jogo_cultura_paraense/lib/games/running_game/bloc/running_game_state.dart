@@ -61,4 +61,8 @@ class RunningGameState {
     final finalScore = score - (0.1 * maxScore * hints);
     return finalScore.floor();
   }
+
+  int getLevel() {
+    return rules.level;
+  }
 }

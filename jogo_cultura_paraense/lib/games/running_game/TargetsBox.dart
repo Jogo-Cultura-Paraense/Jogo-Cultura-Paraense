@@ -16,7 +16,7 @@ class TargetsBox extends StatelessWidget {
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
-            fontSize: 18.0,
+            fontSize: 14.0,
           ),
         ),
       );
