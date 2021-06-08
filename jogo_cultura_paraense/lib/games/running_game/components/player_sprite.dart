@@ -8,10 +8,15 @@ class PlayerSprite extends RunningSprite {
     @required String imagePath,
     double x = 0,
     double y = 0,
-  }) : super(imagePath) {
+  }) : super(imagePath, "player", 0) {
     this.x = x;
     this.y = y;
     this.width = width;
     this.height = height;
+  }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
   }
 }

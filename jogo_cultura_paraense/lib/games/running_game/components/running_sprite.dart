@@ -5,9 +5,12 @@ import 'package:flame/components/component.dart';
 import 'package:flame/sprite.dart';
 
 abstract class RunningSprite extends SpriteComponent {
-  final int id;
+  final int spriteId;
+  final String modelId;
+  final int speed;
 
-  RunningSprite(String imagePath) : this.id = Random().nextInt(100) {
+  RunningSprite(String imagePath, this.modelId, this.speed)
+      : this.spriteId = Random().nextInt(100) {
     this.sprite = Sprite(imagePath);
   }
 
@@ -27,7 +30,7 @@ abstract class RunningSprite extends SpriteComponent {
 
   @override
   void update(double dt) {
-    this.x = x - (400 * dt);
+    this.x = x - (speed * dt);
     super.update(dt);
   }
 }

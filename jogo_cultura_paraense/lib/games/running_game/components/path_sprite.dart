@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/games/running_game/components/obstacle_sprite.dart';
 import 'package:jogo_cultura_paraense/games/running_game/components/player_sprite.dart';
 import 'package:jogo_cultura_paraense/games/running_game/components/running_sprite.dart';
+import 'package:jogo_cultura_paraense/games/running_game/gesture_box.dart';
 
 class PathSprite extends SpriteComponent {
   final Color color;
   final List<RunningSprite> onPath = [];
+  final LegendIdCallBack onLegendCollision;
+  final VoidCallback onObstacleCollision;
+
   PlayerSprite player;
 
   PathSprite({
@@ -15,6 +19,8 @@ class PathSprite extends SpriteComponent {
     @required String imagePath,
     @required double x,
     @required double y,
+    @required this.onLegendCollision,
+    @required this.onObstacleCollision,
   }) : this.color = Color(int.parse(imagePath)) {
     this.x = x;
     this.y = y;
@@ -54,7 +60,9 @@ class PathSprite extends SpriteComponent {
   }
 
   void removeFromPath(RunningSprite spriteToRemove) {
-    this.onPath.removeWhere((sprite) => sprite.id == spriteToRemove.id);
+    this.onPath.removeWhere(
+          (sprite) => sprite.spriteId == spriteToRemove.spriteId,
+        );
   }
 
   void moveTo(double x, double y) {
@@ -69,6 +77,11 @@ class PathSprite extends SpriteComponent {
     while (i < this.onPath.length) {
       sprite = onPath[i];
       if (player != null && sprite.x < player.x + player.width) {
+        if (sprite is ObstacleSprite) {
+          onObstacleCollision();
+        } else {
+          onLegendCollision(sprite.modelId);
+        }
         sprite.handleCollision();
         this.removeFromPath(sprite);
         i -= 1;
@@ -81,9 +94,9 @@ class PathSprite extends SpriteComponent {
 
   @override
   void render(Canvas canvas) {
-     final paint = Paint();
-     paint.color = this.color;
-     canvas.drawRect(this.toRect(), paint);
+    final paint = Paint();
+    paint.color = this.color;
+    canvas.drawRect(this.toRect(), paint);
 
     int i = 0;
     RunningSprite sprite;

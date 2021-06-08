@@ -1,48 +1,44 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jogo_cultura_paraense/games/running_game/mainLendasMitos.dart';
-import 'package:jogo_cultura_paraense/games/running_game/attributes.dart' as globals;
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jogo_cultura_paraense/games/running_game/bloc/running_game_bloc.dart';
 
-class LifeBox extends StatefulWidget {
-  LifeBoxScreen createState() => globals.temp2;
-}
+class LifeBox extends StatelessWidget {
+  const LifeBox({Key key}) : super(key: key);
 
-class LifeBoxScreen extends State<LifeBox> {
-  int lives = 3;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-
-
-
-  void decreaseLife() {
-    setState(() {
-      this.lives--;
-    });
-    if (lives == 0) {
-      setState(() {
-        globals.temp.endGame();
-      });
+  List<Widget> buildLifeIcons(int lifes) {
+    final lifeIcons = <Widget>[];
+    for (int i = 0; i < lifes; i += 1) {
+      lifeIcons.add(Icon(Icons.favorite, color: Colors.white));
     }
+    return lifeIcons;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-        flex: 15,
-        child: FractionallySizedBox(
-          widthFactor: 0.9,
-          heightFactor: 0.15,
-          child: Container(
+    return BlocBuilder<RunningGameBloc, RunningGameState>(
+      buildWhen: (previousState, nextState) {
+        if (previousState.lifes > nextState.lifes) {
+          return true;
+        }
+        return false;
+      },
+      builder: (context, state) {
+        return Flexible(
+          flex: 15,
+          child: FractionallySizedBox(
+            widthFactor: 0.9,
+            heightFactor: 0.15,
+            child: Container(
               decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                color: Colors.red,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(5.0),
+                ),
+              ),
               child: Center(
-                  child: Column(children: [
+                child: Column(
+                  children: [
                     Text(
                       'Vidas restantes:',
                       textAlign: TextAlign.center,
@@ -53,19 +49,18 @@ class LifeBoxScreen extends State<LifeBox> {
                       ),
                     ),
                     Flexible(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: lives == 1 ? [
-                            Icon(Icons.favorite, color: Colors.white)
-                          ] : lives == 2 ? [
-                            Icon(Icons.favorite, color: Colors.white), Icon(Icons.favorite, color: Colors.white)
-                          ] : lives == 3 ? [
-                            Icon(Icons.favorite, color: Colors.white), Icon(Icons.favorite, color: Colors.white), Icon(Icons.favorite, color: Colors.white)
-                          ] : [],
-                        )
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: buildLifeIcons(state.lifes),
+                      ),
                     )
-                  ]))),
-        ));
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
   }
 }
-

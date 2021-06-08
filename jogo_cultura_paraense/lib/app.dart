@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/games/cooking_game/models/rules.dart';
+import 'package:jogo_cultura_paraense/games/running_game/models/rules.dart';
 import 'package:jogo_cultura_paraense/pages/finished_game_page.dart';
 import 'package:jogo_cultura_paraense/games/vocabulario/main_vocabulario.dart';
-import 'package:jogo_cultura_paraense/games/running_game/mainLendasMitos.dart';
-import 'package:jogo_cultura_paraense/games/running_game/tutorialRunningGame.dart';
+import 'package:jogo_cultura_paraense/pages/games/running_game_page.dart';
+import 'package:jogo_cultura_paraense/pages/level_selection/run_level_selection_page.dart';
 import 'package:jogo_cultura_paraense/pages/pages.dart';
-import 'package:jogo_cultura_paraense/games/running_game/attributes.dart' as globals;
-
 
 class App extends StatelessWidget {
   final List<BlocProvider> _blocs;
@@ -92,12 +91,8 @@ class App extends StatelessWidget {
           CookingLevelSelectionPage.routeName: (BuildContext context) {
             return const CookingLevelSelectionPage();
           },
-          mainLendasMitosScreen.routeName: (BuildContext context) {
-            globals.main();
-            return mainLendasMitos();
-          },
-          TutorialRunningGameScreen.routeName: (BuildContext context) {
-            return TutorialRunningGame();
+          RunningLevelSelectionPage.routeName: (BuildContext context) {
+            return const RunningLevelSelectionPage();
           }
         },
         // ignore: missing_return
@@ -109,6 +104,11 @@ class App extends StatelessWidget {
                 return CookingGamePage(rules: rules);
               },
             );
+          } else if (settings.name == RunningGamePage.routeName) {
+            final RunningGameRules rules = settings.arguments;
+            return MaterialPageRoute(builder: (context) {
+              return RunningGamePage(rules: rules);
+            });
           }
         },
       ),

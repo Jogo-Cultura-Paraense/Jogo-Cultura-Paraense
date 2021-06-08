@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flame/game.dart';
 import 'package:flame/gestures.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter/widgets.dart';
 import 'package:jogo_cultura_paraense/games/running_game/components/legend_sprite.dart';
 import 'package:jogo_cultura_paraense/games/running_game/components/obstacle_sprite.dart';
 import 'package:jogo_cultura_paraense/games/running_game/components/path_sprite.dart';
@@ -12,26 +13,35 @@ import 'package:jogo_cultura_paraense/games/running_game/LifeBox.dart';
 import 'package:jogo_cultura_paraense/games/running_game/models/legend.dart';
 import 'package:jogo_cultura_paraense/games/running_game/models/obstacle.dart';
 
+typedef LegendIdCallBack = Function(String legendId);
+
 class GestureBox extends BaseGame with VerticalDragDetector {
   final List<PathSprite> paths;
   final double height;
   final double width;
   final Random random = Random();
+  final int speed;
   int currentPathIndex = 0;
   LifeBox temp = LifeBox();
-  final List<Legend> legendPool = [
-    LegendFactory.curupira,
-  ];
+  final List<Legend> legendPool;
   final List<Obstacle> obstaclePool = ObstacleFactory.all;
 
-  GestureBox(this.height, this.width)
-      : paths = <PathSprite>[
+  GestureBox(
+    this.height,
+    this.width, {
+    @required this.speed,
+    @required this.legendPool,
+    @required LegendIdCallBack onLegendCollision,
+    @required VoidCallback onObstacleCollision,
+  }) : paths = <PathSprite>[
           PathSprite(
             width: width,
             height: height / 7,
             imagePath: '0xFF008000',
             x: 0,
             y: height - height / 7,
+            onLegendCollision: onLegendCollision,
+            onObstacleCollision: onObstacleCollision,
           ),
           PathSprite(
             width: width,
@@ -39,6 +49,8 @@ class GestureBox extends BaseGame with VerticalDragDetector {
             imagePath: '0xFF800000',
             x: 0,
             y: height - 2 * height / 7,
+            onLegendCollision: onLegendCollision,
+            onObstacleCollision: onObstacleCollision,
           ),
           PathSprite(
             width: width,
@@ -46,6 +58,8 @@ class GestureBox extends BaseGame with VerticalDragDetector {
             imagePath: '0xFF590000',
             x: 0,
             y: height - 3 * height / 7,
+            onLegendCollision: onLegendCollision,
+            onObstacleCollision: onObstacleCollision,
           ),
         ] {
     initPaths();
@@ -66,17 +80,31 @@ class GestureBox extends BaseGame with VerticalDragDetector {
   }
 
   void initObstacles() {
-    // Choose a random path to add a random sprite
-    paths[this.random.nextInt(paths.length)].addToPath(
-      ObstacleSprite(
-        width: height / 7,
-        height: height / 7,
-        imagePath: this
-            .obstaclePool[this.random.nextInt(
-                  this.obstaclePool.length,
-                )]
-            .imagePath,
-      ),
+    final randomPathIndex = this.random.nextInt(paths.length);
+    paths[randomPathIndex].addToPath(randomObstacle());
+  }
+
+  ObstacleSprite randomObstacle() {
+    final randomObstacleIndex = this.random.nextInt(this.obstaclePool.length);
+    final randomObstacle = this.obstaclePool[randomObstacleIndex];
+    return ObstacleSprite(
+      width: height / 7,
+      height: height / 7,
+      imagePath: randomObstacle.imagePath,
+      modelId: randomObstacle.id,
+      speed: speed,
+    );
+  }
+
+  LegendSprite randomLegend() {
+    final randomLegendIndex = this.random.nextInt(this.legendPool.length);
+    final randomLegend = this.legendPool[randomLegendIndex];
+    return LegendSprite(
+      width: height / 7,
+      height: height / 7,
+      imagePath: randomLegend.imagePath,
+      modelId: randomLegend.id,
+      speed: speed,
     );
   }
 
@@ -104,27 +132,9 @@ class GestureBox extends BaseGame with VerticalDragDetector {
           if (currentPath.onPath.length > nextPath.onPath.length &&
               nextPath.onPath.length < 5) {
             if (this.random.nextBool()) {
-              nextPath.addToPath(
-                ObstacleSprite(
-                  width: height / 7,
-                  height: height / 7,
-                  imagePath: this
-                      .obstaclePool[this.random.nextInt(
-                            this.obstaclePool.length,
-                          )]
-                      .imagePath,
-                ),
-              );
+              nextPath.addToPath(randomObstacle());
             } else {
-              nextPath.addToPath(
-                LegendSprite(
-                  width: height / 7,
-                  height: height / 7,
-                  imagePath: this
-                      .legendPool[this.random.nextInt(this.legendPool.length)]
-                      .imagePath,
-                ),
-              );
+              nextPath.addToPath(randomLegend());
             }
           }
         }
