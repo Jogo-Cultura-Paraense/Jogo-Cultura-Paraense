@@ -7,7 +7,6 @@ import 'package:flame/gestures.dart';
 import 'package:flutter/widgets.dart';
 import 'package:jogo_cultura_paraense/games/musica/components/hit_text.dart';
 import 'package:jogo_cultura_paraense/games/musica/components/music_disc.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:jogo_cultura_paraense/games/musica/musica_tutorial.dart';
 import 'package:jogo_cultura_paraense/model/game.dart';
 import 'package:jogo_cultura_paraense/pages/pages.dart';

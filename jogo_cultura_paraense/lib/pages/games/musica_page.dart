@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
+import 'package:jogo_cultura_paraense/games/musica/components/bgm.dart';
 import 'package:jogo_cultura_paraense/games/musica/musica_game.dart';
 import 'package:jogo_cultura_paraense/model/game.dart';
 import 'package:jogo_cultura_paraense/model/map.dart';
@@ -33,6 +34,8 @@ class MusicGameGamePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BGM.stop(); //para a música, caso esteja tocando
+
     final MusicGamePageArgs args = ModalRoute.of(context).settings.arguments ??
         MusicGamePageArgs.initial();
 
