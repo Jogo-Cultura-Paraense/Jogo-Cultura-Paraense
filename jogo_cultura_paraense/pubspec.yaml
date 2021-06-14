@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.7.0 <3.0.0'
 
 dependencies:
   flutter:
@@ -44,7 +44,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -89,6 +88,56 @@ flutter:
     - assets/images/findGame/no_button.png
     - assets/images/findGame/hint_button.png
     - assets/images/findGame/how_to.png
+    - assets/audio/completetask_0.mp3
+    - assets/audio/explosion.wav
+    - assets/audio/win_sound.wav
+    - assets/audio/hint.wav
+    - assets/audio/wrong.wav
+    - assets/images/cooking_game/acai.png
+    - assets/images/cooking_game/acucar.png
+    - assets/images/cooking_game/arroz.png
+    - assets/images/cooking_game/boi.png
+    - assets/images/cooking_game/camarao.png
+    - assets/images/cooking_game/carangueijo.png
+    - assets/images/cooking_game/coco.png
+    - assets/images/cooking_game/creme_leite.png
+    - assets/images/cooking_game/cupuacu.png
+    - assets/images/cooking_game/farinha_tapioca.png
+    - assets/images/cooking_game/farofa.png
+    - assets/images/cooking_game/filhote.png
+    - assets/images/cooking_game/goma_tapioca.png
+    - assets/images/cooking_game/jambu.png
+    - assets/images/cooking_game/leite_coco.png
+    - assets/images/cooking_game/leite_condensado.png
+    - assets/images/cooking_game/macaxeira.png
+    - assets/images/cooking_game/maniva.png
+    - assets/images/cooking_game/ovos.png
+    - assets/images/cooking_game/pato.png
+    - assets/images/cooking_game/porco.png
+    - assets/images/cooking_game/tucupi.png
+    - assets/images/cooking_game/panela.png
+    - assets/images/cooking_game/dica.png
+    - assets/images/cooking_game/bg.jpeg
+    - assets/images/cooking_game/tutorial0.jpg
+    - assets/images/cooking_game/tutorial1.jpg
+    - assets/images/cooking_game/tutorial2.jpg
+    - assets/images/running_game/arvore.png
+    - assets/images/running_game/boto.png
+    - assets/images/running_game/cobra_grande.png
+    - assets/images/running_game/curupira.png
+    - assets/images/running_game/iara.png
+    - assets/images/running_game/mapinguari.png
+    - assets/images/running_game/matinta.png
+    - assets/images/running_game/muiraquita.png
+    - assets/images/running_game/vitoria_regia.png
+    - assets/images/running_game/jogador.png
+    - assets/images/running_game/aranha.png
+    - assets/images/running_game/onca.png
+    - assets/images/running_game/pedra.png
+    - assets/images/running_game/poca.png
+    - assets/images/running_game/sapo.png
+    - assets/images/running_game/tronco.png
+    - assets/images/running_game/bg.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:

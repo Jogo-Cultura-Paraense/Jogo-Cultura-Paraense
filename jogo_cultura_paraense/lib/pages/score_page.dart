@@ -53,10 +53,11 @@ class ScorePage extends StatelessWidget {
 
     final gameSummary = '''
     \nPONTUAÇÃO
-    Jogo concluído: ${args.score}
-    Tempo Restante: ${args.prettyTime} segundos
-    Dicas Usadas: ${args.hints - args.hintsLeft} / ${args.hints}
+    Jogo concluído
+    Tempo Restante: ${args.prettyTime} 
+    Dicas Usadas: ${0} / ${args.hints}
     TOTAL: ${args.finalScore} / ${args.topScore}
+    HIGH SCORE: ${args.topScore > 1000 ? args.topScore-50 : 1000} 
     ''';
 
     String interjection = "\nPai D'égua\n";
@@ -119,9 +120,9 @@ class ScorePage extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 5.0),
+                padding: EdgeInsets.symmetric(vertical: 1.0),
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
                   color: Colors.grey[600],
                   child: Text(
                     gameSummary,
@@ -214,6 +215,7 @@ class ScorePage extends StatelessWidget {
         ),
       );
     }
+
     Navigator.of(context).popUntil(
       (route) => route.settings.name == HomePage.routeName,
     );
