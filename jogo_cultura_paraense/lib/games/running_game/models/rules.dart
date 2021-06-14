@@ -37,69 +37,83 @@ abstract class RunningGameRulebook {
       );
 
   static RunningGameRules get level2 => RunningGameRules(
-          level: 2,
-          levelName: Maps.baixoAmazonas.region,
-          time: 240,
-          speed: 440,
-          legends: [
-            LegendFactory.boto,
-            LegendFactory.cobraGrande,
-            LegendFactory.curupira,
-            LegendFactory.iara,
-          ]);
+        level: 2,
+        levelName: Maps.baixoAmazonas.region,
+        time: 240,
+        speed: 440,
+        legends: [
+          LegendFactory.boto,
+          LegendFactory.cobraGrande,
+          LegendFactory.curupira,
+          LegendFactory.iara,
+        ],
+      );
 
   static RunningGameRules get level3 => RunningGameRules(
-          level: 3,
-          levelName: Maps.sudeste.region,
-          time: 210,
-          speed: 480,
-          legends: [
-            LegendFactory.boto,
-            LegendFactory.cobraGrande,
-            LegendFactory.curupira,
-            LegendFactory.iara,
-            LegendFactory.mapinguari
-          ]);
+        level: 3,
+        levelName: Maps.sudeste.region,
+        time: 210,
+        speed: 480,
+        legends: [
+          LegendFactory.boto,
+          LegendFactory.cobraGrande,
+          LegendFactory.curupira,
+          LegendFactory.iara,
+          LegendFactory.mapinguari
+        ],
+      );
   static RunningGameRules get level4 => RunningGameRules(
-          level: 4,
-          levelName: Maps.nordeste.region,
-          time: 180,
-          speed: 520,
-          legends: [
-            LegendFactory.boto,
-            LegendFactory.cobraGrande,
-            LegendFactory.curupira,
-            LegendFactory.iara,
-            LegendFactory.mapinguari,
-            LegendFactory.matinta
-          ]);
+        level: 4,
+        levelName: Maps.nordeste.region,
+        time: 180,
+        speed: 520,
+        legends: [
+          LegendFactory.boto,
+          LegendFactory.cobraGrande,
+          LegendFactory.curupira,
+          LegendFactory.iara,
+          LegendFactory.mapinguari,
+          LegendFactory.matinta
+        ],
+      );
   static RunningGameRules get level5 => RunningGameRules(
-          level: 5,
-          levelName: Maps.marajo.region,
-          time: 150,
-          speed: 560,
-          legends: [
-            LegendFactory.boto,
-            LegendFactory.cobraGrande,
-            LegendFactory.curupira,
-            LegendFactory.iara,
-            LegendFactory.mapinguari,
-            LegendFactory.matinta,
-            LegendFactory.muiraquita,
-          ]);
+        level: 5,
+        levelName: Maps.marajo.region,
+        time: 150,
+        speed: 560,
+        legends: [
+          LegendFactory.boto,
+          LegendFactory.cobraGrande,
+          LegendFactory.curupira,
+          LegendFactory.iara,
+          LegendFactory.mapinguari,
+          LegendFactory.matinta,
+          LegendFactory.muiraquita,
+        ],
+      );
   static RunningGameRules get level6 => RunningGameRules(
-          level: 6,
-          levelName: Maps.metropolitana.region,
-          time: 120,
-          speed: 600,
-          legends: [
-            LegendFactory.boto,
-            LegendFactory.cobraGrande,
-            LegendFactory.curupira,
-            LegendFactory.iara,
-            LegendFactory.mapinguari,
-            LegendFactory.matinta,
-            LegendFactory.muiraquita,
-            LegendFactory.vitoriaRegia,
-          ]);
+        level: 6,
+        levelName: Maps.metropolitana.region,
+        time: 120,
+        speed: 600,
+        legends: [
+          LegendFactory.boto,
+          LegendFactory.cobraGrande,
+          LegendFactory.curupira,
+          LegendFactory.iara,
+          LegendFactory.mapinguari,
+          LegendFactory.matinta,
+          LegendFactory.muiraquita,
+          LegendFactory.vitoriaRegia,
+        ],
+      );
+
+  static List<RunningGameRules> get all => [
+        RunningGameRulebook.level1,
+        RunningGameRulebook.level2,
+        RunningGameRulebook.level3,
+        RunningGameRulebook.level4,
+        RunningGameRulebook.level5,
+        RunningGameRulebook.level6,
+      ];
 }
