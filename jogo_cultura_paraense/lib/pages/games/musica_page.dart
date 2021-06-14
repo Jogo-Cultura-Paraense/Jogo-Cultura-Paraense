@@ -34,13 +34,14 @@ class MusicGameGamePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BGM.stop(); //para a música, caso esteja tocando
+    //BGM.removeAll(); //para a música, caso esteja tocando
 
     final MusicGamePageArgs args = ModalRoute.of(context).settings.arguments ??
         MusicGamePageArgs.initial();
 
     return BlocBuilder<SaveBloc, SaveState>(
       buildWhen: (previousState, currentState) {
+        BGM.removeAll(); //para a música, caso esteja tocando
         return previousState.currentSave != currentState.currentSave;
       },
       builder: (context, state) {
@@ -48,14 +49,26 @@ class MusicGameGamePage extends StatelessWidget {
             .getMapSave(Maps.sudoeste.region)
             .getGameSave(Games.music)
             .topScores;
-        return MusicaGame(
-                context: context,
-                gameMap: args.map,
-                topScore: topScores.isEmpty ? 0 : topScores[0],
-                startTime: args.startTime,
-                timeBetweenDiscs: args.timeBetweenDiscs,
-                level: args.level)
-            .widget;
+        return WillPopScope(
+          onWillPop: () {
+            if (BGM.isPlaying) {
+              BGM.stop();
+              BGM.removeAll();
+            } //para a música, caso esteja tocando
+            Navigator.of(context).pop();
+          },
+          child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            child: MusicaGame(
+                    context: context,
+                    gameMap: args.map,
+                    topScore: topScores.isEmpty ? 0 : topScores[0],
+                    startTime: args.startTime,
+                    timeBetweenDiscs: args.timeBetweenDiscs,
+                    level: args.level)
+                .widget,
+          ),
+        );
       },
     );
   }

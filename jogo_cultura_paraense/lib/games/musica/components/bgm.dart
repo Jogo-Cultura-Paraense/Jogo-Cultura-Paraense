@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class BGM {
   static List<AudioCache> _tracks = List<AudioCache>();
   static int _currentTrack = -1;
-  static bool _isPlaying = false;
+  static bool isPlaying = false;
 
   static _BGMWidgetsBindingObserver _bgmwbo;
 
@@ -21,7 +21,7 @@ class BGM {
       return;
     }
 
-    if (_isPlaying) {
+    if (isPlaying) {
       await _tracks[_currentTrack].fixedPlayer.resume();
     } else {
       await _tracks[_currentTrack].fixedPlayer.pause();
@@ -40,7 +40,7 @@ class BGM {
     if (trackIndex >= _tracks.length) {
       return;
     }
-    if (_isPlaying) {
+    if (isPlaying) {
       if (_currentTrack == trackIndex) {
         await stop();
       }
@@ -52,7 +52,7 @@ class BGM {
   }
 
   static void removeAll() {
-    if (_isPlaying) {
+    if (isPlaying) {
       stop();
     }
     _tracks.clear();
@@ -60,20 +60,20 @@ class BGM {
 
   static Future play(int trackIndex) async {
     if (_currentTrack == trackIndex) {
-      if (_isPlaying) {
+      if (isPlaying) {
         return;
       }
-      _isPlaying = true;
+      isPlaying = true;
       _update();
       return;
     }
 
-    if (_isPlaying) {
+    if (isPlaying) {
       await stop();
     }
 
     _currentTrack = trackIndex;
-    _isPlaying = true;
+    isPlaying = true;
     AudioCache t = _tracks[_currentTrack];
     await t.loop(t.loadedFiles.keys.first);
     _update();
@@ -82,16 +82,16 @@ class BGM {
   static Future stop() async {
     await _tracks[_currentTrack].fixedPlayer.stop();
     _currentTrack = -1;
-    _isPlaying = false;
+    isPlaying = false;
   }
 
   static void pause() {
-    _isPlaying = false;
+    isPlaying = false;
     _update();
   }
 
   static void resume() {
-    _isPlaying = true;
+    isPlaying = true;
     _update();
   }
 

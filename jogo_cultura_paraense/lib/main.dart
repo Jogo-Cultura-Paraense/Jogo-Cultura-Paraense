@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flame/util.dart';
 import 'package:jogo_cultura_paraense/bloc/bloc.dart';
+import 'package:jogo_cultura_paraense/games/musica/components/bgm.dart';
 import 'package:jogo_cultura_paraense/repositories/repositories.dart';
 import 'package:jogo_cultura_paraense/services/services.dart';
 import 'package:flutter/services.dart';
@@ -40,4 +41,5 @@ void main() async {
   await flameUtil.setOrientation(DeviceOrientation.portraitUp);
 
   runApp(App(blocs: blocProviders));
+  BGM.attachWidgetBindingListener();
 }

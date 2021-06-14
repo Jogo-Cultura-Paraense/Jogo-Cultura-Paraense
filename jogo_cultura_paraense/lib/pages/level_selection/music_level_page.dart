@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/components/level_selection/level_selection_card.dart';
 import 'package:jogo_cultura_paraense/components/level_selection/level_selection_page.dart';
+import 'package:jogo_cultura_paraense/games/musica/components/bgm.dart';
 import 'package:jogo_cultura_paraense/model/game.dart';
 import 'package:jogo_cultura_paraense/model/map.dart';
 import 'package:jogo_cultura_paraense/pages/games/musica_page.dart';
@@ -10,6 +11,7 @@ class MusicLevelSelectionPage extends StatelessWidget {
   const MusicLevelSelectionPage({Key key}) : super(key: key);
 
   List<LevelSelectionCard> _buildList(BuildContext context) {
+    //BGM.removeAll(); //para a música, caso esteja tocando
     return <LevelSelectionCard>[
       LevelSelectionCard(
         level: 1,

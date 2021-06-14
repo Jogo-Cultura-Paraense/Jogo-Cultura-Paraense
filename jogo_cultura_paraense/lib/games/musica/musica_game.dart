@@ -62,7 +62,7 @@ class MusicaGame extends Game with TapDetector {
   }
 
   void _initialize() async {
-    BGM.attachWidgetBindingListener();
+    // BGM.attachWidgetBindingListener();
     resize(await Flame.util.initialDimensions());
     _background = Background(
       imagePath: changeBackground(),
@@ -203,6 +203,7 @@ class MusicaGame extends Game with TapDetector {
   void toogleTutorial() {
     _showTutorial = !_showTutorial;
     if (!_showTutorial) {
+      //stopPlayingBGM();
       playPlayingBGM();
     }
   }
