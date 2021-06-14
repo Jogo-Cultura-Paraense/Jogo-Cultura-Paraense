@@ -23,8 +23,8 @@ class CookingGameRules {
 
   List<Order> get allOrders {
     final allOrders = <Order>[];
-    allOrders.addAll(normalOrders);
-    allOrders.addAll(doubleOrders);
+    allOrders.addAll(List.from(normalOrders));
+    allOrders.addAll(List.from(doubleOrders));
     allOrders.shuffle();
     return allOrders;
   }
@@ -135,4 +135,13 @@ abstract class CookingGameRulebook {
         ],
         time: (2 * 60), // 2 minutos
       );
+
+  static List<CookingGameRules> get all => [
+        CookingGameRulebook.level1,
+        CookingGameRulebook.level2,
+        CookingGameRulebook.level3,
+        CookingGameRulebook.level4,
+        CookingGameRulebook.level5,
+        CookingGameRulebook.level6,
+      ];
 }

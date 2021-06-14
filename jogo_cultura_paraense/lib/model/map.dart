@@ -30,4 +30,12 @@ abstract class Maps {
     region: 'Metropolitana',
     city: 'Belém',
   );
+  static List<GameMap> get all => [
+        Maps.sudoeste,
+        Maps.baixoAmazonas,
+        Maps.sudeste,
+        Maps.nordeste,
+        Maps.marajo,
+        Maps.metropolitana,
+      ];
 }

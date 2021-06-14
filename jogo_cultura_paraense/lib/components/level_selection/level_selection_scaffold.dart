@@ -4,19 +4,19 @@ import 'package:jogo_cultura_paraense/components/home/home_scaffold.dart';
 import 'package:jogo_cultura_paraense/components/level_selection/level_selection_box.dart';
 import 'package:jogo_cultura_paraense/components/level_selection/level_selection_card.dart';
 
-class LevelSelectionPage extends StatelessWidget {
-  final String _gameName;
-  final List<LevelSelectionCard> _levels;
-  const LevelSelectionPage({
-    @required String gameName,
-    @required List<Widget> levels,
-    Key key,
-  })  : _gameName = gameName,
-        _levels = levels,
-        super(key: key);
+class LevelSelectionScaffold extends StatelessWidget {
+  final String gameName;
+  const LevelSelectionScaffold({@required this.gameName, Key key})
+      : super(key: key);
+
+  List<LevelSelectionCard> buildCards(BuildContext context) {
+    return <LevelSelectionCard>[];
+  }
 
   @override
   Widget build(BuildContext context) {
+    final List<LevelSelectionCard> levels = buildCards(context);
+
     return HomeScaffold(
       appBar: HomeAppBar(),
       body: Container(
@@ -37,7 +37,7 @@ class LevelSelectionPage extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(5)),
               ),
               child: Text(
-                _gameName,
+                gameName,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
@@ -46,7 +46,7 @@ class LevelSelectionPage extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(child: LevelSelectionBox(_levels)),
+            Expanded(child: LevelSelectionBox(levels)),
           ],
         ),
       ),
