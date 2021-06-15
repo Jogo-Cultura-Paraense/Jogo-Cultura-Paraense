@@ -11,6 +11,8 @@ import 'package:jogo_cultura_paraense/pages/level_selection/arq_fest_selection_p
 import 'package:jogo_cultura_paraense/games/arq_fest/select_arq_fest.dart';
 import 'package:jogo_cultura_paraense/games/arq_fest/tutorial_arq_fest.dart';
 import 'package:jogo_cultura_paraense/games/arq_fest/main_arq_fest.dart';
+import 'package:jogo_cultura_paraense/pages/level_selection/music_level_page.dart';
+import 'package:jogo_cultura_paraense/pages/games/musica_page.dart';
 
 class App extends StatelessWidget {
   final List<BlocProvider> _blocs;
@@ -110,6 +112,13 @@ class App extends StatelessWidget {
           MainArqFestScreen.routeName: (BuildContext context) {
             return MainArqFest();
           },
+          MusicLevelSelectionPage.routeName: (BuildContext context) {
+            return MusicLevelSelectionPage();
+          },
+          MusicGameGamePage.routeName: (BuildContext context) {
+            return MusicGameGamePage();
+          },
+
         },
         // ignore: missing_return
         onGenerateRoute: (settings) {

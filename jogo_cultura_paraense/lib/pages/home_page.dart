@@ -60,10 +60,6 @@ class MainMenu extends StatelessWidget {
           onClick: () => _enciclopedia(context),
         ),
         MainMenuButton(
-          label: 'CONFIGURAÇÕES',
-          onClick: () => _settings(context),
-        ),
-        MainMenuButton(
           label: 'SOBRE',
           onClick: () => _about(context),
         ),

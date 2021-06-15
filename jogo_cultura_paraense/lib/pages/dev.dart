@@ -35,7 +35,7 @@ class _DevPageState extends State<DevPage> {
     Games.faunaAndFlora,
     Games.legendAndMyths,
     Games.vocabulary,
-    Games.rhythms,
+    Games.music,
   ];
 
   @override

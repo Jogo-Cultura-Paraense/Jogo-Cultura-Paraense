@@ -55,8 +55,8 @@ class ScorePage extends StatelessWidget {
     \nPONTUAÇÃO
     Jogo concluído
     Tempo Restante: ${args.prettyTime} 
-    Dicas Usadas: ${0} / ${args.hints}
-    TOTAL: ${args.finalScore} / ${args.topScore}
+    Dicas Usadas: ${0} / ${1}
+    TOTAL: ${args.finalScore} / ${1000}
     HIGH SCORE: ${args.topScore > 1000 ? args.topScore-50 : 1000} 
     ''';
 

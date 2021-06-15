@@ -320,6 +320,13 @@ flutter:
     - lib/images/fest/6/row-5-col-1.png
     - lib/images/fest/6/row-5-col-2.png
     - lib/images/fest/6/row-5-col-3.png
+    - assets/images/musicGame/carimbo.jpg
+    - assets/images/musicGame/rubiboy.jpg
+    - assets/images/musicGame/mestresolano.jpg
+    - assets/images/musicGame/mpp.jpg
+    - assets/images/musicGame/Vincent_Rosenblatt_Tecnobrega.jpg
+    - assets/audio/bgm/lenda_do_guarana.mp3
+    - assets/audio/bgm/os_passa_vida.mp3
 
   # To add assets to your application, add an assets section, like this:
   # assets:

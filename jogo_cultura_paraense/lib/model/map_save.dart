@@ -38,7 +38,7 @@ class MapSave {
         Games.faunaAndFlora,
         Games.legendAndMyths,
         Games.vocabulary,
-        Games.rhythms,
+        Games.music,
       ];
     }
     // If it has, then check if there are 6 elements.
