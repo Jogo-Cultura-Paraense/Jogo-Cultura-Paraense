@@ -7,6 +7,10 @@ import 'package:jogo_cultura_paraense/games/vocabulario/main_vocabulario.dart';
 import 'package:jogo_cultura_paraense/pages/games/running_game_page.dart';
 import 'package:jogo_cultura_paraense/pages/level_selection/run_level_selection_page.dart';
 import 'package:jogo_cultura_paraense/pages/pages.dart';
+import 'package:jogo_cultura_paraense/pages/level_selection/arq_fest_selection_page.dart';
+import 'package:jogo_cultura_paraense/games/arq_fest/select_arq_fest.dart';
+import 'package:jogo_cultura_paraense/games/arq_fest/tutorial_arq_fest.dart';
+import 'package:jogo_cultura_paraense/games/arq_fest/main_arq_fest.dart';
 
 class App extends StatelessWidget {
   final List<BlocProvider> _blocs;
@@ -93,7 +97,19 @@ class App extends StatelessWidget {
           },
           RunningLevelSelectionPage.routeName: (BuildContext context) {
             return const RunningLevelSelectionPage();
-          }
+          },
+          ArqFestSelectionPage.routeName: (BuildContext context) {
+            return const ArqFestSelectionPage();
+          },
+          SelectArqFest.routeName: (BuildContext context) {
+            return SelectArqFest();
+          },
+          TutorialArqFestScreen.routeName: (BuildContext context) {
+            return TutorialArqFest();
+          },
+          MainArqFestScreen.routeName: (BuildContext context) {
+            return MainArqFest();
+          },
         },
         // ignore: missing_return
         onGenerateRoute: (settings) {
