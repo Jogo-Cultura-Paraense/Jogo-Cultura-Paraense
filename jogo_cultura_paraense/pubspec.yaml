@@ -324,9 +324,21 @@ flutter:
     - assets/images/musicGame/rubiboy.jpg
     - assets/images/musicGame/mestresolano.jpg
     - assets/images/musicGame/mpp.jpg
+    - assets/images/musicGame/icons/acousticbox.png
+    - assets/images/musicGame/icons/acousticguitar.png
+    - assets/images/musicGame/icons/drum.png
+    - assets/images/musicGame/icons/electricguitar.png
+    - assets/images/musicGame/icons/musicnote.png
     - assets/images/musicGame/Vincent_Rosenblatt_Tecnobrega.jpg
     - assets/audio/bgm/lenda_do_guarana.mp3
     - assets/audio/bgm/os_passa_vida.mp3
+    - assets/images/Maninho.jpg
+    - assets/images/selection/SelecaoRitmos.png
+    - assets/images/selection/SelecaoCulinaria.png
+    - assets/images/selection/SelecaoFaunaFlora.png
+    - assets/images/selection/SelecaoArqFest.png
+    - assets/images/selection/SelecaoRunning.png
+    - assets/images/selection/SelecaoVocab.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

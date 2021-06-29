@@ -141,10 +141,7 @@ class ScorePage extends StatelessWidget {
                   Expanded(
                     child: FittedBox(
                       fit: BoxFit.contain,
-                      child: Icon(
-                        Icons.person,
-                        color: Colors.black,
-                      ),
+                      child: Image.asset('assets/images/Maninho.jpg'),
                     ),
                   ),
                   Expanded(

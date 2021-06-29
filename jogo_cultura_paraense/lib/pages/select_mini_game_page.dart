@@ -27,33 +27,39 @@ class GameSelectionMenu extends StatelessWidget {
     return <Widget>[
       SelectCard(
         title: 'CULINÁRIA',
+        imageLink: 'assets/images/selection/SelecaoCulinaria.png',
         onTap: () {
           Navigator.of(context).pushNamed(CookingLevelSelectionPage.routeName);
         },
       ),
       SelectCard(
         title: 'ARQUITETURA/\nFESTIVIDADES',
+        imageLink: 'assets/images/selection/SelecaoArqFest.png',
         onTap: () {
           Navigator.of(context).pushNamed(ArqFestSelectionPage.routeName);
         },
       ),
       SelectCard(
         title: 'FLORA/FAUNA/ARTESANATO',
+        imageLink: 'assets/images/selection/SelecaoFaunaFlora.png',
         onTap: () =>
             Navigator.of(context).pushNamed(AFFLevelSelectionPage.routeName),
       ),
       SelectCard(
         title: 'LENDAS E MITOS',
+        imageLink: 'assets/images/selection/SelecaoRunning.png',
         onTap: () => Navigator.of(context)
             .pushNamed(RunningLevelSelectionPage.routeName),
       ),
       SelectCard(
         title: 'VOCABULÁRIO',
+        imageLink: 'assets/images/selection/SelecaoVocab.png',
         onTap: () =>
             Navigator.of(context).pushNamed(VocabLevelSelectionPage.routeName),
       ),
       SelectCard(
         title: 'MÚSICAS',
+        imageLink: 'assets/images/selection/SelecaoRitmos.png',
         onTap: () =>
             Navigator.of(context).pushNamed(MusicLevelSelectionPage.routeName),
       ),
@@ -114,31 +120,65 @@ class GameSelectionMenu extends StatelessWidget {
 }
 
 class SelectCard extends StatelessWidget {
-  const SelectCard({Key key, this.title, this.onTap}) : super(key: key);
+  const SelectCard({Key key, this.title, this.imageLink, this.onTap}) : super(key: key);
   final String title;
+  final String imageLink;
   final Function onTap;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Card(
-        child: InkWell(
-          splashColor: Colors.blue.withAlpha(30),
-          onTap: () => onTap(),
-          child: Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(top: 8),
-                  child: Text(
-                    title,
-                  ),
-                ),
-              ],
+        color: Colors.transparent,
+        child: Stack(
+          children: [
+            Center (
+              child: Ink.image(
+                image: AssetImage(imageLink),
+                fit: BoxFit.cover,
+              )
             ),
-          ),
-        ),
+            Container(
+              color: Colors.white24,
+            ),
+            InkWell (
+              splashColor: Colors.blue.withAlpha(30),
+              onTap: () => onTap(),
+              child: Center(
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(top: 50),
+                      child: Stack(
+                        children: <Widget>[
+                          Text(
+                            title,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 20,
+                              foreground: Paint()
+                                ..style = PaintingStyle.stroke
+                                ..strokeWidth = 4
+                                ..color = Colors.black,
+                            ),
+                          ),
+                          Text(
+                            title,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      )
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        )
       ),
     );
   }
