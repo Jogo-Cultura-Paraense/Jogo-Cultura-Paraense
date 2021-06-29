@@ -139,7 +139,8 @@ class MapPage extends StatelessWidget {
         } else if (state is MapAssetsLoaded) {
           // If the player has open a map page before, but it wasn't the current page
           // load the current page assets.
-          if (state.mapAssets.region != _region) {
+          if (state.mapAssets.region != _region ||
+              state.mapAssets.gamesOpen != _gamesOpen) {
             WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
               _loadMapAssets(context);
             });
