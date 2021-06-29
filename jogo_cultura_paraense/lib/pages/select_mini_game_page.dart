@@ -42,8 +42,8 @@ class GameSelectionMenu extends StatelessWidget {
       SelectCard(
         title: 'FLORA/FAUNA/ARTESANATO',
         imageLink: 'assets/images/selection/SelecaoFaunaFlora.png',
-        onTap: () =>
-            Navigator.of(context).pushNamed(AFFLevelSelectionPage.routeName),
+        onTap: () => Navigator.of(context)
+            .pushNamed(ArtFaunaFloraLevelSelectionPage.routeName),
       ),
       SelectCard(
         title: 'LENDAS E MITOS',
@@ -120,7 +120,8 @@ class GameSelectionMenu extends StatelessWidget {
 }
 
 class SelectCard extends StatelessWidget {
-  const SelectCard({Key key, this.title, this.imageLink, this.onTap}) : super(key: key);
+  const SelectCard({Key key, this.title, this.imageLink, this.onTap})
+      : super(key: key);
   final String title;
   final String imageLink;
   final Function onTap;
@@ -129,57 +130,54 @@ class SelectCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Card(
-        color: Colors.transparent,
-        child: Stack(
-          children: [
-            Center (
-              child: Ink.image(
+          color: Colors.transparent,
+          child: Stack(
+            children: [
+              Center(
+                  child: Ink.image(
                 image: AssetImage(imageLink),
                 fit: BoxFit.cover,
-              )
-            ),
-            Container(
-              color: Colors.white24,
-            ),
-            InkWell (
-              splashColor: Colors.blue.withAlpha(30),
-              onTap: () => onTap(),
-              child: Center(
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(top: 50),
-                      child: Stack(
-                        children: <Widget>[
-                          Text(
-                            title,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 20,
-                              foreground: Paint()
-                                ..style = PaintingStyle.stroke
-                                ..strokeWidth = 4
-                                ..color = Colors.black,
-                            ),
-                          ),
-                          Text(
-                            title,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      )
-                    ),
-                  ],
+              )),
+              Container(
+                color: Colors.white24,
+              ),
+              InkWell(
+                splashColor: Colors.blue.withAlpha(30),
+                onTap: () => onTap(),
+                child: Center(
+                  child: Column(
+                    children: <Widget>[
+                      Padding(
+                          padding: const EdgeInsets.only(top: 50),
+                          child: Stack(
+                            children: <Widget>[
+                              Text(
+                                title,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  foreground: Paint()
+                                    ..style = PaintingStyle.stroke
+                                    ..strokeWidth = 4
+                                    ..color = Colors.black,
+                                ),
+                              ),
+                              Text(
+                                title,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          )),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
-        )
-      ),
+            ],
+          )),
     );
   }
 }

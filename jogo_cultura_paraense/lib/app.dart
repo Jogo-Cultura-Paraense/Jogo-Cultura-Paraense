@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jogo_cultura_paraense/games/art_fauna_flora/models/rules.dart';
 import 'package:jogo_cultura_paraense/games/cooking_game/models/rules.dart';
 import 'package:jogo_cultura_paraense/games/running_game/models/rules.dart';
 import 'package:jogo_cultura_paraense/pages/finished_game_page.dart';
@@ -76,9 +77,6 @@ class App extends StatelessWidget {
           MarajoPage.routeName: (BuildContext context) {
             return MarajoPage();
           },
-          ArtFaunaFloraGamePage.routeName: (BuildContext context) {
-            return const ArtFaunaFloraGamePage();
-          },
           FinishedGame.routeName: (BuildContext context) {
             return const FinishedGame();
           },
@@ -88,8 +86,8 @@ class App extends StatelessWidget {
           ScorePage.routeName: (BuildContext context) {
             return const ScorePage();
           },
-          AFFLevelSelectionPage.routeName: (BuildContext context) {
-            return const AFFLevelSelectionPage();
+          ArtFaunaFloraLevelSelectionPage.routeName: (BuildContext context) {
+            return const ArtFaunaFloraLevelSelectionPage();
           },
           VocabLevelSelectionPage.routeName: (BuildContext context) {
             return const VocabLevelSelectionPage();
@@ -118,7 +116,6 @@ class App extends StatelessWidget {
           MusicGameGamePage.routeName: (BuildContext context) {
             return MusicGameGamePage();
           },
-
         },
         // ignore: missing_return
         onGenerateRoute: (settings) {
@@ -133,6 +130,11 @@ class App extends StatelessWidget {
             final RunningGameRules rules = settings.arguments;
             return MaterialPageRoute(builder: (context) {
               return RunningGamePage(rules: rules);
+            });
+          } else if (settings.name == ArtFaunaFloraGamePage.routeName) {
+            final ArtFaunaFloraGameRules rules = settings.arguments;
+            return MaterialPageRoute(builder: (context) {
+              return ArtFaunaFloraGamePage(rules: rules);
             });
           }
         },
