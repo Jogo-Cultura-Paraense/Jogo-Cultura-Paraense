@@ -56,7 +56,10 @@ class MapPage extends StatelessWidget {
       isDismissible: false,
       builder: (BuildContext context) {
         return MapSecondTutorial(onClick: () {
-          Navigator.of(context).pop();
+          Navigator.of(context).pushNamed(
+            _gamesPositions[0].routeName,
+            arguments: _gamesPositions[0].routeArgs,
+          );
         });
       },
     );
