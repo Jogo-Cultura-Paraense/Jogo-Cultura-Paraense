@@ -13,12 +13,16 @@ class GamePosition {
   final double left;
   String title;
   bool isOpen;
+  final String routeName;
+  final Object routeArgs;
 
   GamePosition({
     @required this.top,
     @required this.left,
     this.title,
     this.isOpen,
+    @required this.routeName,
+    this.routeArgs,
   });
 }
 
@@ -76,24 +80,8 @@ class MapPage extends StatelessWidget {
     );
   }
 
-  // Tells the button what to do if the game is open.
-  void _onOpenGamePressed(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const AlertDialog(
-          backgroundColor: Color.fromRGBO(233, 213, 136, 1),
-          content: Text(
-            'Jogo habilitado!',
-            textAlign: TextAlign.center,
-          ),
-        );
-      },
-    );
-  }
-
   // Tells the button what to do if the game is closed.
-  void _onClosedGamePressed(BuildContext context) {
+  void _onClosedGame(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) {
@@ -116,11 +104,14 @@ class MapPage extends StatelessWidget {
       // Check what to tell the button to do based on openness of game.
       if (position.isOpen) {
         onPressed = () {
-          _onOpenGamePressed(context);
+          Navigator.of(context).pushNamed(
+            position.routeName,
+            arguments: position.routeArgs,
+          );
         };
       } else {
         onPressed = () {
-          _onClosedGamePressed(context);
+          _onClosedGame(context);
         };
       }
 
