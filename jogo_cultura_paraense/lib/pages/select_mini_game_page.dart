@@ -4,7 +4,7 @@ import 'package:jogo_cultura_paraense/components/home/home_scaffold.dart';
 import 'package:jogo_cultura_paraense/pages/level_selection/arq_fest_selection_page.dart';
 import 'package:jogo_cultura_paraense/pages/level_selection/level_selection_pages.dart';
 import 'package:jogo_cultura_paraense/pages/level_selection/run_level_selection_page.dart';
-import 'package:jogo_cultura_paraense/pages/level_selection/music_level_page.dart';
+import 'package:jogo_cultura_paraense/pages/level_selection/music_level_selection_page.dart';
 
 class GameSelectionPage extends StatelessWidget {
   static const String routeName = '/gameSelect';
