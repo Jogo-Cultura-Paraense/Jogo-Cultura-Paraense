@@ -30,9 +30,9 @@ class RunningLevelSelectionPage extends LevelSelectionScaffold {
     for (int i = 0; i < allMaps.length; i += 1) {
       map = save.getMapSave(allMaps[i].region);
       game = map.getGameSave(gameName);
-      unlocked = true;
+      unlocked = false;
       callback = () {};
-      if (map.isOpen || game.isOpen) {
+      if (map.isOpen && game.isOpen) {
         unlocked = true;
         callback = () {
           Navigator.of(context).pushNamed(
