@@ -1,63 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
 import 'package:jogo_cultura_paraense/components/level_selection/level_selection_card.dart';
-import 'package:jogo_cultura_paraense/components/level_selection/level_selection_page.dart';
+import 'package:jogo_cultura_paraense/components/level_selection/level_selection_scaffold.dart';
 import 'package:jogo_cultura_paraense/games/arq_fest/select_arq_fest.dart';
 import 'package:jogo_cultura_paraense/model/game.dart';
+import 'package:jogo_cultura_paraense/model/game_save.dart';
+import 'package:jogo_cultura_paraense/model/map.dart';
+import 'package:jogo_cultura_paraense/model/map_save.dart';
+import 'package:jogo_cultura_paraense/model/save.dart';
 
-class ArqFestSelectionPage extends StatelessWidget {
-  static const String routeName = 'arq_fest_selection_level';
-  const ArqFestSelectionPage({Key key}) : super(key: key);
-
-  List<LevelSelectionCard> _buildList(BuildContext context) {
-    return <LevelSelectionCard>[
-      LevelSelectionCard(
-        level: 1,
-        unlocked: true,
-        onTap: () {
-          Navigator.of(context).pushNamed(SelectArqFest.routeName, arguments: 1);
-        },
-      ),
-      LevelSelectionCard(
-        level: 2,
-        unlocked: true,
-        onTap: () {
-          Navigator.of(context).pushNamed(SelectArqFest.routeName, arguments: 2);
-        },
-      ),
-      LevelSelectionCard(
-        level: 3,
-        unlocked: true,
-        onTap: () {
-          Navigator.of(context).pushNamed(SelectArqFest.routeName, arguments: 3);
-        },
-      ),
-      LevelSelectionCard(
-        level: 4,
-        unlocked: true,
-        onTap: () {
-          Navigator.of(context).pushNamed(SelectArqFest.routeName, arguments: 4);
-        },
-      ),
-      LevelSelectionCard(
-        level: 5,
-        unlocked: true,
-        onTap: () {
-          Navigator.of(context).pushNamed(SelectArqFest.routeName, arguments: 5);
-        },
-      ),
-      LevelSelectionCard(
-        level: 6,
-        unlocked: true,
-        onTap: () {
-          Navigator.of(context).pushNamed(SelectArqFest.routeName, arguments: 6);
-        },
-      ),
-    ];
-  }
+class ArqFestSelectionPage extends LevelSelectionScaffold {
+  static const String routeName = '/arq_fest_selection_level';
+  const ArqFestSelectionPage({Key key})
+      : super(gameName: Games.archAndFestiv, key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final levels = _buildList(context);
-    return LevelSelectionPage(gameName: Games.archAndFestiv, levels: levels);
+  List<LevelSelectionCard> buildCards(BuildContext context) {
+    final List<LevelSelectionCard> levels = [];
+    final Save save = BlocProvider.of<SaveBloc>(context).state.currentSave;
+    final List<GameMap> allMaps = Maps.all;
+    MapSave map;
+    GameSave game;
+    bool unlocked;
+    VoidCallback callback;
+    for (int i = 0; i < allMaps.length; i += 1) {
+      map = save.getMapSave(allMaps[i].region);
+      game = map.getGameSave(gameName);
+      unlocked = false;
+      callback = () {};
+      if (map.isOpen && game.isOpen) {
+        unlocked = true;
+        callback = () {
+          Navigator.of(context).pushNamed(
+            SelectArqFest.routeName,
+            arguments: i,
+          );
+        };
+      }
+      levels.add(
+        LevelSelectionCard(
+          level: i + 1,
+          unlocked: unlocked,
+          onTap: callback,
+        ),
+      );
+    }
+
+    return levels;
   }
 }
