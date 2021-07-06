@@ -11,7 +11,7 @@ import 'package:jogo_cultura_paraense/model/map_save.dart';
 import 'package:jogo_cultura_paraense/model/save.dart';
 
 class VocabLevelSelectionPage extends LevelSelectionScaffold {
-  static const String routeName = '/arq_fest_selection_level';
+  static const String routeName = '/vocab_selection_level';
   const VocabLevelSelectionPage({Key key})
       : super(gameName: Games.vocabulary, key: key);
 

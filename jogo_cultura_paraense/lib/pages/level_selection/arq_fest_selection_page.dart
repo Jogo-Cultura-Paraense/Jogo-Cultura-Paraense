@@ -4,6 +4,7 @@ import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
 import 'package:jogo_cultura_paraense/components/level_selection/level_selection_card.dart';
 import 'package:jogo_cultura_paraense/components/level_selection/level_selection_scaffold.dart';
 import 'package:jogo_cultura_paraense/games/arq_fest/select_arq_fest.dart';
+import 'package:jogo_cultura_paraense/games/arq_fest/tutorial_arq_fest.dart';
 import 'package:jogo_cultura_paraense/model/game.dart';
 import 'package:jogo_cultura_paraense/model/game_save.dart';
 import 'package:jogo_cultura_paraense/model/map.dart';
@@ -33,8 +34,8 @@ class ArqFestSelectionPage extends LevelSelectionScaffold {
         unlocked = true;
         callback = () {
           Navigator.of(context).pushNamed(
-            SelectArqFest.routeName,
-            arguments: i,
+            TutorialArqFestScreen.routeName,
+            arguments: i + 1,
           );
         };
       }

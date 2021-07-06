@@ -11,6 +11,7 @@ import 'package:jogo_cultura_paraense/model/map.dart';
 import 'package:jogo_cultura_paraense/pages/games/art_fauna_flora_page.dart';
 import 'package:jogo_cultura_paraense/pages/games/cooking_game_page.dart';
 import 'package:jogo_cultura_paraense/pages/games/musica_page.dart';
+import 'package:jogo_cultura_paraense/games/arq_fest/tutorial_arq_fest.dart';
 import 'package:jogo_cultura_paraense/pages/games/running_game_page.dart';
 
 class BaixoAmazonasPage extends RegionPage {
@@ -22,7 +23,7 @@ class BaixoAmazonasPage extends RegionPage {
   List<GamePosition> getGamesPositions() {
     List<GamePosition> games = [
       GamePosition(
-        top: 485.2,
+        top: 500.2,
         left: 208.3,
         routeName: CookingGamePage.routeName,
         routeArgs: CookingGameRulebook.level2,
@@ -30,7 +31,7 @@ class BaixoAmazonasPage extends RegionPage {
       GamePosition(
         top: 400.5,
         left: 140.5,
-        routeName: SelectArqFest.routeName,
+        routeName: TutorialArqFestScreen.routeName,
         routeArgs: 2,
       ),
       GamePosition(

@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
-import 'package:jogo_cultura_paraense/pages/home_page.dart';
+import 'package:jogo_cultura_paraense/pages/select_mini_game_page.dart';
+import 'package:jogo_cultura_paraense/pages/maps/sudoeste.dart';
+import 'package:jogo_cultura_paraense/pages/maps/sudeste.dart';
+import 'package:jogo_cultura_paraense/pages/maps/baixo_amazonas.dart';
+import 'package:jogo_cultura_paraense/pages/maps/metropolitana.dart';
+import 'package:jogo_cultura_paraense/pages/maps/nordeste.dart';
+import 'package:jogo_cultura_paraense/pages/maps/marajó.dart';
 
 class ScorePageArgs {
   final String game;
@@ -203,6 +209,7 @@ class ScorePage extends StatelessWidget {
     List<String> itens,
   }) {
     if (time > 0) {
+      print('teste');
       BlocProvider.of<SaveBloc>(context).add(
         SaveClearedGame(
           map,
@@ -214,7 +221,15 @@ class ScorePage extends StatelessWidget {
     }
 
     Navigator.of(context).popUntil(
-      (route) => route.settings.name == HomePage.routeName,
+
+      (route) => (route.settings.name == GameSelectionPage.routeName) ||
+          (route.settings.name == SudoestePage.routeName) ||
+          (route.settings.name == BaixoAmazonasPage.routeName) ||
+          (route.settings.name == SudestePage.routeName) ||
+          (route.settings.name == NordestePage.routeName) ||
+          (route.settings.name == MarajoPage.routeName) ||
+          (route.settings.name == MetropolitanaPage.routeName)
+      ,
     );
   }
 }

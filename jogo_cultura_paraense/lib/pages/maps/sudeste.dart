@@ -11,6 +11,7 @@ import 'package:jogo_cultura_paraense/model/map.dart';
 import 'package:jogo_cultura_paraense/pages/games/cooking_game_page.dart';
 import 'package:jogo_cultura_paraense/pages/games/game_pages.dart';
 import 'package:jogo_cultura_paraense/pages/games/musica_page.dart';
+import 'package:jogo_cultura_paraense/games/arq_fest/tutorial_arq_fest.dart';
 
 class SudestePage extends RegionPage {
   static const String routeName = '/sudeste';
@@ -28,7 +29,7 @@ class SudestePage extends RegionPage {
       GamePosition(
         top: 421,
         left: 93,
-        routeName: SelectArqFest.routeName,
+        routeName: TutorialArqFestScreen.routeName,
         routeArgs: 3,
       ),
       GamePosition(

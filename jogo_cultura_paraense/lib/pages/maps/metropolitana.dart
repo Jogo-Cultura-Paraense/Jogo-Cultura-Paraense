@@ -22,7 +22,7 @@ class MetropolitanaPage extends RegionPage {
   List<GamePosition> getGamesPositions() {
     return <GamePosition>[
       GamePosition(
-        top: 476.2,
+        top: 485.2,
         left: 155.7,
         routeName: CookingGamePage.routeName,
         routeArgs: CookingGameRulebook.level6,
