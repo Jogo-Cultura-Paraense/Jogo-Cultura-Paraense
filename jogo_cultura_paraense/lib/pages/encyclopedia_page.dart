@@ -150,8 +150,7 @@ class _EncyclopediaState extends State<Encyclopedia> {
             itemCount: filteredEntries.length,
             itemBuilder: (context, index) {
               // print(filteredEntries);
-              if (widget._viewableEntries
-                  .contains(filteredEntries[index].title)) {
+              if (widget._viewableEntries.contains(filteredEntries[index].id)) {
                 return ViewableEntry(entry: filteredEntries[index]);
               } else {
                 return ViewlessEntry(entry: filteredEntries[index]);

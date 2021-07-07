@@ -11,6 +11,7 @@ class EncyclopediaService {
       allEntryencs(orderBy: [title_ASC]) {
         title
         body
+        idEntry
       }
     }
     ''';
