@@ -220,6 +220,7 @@ class MainVocabularioScreen extends State<MainVocabulario> {
           prettyTime: counter.toString(),
           hintsLeft: usedHint ? 0 : 1,
           hints: usedHint ? 1 : 0,
+            newItems: ['id_visagem', 'id_pitiu', 'id_pegar_beco', 'id_baldear', 'id_carapana']
         ),
       );
     }

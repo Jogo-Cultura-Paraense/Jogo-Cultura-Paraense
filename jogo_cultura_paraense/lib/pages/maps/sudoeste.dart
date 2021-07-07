@@ -22,37 +22,37 @@ class SudoestePage extends RegionPage {
   List<GamePosition> getGamesPositions() {
     return <GamePosition>[
       GamePosition(
-        top: 575,
+        top: 525,
         left: 100,
         routeName: CookingGamePage.routeName,
         routeArgs: CookingGameRulebook.level1,
       ),
       GamePosition(
-        top: 475,
-        left: 145,
+        top: 420,
+        left: 115,
         routeName: TutorialArqFestScreen.routeName,
         routeArgs: 1,
       ),
       GamePosition(
-        top: 360,
-        left: 140,
+        top: 330,
+        left: 100,
         routeName: ArtFaunaFloraGamePage.routeName,
         routeArgs: ArtFaunaFloraGameRulebook.level1,
       ),
       GamePosition(
-        top: 260,
-        left: 85,
+        top: 230,
+        left: 75,
         routeName: RunningGamePage.routeName,
         routeArgs: RunningGameRulebook.level1,
       ),
       GamePosition(
-        top: 175,
-        left: 180,
+        top: 170,
+        left: 150,
         routeName: MainVocabularioScreen.routeName,
       ),
       GamePosition(
-        top: 130,
-        left: 275,
+        top: 120,
+        left: 250,
         routeName: MusicGamePage.routeName,
         routeArgs: MusicGameRulebook.level1,
       ),

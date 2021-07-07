@@ -193,6 +193,7 @@ class ArtFaunaFloraGame extends Game with TapDetector {
         prettyTime: _timer.format(_timer.currentTime),
         hintsLeft: (_numTargets == 4 ? 1 : 2) - _hintButton.hintsLeft,
         hints: (_numTargets == 4 ? 1 : 2),
+        newItems: ['id_arara', 'id_muiraquita']
       ),
     );
   }

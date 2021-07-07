@@ -8,7 +8,7 @@ class EncyclopediaService {
   Future<List<EncyclopediaEntry>> fetchEntries() async {
     final String query = '''
       query entryenc {
-      allEntryencs(orderBy: [title_ASC]) {
+      allEntryencs(orderBy: [title_ASC], first: 100) {
         title
         body
         idEntry
@@ -16,6 +16,7 @@ class EncyclopediaService {
     }
     ''';
     final result = await _repo.query(query, data: 'allEntryencs');
+    print(result.length);
     return EncyclopediaEntry.fromJsonList(result);
   }
 }

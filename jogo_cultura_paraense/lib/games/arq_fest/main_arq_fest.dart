@@ -117,6 +117,7 @@ class MainArqFestScreen extends State<MainArqFest> {
                     prettyTime: (counter + 1).toString(),
                     hintsLeft: usedHint ? 0 : 1,
                     hints: usedHint ? 1 : 0,
+                    newItems: ['id_estacao_doca']
                   )
               );
             });

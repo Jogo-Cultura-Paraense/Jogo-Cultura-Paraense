@@ -147,7 +147,7 @@ class _EncyclopediaState extends State<Encyclopedia> {
         ),
         Expanded(
           child: ListView.builder(
-            itemCount: filteredEntries.length,
+            itemCount: widget._entries.length,
             itemBuilder: (context, index) {
               // print(filteredEntries);
               if (widget._viewableEntries.contains(filteredEntries[index].id)) {
@@ -165,6 +165,7 @@ class _EncyclopediaState extends State<Encyclopedia> {
 
 class EntryTile extends StatelessWidget {
   final EncyclopediaEntry _entry;
+  final opacityValue = 1.0;
   const EntryTile({@required EncyclopediaEntry entry, Key key})
       : _entry = entry,
         super(key: key);
@@ -173,22 +174,29 @@ class EntryTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      onTap: () {
-        onTap(context);
-      },
-      title: Text(
-        _entry.title,
-        style: TextStyle(
-          fontSize: 24.0,
-        ),
-      ),
-      subtitle: Text(
-        _entry.body.substring(0, 40) + '...',
-        style: TextStyle(
-          fontSize: 16.0,
-        ),
-      ),
+    return Stack(
+      children: [
+        Opacity (
+          opacity: opacityValue,
+          child: ListTile(
+            onTap: () {
+              onTap(context);
+            },
+            title: Text(
+              _entry.title,
+              style: TextStyle(
+                fontSize: 24.0,
+              ),
+            ),
+            subtitle: Text(
+              _entry.body.substring(0, 4) + '...',
+              style: TextStyle(
+                fontSize: 16.0,
+              ),
+            ),
+          )
+        )
+      ],
     );
   }
 }
@@ -215,6 +223,10 @@ class ViewableEntry extends EntryTile {
 class ViewlessEntry extends EntryTile {
   const ViewlessEntry({@required EncyclopediaEntry entry, Key key})
       : super(entry: entry, key: key);
+
+  @override
+  // TODO: implement opacityValue
+  double get opacityValue => 0.25;
 
   @override
   void onTap(BuildContext context) {
