@@ -22,8 +22,8 @@ class TransparentCircleButton extends StatelessWidget {
     return Positioned(
       top: _top,
       left: _left,
-      width: 65,
-      height: 65,
+      width: 90,
+      height: 90,
       child: ElevatedButton(
         child: Icon(Icons.circle, color: Colors.transparent),
         style: ElevatedButton.styleFrom(

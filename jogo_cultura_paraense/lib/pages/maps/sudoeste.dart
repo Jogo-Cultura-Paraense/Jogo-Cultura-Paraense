@@ -23,13 +23,13 @@ class SudoestePage extends RegionPage {
     return <GamePosition>[
       GamePosition(
         top: 575,
-        left: 110,
+        left: 100,
         routeName: CookingGamePage.routeName,
         routeArgs: CookingGameRulebook.level1,
       ),
       GamePosition(
         top: 475,
-        left: 155,
+        left: 145,
         routeName: TutorialArqFestScreen.routeName,
         routeArgs: 1,
       ),
@@ -40,13 +40,13 @@ class SudoestePage extends RegionPage {
         routeArgs: ArtFaunaFloraGameRulebook.level1,
       ),
       GamePosition(
-        top: 265,
-        left: 100,
+        top: 260,
+        left: 85,
         routeName: RunningGamePage.routeName,
         routeArgs: RunningGameRulebook.level1,
       ),
       GamePosition(
-        top: 185,
+        top: 175,
         left: 180,
         routeName: MainVocabularioScreen.routeName,
       ),
