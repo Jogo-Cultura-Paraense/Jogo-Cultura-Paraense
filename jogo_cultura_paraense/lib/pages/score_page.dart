@@ -20,6 +20,7 @@ class ScorePageArgs {
   final int hintsLeft;
   final int finalScore;
   final int topScore;
+  final List<String> newItems;
 
   const ScorePageArgs({
     @required this.game,
@@ -31,6 +32,7 @@ class ScorePageArgs {
     @required this.hintsLeft,
     @required this.finalScore,
     @required this.topScore,
+    this.newItems,
   });
 
   factory ScorePageArgs.initial() {
@@ -63,7 +65,7 @@ class ScorePage extends StatelessWidget {
     Tempo Restante: ${args.prettyTime} 
     Dicas Usadas: ${0} / ${1}
     TOTAL: ${args.finalScore} / ${1000}
-    HIGH SCORE: ${args.topScore > 1000 ? args.topScore-50 : 1000} 
+    HIGH SCORE: ${args.topScore > 1000 ? args.topScore - 50 : 1000} 
     ''';
 
     String interjection = "\nPai D'égua\n";
@@ -180,6 +182,7 @@ class ScorePage extends StatelessWidget {
                           args.map,
                           args.game,
                           args.score,
+                          args.newItems ?? [],
                         ),
                         child: Icon(
                           Icons.arrow_forward_rounded,
@@ -205,31 +208,29 @@ class ScorePage extends StatelessWidget {
     double time,
     String map,
     String game,
-    int score, {
+    int score,
     List<String> itens,
-  }) {
+  ) {
     if (time > 0) {
-      print('teste');
       BlocProvider.of<SaveBloc>(context).add(
         SaveClearedGame(
           map,
           game,
           score: score,
-          itens: itens ?? <String>[],
+          itens: itens,
         ),
       );
     }
 
     Navigator.of(context).popUntil(
-
-      (route) => (route.settings.name == GameSelectionPage.routeName) ||
+      (route) =>
+          (route.settings.name == GameSelectionPage.routeName) ||
           (route.settings.name == SudoestePage.routeName) ||
           (route.settings.name == BaixoAmazonasPage.routeName) ||
           (route.settings.name == SudestePage.routeName) ||
           (route.settings.name == NordestePage.routeName) ||
           (route.settings.name == MarajoPage.routeName) ||
-          (route.settings.name == MetropolitanaPage.routeName)
-      ,
+          (route.settings.name == MetropolitanaPage.routeName),
     );
   }
 }

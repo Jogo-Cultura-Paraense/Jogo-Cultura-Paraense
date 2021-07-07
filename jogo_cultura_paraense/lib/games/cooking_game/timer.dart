@@ -22,6 +22,7 @@ class Timer extends StatelessWidget {
     int hints,
     int hintsLeft,
     String map,
+    List<String> newItems,
   ) {
     Navigator.of(context).popAndPushNamed(
       ScorePage.routeName,
@@ -38,6 +39,7 @@ class Timer extends StatelessWidget {
         ),
         hintsLeft: hintsLeft,
         hints: hints,
+        newItems: newItems,
       ),
     );
   }
@@ -74,6 +76,7 @@ class Timer extends StatelessWidget {
                     state.rules.hints,
                     state.rules.hints - state.hints,
                     state.rules.levelName,
+                    state.rules.newItems,
                   );
                 }
               },

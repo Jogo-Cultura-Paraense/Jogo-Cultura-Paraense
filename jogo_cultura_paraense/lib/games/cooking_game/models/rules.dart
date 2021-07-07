@@ -10,12 +10,14 @@ class CookingGameRules {
   final int hints;
   final List<Order> normalOrders;
   final List<Order> doubleOrders;
+  final List<String> newItems;
 
   CookingGameRules({
     @required this.level,
     @required this.time,
     @required this.normalOrders,
     @required this.doubleOrders,
+    @required this.newItems,
     String levelName,
     int hints,
   })  : this.hints = hints ?? level,
@@ -44,6 +46,7 @@ abstract class CookingGameRulebook {
           Order.fromRecipe(Recipes.patoNoTucupi).doubleOrder(),
         ],
         time: (4 * 60 + 30), // 4 minutos e 30 segudos
+        newItems: ['id_pato_tucupi', 'id_casquinha_caranguejo', 'id_tacaca'],
       );
 
   static CookingGameRules get level2 => CookingGameRules(
@@ -60,6 +63,7 @@ abstract class CookingGameRulebook {
           Order.fromRecipe(Recipes.casquinhaDeCarangueijo).doubleOrder(),
         ],
         time: (4 * 60), // 4 minutos
+        newItems: ['id_manicoba'],
       );
 
   static CookingGameRules get level3 => CookingGameRules(
@@ -77,6 +81,7 @@ abstract class CookingGameRulebook {
           Order.fromRecipe(Recipes.manicoba).doubleOrder(),
         ],
         time: (3 * 60 + 30), // 3 minutos e 30 segudos
+        newItems: ['id_filhote_acai'],
       );
 
   static CookingGameRules get level4 => CookingGameRules(
@@ -95,6 +100,7 @@ abstract class CookingGameRulebook {
           Order.fromRecipe(Recipes.tacaca).doubleOrder(),
         ],
         time: (3 * 60), // 3 minutos
+        newItems: ['id_bolo_macaxeira'],
       );
 
   static CookingGameRules get level5 => CookingGameRules(
@@ -114,6 +120,7 @@ abstract class CookingGameRulebook {
           Order.fromRecipe(Recipes.boloDeMacaxeira).doubleOrder(),
         ],
         time: (2 * 60 + 30), // 2 minutos e 30 segudos
+        newItems: ['id_creme_cupuacu'],
       );
 
   static CookingGameRules get level6 => CookingGameRules(
@@ -134,6 +141,7 @@ abstract class CookingGameRulebook {
           Order.fromRecipe(Recipes.filhoteComAcai).doubleOrder(),
         ],
         time: (2 * 60), // 2 minutos
+        newItems: ['id_vatapa'],
       );
 
   static List<CookingGameRules> get all => [
