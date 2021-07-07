@@ -14,7 +14,6 @@ import 'package:jogo_cultura_paraense/pages/games/musica_page.dart';
 import 'package:jogo_cultura_paraense/pages/games/running_game_page.dart';
 import 'package:jogo_cultura_paraense/games/arq_fest/tutorial_arq_fest.dart';
 
-
 class SudoestePage extends RegionPage {
   static const String routeName = '/sudoeste';
   const SudoestePage({Key key}) : super(gameMap: Maps.sudoeste, key: key);
@@ -23,37 +22,37 @@ class SudoestePage extends RegionPage {
   List<GamePosition> getGamesPositions() {
     return <GamePosition>[
       GamePosition(
-        top: 530.5,
-        left: 96,
+        top: 575,
+        left: 110,
         routeName: CookingGamePage.routeName,
         routeArgs: CookingGameRulebook.level1,
       ),
       GamePosition(
-        top: 428,
-        left: 127,
+        top: 475,
+        left: 155,
         routeName: TutorialArqFestScreen.routeName,
         routeArgs: 1,
       ),
       GamePosition(
-        top: 341,
-        left: 116.5,
+        top: 360,
+        left: 140,
         routeName: ArtFaunaFloraGamePage.routeName,
         routeArgs: ArtFaunaFloraGameRulebook.level1,
       ),
       GamePosition(
-        top: 240.5,
-        left: 74,
+        top: 265,
+        left: 100,
         routeName: RunningGamePage.routeName,
         routeArgs: RunningGameRulebook.level1,
       ),
       GamePosition(
-        top: 172,
-        left: 157,
+        top: 185,
+        left: 180,
         routeName: MainVocabularioScreen.routeName,
       ),
       GamePosition(
-        top: 124.5,
-        left: 238.5,
+        top: 130,
+        left: 275,
         routeName: MusicGamePage.routeName,
         routeArgs: MusicGameRulebook.level1,
       ),
