@@ -17,17 +17,24 @@ class HomeScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
       buildWhen: (dynamic currentState, dynamic nextState) {
-        return currentState.homeAssets.background !=
-            nextState.homeAssets.background;
+        if (nextState is HomeAssetsLoaded) {
+          return true;
+        }
+        return false;
       },
       builder: (context, dynamic state) {
-        return Container(
-          decoration: BoxDecoration(
+        BoxDecoration decoration;
+        if (state is HomeAssetsLoaded) {
+          decoration = BoxDecoration(
             image: DecorationImage(
               image: NetworkImage(state.homeAssets.background),
               fit: BoxFit.cover,
             ),
-          ),
+          );
+        }
+
+        return Container(
+          decoration: decoration,
           child: Scaffold(
             backgroundColor: Colors.transparent,
             extendBodyBehindAppBar: true,
