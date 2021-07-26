@@ -11,12 +11,14 @@ class RunningGameRules {
   final int speed;
   final List<Legend> legends;
   final List<Obstacle> obstacles = ObstacleFactory.all;
+  final List<String> newItems;
 
   RunningGameRules({
     @required this.level,
     @required this.time,
     @required this.legends,
     @required this.speed,
+    @required this.newItems,
     String levelName,
     int hints,
   })  : this.hints = hints ?? level,
@@ -34,6 +36,7 @@ abstract class RunningGameRulebook {
           LegendFactory.cobraGrande,
           LegendFactory.curupira,
         ],
+        newItems: ['id_boto', 'id_cobra_grande', 'id_curupira'],
       );
 
   static RunningGameRules get level2 => RunningGameRules(
@@ -47,6 +50,7 @@ abstract class RunningGameRulebook {
           LegendFactory.curupira,
           LegendFactory.iara,
         ],
+        newItems: ['id_iara'],
       );
 
   static RunningGameRules get level3 => RunningGameRules(
@@ -61,6 +65,7 @@ abstract class RunningGameRulebook {
           LegendFactory.iara,
           LegendFactory.mapinguari
         ],
+        newItems: ['id_mapinguari'],
       );
   static RunningGameRules get level4 => RunningGameRules(
         level: 4,
@@ -75,6 +80,7 @@ abstract class RunningGameRulebook {
           LegendFactory.mapinguari,
           LegendFactory.matinta
         ],
+        newItems: ['id_matinta'],
       );
   static RunningGameRules get level5 => RunningGameRules(
         level: 5,
@@ -90,6 +96,7 @@ abstract class RunningGameRulebook {
           LegendFactory.matinta,
           LegendFactory.muiraquita,
         ],
+        newItems: ['id_muiraquita'],
       );
   static RunningGameRules get level6 => RunningGameRules(
         level: 6,
@@ -106,6 +113,7 @@ abstract class RunningGameRulebook {
           LegendFactory.muiraquita,
           LegendFactory.vitoriaRegia,
         ],
+        newItems: ['id_vitoria_regia'],
       );
 
   static List<RunningGameRules> get all => [

@@ -23,6 +23,7 @@ class TimeBox extends StatelessWidget {
     int hintsLeft,
     String map,
     int level,
+    List<String> newItems,
   ) {
     Navigator.of(context).popAndPushNamed(
       ScorePage.routeName,
@@ -39,6 +40,7 @@ class TimeBox extends StatelessWidget {
         hintsLeft: 1,
         hints: hints,
         score: null,
+        newItems: newItems,
       ),
     );
   }
@@ -68,14 +70,16 @@ class TimeBox extends StatelessWidget {
               listener: (context, state) {
                 if (state.status == RunningGameStatus.finished) {
                   toScorePage(
-                      context,
-                      value,
-                      state.getScore(value.inSeconds),
-                      state.getFinalScore(value.inSeconds),
-                      state.rules.hints,
-                      state.rules.hints - state.hints,
-                      state.rules.levelName,
-                      state.getLevel());
+                    context,
+                    value,
+                    state.getScore(value.inSeconds),
+                    state.getFinalScore(value.inSeconds),
+                    state.rules.hints,
+                    state.rules.hints - state.hints,
+                    state.rules.levelName,
+                    state.getLevel(),
+                    state.rules.newItems,
+                  );
                 }
               },
               child: Padding(

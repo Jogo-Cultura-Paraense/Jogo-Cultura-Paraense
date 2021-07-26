@@ -196,6 +196,7 @@ class MusicaGame extends Game with TapDetector {
         prettyTime: timer.format(timer.currentTime),
         hintsLeft: 0, //(_numTargets == 4 ? 1 : 2) - _hintButton.hintsLeft,
         hints: 0, //(_numTargets == 4 ? 1 : 2),
+        newItems: ['id_carimbo']
       ),
     );
   }

@@ -4,6 +4,8 @@ import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:jogo_cultura_paraense/pages/score_page.dart';
 import 'package:audioplayers/audio_cache.dart';
+import 'package:jogo_cultura_paraense/model/game.dart';
+import 'package:jogo_cultura_paraense/model/map.dart';
 
 class MainArqFest extends StatefulWidget {
   MainArqFest({Key key}) : super(key: key);
@@ -55,12 +57,13 @@ class MainArqFestScreen extends State<MainArqFest> {
               Navigator.of(context).popAndPushNamed(
                   ScorePage.routeName,
                   arguments: ScorePageArgs(
-
-                    score: score > 1000*level ? 1000*level : score.round(),
-                    finalScore: score > 1000*level ? 1000*level : score.round(),
-                    topScore: 1000*level,
-                    time: counter * 1.0,
-                    prettyTime: timer.toString(),
+                    map: Maps.sudoeste.region,
+                    game: Games.archAndFestiv,
+                    score: score.round(),
+                    finalScore: score.round(),
+                    topScore: score.round(),
+                    time: counter * 1.0 + 1,
+                    prettyTime: (counter + 1).toString(),
                     hintsLeft: usedHint ? 0 : 1,
                     hints: usedHint ? 1 : 0,
                   )
@@ -102,20 +105,22 @@ class MainArqFestScreen extends State<MainArqFest> {
           if (shuffledParts.length == 0) {
             player.play('sounds/win_sound.wav');
             Future.delayed(Duration(seconds: 2), () {
-            Navigator.of(context).popAndPushNamed(
-                ScorePage.routeName,
-                arguments: ScorePageArgs(
-
-                score: score > 1000*level ? 1000*level : score.round(),
-                finalScore: score > 1000*level ? 1000*level : score.round(),
-                topScore: 1000*level,
-                time: counter * 1.0,
-                prettyTime: timer.toString(),
-                hintsLeft: usedHint ? 0 : 1,
-                hints: usedHint ? 1 : 0,
-              )
-            );
-          });
+              Navigator.of(context).popAndPushNamed(
+                  ScorePage.routeName,
+                  arguments: ScorePageArgs(
+                    map: Maps.sudoeste.region,
+                    game: Games.archAndFestiv,
+                    score: score.round(),
+                    finalScore: score.round(),
+                    topScore: score.round(),
+                    time: counter * 1.0 + 1,
+                    prettyTime: (counter + 1).toString(),
+                    hintsLeft: usedHint ? 0 : 1,
+                    hints: usedHint ? 1 : 0,
+                    newItems: ['id_estacao_doca']
+                  )
+              );
+            });
         }});
       },
 

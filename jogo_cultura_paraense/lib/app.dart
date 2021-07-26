@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jogo_cultura_paraense/games/art_fauna_flora/models/rules.dart';
 import 'package:jogo_cultura_paraense/games/cooking_game/models/rules.dart';
+import 'package:jogo_cultura_paraense/games/musica/models/rules.dart';
 import 'package:jogo_cultura_paraense/games/running_game/models/rules.dart';
 import 'package:jogo_cultura_paraense/pages/finished_game_page.dart';
 import 'package:jogo_cultura_paraense/games/vocabulario/main_vocabulario.dart';
 import 'package:jogo_cultura_paraense/pages/games/running_game_page.dart';
+import 'package:jogo_cultura_paraense/pages/level_selection/music_level_selection_page.dart';
 import 'package:jogo_cultura_paraense/pages/level_selection/run_level_selection_page.dart';
 import 'package:jogo_cultura_paraense/pages/pages.dart';
 import 'package:jogo_cultura_paraense/pages/level_selection/arq_fest_selection_page.dart';
 import 'package:jogo_cultura_paraense/games/arq_fest/select_arq_fest.dart';
 import 'package:jogo_cultura_paraense/games/arq_fest/tutorial_arq_fest.dart';
 import 'package:jogo_cultura_paraense/games/arq_fest/main_arq_fest.dart';
-import 'package:jogo_cultura_paraense/pages/level_selection/music_level_page.dart';
 import 'package:jogo_cultura_paraense/pages/games/musica_page.dart';
 
 class App extends StatelessWidget {
@@ -76,9 +78,6 @@ class App extends StatelessWidget {
           MarajoPage.routeName: (BuildContext context) {
             return MarajoPage();
           },
-          ArtFaunaFloraGamePage.routeName: (BuildContext context) {
-            return const ArtFaunaFloraGamePage();
-          },
           FinishedGame.routeName: (BuildContext context) {
             return const FinishedGame();
           },
@@ -88,8 +87,8 @@ class App extends StatelessWidget {
           ScorePage.routeName: (BuildContext context) {
             return const ScorePage();
           },
-          AFFLevelSelectionPage.routeName: (BuildContext context) {
-            return const AFFLevelSelectionPage();
+          ArtFaunaFloraLevelSelectionPage.routeName: (BuildContext context) {
+            return const ArtFaunaFloraLevelSelectionPage();
           },
           VocabLevelSelectionPage.routeName: (BuildContext context) {
             return const VocabLevelSelectionPage();
@@ -115,10 +114,6 @@ class App extends StatelessWidget {
           MusicLevelSelectionPage.routeName: (BuildContext context) {
             return MusicLevelSelectionPage();
           },
-          MusicGameGamePage.routeName: (BuildContext context) {
-            return MusicGameGamePage();
-          },
-
         },
         // ignore: missing_return
         onGenerateRoute: (settings) {
@@ -133,6 +128,16 @@ class App extends StatelessWidget {
             final RunningGameRules rules = settings.arguments;
             return MaterialPageRoute(builder: (context) {
               return RunningGamePage(rules: rules);
+            });
+          } else if (settings.name == ArtFaunaFloraGamePage.routeName) {
+            final ArtFaunaFloraGameRules rules = settings.arguments;
+            return MaterialPageRoute(builder: (context) {
+              return ArtFaunaFloraGamePage(rules: rules);
+            });
+          } else if (settings.name == MusicGamePage.routeName) {
+            final MusicGameRules rules = settings.arguments;
+            return MaterialPageRoute(builder: (context) {
+              return MusicGamePage(rules: rules);
             });
           }
         },

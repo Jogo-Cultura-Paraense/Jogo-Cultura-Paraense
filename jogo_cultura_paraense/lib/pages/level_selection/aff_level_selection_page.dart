@@ -1,124 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:jogo_cultura_paraense/components/level_selection/level_selection_card.dart';
-import 'package:jogo_cultura_paraense/components/level_selection/level_selection_page.dart';
+import 'package:jogo_cultura_paraense/games/art_fauna_flora/models/rules.dart';
 import 'package:jogo_cultura_paraense/model/game.dart';
 import 'package:jogo_cultura_paraense/model/map.dart';
 import 'package:jogo_cultura_paraense/pages/games/art_fauna_flora_page.dart';
 
-class AFFLevelSelectionPage extends StatelessWidget {
-  static const String routeName = '/aff_selection_level';
-  const AFFLevelSelectionPage({Key key}) : super(key: key);
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
+import 'package:jogo_cultura_paraense/components/level_selection/level_selection_scaffold.dart';
+import 'package:jogo_cultura_paraense/model/game_save.dart';
+import 'package:jogo_cultura_paraense/model/map_save.dart';
+import 'package:jogo_cultura_paraense/model/save.dart';
+import 'package:jogo_cultura_paraense/pages/games/game_pages.dart';
 
-  List<LevelSelectionCard> _buildList(BuildContext context) {
-    return <LevelSelectionCard>[
-      LevelSelectionCard(
-        level: 1,
-        unlocked: true,
-        onTap: () {
-          Navigator.of(context).pushNamed(
-            ArtFaunaFloraGamePage.routeName,
-            arguments: ArtFaunaFloraGamePageArgs(
-              map: Maps.sudoeste.region,
-              numTargets: 4,
-              startTime: 5,
-              timeCorrectTile: 2,
-              timeIncorrectTile: -1,
-              spritesRange: 13,
-            ),
-          );
-        },
-      ),
-      LevelSelectionCard(
-        level: 2,
-        unlocked: true,
-        onTap: () {
-          Navigator.of(context).pushNamed(
-            ArtFaunaFloraGamePage.routeName,
-            arguments: ArtFaunaFloraGamePageArgs(
-              map: Maps.sudoeste.region,
-              numTargets: 6,
-              startTime: 5,
-              timeCorrectTile: 2,
-              timeIncorrectTile: -1,
-              spritesRange: 13,
-            ),
-          );
-        },
-      ),
-      LevelSelectionCard(
-        level: 3,
-        unlocked: true,
-        onTap: () {
-          Navigator.of(context).pushNamed(
-            ArtFaunaFloraGamePage.routeName,
-            arguments: ArtFaunaFloraGamePageArgs(
-              map: Maps.baixoAmazonas.region,
-              numTargets: 4,
-              startTime: 4.5,
-              timeCorrectTile: 1.5,
-              timeIncorrectTile: -0.75,
-              spritesRange: 17,
-            ),
-          );
-        },
-      ),
-      LevelSelectionCard(
-        level: 4,
-        unlocked: true,
-        onTap: () {
-          Navigator.of(context).pushNamed(
-            ArtFaunaFloraGamePage.routeName,
-            arguments: ArtFaunaFloraGamePageArgs(
-              map: Maps.sudeste.region,
-              numTargets: 6,
-              startTime: 4.5,
-              timeCorrectTile: 1.5,
-              timeIncorrectTile: -0.75,
-              spritesRange: 17,
-            ),
-          );
-        },
-      ),
-      LevelSelectionCard(
-        level: 5,
-        unlocked: true,
-        onTap: () {
-          Navigator.of(context).pushNamed(
-            ArtFaunaFloraGamePage.routeName,
-            arguments: ArtFaunaFloraGamePageArgs(
-              map: Maps.marajo.region,
-              numTargets: 4,
-              startTime: 4,
-              timeCorrectTile: 1,
-              timeIncorrectTile: -0.5,
-              spritesRange: 24,
-            ),
-          );
-        },
-      ),
-      LevelSelectionCard(
-        level: 6,
-        unlocked: true,
-        onTap: () {
-          Navigator.of(context).pushNamed(
-            ArtFaunaFloraGamePage.routeName,
-            arguments: ArtFaunaFloraGamePageArgs(
-              map: Maps.metropolitana.region,
-              numTargets: 6,
-              startTime: 4,
-              timeCorrectTile: 1,
-              timeIncorrectTile: -0.5,
-              spritesRange: 24,
-            ),
-          );
-        },
-      ),
-    ];
-  }
+class ArtFaunaFloraLevelSelectionPage extends LevelSelectionScaffold {
+  static const String routeName = '/aff_selection_level';
+  const ArtFaunaFloraLevelSelectionPage({Key key})
+      : super(gameName: Games.faunaAndFlora, key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final levels = _buildList(context);
-    return LevelSelectionPage(gameName: Games.faunaAndFlora, levels: levels);
+  List<LevelSelectionCard> buildCards(BuildContext context) {
+    final List<LevelSelectionCard> levels = [];
+    final Save save = BlocProvider.of<SaveBloc>(context).state.currentSave;
+    final List<GameMap> allMaps = Maps.all;
+    final List<ArtFaunaFloraGameRules> rules = ArtFaunaFloraGameRulebook.all;
+    MapSave map;
+    GameSave game;
+    bool unlocked;
+    VoidCallback callback;
+    for (int i = 0; i < allMaps.length; i += 1) {
+      map = save.getMapSave(allMaps[i].region);
+      game = map.getGameSave(gameName);
+      unlocked = false;
+      callback = () {};
+      if (map.isOpen && game.isOpen) {
+        unlocked = true;
+        callback = () {
+          Navigator.of(context).pushNamed(
+            ArtFaunaFloraGamePage.routeName,
+            arguments: rules[i],
+          );
+        };
+      }
+      levels.add(
+        LevelSelectionCard(
+          level: i + 1,
+          unlocked: unlocked,
+          onTap: callback,
+        ),
+      );
+    }
+
+    return levels;
   }
 }

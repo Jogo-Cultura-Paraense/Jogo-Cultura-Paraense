@@ -17,6 +17,17 @@ class Save {
 
   const Save({this.title, this.itensSave, this.mapsSave});
 
+  String get getProgress {
+    int totalGames = 0;
+    int openGames = 0;
+    for (MapSave mapSave in mapsSave) {
+      totalGames += mapSave.gamesSave.length;
+      openGames += mapSave.gamesOpen;
+    }
+
+    return ((openGames / totalGames) * 100).toStringAsFixed(1);
+  }
+
   MapSave getMapSave(String region) {
     for (MapSave mapSave in mapsSave) {
       if (mapSave.region == region) return mapSave;

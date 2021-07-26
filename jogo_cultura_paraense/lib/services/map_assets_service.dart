@@ -13,6 +13,7 @@ class MapAssetsService {
               url
             }
             region
+            gamesOpen
           }
         }
       ''';

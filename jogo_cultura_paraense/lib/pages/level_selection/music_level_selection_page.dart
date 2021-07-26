@@ -1,28 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jogo_cultura_paraense/components/level_selection/level_selection_card.dart';
-import 'package:jogo_cultura_paraense/games/running_game/models/rules.dart';
-import 'package:jogo_cultura_paraense/model/game.dart';
-import 'package:jogo_cultura_paraense/pages/games/running_game_page.dart';
 import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
+import 'package:jogo_cultura_paraense/components/level_selection/level_selection_card.dart';
 import 'package:jogo_cultura_paraense/components/level_selection/level_selection_scaffold.dart';
+import 'package:jogo_cultura_paraense/games/musica/models/rules.dart';
+import 'package:jogo_cultura_paraense/model/game.dart';
 import 'package:jogo_cultura_paraense/model/game_save.dart';
 import 'package:jogo_cultura_paraense/model/map.dart';
 import 'package:jogo_cultura_paraense/model/map_save.dart';
 import 'package:jogo_cultura_paraense/model/save.dart';
-import 'package:jogo_cultura_paraense/pages/games/game_pages.dart';
+import 'package:jogo_cultura_paraense/pages/games/musica_page.dart';
 
-class RunningLevelSelectionPage extends LevelSelectionScaffold {
-  static const String routeName = '/running_selection_level';
-  const RunningLevelSelectionPage({Key key})
-      : super(gameName: Games.legendAndMyths, key: key);
+class MusicLevelSelectionPage extends LevelSelectionScaffold {
+  static const String routeName = '/music_selection_level';
+  const MusicLevelSelectionPage({Key key})
+      : super(gameName: Games.music, key: key);
 
   @override
   List<LevelSelectionCard> buildCards(BuildContext context) {
     final List<LevelSelectionCard> levels = [];
     final Save save = BlocProvider.of<SaveBloc>(context).state.currentSave;
     final List<GameMap> allMaps = Maps.all;
-    final List<RunningGameRules> rules = RunningGameRulebook.all;
+    final List<MusicGameRules> rules = MusicGameRulebook.all;
     MapSave map;
     GameSave game;
     bool unlocked;
@@ -36,7 +35,7 @@ class RunningLevelSelectionPage extends LevelSelectionScaffold {
         unlocked = true;
         callback = () {
           Navigator.of(context).pushNamed(
-            RunningGamePage.routeName,
+            MusicGamePage.routeName,
             arguments: rules[i],
           );
         };

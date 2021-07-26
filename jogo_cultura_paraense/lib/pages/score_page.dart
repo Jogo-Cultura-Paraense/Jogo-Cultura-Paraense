@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jogo_cultura_paraense/bloc/save/save_bloc.dart';
-import 'package:jogo_cultura_paraense/pages/home_page.dart';
+import 'package:jogo_cultura_paraense/pages/select_mini_game_page.dart';
+import 'package:jogo_cultura_paraense/pages/maps/sudoeste.dart';
+import 'package:jogo_cultura_paraense/pages/maps/sudeste.dart';
+import 'package:jogo_cultura_paraense/pages/maps/baixo_amazonas.dart';
+import 'package:jogo_cultura_paraense/pages/maps/metropolitana.dart';
+import 'package:jogo_cultura_paraense/pages/maps/nordeste.dart';
+import 'package:jogo_cultura_paraense/pages/maps/marajó.dart';
 
 class ScorePageArgs {
   final String game;
@@ -14,6 +20,7 @@ class ScorePageArgs {
   final int hintsLeft;
   final int finalScore;
   final int topScore;
+  final List<String> newItems;
 
   const ScorePageArgs({
     @required this.game,
@@ -25,6 +32,7 @@ class ScorePageArgs {
     @required this.hintsLeft,
     @required this.finalScore,
     @required this.topScore,
+    this.newItems,
   });
 
   factory ScorePageArgs.initial() {
@@ -57,7 +65,7 @@ class ScorePage extends StatelessWidget {
     Tempo Restante: ${args.prettyTime} 
     Dicas Usadas: ${0} / ${1}
     TOTAL: ${args.finalScore} / ${1000}
-    HIGH SCORE: ${args.topScore > 1000 ? args.topScore-50 : 1000} 
+    HIGH SCORE: ${args.topScore > 1000 ? args.topScore - 50 : 1000} 
     ''';
 
     String interjection = "\nPai D'égua\n";
@@ -174,6 +182,7 @@ class ScorePage extends StatelessWidget {
                           args.map,
                           args.game,
                           args.score,
+                          args.newItems ?? [],
                         ),
                         child: Icon(
                           Icons.arrow_forward_rounded,
@@ -199,22 +208,29 @@ class ScorePage extends StatelessWidget {
     double time,
     String map,
     String game,
-    int score, {
+    int score,
     List<String> itens,
-  }) {
+  ) {
     if (time > 0) {
       BlocProvider.of<SaveBloc>(context).add(
         SaveClearedGame(
           map,
           game,
           score: score,
-          itens: itens ?? <String>[],
+          itens: itens,
         ),
       );
     }
 
     Navigator.of(context).popUntil(
-      (route) => route.settings.name == HomePage.routeName,
+      (route) =>
+          (route.settings.name == GameSelectionPage.routeName) ||
+          (route.settings.name == SudoestePage.routeName) ||
+          (route.settings.name == BaixoAmazonasPage.routeName) ||
+          (route.settings.name == SudestePage.routeName) ||
+          (route.settings.name == NordestePage.routeName) ||
+          (route.settings.name == MarajoPage.routeName) ||
+          (route.settings.name == MetropolitanaPage.routeName),
     );
   }
 }

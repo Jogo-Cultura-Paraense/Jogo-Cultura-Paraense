@@ -13,12 +13,16 @@ class GamePosition {
   final double left;
   String title;
   bool isOpen;
+  final String routeName;
+  final Object routeArgs;
 
   GamePosition({
     @required this.top,
     @required this.left,
     this.title,
     this.isOpen,
+    @required this.routeName,
+    this.routeArgs,
   });
 }
 
@@ -52,7 +56,10 @@ class MapPage extends StatelessWidget {
       isDismissible: false,
       builder: (BuildContext context) {
         return MapSecondTutorial(onClick: () {
-          Navigator.of(context).pop();
+          Navigator.of(context).pushNamed(
+            _gamesPositions[0].routeName,
+            arguments: _gamesPositions[0].routeArgs,
+          );
         });
       },
     );
@@ -76,24 +83,8 @@ class MapPage extends StatelessWidget {
     );
   }
 
-  // Tells the button what to do if the game is open.
-  void _onOpenGamePressed(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const AlertDialog(
-          backgroundColor: Color.fromRGBO(233, 213, 136, 1),
-          content: Text(
-            'Jogo habilitado!',
-            textAlign: TextAlign.center,
-          ),
-        );
-      },
-    );
-  }
-
   // Tells the button what to do if the game is closed.
-  void _onClosedGamePressed(BuildContext context) {
+  void _onClosedGame(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) {
@@ -116,11 +107,14 @@ class MapPage extends StatelessWidget {
       // Check what to tell the button to do based on openness of game.
       if (position.isOpen) {
         onPressed = () {
-          _onOpenGamePressed(context);
+          Navigator.of(context).pushNamed(
+            position.routeName,
+            arguments: position.routeArgs,
+          );
         };
       } else {
         onPressed = () {
-          _onClosedGamePressed(context);
+          _onClosedGame(context);
         };
       }
 
@@ -145,7 +139,8 @@ class MapPage extends StatelessWidget {
         } else if (state is MapAssetsLoaded) {
           // If the player has open a map page before, but it wasn't the current page
           // load the current page assets.
-          if (state.mapAssets.region != _region) {
+          if (state.mapAssets.region != _region ||
+              state.mapAssets.gamesOpen != _gamesOpen) {
             WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
               _loadMapAssets(context);
             });

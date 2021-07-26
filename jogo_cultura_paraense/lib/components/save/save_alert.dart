@@ -13,7 +13,7 @@ class SaveAlert extends StatelessWidget {
     for (int i = 0; i < state.saves.length; i += 1) {
       titles.add(_SaveTitle(
         title: state.saves[i].title,
-        progress: 'Meu progresso',
+        progress: 'Progresso: ${state.saves[i].getProgress}% desbloqueado',
         isSelected: i == state.currentSaveIndex,
         onTap: () {
           BlocProvider.of<SaveBloc>(context).add(SetCurrentSave(i));
