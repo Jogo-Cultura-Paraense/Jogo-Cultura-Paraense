@@ -140,6 +140,10 @@ flutter:
     - assets/images/running_game/sapo.png
     - assets/images/running_game/tronco.png
     - assets/images/running_game/bg.jpg
+    - lib/images/tutorialarqfest1.jpeg
+    - lib/images/tutorialarqfest2.jpeg
+    - lib/images/tutorialarqfest3.jpeg
+    - lib/images/tutorialarqfest4.jpeg
     - lib/images/arq/1/row-1-col-1.png
     - lib/images/arq/1/row-1-col-2.png
     - lib/images/arq/1/row-1-col-3.png
@@ -330,6 +334,7 @@ flutter:
     - assets/images/musicGame/icons/electricguitar.png
     - assets/images/musicGame/icons/musicnote.png
     - assets/images/musicGame/Vincent_Rosenblatt_Tecnobrega.jpg
+    - assets/images/musicGame/how_to.png
     - assets/audio/bgm/lenda_do_guarana.mp3
     - assets/audio/bgm/os_passa_vida.mp3
     - assets/images/Maninho.jpg
