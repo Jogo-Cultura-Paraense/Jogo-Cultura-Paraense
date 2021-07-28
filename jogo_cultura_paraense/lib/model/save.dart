@@ -18,8 +18,8 @@ class Save {
   const Save({this.title, this.itensSave, this.mapsSave});
 
   String get getProgress {
-    int totalGames = 0;
-    int openGames = 0;
+    int totalGames = -1;
+    int openGames = -1;
     for (MapSave mapSave in mapsSave) {
       totalGames += mapSave.gamesSave.length;
       openGames += mapSave.gamesOpen;
