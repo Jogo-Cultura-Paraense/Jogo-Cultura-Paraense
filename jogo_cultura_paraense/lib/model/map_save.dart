@@ -12,6 +12,9 @@ class MapSave {
 
   int get gamesOpen {
     int gamesOpen = 0;
+    if (!this.isOpen) {
+      return gamesOpen;
+    }
     for (GameSave game in gamesSave) {
       if (game.isOpen) gamesOpen += 1;
     }
